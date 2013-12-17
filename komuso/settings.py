@@ -26,6 +26,11 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ADMINS = (
+  ('Laetitia Nanni', 'laetitia.nanni@gmail.com'),
+  ('Julie Po', 'shiniro07@gmail.com'),
+  ('Thibault Fievet', 'thibault.fievet@gmail.com'),
+)
 
 # Application definition
 
@@ -65,9 +70,11 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
+#TIME_ZONE = 'UTC'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
+LANGUAGE_CODE = 'fr-FR'
 
 USE_I18N = True
 
