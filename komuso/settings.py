@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'komuso.apps.core',
+    'score-editor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,6 +51,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.i18n",
 )
 
 ROOT_URLCONF = 'komuso.urls'
@@ -63,9 +68,9 @@ WSGI_APPLICATION = 'komuso.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': 'database.sql',
+  }
 }
 
 # Internationalization
@@ -75,14 +80,25 @@ DATABASES = {
 #TIME_ZONE = 'UTC'
 
 TIME_ZONE = 'Europe/Paris'
-LANGUAGE_CODE = 'fr-FR'
+LANGUAGE_CODE = 'fr'
 
 USE_I18N = True
-
 USE_L10N = True
 
-USE_TZ = True
+LANGUAGES = (
+    ('fr', 'Français'),
+    ('en', 'Anglais'),
+    ('ja', 'Japonais'),
+)
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+# Templates
+TEMPLATE_DIRS = (
+  "templates"
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
