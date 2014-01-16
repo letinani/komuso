@@ -1,0 +1,119 @@
+/*
+ autor: Laetitia Nanni
+ 2013
+*/
+body {
+  background: url("background.png"); }
+
+a {
+  text-decoration: none; }
+
+ul {
+  padding: 0; }
+
+.icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url("sprite.png") no-repeat;
+  text-indent: -9999px; }
+  .icon.french {
+    background-position: 5px -30px; }
+  .icon.english {
+    background-position: -55px -30px; }
+  .icon.japanese {
+    background-position: -28px -30px; }
+  .icon.undo {
+    background-position: 0px 0px; }
+  .icon.redo {
+    background-position: -40px 0px; }
+  .icon.print {
+    background-position: -90px 0px; }
+  .icon.export-pdf {
+    background-position: -142px 0px; }
+  .icon.save {
+    background-position: -195px 0px; }
+
+figure.pick {
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.5);
+  position: absolute;
+  right: -10px;
+  top: 16%; }
+
+header {
+  background-color: #2c2c2c;
+  color: white;
+  overflow: auto; }
+  header .content {
+    max-width: 90%;
+    margin: 0 auto; }
+  header a {
+    color: white;
+    float: left;
+    margin-left: 10px; }
+  header #menu-file {
+    float: right; }
+    header #menu-file ul {
+      margin: 0; }
+    header #menu-file li {
+      float: left;
+      padding: 12px;
+      border-left: 1px solid #636363; }
+      header #menu-file li:first-child a:first-child {
+        margin: 0;
+        margin-right: 10px; }
+      header #menu-file li a {
+        margin: 0; }
+        header #menu-file li a:hover {
+          background-color: rgba(255, 255, 255, 0.1); }
+
+.column {
+  float: right; }
+
+#menu-editor {
+  float: right;
+  padding: 20px;
+  background: red; }
+  #menu-editor nav li {
+    position: relative;
+    float: none;
+    clear: both; }
+    #menu-editor nav li .note {
+      display: block;
+      width: 40px;
+      height: 40px;
+      background-color: white;
+      border: 1px solid #CCC;
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 0.9em;
+      line-height: 2;
+      padding: 5px;
+      margin-bottom: 15px;
+      float: right; }
+    #menu-editor nav li .menu-sub {
+      display: none;
+      -webkit-border-radius: 50px;
+      -moz-border-radius: 50px;
+      border-radius: 50px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      margin: 0;
+      float: right;
+      margin-right: 15px;
+      position: absolute;
+      right: 49px;
+      top: -15px; }
+      #menu-editor nav li .menu-sub li {
+        clear: none; }
+        #menu-editor nav li .menu-sub li .note {
+          width: 30px;
+          height: 30px; }
+    #menu-editor nav li:hover .menu-sub {
+      display: block; }

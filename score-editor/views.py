@@ -8,3 +8,7 @@ def home(request):
   return render_to_response('score-editor/index.html',
                               {},
                               context_instance = RequestContext(request))
+def test(request):
+  return render_to_response('score-editor/test_language.html',
+                              {},
+                              context_instance = RequestContext(request))

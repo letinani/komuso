@@ -1,0 +1,135 @@
+//settings
+@import '_mixins';
+
+
+body {
+	background: url('background.png');
+}
+a {
+	text-decoration: none;
+}
+ul {
+	padding:0;
+}
+.icon {
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: url('sprite.png') no-repeat;
+	text-indent: -9999px;
+
+	&.french{ background-position: 5px -30px; }
+	&.english{ background-position: -55px -30px; }
+	&.japanese{ background-position: -28px -30px; }
+	&.undo{ background-position: 0px 0px; }
+	&.redo{ background-position: -40px 0px; }
+	&.print{ background-position: -90px 0px; }
+	&.export-pdf{ background-position: -142px 0px; }
+	&.save{ background-position: -195px 0px; }
+}
+figure.pick {
+	width: 0px;
+	height: 0px;
+	border-style: solid;
+	border-width: 10px 0 10px 10px;
+	border-color: transparent transparent transparent rgba(0,0,0,0.5);
+	position: absolute;
+    right: -10px;
+    top: 16%;
+
+}
+header {
+	background-color: #2c2c2c;
+	color: white;
+	overflow: auto;
+	.content {
+		max-width: 90%;
+		margin: 0 auto;
+	}
+
+	a {
+		color: white;
+		float: left;
+		margin-left: 10px;
+	}
+
+	#menu-file {
+		float: right;
+		ul {
+			margin: 0;
+		}
+		li {
+			float: left;
+			padding: 12px;
+			border-left: 1px solid #636363;
+			&:first-child a:first-child {
+				margin: 0;
+				margin-right: 10px;
+			}
+			a {
+				margin: 0;
+				&:hover {
+					background-color: rgba(255,255,255,0.1);
+				}
+			}
+		}
+	}
+}
+
+.column {
+	float: right;
+}
+
+
+#menu-editor {
+	float: right;
+	padding: 20px;
+	background: red;
+
+	nav {
+		li {
+			position: relative;
+			float: none;
+			clear: both;
+
+			.note {
+				display: block;
+				width: 40px;
+				height: 40px;
+				background-color: white;
+				border: 1px solid #CCC;
+				@include border-radius(50px);
+				text-align: center;
+				font-size: 0.9em;
+				line-height: 2;
+				padding: 5px;
+				margin-bottom: 15px;
+				float: right;
+
+			}
+			.menu-sub {
+				display: none;
+				@include border-radius(50px);
+				background: rgba(0,0,0,0.5);
+				padding: 10px;
+				margin: 0;
+				float: right;
+			    margin-right: 15px;
+			    position: absolute;
+			    right: 49px;
+			    top: -15px;
+
+				li {
+					clear: none;
+					.note {
+						width: 30px;
+						height: 30px;
+					}
+				}
+			}
+			&:hover .menu-sub {
+				display:block;
+			}
+		}
+	}
+}

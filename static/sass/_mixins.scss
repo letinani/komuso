@@ -1,0 +1,96 @@
+/*
+ autor: Laetitia Nanni
+ 2013
+*/
+
+
+@mixin css3($property, $value) {
+     @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+          #{$prefix}#{$property}: $value;
+     }
+}
+@mixin transform($value) {
+     @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+          #{$prefix}transform: $value;
+     }
+}
+// border radius
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+}
+
+// transitions manage
+@mixin transitions($duration,$property,$timing,$delay:0) {
+	@each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+		#{$prefix}transition-duration: $duration;
+    	#{$prefix}transition-property: $property;
+    	#{$prefix}transition-timing-function: $timing;
+    	#{$prefix}transition-delay: $delay;
+
+	}
+}
+@mixin animation($animation-arguments...) {
+	@each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+		#{$prefix}animation: $animation-arguments;
+	}
+}
+
+// gradients 2 colors from top to bottom
+
+@mixin gradient2($color1,$color2) {
+
+    background: $color1; /* Old browsers */
+    background: -moz-linear-gradient(top,  $color1 0%, $color2 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$color1), color-stop(100%,$color2)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  $color1 0%,$color2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  $color1 0%,$color2 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  $color1 0%,$color2 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  $color1 0%,$color2 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=0 ); /* IE6-9 */
+
+}
+// gradient 2 color from left to right
+@mixin gradient2-horizontal($color1,$color2) {
+  background: #dddddd; /* Old browsers */
+  background: -moz-linear-gradient(left,  $color1 0%, $color2 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,$color1), color-stop(100%,$color2)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  $color1 0%,$color2 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  $color1 0%,$color2 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  $color1 0%,$color2 100%); /* IE10+ */
+  background: linear-gradient(to right,  $color1 0%,$color2 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=1 ); /* IE6-9 */
+}
+@mixin radial-gradient ($position, $shape, $size, $color1, $from, $color2, $to) {
+	background: -webkit-gradient(radial, $position, 0, $position, 100, color-stop($from, $color1), color-stop($to, $color2));
+	@each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+		background: #{$prefix}radial-gradient($position, $shape $size, $color1 $from, $color2 $to);
+	}
+}
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  -webkit-box-shadow:$top $left $blur $color #{$inset};
+  -moz-box-shadow:$top $left $blur $color #{$inset};
+  box-shadow:$top $left $blur $color #{$inset};
+}
+
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin keyframe-bounce ($value...) {
+     @each $prefix in -webkit-, -moz-, -o-, '' {
+          #{$prefix}#{$property}: $value;
+
+     }	
+}
