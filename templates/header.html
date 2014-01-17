@@ -1,11 +1,15 @@
+{% load i18n %}
 <header>
 <div class="content">
 	
-	<a href="">LOGO</a>
+	<a href="">LOGO</a>        
 	<nav id="linguage">
-		<a class="icon french" href="">FR</a>
-		<a class="icon english" href="">ENG</a>
-		<a class="icon japanese" href="">JAP</a>
+	    <form action="/i18n/setlang/" method="post">
+            {% csrf_token %}
+		    <input type="submit" class="icon french" name="language" value="fr" />
+		    <input type="submit" class="icon english" name="language" value="en" />
+		    <input type="submit" class="icon japanese" name="language" value="ja" />
+		</form>
 	</nav>
 	<nav id="menu-file">
 		<ul>

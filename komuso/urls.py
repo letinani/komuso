@@ -11,6 +11,6 @@ urlpatterns = patterns('',
     #url(r'^admin/', include(admin.site.urls)),
 
     #url(r'^$', 'apps.core.views.home', name='home'),
-    url(r'^$', include('score-editor.urls')),
+    url(r'^', include('score-editor.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 )
