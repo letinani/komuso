@@ -2,8 +2,10 @@
  autor: Laetitia Nanni
  2013
 */
-body {
-  background: url("background.png"); }
+html, body {
+  height: 100%;
+  background: url("background.png");
+  overflow: hidden; }
 
 a {
   text-decoration: none; }
@@ -33,6 +35,12 @@ ul {
     background-position: -142px 0px; }
   .icon.save {
     background-position: -195px 0px; }
+  .icon.open-side-menu {
+    width: 50px;
+    background-position: -248px 0px; }
+  .icon.close-side-menu {
+    width: 50px;
+    background-position: -306px 0px; }
 
 figure.pick {
   width: 0px;
@@ -74,10 +82,36 @@ header {
 .column {
   float: right; }
 
+#side-menu {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  color: white;
+  font-size: 1em;
+  font-weight: normal;
+  display: none; }
+  #side-menu h1 {
+    font-size: 1em;
+    font-weight: normal; }
+  #side-menu a {
+    color: white;
+    font-size: 12px; }
+  #side-menu.open {
+    display: block; }
+  #side-menu .icon.close-side-menu {
+    left: -40px;
+    position: absolute;
+    top: 12px; }
+
+/********  Menu to add notes on score ********/
 #menu-editor {
   float: right;
   padding: 20px;
-  background: red; }
+  height: 100%; }
   #menu-editor nav li {
     position: relative;
     float: none;
@@ -117,3 +151,21 @@ header {
           height: 30px; }
     #menu-editor nav li:hover .menu-sub {
       display: block; }
+
+#score {
+  height: 100%;
+  width: 90%;
+  position: relative; }
+  #score .wrapper {
+    height: 100%;
+    display: table; }
+  #score .column {
+    width: 100px;
+    height: 100%;
+    border: 1px dashed black;
+    display: table-cell; }
+  #score .clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    /* Précaution pour IE 7 */ }

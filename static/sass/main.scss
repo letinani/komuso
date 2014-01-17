@@ -2,8 +2,10 @@
 @import '_mixins';
 
 
-body {
+html,body {
+	height:100%;
 	background: url('background.png');
+	overflow: hidden;
 }
 a {
 	text-decoration: none;
@@ -26,6 +28,9 @@ ul {
 	&.print{ background-position: -90px 0px; }
 	&.export-pdf{ background-position: -142px 0px; }
 	&.save{ background-position: -195px 0px; }
+	&.open-side-menu { width: 50px; background-position: -248px 0px; }
+	&.close-side-menu { width: 50px; background-position: -306px 0px; }
+
 }
 figure.pick {
 	width: 0px;
@@ -81,10 +86,45 @@ header {
 }
 
 
+#side-menu {
+
+	position: absolute;
+	background-color: rgba(0,0,0,0.8);
+	height: 100%;
+	z-index: 2;
+	top:0;
+	right:0;
+	padding: 20px;
+	color: white;
+	font-size: 1em;
+	font-weight: normal;
+	display:none;
+
+		h1 {
+			font-size: 1em;
+			font-weight: normal;
+		}
+		a {
+			color: white;
+			font-size: 12px;
+		}
+
+		&.open {
+			display: block;
+		}
+		.icon.close-side-menu {
+		    left: -40px;
+		    position: absolute;
+		    top: 12px;
+		}
+}
+
+/********  Menu to add notes on score ********/
+
 #menu-editor {
 	float: right;
 	padding: 20px;
-	background: red;
+	height: 100%;
 
 	nav {
 		li {
@@ -131,5 +171,26 @@ header {
 				display:block;
 			}
 		}
+	}
+}
+#score {
+	height: 100%;
+	width: 90%;
+	position: relative;
+	.wrapper {
+		height: 100%;
+		display: table;
+	
+
+	}
+	.column {
+		width: 100px;
+		height: 100%;
+		border: 1px dashed black;
+		display: table-cell;
+	}
+	.clear {
+	  clear: both;
+	  height: 0; overflow: hidden; /* Précaution pour IE 7 */
 	}
 }
