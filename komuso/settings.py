@@ -109,4 +109,6 @@ STATIC_ROOT = '/static/'
 STATICFILES_DIRS = (
     "static/img",
     "static/css",
+    "static/js",
+
 )
