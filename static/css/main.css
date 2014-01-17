@@ -9,6 +9,8 @@ html, body {
 
 a {
   text-decoration: none; }
+  a:focus {
+    outline: 0; }
 
 ul {
   padding: 0; }
@@ -22,7 +24,7 @@ ul {
   .icon.french {
     background-position: 5px -30px; }
   .icon.english {
-    background-position: -55px -30px; }
+    background-position: -54px -30px; }
   .icon.japanese {
     background-position: -28px -30px; }
   .icon.undo {
@@ -57,12 +59,15 @@ header {
   color: white;
   overflow: auto; }
   header .content {
-    max-width: 90%;
+    max-width: 98%;
     margin: 0 auto; }
   header a {
     color: white;
     float: left;
     margin-left: 10px; }
+  header #linguage .icon {
+    float: left;
+    border: none; }
   header #menu-file {
     float: right; }
     header #menu-file ul {
@@ -88,12 +93,31 @@ header {
   height: 100%;
   z-index: 2;
   top: 0;
-  right: 0;
+  right: -500px;
   padding: 20px;
   color: white;
   font-size: 1em;
   font-weight: normal;
-  display: none; }
+  -webkit-transition-duration: 0.4s;
+  -webkit-transition-property: right;
+  -webkit-transition-timing-function: linear;
+  -webkit-transition-delay: 0;
+  -moz-transition-duration: 0.4s;
+  -moz-transition-property: right;
+  -moz-transition-timing-function: linear;
+  -moz-transition-delay: 0;
+  -ms-transition-duration: 0.4s;
+  -ms-transition-property: right;
+  -ms-transition-timing-function: linear;
+  -ms-transition-delay: 0;
+  -o-transition-duration: 0.4s;
+  -o-transition-property: right;
+  -o-transition-timing-function: linear;
+  -o-transition-delay: 0;
+  transition-duration: 0.4s;
+  transition-property: right;
+  transition-timing-function: linear;
+  transition-delay: 0; }
   #side-menu h1 {
     font-size: 1em;
     font-weight: normal; }
@@ -101,7 +125,7 @@ header {
     color: white;
     font-size: 12px; }
   #side-menu.open {
-    display: block; }
+    right: 0; }
   #side-menu .icon.close-side-menu {
     left: -40px;
     position: absolute;

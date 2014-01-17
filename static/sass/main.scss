@@ -9,6 +9,9 @@ html,body {
 }
 a {
 	text-decoration: none;
+	&:focus {
+        outline:0;
+    } 
 }
 ul {
 	padding:0;
@@ -21,7 +24,7 @@ ul {
 	text-indent: -9999px;
 
 	&.french{ background-position: 5px -30px; }
-	&.english{ background-position: -55px -30px; }
+	&.english{ background-position: -54px -30px; }
 	&.japanese{ background-position: -28px -30px; }
 	&.undo{ background-position: 0px 0px; }
 	&.redo{ background-position: -40px 0px; }
@@ -48,7 +51,7 @@ header {
 	color: white;
 	overflow: auto;
 	.content {
-		max-width: 90%;
+		max-width: 98%;
 		margin: 0 auto;
 	}
 
@@ -57,7 +60,12 @@ header {
 		float: left;
 		margin-left: 10px;
 	}
-
+	#linguage {
+		.icon {
+			float: left;
+			border: none;
+		}
+	}
 	#menu-file {
 		float: right;
 		ul {
@@ -87,18 +95,19 @@ header {
 
 
 #side-menu {
-
 	position: absolute;
 	background-color: rgba(0,0,0,0.8);
 	height: 100%;
 	z-index: 2;
 	top:0;
-	right:0;
+	right:-500px;;
 	padding: 20px;
 	color: white;
 	font-size: 1em;
 	font-weight: normal;
-	display:none;
+
+	@include transitions(0.4s,right,linear);
+
 
 		h1 {
 			font-size: 1em;
@@ -110,7 +119,7 @@ header {
 		}
 
 		&.open {
-			display: block;
+			right: 0;
 		}
 		.icon.close-side-menu {
 		    left: -40px;
