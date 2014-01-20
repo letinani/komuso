@@ -1,6 +1,17 @@
 //settings
 @import '_mixins';
 
+@font-face {
+    font-family: 'tozanshakregular';
+    src: url('tozanshak-webfont.eot');
+    src: url('tozanshak-webfont.eot?#iefix') format('embedded-opentype'),
+         url('tozanshak-webfont.woff') format('woff'),
+         url('tozanshak-webfont.ttf') format('truetype'),
+         url('tozanshak-webfont.svg#tozanshakregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 html,body {
 	height:100%;
@@ -54,7 +65,10 @@ header {
 		max-width: 98%;
 		margin: 0 auto;
 	}
-
+	h1 {
+		//font-size: 1em;
+		margin: 0;
+	}
 	a {
 		color: white;
 		float: left;
@@ -141,7 +155,7 @@ header {
 			float: none;
 			clear: both;
 
-			.note {
+			.note-picker {
 				display: block;
 				width: 40px;
 				height: 40px;
@@ -167,6 +181,7 @@ header {
 			    position: absolute;
 			    right: 49px;
 			    top: -15px;
+			    z-index: 4;
 
 				li {
 					clear: none;
@@ -186,20 +201,98 @@ header {
 	height: 100%;
 	width: 90%;
 	position: relative;
+	padding-top: 30px;
+
 	.wrapper {
 		height: 100%;
-		display: table;
-	
+
+		#title {
+			margin: 20px;
+			float: right;
+			text-align: center;
+			font-size: 0.5em;
+			padding: 10px;
+			@include border-radius(5px);
+			border: 1px dashed #CCC;
+			.toptobottom {
+				width: 20px;
+				word-wrap: break-word;
+			}
+		}
+	}
+
+	> .column {
+		border-right: 1px dashed black;
 
 	}
 	.column {
 		width: 100px;
 		height: 100%;
-		border: 1px dashed black;
-		display: table-cell;
+		text-align: center;
+		border-left: 1px dashed black;
+
+		h2{
+			margin: 0;
+			font-size: 1em;
+			font-weight: normal;
+		}
+		
 	}
 	.clear {
 	  clear: both;
 	  height: 0; overflow: hidden; /* Précaution pour IE 7 */
+	}
+}
+
+
+.note {
+	font-family: tozanshakregular;
+	font-size: 3em;
+	width: 50%;
+	border: 1px solid #CCC;
+	margin: 2px auto;
+	position: relative;
+
+	.note-selected {
+		display:none;
+	    position: absolute;
+	    z-index: 100;
+	    nav {
+		    border: 30px solid rgba(0, 0, 0, 0);
+		    height: 32px;
+		    left: -30px;
+		    list-style: none outside none;
+		    margin: 0;
+		    padding: 0;
+		    position: absolute;
+		    top: -30px;
+		    width: 32px;
+
+		    &:hover {   
+		    	border: 150px solid rgba(0, 0, 0, 0);
+			    left: -150px;
+			    top: -150px;
+			}
+			.note-picker {
+				background: white;
+				@include border-radius(50px);
+				border: 1px solid #CCC;
+				height: 40px;
+			    left: 0;
+			    position: absolute;
+			    top: 0;
+			    transition: transform 0.5s ease-in-out 0s;
+			    width: 40px;
+			    &.p1 {
+			    	transform: rotate(0deg) translateY(100px);
+			    }
+			    &.p2 {
+			    	transform: rotate(60deg) translateY(100px);
+			    }
+			    &.p3 {
+			    	transform: rotate(120deg) translateY(100px);
+			    }
+			}
+	    }
 	}
 }

@@ -2,6 +2,13 @@
  autor: Laetitia Nanni
  2013
 */
+@font-face {
+  font-family: 'tozanshakregular';
+  src: url("tozanshak-webfont.eot");
+  src: url("tozanshak-webfont.eot?#iefix") format("embedded-opentype"), url("tozanshak-webfont.woff") format("woff"), url("tozanshak-webfont.ttf") format("truetype"), url("tozanshak-webfont.svg#tozanshakregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 html, body {
   height: 100%;
   background: url("background.png");
@@ -61,6 +68,8 @@ header {
   header .content {
     max-width: 98%;
     margin: 0 auto; }
+  header h1 {
+    margin: 0; }
   header a {
     color: white;
     float: left;
@@ -140,7 +149,7 @@ header {
     position: relative;
     float: none;
     clear: both; }
-    #menu-editor nav li .note {
+    #menu-editor nav li .note-picker {
       display: block;
       width: 40px;
       height: 40px;
@@ -167,7 +176,8 @@ header {
       margin-right: 15px;
       position: absolute;
       right: 49px;
-      top: -15px; }
+      top: -15px;
+      z-index: 4; }
       #menu-editor nav li .menu-sub li {
         clear: none; }
         #menu-editor nav li .menu-sub li .note {
@@ -179,17 +189,80 @@ header {
 #score {
   height: 100%;
   width: 90%;
-  position: relative; }
+  position: relative;
+  padding-top: 30px; }
   #score .wrapper {
-    height: 100%;
-    display: table; }
+    height: 100%; }
+    #score .wrapper #title {
+      margin: 20px;
+      float: right;
+      text-align: center;
+      font-size: 0.5em;
+      padding: 10px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      border: 1px dashed #CCC; }
+      #score .wrapper #title .toptobottom {
+        width: 20px;
+        word-wrap: break-word; }
+  #score > .column {
+    border-right: 1px dashed black; }
   #score .column {
     width: 100px;
     height: 100%;
-    border: 1px dashed black;
-    display: table-cell; }
+    text-align: center;
+    border-left: 1px dashed black; }
+    #score .column h2 {
+      margin: 0;
+      font-size: 1em;
+      font-weight: normal; }
   #score .clear {
     clear: both;
     height: 0;
     overflow: hidden;
     /* Précaution pour IE 7 */ }
+
+.note {
+  font-family: tozanshakregular;
+  font-size: 3em;
+  width: 50%;
+  border: 1px solid #CCC;
+  margin: 2px auto;
+  position: relative; }
+  .note .note-selected {
+    display: none;
+    position: absolute;
+    z-index: 100; }
+    .note .note-selected nav {
+      border: 30px solid rgba(0, 0, 0, 0);
+      height: 32px;
+      left: -30px;
+      list-style: none outside none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: -30px;
+      width: 32px; }
+      .note .note-selected nav:hover {
+        border: 150px solid rgba(0, 0, 0, 0);
+        left: -150px;
+        top: -150px; }
+      .note .note-selected nav .note-picker {
+        background: white;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        border: 1px solid #CCC;
+        height: 40px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: transform 0.5s ease-in-out 0s;
+        width: 40px; }
+        .note .note-selected nav .note-picker.p1 {
+          transform: rotate(0deg) translateY(100px); }
+        .note .note-selected nav .note-picker.p2 {
+          transform: rotate(60deg) translateY(100px); }
+        .note .note-selected nav .note-picker.p3 {
+          transform: rotate(120deg) translateY(100px); }
