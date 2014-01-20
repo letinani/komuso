@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	//Récupère les elements qui ont pour class "number"
-	var div = document.getElementsByClassName('number');
+	var div = document.getElementsByClassName('cols_numbers');
 
 	//Caractere = le caractère final \ centaine = nombre de centaine
 	var caracteres, centaine;
@@ -41,7 +41,7 @@ $(document).ready(function() {
 					caracteres = "六百";
 					break;
 				case 7 : 
-					caracteres = "几百";
+					caracteres = "七百";
 					break;
 
 				case 8 : 
@@ -88,7 +88,7 @@ $(document).ready(function() {
 					caracteres += "六十";
 					break;
 				case 7 : 
-					caracteres += "几十";
+					caracteres += "七十";
 					break;
 
 				case 8 : 
@@ -137,7 +137,7 @@ $(document).ready(function() {
 					break;
 
 				case 7 : 
-					caracteres += "几";
+					caracteres += "七";
 					break;
 
 				case 8 : 
