@@ -2,8 +2,8 @@
 
 function ScoreEditor() {
     this.isSaved = true;
-    this.partition = this.loadPartition();
     this.historic = new Historic();
+    this.partition = this.loadPartition();
 }
 
 ScoreEditor.prototype.nbNotes = function() {
@@ -24,6 +24,7 @@ ScoreEditor.prototype.removeNotesAt = function(indice, piste, nbNotes) {
 ScoreEditor.prototype.save = function() {
     if(typeof localStorage!='undefined') {
         localStorage.setItem("partition",JSON.stringify(this.partition));
+        localStorage.setItem("historic",JSON.stringify(this.historic));
     } else {
         alert("localStorage n'est pas supporté. Impossible de sauvegarder la partition.");
         // A compléter : utilisation de userData pour IE 6 et 7
@@ -54,12 +55,18 @@ ScoreEditor.prototype.loadPartition = function() {
     // Si l'utilisateur a déjà une partition stockée sur son ordinateur, on la récupère, sinon on lui en crée une nouvelle.
     if(typeof localStorage!='undefined') {
         if('partition' in localStorage) {
+            this.historic = JSON.parse(localStorage.getItem("historic"));
             return JSON.parse(localStorage.getItem("partition"));
-        } else return this.createPartition();
+        } else {
+            scoreEditor.historic.redoEvents.length = 0;
+            scoreEditor.historic.undoEvents.length = 0;
+            return this.createPartition();
+        }
     }
     
     alert("localStorage n'est pas supporté. Impossible de charger la partition.");
     // A compléter : utilisation de userData pour IE 6 et 7
+    
     return this.createPartition();
 }
 
@@ -242,10 +249,14 @@ $(document).ready(function() {
 	    if(!scoreEditor.isSaved) {
 	        if(confirm("Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues.")) {
                 scoreEditor.partition = scoreEditor.createPartition();
+                scoreEditor.historic.redoEvents.length = 0;
+                scoreEditor.historic.undoEvents.length = 0;
                 scoreEditor.save();
                 scoreEditor.print();
             }
         } else {
+            scoreEditor.historic.redoEvents.length = 0;
+            scoreEditor.historic.undoEvents.length = 0;
             scoreEditor.partition = scoreEditor.createPartition();
             scoreEditor.save();
             scoreEditor.print();
@@ -259,6 +270,8 @@ $(document).ready(function() {
 	        if(confirm("Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues.")) {  
                 var reader = new FileReader();
                 reader.onload = function() {
+                    scoreEditor.historic.redoEvents.length = 0;
+                    scoreEditor.historic.undoEvents.length = 0;
                     scoreEditor.partition = JSON.parse(reader.result);
                     scoreEditor.save();
                     scoreEditor.print();
@@ -269,6 +282,8 @@ $(document).ready(function() {
         } else {
             var reader = new FileReader();
             reader.onload = function() {
+                scoreEditor.historic.redoEvents.length = 0;
+                scoreEditor.historic.undoEvents.length = 0;
                 scoreEditor.partition = JSON.parse(reader.result);
                 scoreEditor.save();
                 scoreEditor.print();
