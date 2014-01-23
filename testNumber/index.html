@@ -1,0 +1,128 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src ="numbers.js"></script>
+		<script type="text/javascript" src ="colonm.js"></script>
+
+		<!--<script type="text/javascript" src ="pdf.js"></script>-->
+
+		<style>
+			#test {
+				color:red;
+			}
+
+			.colonm {
+				display:inline-block;
+				float:right;
+				width:70px;
+				margin-left:20px;
+				text-align:center;
+			}
+
+			.number {
+				display:block;
+				margin-top:20px; 
+			}
+
+			.clear {
+				clear:both;
+			}
+
+			.pdf, .button, .replace {
+				display:inline-block;
+				float:left;	
+
+				margin-top:50px;
+				margin-right:30px;
+				padding:10px 20px;
+
+				color:#fff;
+				background-color:#1049A9;
+			}
+
+		</style>
+	</head>
+
+	<body id="body">
+		<div id="content">
+			<div class="colonm">
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+			</div>
+			<div class="colonm">
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+			</div>
+			<div class="colonm">
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+				<div class="number"></div>
+			</div>
+		</div>
+
+		<div class="clear"></div>
+		<!--<a class="pdf" id="pdf" href="#">Download PDF</a>-->
+		<!--<a class="pdf" id="pdf" href="javascript:demoFromHTML()">Download PDF</a>-->
+		<a class="pdf">Ajouter un nombre</a>
+		<a class="button">Insertion une note</a>
+		<a class="replace">Remplacer une note</a>
+
+		<!--<script type="text/javascript" src="test2/jsPDF-master/dist/jspdf.source.js"></script>
+		<script type="text/javascript" src="test2/jsPDF-master/dist/jspdf.min.js"></script>
+		<script type="text/javascript" src="test2/jsPDF-master/jsPDF.js"></script>
+		<script type="text/javascript" src="test2/jsPDF-master/jspdf.plugin.standard_fonts_metrics.js"></script> 
+		<script type="text/javascript" src="test2/jsPDF-master/jspdf.plugin.split_text_to_size.js"></script>               
+		<script type="text/javascript" src="test2/jsPDF-master/jspdf.plugin.from_html.js"></script>
+
+		<script>
+  function demoFromHTML() {
+var pdf = new jsPDF('p','in','letter')
+
+, source = $('#testcase')[0]  // This is your HTML Div to generate pdf
+
+
+, specialElementHandlers = {
+
+    '#bypassme': function(element, renderer){
+
+        return true
+    }
+}
+
+pdf.fromHTML(
+    source // HTML string or DOM elem ref.
+    , 0.5 // x coord
+    , 0.5 // y coord
+    , {
+                'width':7.5 // max width of content on PDF
+                , 'elementHandlers': specialElementHandlers
+    }
+)
+pdf.output('dataurl')
+    }</script>-->
+	</body>
+</html>
