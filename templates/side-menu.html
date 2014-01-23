@@ -5,10 +5,11 @@
 	<nav id="file">
 		<h1>{% trans "nav_file"%}</h1>
 		<ul>
-			<li><a href="">{% trans "label_new_document" %}t</a></li>
-			<li><a href="">{% trans "label_save_document" %}t</a></li>
-			<li><a href="">{% trans "label_print_document" %}t</a></li>
-			<li><a href="">{% trans "label_charge_document" %}t</a></li>
+			<li><a href="" class="newDocument">{% trans "label_new_document" %}</a></li>
+			<li><a href="" class="saveButton">{% trans "label_save_document" %}</a></li>
+			<li><a href="">{% trans "label_print_document" %}</a></li>
+			<li><input class="loadFile" type="file" /></li>
+			<!--<li><a href="">{% trans "label_charge_document" %}</a></li>-->
 
 		</ul>
 	</nav>

@@ -1,5 +1,123 @@
 /***** Liste des classes ****/
 
+function ScoreEditor() {
+    this.isSaved = true;
+    this.historic = new Historic();
+    this.partition = this.loadPartition();
+}
+
+ScoreEditor.prototype.nbNotes = function() {
+    return this.partition.pistes[0].notes.length;
+}
+
+// Insert des notes à l'indice spécifié
+ScoreEditor.prototype.insertNotesAt = function(indice, piste, notes) {
+    this.partition.pistes[piste].notes.splice(indice, 0, notes);
+}
+
+// Supprime des notes à l'indice spécifié et les retourne
+ScoreEditor.prototype.removeNotesAt = function(indice, piste, nbNotes) {
+    return this.partition.pistes[piste].notes.splice(indice, nbNotes);
+}
+
+// Sauvegarde la partition sur l'ordinateur de l'utilisateur avec localStorage
+ScoreEditor.prototype.save = function() {
+    if(typeof localStorage!='undefined') {
+        localStorage.setItem("partition",JSON.stringify(this.partition));
+        localStorage.setItem("historic",JSON.stringify(this.historic));
+    } else {
+        alert("localStorage n'est pas supporté. Impossible de sauvegarder la partition.");
+        // A compléter : utilisation de userData pour IE 6 et 7
+    }
+}
+
+// Actualise l'affichage de la partition
+ScoreEditor.prototype.print = function() {
+    $('#notes').html("");
+    for(var i in this.partition.pistes[0].notes) {
+        var note = this.partition.pistes[0].notes[i];
+        $('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
+    }
+}
+
+// Crée une partition vide.
+ScoreEditor.prototype.createPartition = function() { 
+    var title = new Title("Arial", 20, "#000",  "normal"); //A ajouter à la création d'un titre
+    var partition = new Partition(title, "Michu", new Date(), 2); //A ajouter à la création d'une partition
+    var template = new Template(true, "konko", 20, false, false); //A ajouter à la création d'une piste
+    partition.pistes.push(new Piste(template, title)); //A ajouter à la création d'une piste => ajoute une piste à la partition
+    
+    return partition;
+}
+
+// Charge la partition sur l'ordinateur de l'utilisateur avec localStorage
+ScoreEditor.prototype.loadPartition = function() {
+    // Si l'utilisateur a déjà une partition stockée sur son ordinateur, on la récupère, sinon on lui en crée une nouvelle.
+    if(typeof localStorage!='undefined') {
+        if('partition' in localStorage) {
+            this.historic = JSON.parse(localStorage.getItem("historic"));
+            return JSON.parse(localStorage.getItem("partition"));
+        } else {
+            scoreEditor.historic.redoEvents.length = 0;
+            scoreEditor.historic.undoEvents.length = 0;
+            return this.createPartition();
+        }
+    }
+    
+    alert("localStorage n'est pas supporté. Impossible de charger la partition.");
+    // A compléter : utilisation de userData pour IE 6 et 7
+    
+    return this.createPartition();
+}
+
+ScoreEditor.prototype.add = function(event) {
+    this.isSaved = false;
+    this.historic.redoEvents.length = 0;
+    this.historic.undoEvents.push(event);
+}
+
+ScoreEditor.prototype.undo = function() {
+    if(this.historic.undoEvents.length <= 0) return;
+    
+    var event = this.historic.undoEvents.pop();
+    this.historic.redoEvents.push(event);
+    
+    switch(event.action) {
+        case "add" :
+            this.removeNotesAt(event.indice, event.piste, [event.notes].length);
+            break;
+        
+        case "delete" :
+            this.insertNotesAt(event.indice, event.piste, event.notes[0]);
+            break;
+        
+        case "modify" :
+            
+            break;
+    }
+}
+
+ScoreEditor.prototype.redo = function() {
+    if(this.historic.redoEvents.length <= 0) return;
+    
+    var event = this.historic.redoEvents.pop();
+    this.historic.undoEvents.push(event);
+    
+    switch(event.action) {
+        case "add" :
+            this.insertNotesAt(event.indice, event.piste, event.notes[0]);
+            break;
+        
+        case "delete" :
+            this.removeNotesAt(event.indice, event.piste, [event.notes].length);
+            break;
+        
+        case "modify" :
+            
+            break;
+    }
+}
+
 // Constructeur de la class partition, prend en paramètre un titre(class), un auteur, une date et une version
 function Partition(title, author, date, version) {
 	this.title = title;
@@ -41,36 +159,6 @@ function Note(indice, nom, time, effect) {
 	this.effect = effect;
 }
 
-// Sauvegarde la partition sur l'ordinateur de l'utilisateur avec localStorage
-function savePartition(partition) {
-    if(typeof localStorage!='undefined') {
-        var partition_json = JSON.stringify(partition);
-        localStorage.setItem("partition",partition_json);
-    } else {
-        alert("localStorage n'est pas supporté. Impossible de sauvegarder la partition.");
-        // A compléter : utilisation de userData pour IE 6 et 7
-    }
-}
-
-// Actualise l'affichage de la partition
-function printPartition(partition) {
-    $('#notes').html("");
-    for(var i in partition.pistes[0].notes) {
-        var note = partition.pistes[0].notes[i];
-        $('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
-    }
-}
-
-// Insert des notes à l'indice spécifié
-function insertNotesAt(indice, piste, notes) {
-    piste.notes.splice(indice, 0, notes);
-}
-
-// Supprime des notes à l'indice spécifié et les retourne
-function removeNotesAt(indice, piste, nbNotes) {
-    return piste.notes.splice(indice, nbNotes);
-}
-
 //Constructeur d'événements pour l'historique avec l'action produite et les notes modifiés
 function HistoricEvent(action, indice, piste, notes) {
     this.action = action;
@@ -85,96 +173,18 @@ function Historic() {
     this.redoEvents = [];
 }
 
-Historic.prototype.add = function(event) {
-    this.redoEvents.length = 0;
-    this.undoEvents.push(event);
-}
-
-Historic.prototype.undo = function() {
-    if(this.undoEvents.length <= 0) return;
-    
-    var event = this.undoEvents.pop();
-    this.redoEvents.push(event);
-    
-    switch(event.action) {
-        case "add" :
-            removeNotesAt(event.indice, event.piste, event.notes.length);
-            break;
-        
-        case "delete" :
-            insertNotesAt(event.indice, event.piste, event.notes[0]);
-            break;
-        
-        case "modify" :
-            
-            break;
-    }
-}
-
-Historic.prototype.redo = function() {
-    if(this.redoEvents.length <= 0) return;
-    
-    var event = this.redoEvents.pop();
-    this.undoEvents.push(event);
-    
-    switch(event.action) {
-        case "add" :
-            insertNotesAt(event.indice, event.piste, event.notes[0]);
-            break;
-        
-        case "delete" :
-            removeNotesAt(event.indice, event.piste, event.notes.length);
-            break;
-        
-        case "modify" :
-            
-            break;
-    }
-}
-
-// Crée une partition vide.
-function createPartition() {
-        
-    var title = new Title("Arial", 20, "#000",  "normal"); //A ajouter à la création d'un titre
-    var partition = new Partition(title, "Michu", new Date(), 2); //A ajouter à la création d'une partition
-    var template = new Template(true, "konko", 20, false, false); //A ajouter à la création d'une piste
-    partition.pistes.push(new Piste(template, title)); //A ajouter à la création d'une piste => ajoute une piste à la partition
-    
-    savePartition(partition);
-    return partition;
-}
-
-// Charge la partition sur l'ordinateur de l'utilisateur avec localStorage
-function loadPartition() {
-    // Si l'utilisateur a déjà une partition stockée sur son ordinateur, on la récupère, sinon on lui en crée une nouvelle.
-    if(typeof localStorage!='undefined') {
-        if('partition' in localStorage) {
-            var partition_json = localStorage.getItem("partition");
-            partition = JSON.parse(partition_json);
-            
-            return partition;
-        } else return createPartition();
-    }
-    
-    alert("localStorage n'est pas supporté. Impossible de charger la partition.");
-    // A compléter : utilisation de userData pour IE 6 et 7
-    return createPartition();
-}
-
 $(document).ready(function() {
-    var partition = loadPartition();
-    var historic = new Historic();
-	
-	var nbNotes = partition.pistes[0].notes.length;
-	printPartition(partition);
+    var scoreEditor = new ScoreEditor();
+
+	scoreEditor.print();
 	
 	/*** Ajout d'une note ***/
 	$('a.note-picker').click(function(e) {
         e.preventDefault();
         
 		var n = $(this).text();
-		var nom;
-		var indice;
+		var nom = "ro";
+		var indice = "a";
 		switch(n) {
 			case "ro" : 
 				nom = "ro";
@@ -206,38 +216,94 @@ $(document).ready(function() {
 		}
         
         var note = new Note(indice, nom, 20, "aigu");
-        historic.add(new HistoricEvent("add", nbNotes, partition.pistes[0], [note]));
-        insertNotesAt(nbNotes++, partition.pistes[0], note);
-		
-		printPartition(partition);
-		savePartition(partition);
+        scoreEditor.add(new HistoricEvent("add", scoreEditor.nbNotes(), 0, [note]));
+        scoreEditor.insertNotesAt(scoreEditor.nbNotes(), 0, note);
+        
+		scoreEditor.save();
+		scoreEditor.print();
 	});
 
 
 	/*** Sauvegarde ***/
-	$('.save').click(function(e) {
-		savePartition(partition);
+	$('.saveButton').click(function(e) {
+		e.preventDefault();
+	    if(typeof localStorage!='undefined') {
+            if('partition' in localStorage) {
+                var BB = Blob;
+	            var test = saveAs(
+		              new BB(
+			              [localStorage.getItem("partition")]
+			            , {type: "text/plain;charset=" + document.characterSet}
+		            )
+		            , $("#title").find("h1").text() + ".skh"
+	            );
+	            scoreEditor.isSaved = true;
+            }
+        }
+	    
+	});
+	
+	/*** Nouveau Document ***/
+	$('.newDocument').click(function(e) {
+	    e.preventDefault();
+	    if(!scoreEditor.isSaved) {
+	        if(confirm("Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues.")) {
+                scoreEditor.partition = scoreEditor.createPartition();
+                scoreEditor.historic.redoEvents.length = 0;
+                scoreEditor.historic.undoEvents.length = 0;
+                scoreEditor.save();
+                scoreEditor.print();
+            }
+        } else {
+            scoreEditor.historic.redoEvents.length = 0;
+            scoreEditor.historic.undoEvents.length = 0;
+            scoreEditor.partition = scoreEditor.createPartition();
+            scoreEditor.save();
+            scoreEditor.print();
+        }
 	});
     
     /*** Chargement ***/
-	/*$('div.deserialisation').click(function(e) {
-		loadPartition(partition);
-		partition.print();
-	});*/
+    var fileInput = document.querySelector('.loadFile');
+    fileInput.onchange = function() {
+         if(!scoreEditor.isSaved) {
+	        if(confirm("Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues.")) {  
+                var reader = new FileReader();
+                reader.onload = function() {
+                    scoreEditor.historic.redoEvents.length = 0;
+                    scoreEditor.historic.undoEvents.length = 0;
+                    scoreEditor.partition = JSON.parse(reader.result);
+                    scoreEditor.save();
+                    scoreEditor.print();
+                    scoreEditor.isSaved = true;
+                };
+                reader.readAsText(fileInput.files[0]);
+            }
+        } else {
+            var reader = new FileReader();
+            reader.onload = function() {
+                scoreEditor.historic.redoEvents.length = 0;
+                scoreEditor.historic.undoEvents.length = 0;
+                scoreEditor.partition = JSON.parse(reader.result);
+                scoreEditor.save();
+                scoreEditor.print();
+            };
+            reader.readAsText(fileInput.files[0]);
+        }
+    };
 	
 	$('.undo').click(function(e) {
 	    e.preventDefault();
-		historic.undo();
-		nbNotes = partition.pistes[0].notes.length;
-		printPartition(partition);
-		
+		scoreEditor.undo();
+		scoreEditor.save();
+		scoreEditor.print();
 	});	
 	
 	$('.redo').click(function(e) {
 	    e.preventDefault();
-		historic.redo();
-		nbNotes = partition.pistes[0].notes.length;
-		printPartition(partition);
+		scoreEditor.redo();
+		scoreEditor.save();
+		scoreEditor.print();
 	});
 
 });
