@@ -54,7 +54,7 @@ figure.pick {
 	border-color: transparent transparent transparent rgba(0,0,0,0.5);
 	position: absolute;
     right: -10px;
-    top: 16%;
+    top: 36px;
 
 }
 header {
@@ -176,7 +176,7 @@ header {
 
 			}
 			.menu-sub {
-				display: none;
+				//display: none;
 				@include border-radius(50px);
 				background: rgba(0,0,0,0.5);
 				padding: 10px;
@@ -274,7 +274,7 @@ header {
 
 	@include border-radius(50px);
 	&:hover {
-		border: 1px solid #CCC;
+		background-color:#CCC;
 	}
 	&:hover .note-selected {
 		display:block;
@@ -295,7 +295,33 @@ header {
 		    position: absolute;
 		    top: -28px;
 		    width: 32px;
+		    /*.note-action {
+		    	border: 1px solid #CCC;
+	    		left: 0;
+			    position: absolute;
+			    top: 0;
+				@include border-radius(50px);
+				height: 15px;
+				width: 15px;
+				font-size: 1em;
+				text-indent: -9999px;
+			    &.delete {
+			    	background-color:red;
+			    	@include transform(rotate(260deg) translateY(20px));
+			    	span {@include transform(rotate(-260deg));}
+			    }
+			    &.copy {
+			    	background-color:blue;
+			    	@include transform(rotate(200deg) translateY(20px));
+			    	span {@include transform(rotate(-200deg));}
+			    }
+			    &.paste {
+			    	background-color:green;
+			    	@include transform(rotate(220deg) translateY(20px));
+			    	span {@include transform(rotate(-220deg));}
+			    }
 
+		    }*/
 			.note-picker {
 				background: white;
 				@include border-radius(50px);
@@ -322,13 +348,13 @@ header {
 			}
 
 
-			 &:after { 
+			&:after { 
 
 			 	border-color: rgba(255, 255, 255, 0); 
 			 	border-bottom-color: #FFF; 
 			 	border-width: 0 5px 20px 5px; 
 			 	margin-left: -6px; } 
-			 &:before { 
+			&:before { 
 			 	border-color: rgba(204, 204, 204, 0); 
 			 	border-bottom-color: #ccc; 
 			 	border-width: 0 7px 20px 7px;
@@ -352,6 +378,37 @@ header {
 			    	@include transform(rotate(120deg) translateY($space));
 			    	span {@include transform(rotate(-120deg));}
 
+			    }
+			    
+			    &.delete,&.copy,&.past {
+			    	height: 15px;
+			    	width: 15px;
+			    	
+			    	transform-origin:50% 50%;
+			    	&:after { 
+				 		border:0; 
+					 } 
+					&:before { 
+					 	border:0;
+					}
+			    }
+			    &.delete {
+			    	left: 30px;
+			    	background-color:red;
+			    	@include transform(rotate(230deg) translateY(17px));
+			    	span {@include transform(rotate(-230deg));}
+			    }
+			    &.copy {
+			    	left: 10px;
+			    	background-color:blue;
+			    	@include transform(rotate(170deg) translateY(25px));
+			    	span {@include transform(rotate(-200deg));}
+			    }
+			    &.past {
+			    	left: 20px;
+			    	background-color:green;
+			    	@include transform(rotate(197deg) translateY(25px));
+			    	span {@include transform(rotate(-220deg));}
 			    }
 			}
 	    }

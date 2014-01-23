@@ -22,10 +22,7 @@ $(function() {
 
 
     // menu ajout des notes
-    $(".menu-notes a").click(function(e){
-        $(".menu-sub").addClass('open');
-        return false;
-    });
+
 
 
    // On cache les sous-menus :
