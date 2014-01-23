@@ -20,6 +20,14 @@ ScoreEditor.prototype.removeNotesAt = function(indice, piste, nbNotes) {
     return this.partition.pistes[piste].notes.splice(indice, nbNotes);
 }
 
+// Modifie des notes à l'indice spécifié et les retourne
+ScoreEditor.prototype.editNotesAt = function(indice, piste, nbNotes, time, effect) {
+    for(var i = 0; i < nbNotes; ++i) {
+        this.partition.pistes[piste].notes[i].time = time;
+        this.partition.pistes[piste].notes[i].effect = effect;
+    }
+}
+
 // Sauvegarde la partition sur l'ordinateur de l'utilisateur avec localStorage
 ScoreEditor.prototype.save = function() {
     if(typeof localStorage!='undefined') {
@@ -80,7 +88,6 @@ ScoreEditor.prototype.undo = function() {
     if(this.historic.undoEvents.length <= 0) return;
     
     var event = this.historic.undoEvents.pop();
-    this.historic.redoEvents.push(event);
     
     switch(event.action) {
         case "add" :
@@ -92,16 +99,20 @@ ScoreEditor.prototype.undo = function() {
             break;
         
         case "modify" :
-            
+            var tmp = event;
+            event.time = this.partition.pistes[event.piste].notes[event.indice].time;
+            event.effect = this.partition.pistes[event.piste].notes[event.indice].effect;
+            this.editNotesAt(tmp.indice, tmp.piste, [tmp.notes].length, tmp.time, tmp.effect);
             break;
     }
+    
+    this.historic.redoEvents.push(event);
 }
 
 ScoreEditor.prototype.redo = function() {
     if(this.historic.redoEvents.length <= 0) return;
     
     var event = this.historic.redoEvents.pop();
-    this.historic.undoEvents.push(event);
     
     switch(event.action) {
         case "add" :
@@ -113,9 +124,14 @@ ScoreEditor.prototype.redo = function() {
             break;
         
         case "modify" :
-            
+            var tmp = event;
+            event.time = this.partition.pistes[event.piste].notes[event.indice].time;
+            event.effect = this.partition.pistes[event.piste].notes[event.indice].effect;
+            this.editNotesAt(tmp.indice, tmp.piste, [tmp.notes].length, tmp.time, tmp.effect);
             break;
     }
+    
+    this.historic.undoEvents.push(event);
 }
 
 // Constructeur de la class partition, prend en paramètre un titre(class), un auteur, une date et une version
@@ -160,11 +176,13 @@ function Note(indice, nom, time, effect) {
 }
 
 //Constructeur d'événements pour l'historique avec l'action produite et les notes modifiés
-function HistoricEvent(action, indice, piste, notes) {
+function HistoricEvent(action, indice, piste, notes=null, time=null, effect=null) {
     this.action = action;
     this.indice = indice;
     this.piste = piste;
     this.notes = notes;
+    this.time = time;
+    this.effect = effect;
 }
 
 //Constructeur de l'historique avec un tableau d'événements
@@ -179,7 +197,7 @@ $(document).ready(function() {
 	scoreEditor.print();
 	
 	/*** Ajout d'une note ***/
-	$('a.note-picker').click(function(e) {
+	$('a.ton').click(function(e) {
         e.preventDefault();
         
 		var n = $(this).text();
@@ -215,7 +233,7 @@ $(document).ready(function() {
 			    break;
 		}
         
-        var note = new Note(indice, nom, 20, "aigu");
+        var note = new Note(indice, nom, $("#current-beat").text(), "aigu");
         scoreEditor.add(new HistoricEvent("add", scoreEditor.nbNotes(), 0, [note]));
         scoreEditor.insertNotesAt(scoreEditor.nbNotes(), 0, note);
         

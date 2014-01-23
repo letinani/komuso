@@ -23,8 +23,8 @@ $(function() {
 
     // menu ajout des notes
     $(".menu-notes a").click(function(e){
+        e.preventDefault();
         $(".menu-sub").addClass('open');
-        return false;
     });
 
 
@@ -34,7 +34,9 @@ $(function() {
 
     // On modifie l'évènement "click" sur les liens dans les items de liste
     // qui portent la classe "toggleSubMenu" :
-    $("a.note-picker").click( function () {
+    $("a.note-picker").click( function (e) {
+        e.preventDefault();
+        
         // Si le sous-menu était déjà ouvert, on le referme :
         if ($(this).next(".menu-sub:visible").length != 0) {
             $(this).next().hide();
@@ -44,8 +46,12 @@ $(function() {
             $("#menu-notes .menu-sub").hide();
             $(this).next().show();
         }
-        // On empêche le navigateur de suivre le lien :
-        return false;
+    });
+    
+    $("a.beat").click( function (e) {
+        e.preventDefault();
+        
+        $("#current-beat").text($(this).text());
     });
 
 
