@@ -235,7 +235,7 @@ $(document).ready(function() {
 			              [localStorage.getItem("partition")]
 			            , {type: "text/plain;charset=" + document.characterSet}
 		            )
-		            , $("#title").find("h1").text() + ".skh"
+		            , $("#title").find("textarea").val() + ".skh"
 	            );
 	            scoreEditor.isSaved = true;
             }
