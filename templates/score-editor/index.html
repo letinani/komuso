@@ -34,14 +34,18 @@
 </section>
 
 <section id="score" class="column">
-<section class="wrapper">
+<section class="sheet">
     <section id="title" class="empty">
-        <h1 class="toptobottom">Titre de la partition</h1>
+        <!--<h1 class="toptobottom">Titre de la partition</h1>-->
+        <form>
+            <textarea rows="20" cols="1"　placeholder="Titre de la partition">
+            </textarea>
+            <!--<input type="text" name="score-title">-->
+        </form>
     </section>
 
-   
     <div class="column">
-        <h2>1</h2>
+        <h2 class="cols_numbers">1</h2>
         <!--<div class="note ro">&#12525;</div>-->
         <!--<div class="note ro">a
             <div class="note-selected">
@@ -57,23 +61,44 @@
         <div class="note">d</div>
         <div class="note">e</div>
         <div class="note">f</div>-->
-        <div id="notes">
+        <div id="notes"></div>
+
+    </div>
+    <!--
+    <div class="column">
+        <h2 class="cols_numbers">2</h2>
+        <div class="note ro">a
+            <div class="note-selected">
+                <nav class="menu-edit-note circles" >
+                    <ul>
+                        <li><a class="note-picker p1" href=""><span>a</span></a></li>
+                        <li><a class="note-picker p2" href=""><span>a</span></a></li>
+                        <li><a class="note-picker p3" href=""><span>a</span></a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-
     </div>
-    <div class="column">
-        <span>2</span>
-    </div>
-    <div class="column">
-        <span>3</span>
-    </div>
+    <div class="clear"></div> 
+    -->
 
-
-
-
-    <div class="clear"></div>
 </section>
     
+    <!--
+
+<section class="sheet">
+    {% for i in "xxxxxxxx" %}
+            
+        <div class="column">
+            <h2 class="cols_numbers">{{ forloop.counter0 }}</h2>
+        </div>
+    {% endfor %}
+    
+    <div class="clear"></div>
+</section>
+
+-->
+
 </section>
     
 {% endblock %}

@@ -75,6 +75,9 @@ header {
 		margin-left: 10px;
 	}
 	#linguage {
+		float: left;
+	    margin-top: 12px;
+	    overflow: auto;
 		.icon {
 			float: left;
 			border: none;
@@ -119,27 +122,29 @@ header {
 	color: white;
 	font-size: 1em;
 	font-weight: normal;
-
+	form {
+		font-size: 0.8em;
+	}
 	@include transitions(0.4s,right,linear);
 
 
-		h1 {
-			font-size: 1em;
-			font-weight: normal;
-		}
-		a {
-			color: white;
-			font-size: 12px;
-		}
+	h1 {
+		font-size: 1em;
+		font-weight: normal;
+	}
+	a {
+		color: white;
+		font-size: 12px;
+	}
 
-		&.open {
-			right: 0;
-		}
-		.icon.close-side-menu {
-		    left: -40px;
-		    position: absolute;
-		    top: 12px;
-		}
+	&.open {
+		right: 0;
+	}
+	.icon.close-side-menu {
+	    left: -40px;
+	    position: absolute;
+	    top: 12px;
+	}
 }
 
 /********  Menu to add notes on score ********/
@@ -191,26 +196,36 @@ header {
 					}
 				}
 			}
-			&:hover .menu-sub {
+			&:hover .menu-sub, .menu-sub .open {
 				display:block;
 			}
 		}
 	}
 }
 #score {
-	height: 100%;
+	height: 95%;
 	width: 90%;
 	position: relative;
-	padding-top: 30px;
+	overflow-y :scroll;
+	overflow-x: hidden;	
 
-	.wrapper {
+	.sheet {
+		padding: 20px;
+		background: white;
+		border: 1px solid #CCC;
+		margin: 15px 0;
 		height: 100%;
+		//box-shadow: -2px 0px 1px #ccc;
 
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.05) inset;
+		&:last-child{
+			margin-bottom: 20px;
+		}
 		#title {
 			margin: 20px;
 			float: right;
 			text-align: center;
-			font-size: 0.5em;
+			font-size: 1em;
 			padding: 10px;
 			@include border-radius(5px);
 			border: 1px dashed #CCC;
@@ -218,23 +233,28 @@ header {
 				width: 20px;
 				word-wrap: break-word;
 			}
+			textarea {
+				border: 0;
+				background: none;
+			}
 		}
 	}
 
 	> .column {
-		border-right: 1px dashed black;
+		border-right: 1px dashed #CCC;
 
 	}
 	.column {
 		width: 100px;
 		height: 100%;
 		text-align: center;
-		border-left: 1px dashed black;
+		border-left: 1px dashed #CCC;
 
 		h2{
 			margin: 0;
 			font-size: 1em;
 			font-weight: normal;
+			margin-bottom: 30px;
 		}
 		
 	}
@@ -249,30 +269,33 @@ header {
 	font-family: tozanshakregular;
 	font-size: 3em;
 	width: 50%;
-	border: 1px solid #CCC;
 	margin: 2px auto;
 	position: relative;
 
+	@include border-radius(50px);
+	&:hover {
+		border: 1px solid #CCC;
+	}
+	&:hover .note-selected {
+		display:block;
+	}
 	.note-selected {
 		display:none;
 	    position: absolute;
 	    z-index: 100;
+	    top:0;
+
 	    nav {
 		    border: 30px solid rgba(0, 0, 0, 0);
 		    height: 32px;
-		    left: -30px;
+		    left: -25px;
 		    list-style: none outside none;
 		    margin: 0;
 		    padding: 0;
 		    position: absolute;
-		    top: -30px;
+		    top: -28px;
 		    width: 32px;
 
-		    &:hover {   
-		    	border: 150px solid rgba(0, 0, 0, 0);
-			    left: -150px;
-			    top: -150px;
-			}
 			.note-picker {
 				background: white;
 				@include border-radius(50px);
@@ -283,14 +306,52 @@ header {
 			    top: 0;
 			    transition: transform 0.5s ease-in-out 0s;
 			    width: 40px;
+
+
+
+			&:after, &:before { 
+				bottom: 100%; 
+				left: 50%; 
+				border: solid transparent; 
+				content: " "; 
+				height: 0; width: 0; 
+				position: absolute; 
+				pointer-events: none; 
+				outline: 1px solid transparent;
+
+			}
+
+
+			 &:after { 
+
+			 	border-color: rgba(255, 255, 255, 0); 
+			 	border-bottom-color: #FFF; 
+			 	border-width: 0 5px 20px 5px; 
+			 	margin-left: -6px; } 
+			 &:before { 
+			 	border-color: rgba(204, 204, 204, 0); 
+			 	border-bottom-color: #ccc; 
+			 	border-width: 0 7px 20px 7px;
+				margin-left: -8px; }
+
+			    $space: 70px;
+
+			    span { 
+			    	display: block;
+			    }
 			    &.p1 {
-			    	transform: rotate(0deg) translateY(100px);
+			    	@include transform(rotate(0deg) translateY($space));
+			    	span {@include transform(rotate(0deg));}
 			    }
 			    &.p2 {
-			    	transform: rotate(60deg) translateY(100px);
+			    	@include transform(rotate(60deg) translateY($space));
+			    	span {@include transform(rotate(-60deg));}
+
 			    }
 			    &.p3 {
-			    	transform: rotate(120deg) translateY(100px);
+			    	@include transform(rotate(120deg) translateY($space));
+			    	span {@include transform(rotate(-120deg));}
+
 			    }
 			}
 	    }

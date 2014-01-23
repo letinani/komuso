@@ -10,13 +10,16 @@
 			<li><a href="">{% trans "label_print_document" %}</a></li>
 			<li><input class="loadFile" type="file" /></li>
 			<!--<li><a href="">{% trans "label_charge_document" %}</a></li>-->
-
 		</ul>
 	</nav>
 	<nav id="mmenu-score-layout">
 		<h1>{% trans "nav_layout"%}</h1>
-		<ul>
-			<li><a href="">{% trans "label_borders" %}t</a></li>
-		</ul>
+		<form>
+			<ul>
+				<li><input type="checkbox" name="score-boders" > {% trans "label_activate_borders" %}</li>
+				<li><input type="checkbox" name="score-lines" > {% trans "label_activate_lines" %} </li>
+			</ul>
+		</form>	
+		
 	</nav>
 </section>
