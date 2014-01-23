@@ -58,8 +58,8 @@ ScoreEditor.prototype.loadPartition = function() {
             this.historic = JSON.parse(localStorage.getItem("historic"));
             return JSON.parse(localStorage.getItem("partition"));
         } else {
-            scoreEditor.historic.redoEvents.length = 0;
-            scoreEditor.historic.undoEvents.length = 0;
+            this.historic.redoEvents.length = 0;
+            this.historic.undoEvents.length = 0;
             return this.createPartition();
         }
     }
