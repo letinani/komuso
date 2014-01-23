@@ -20,6 +20,13 @@ $(document).ready(function() {
 		load();
 	});
 
+	var colonm = document.createElement('h2'); //Créer une div
+	colonm.setAttribute("class","number_colonm");//Ajoute la classe colonm à la div
+	colonm.innerHTML = "lolilol";
+	document.getElementById('content').appendChild(colonm);
+
+
+
 });
 
 /***** Ajouter une note à la fin de la partion : prend en paramètre le nombre max de note par colonne ***/

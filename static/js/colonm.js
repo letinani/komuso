@@ -32,6 +32,28 @@ function append(number_max, type) {
 	var note = document.createElement('div'); //Créer une div
 	note.setAttribute("class","note " + type);//Ajoute la class note à la div
 
+	switch(type) {
+		case "ro" :
+			note.innerHTML = "a";
+			break;
+
+		case "tsu" :
+			note.innerHTML = "b";
+			break;
+
+		case "re" :
+			note.innerHTML = "c";
+			break;
+
+		case "chi" :
+			note.innerHTML = "d";
+			break;
+
+		case "ri" :
+			note.innerHTML = "e";
+			break;
+	}
+
 	//Vérifie s'il faut ajouter une nouvelle colonne ou pas
 	if(notes.length%number_max == 0) { //Besoin d'ajouter une nouvelle colonne 
 		//Colonne
@@ -41,6 +63,7 @@ function append(number_max, type) {
 		//H2
 		var number = document.createElement('h2'); //Créer un h2
 		number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
+		number.innerHTML = notes.length + 1;
 
 		//div notes
 		var list_notes = document.createElement('div'); //Créer une div
@@ -70,6 +93,28 @@ function insert(place, number_max, type) {
 		note.setAttribute("class","note " + type);//Ajoute la classe colonm à la div
 		note.setAttribute("id", "test");//Ajoute lid test à la div
 
+		switch(type) {
+			case "ro" :
+				note.innerHTML = "a";
+				break;
+
+			case "tsu" :
+				note.innerHTML = "b";
+				break;
+
+			case "re" :
+				note.innerHTML = "c";
+				break;
+
+			case "chi" :
+				note.innerHTML = "d";
+				break;
+
+			case "ri" :
+				note.innerHTML = "e";
+				break;
+		}
+
 		//Récupère toutes les colonnes
 		var list_colonm = document.getElementsByClassName('notes'); //Récupère avec le nom de la classe
 		var colonm_place = parseInt(place/number_max); //calcule le le numéro de la colonne dans laquelle il faut insérer
@@ -90,6 +135,7 @@ function insert(place, number_max, type) {
 				//H2
 				var number = document.createElement('h2'); //Créer un h2
 				number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
+				number.innerHTML = notes.length + 1;
 
 				//div notes
 				var list_notes = document.createElement('div'); //Créer une div
@@ -119,6 +165,28 @@ function replace(place, number_max) {
 		var note = document.createElement('div');//Créer une div
 		note.setAttribute("class","note " + type);//Ajoute la classe colonm à la div
 		note.setAttribute("id", "test");//Ajoute lid test à la div
+
+		switch(type) {
+			case "ro" :
+				note.innerHTML = "a";
+				break;
+
+			case "tsu" :
+				note.innerHTML = "b";
+				break;
+
+			case "re" :
+				note.innerHTML = "c";
+				break;
+
+			case "chi" :
+				note.innerHTML = "d";
+				break;
+
+			case "ri" :
+				note.innerHTML = "e";
+				break;
+		}
 
 		//Récupère toutes les colonnes
 		var list_colonm = document.getElementsByClassName('notes');//Récupère avec le nom de la classe
