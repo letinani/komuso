@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var number_max = 10; //Le nombre max de note par colonne
 
 	$('a.pdf').click(function(e) {
-		append(number_max); //ajouter à la fin de la partition
+		append(number_max, "ro"); //ajouter à la fin de la partition
 		load();
 
 	});
@@ -23,7 +23,7 @@ $(document).ready(function() {
 });
 
 /***** Ajouter une note à la fin de la partion : prend en paramètre le nombre max de note par colonne ***/
-function append(number_max) {
+function append(number_max, type) {
 
 	//Récupère toutes les notes
 	var notes = document.getElementsByClassName('number'); //Récupère avec le nom de la classe
@@ -34,7 +34,7 @@ function append(number_max) {
 
 	//Note
 	var number = document.createElement('div'); //Créer une div
-	number.setAttribute("class","number");//Ajoute la class number à la div
+	number.setAttribute("class","number " + type);//Ajoute la class number à la div
 
 	//Vérifie s'il faut ajouter une nouvelle colonne ou pas
 	if(notes.length%number_max == 0) { //Pas besoin d'ajouter une nouvelle colonne
