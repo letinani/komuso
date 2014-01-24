@@ -41,20 +41,17 @@ ScoreEditor.prototype.save = function() {
 
 // Actualise l'affichage de la partition
 ScoreEditor.prototype.print = function() {
+    $("#title").find("textarea").val(this.partition.title.text);
     $('#notes').html("");
     for(var i in this.partition.pistes[0].notes) {
-
-       var note = this.partition.pistes[0].notes[i];
-
-         $('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
-
-     }
-
- }
+        var note = this.partition.pistes[0].notes[i];
+        $('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
+    }
+}
 
 // Crée une partition vide.
 ScoreEditor.prototype.createPartition = function() { 
-    var title = new Title("Arial", 20, "#000",  "normal"); //A ajouter à la création d'un titre
+    var title = new Title("", "Arial", 20, "#000",  "normal"); //A ajouter à la création d'un titre
     var partition = new Partition(title, "Michu", new Date(), 2); //A ajouter à la création d'une partition
     var template = new Template(true, "konko", 20, false, false); //A ajouter à la création d'une piste
     partition.pistes.push(new Piste(template, title)); //A ajouter à la création d'une piste => ajoute une piste à la partition
@@ -148,7 +145,8 @@ function Partition(title, author, date, version) {
 }
 
 // Constructeur de la class title, prend en paramètre une font, une font size, une couleur et un font weight
-function Title(font, fontSize, color, fontWeight) {
+function Title(text, font, fontSize, color, fontWeight) {
+    this.text = text;
 	this.font = font;
 	this.fontSize = this.fontSize;
 	this.color = color;
@@ -180,7 +178,7 @@ function Note(indice, nom, time, effect) {
 }
 
 //Constructeur d'événements pour l'historique avec l'action produite et les notes modifiés
-function HistoricEvent(action, indice, piste, notes=null, time=null, effect=null) {
+function HistoricEvent(action, indice, piste, notes, time, effect) {
     this.action = action;
     this.indice = indice;
     this.piste = piste;
@@ -244,7 +242,13 @@ $(document).ready(function() {
 		scoreEditor.save();
 		scoreEditor.print();
 	});
-
+	
+	/*** Title ***/
+	$("#title").find("textarea").change(function(e) {
+	    scoreEditor.partition.title.text = $(this).val();
+	    scoreEditor.isSaved = false;
+	    scoreEditor.save();
+	});
 
 	/*** Sauvegarde ***/
 	$('.saveButton').click(function(e) {
