@@ -256,12 +256,14 @@ $(document).ready(function() {
 	    if(typeof localStorage!='undefined') {
             if('partition' in localStorage) {
                 var BB = Blob;
+                var title = $("#title").find("textarea").val();
+                if(title == "") title = "partition";
 	            var test = saveAs(
 		              new BB(
 			              [localStorage.getItem("partition")]
 			            , {type: "text/plain;charset=" + document.characterSet}
 		            )
-		            , $("#title").find("textarea").val() + ".skh"
+		            , title + ".skh"
 	            );
 	            scoreEditor.isSaved = true;
             }
