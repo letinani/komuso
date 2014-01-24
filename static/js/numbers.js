@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+	load();
+
+});
+
+function load() {
 	//Récupère les elements qui ont pour class "number"
 	var div = document.getElementsByClassName('cols_numbers');
 
@@ -152,5 +157,4 @@ $(document).ready(function() {
 
 	    div[i].innerHTML = caracteres; //affiche le caractère dans la div en question
 	}
-
-});
+}
