@@ -280,7 +280,7 @@ header {
 		display:block;
 	}
 	.note-selected {
-		display:none;
+		//display:none;
 	    position: absolute;
 	    z-index: 100;
 	    top:0;
@@ -325,13 +325,14 @@ header {
 			.note-picker {
 				background: white;
 				@include border-radius(50px);
-				border: 1px solid #CCC;
-				height: 40px;
+				border: 2px solid #a7a7a7;
+				height: 45px;
 			    left: 0;
 			    position: absolute;
-			    top: 0;
+			    top: -4px;
 			    transition: transform 0.5s ease-in-out 0s;
-			    width: 40px;
+			    width: 45px;
+			    //background: url('bg-bubble.png');
 
 
 
@@ -344,37 +345,44 @@ header {
 				position: absolute; 
 				pointer-events: none; 
 				outline: 1px solid transparent;
-
+				top: -21px;
 			}
 
-
+/*
 			&:after { 
 
 			 	border-color: rgba(255, 255, 255, 0); 
 			 	border-bottom-color: #FFF; 
 			 	border-width: 0 5px 20px 5px; 
-			 	margin-left: -6px; } 
+			 	margin-left: -6px; } */
 			&:before { 
-			 	border-color: rgba(204, 204, 204, 0); 
+			 	/*border-color: rgba(204, 204, 204, 0); 
 			 	border-bottom-color: #ccc; 
 			 	border-width: 0 7px 20px 7px;
-				margin-left: -8px; }
+				margin-left: -8px; */
+				background: url('bg-bubble.png') no-repeat;
+			    height: 18px;
+			    margin-left: -17px;
+			    width: 25px;
+
+			}
 
 			    $space: 70px;
 
 			    span { 
 			    	display: block;
 			    }
-			    &.p1 {
+			    &.rythme {
 			    	@include transform(rotate(0deg) translateY($space));
 			    	span {@include transform(rotate(0deg));}
 			    }
-			    &.p2 {
+			    &.effect {
 			    	@include transform(rotate(60deg) translateY($space));
 			    	span {@include transform(rotate(-60deg));}
 
 			    }
-			    &.p3 {
+			    &.color {
+			    	background: blue;
 			    	@include transform(rotate(120deg) translateY($space));
 			    	span {@include transform(rotate(-120deg));}
 
@@ -390,27 +398,33 @@ header {
 					 } 
 					&:before { 
 					 	border:0;
+					 	background: none;
+					 	height: 20px;
+					 	margin-left: 0;
+					 	border-left: 1px solid #a7a7a7;
+
 					}
 			    }
 			    &.delete {
 			    	left: 30px;
 			    	background-color:red;
 			    	@include transform(rotate(230deg) translateY(17px));
-			    	span {@include transform(rotate(-230deg));}
+			    	span.label {@include transform(rotate(-230deg));}
 			    }
 			    &.copy {
 			    	left: 10px;
 			    	background-color:blue;
 			    	@include transform(rotate(170deg) translateY(25px));
-			    	span {@include transform(rotate(-200deg));}
+			    	span.label {@include transform(rotate(-200deg));}
 			    }
 			    &.past {
 			    	left: 20px;
 			    	background-color:green;
 			    	@include transform(rotate(197deg) translateY(25px));
-			    	span {@include transform(rotate(-220deg));}
+			    	span.label {@include transform(rotate(-220deg));}
 			    }
 			}
 	    }
 	}
 }
+
