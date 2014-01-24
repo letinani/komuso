@@ -23,7 +23,7 @@ $(document).ready(function() {
 });
 
 /***** Affichage de toutes les notes de la partition ****/
-function affichage(number_max, type, clear) {
+function affichage(number_max, type, clear, title) {
 
 	if(clear == 1) {
 		document.getElementById('sheet').innerHTML = "";
@@ -37,6 +37,7 @@ function affichage(number_max, type, clear) {
 		textarea.setAttribute("rows", "20");
 		textarea.setAttribute("cols", "1");
 		textarea.setAttribute("placeholder", "Titre de la partition");
+		textarea.innerHTML = title;
 
 		form.appendChild(textarea);
 		section.appendChild(form);
@@ -47,8 +48,12 @@ function affichage(number_max, type, clear) {
 	var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
 
 	//Note
-	var note = document.createElement('div'); //Créer une div
-	note.setAttribute("class","note " + type);//Ajoute la class note à la div
+	if(type != "blank") {
+		var note = document.createElement('div'); //Créer une div
+		note.setAttribute("class","note " + type);//Ajoute la class note à la div
+	}
+	else
+		alert('blank');
 
 	switch(type) {
 		case "ro" :
@@ -73,7 +78,7 @@ function affichage(number_max, type, clear) {
 	}
 
 	//Vérifie s'il faut ajouter une nouvelle colonne ou pas
-	if(notes.length%number_max == 0) { //Besoin d'ajouter une nouvelle colonne 
+	if(notes.length%number_max == 0 || type == "blank") { //Besoin d'ajouter une nouvelle colonne 
 		//Colonne
 		var colonm = document.createElement('div'); //Créer une div
 		colonm.setAttribute("class","column");//Ajoute la classe colonm à la div
@@ -93,7 +98,8 @@ function affichage(number_max, type, clear) {
 
 		colonm.appendChild(number);
 		colonm.appendChild(list_notes);
-		list_notes.appendChild(note); //Ajoute la note à la colonne
+		if(type != "blank")
+			list_notes.appendChild(note); //Ajoute la note à la colonne
 		document.getElementById('sheet').insertBefore(colonm, clear); //ajoute la colonne au contenu
 	}
 	else { //Pas besoin d'ajouter une nouvelle colonne
@@ -137,7 +143,7 @@ function append(number_max, type) {
 	}
 
 	//Vérifie s'il faut ajouter une nouvelle colonne ou pas
-	if(notes.length%number_max == 0) { //Besoin d'ajouter une nouvelle colonne 
+	if(notes.length%number_max == 0 || type = "blank") { //Besoin d'ajouter une nouvelle colonne 
 		//Colonne
 		var colonm = document.createElement('div'); //Créer une div
 		colonm.setAttribute("class","column");//Ajoute la classe colonm à la div

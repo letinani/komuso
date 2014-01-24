@@ -41,13 +41,13 @@ ScoreEditor.prototype.save = function() {
 
 // Actualise l'affichage de la partition
 ScoreEditor.prototype.print = function() {
-    $("#title").find("textarea").val(this.partition.title.text);
-    $('#notes').html("");
+   // $("#title").find("textarea").val(this.partition.title.text);
+    //$('#notes').html("");
     var clear = 1;
     for(var i in this.partition.pistes[0].notes) { 
        var note = this.partition.pistes[0].notes[i];
 
-       affichage(12, note.nom, clear);
+       affichage(12, note.nom, clear, this.partition.title.text);
        clear = 0;
         //$('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
      }
@@ -236,6 +236,11 @@ $(document).ready(function() {
 				nom = "ri";
 				indice = "e";
 				break; 
+
+            case "blank" :
+                nom = "blank";
+                indice = "";
+                break;
 				
 			default : alert("Note inconnue : " + n);
 			    break;
