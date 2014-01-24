@@ -141,7 +141,7 @@ function append(number_max, type) {
 	}
 
 	//Vérifie s'il faut ajouter une nouvelle colonne ou pas
-	if(notes.length%number_max == 0 || type = "blank") { //Besoin d'ajouter une nouvelle colonne 
+	if(notes.length%number_max == 0 || type == "blank") { //Besoin d'ajouter une nouvelle colonne 
 		//Colonne
 		var colonm = document.createElement('div'); //Créer une div
 		colonm.setAttribute("class","column");//Ajoute la classe colonm à la div
@@ -246,6 +246,45 @@ function insert(place, number_max, type) {
 
 /*** Enlever une note ***/
 function remove(place, number_max) {
+
+	//Récupère toutes les notes
+	var notes = document.getElementsByClassName('note');//Récupère avec les de la classe
+
+	//Récupère toutes les colonnes
+	var list_colonm = document.getElementsByClassName('notes'); //Récupère avec le nom de la classe
+	var colonm_place = parseInt(place/number_max); //calcule le numéro de la colonne dans laquelle il faut remove
+
+	list_colonm[colonm_place].removeChild(notes[place]);  //Insère la note dans la colonne
+
+		//Boucle qui permet de décaler les autres notes
+		for(var i=colonm_place; i< list_colonm.length; i++) { //Parcours des colonnes à partir de la colonne dans laquelle on a inséré
+
+			//Si la colonne suivante existe
+			if(list_colonm[i+1])
+				list_colonm[i+1].insertBefore(notes[number_max + (number_max*i)], list_colonm[i+1].firstChild); //Déplace la dernière note de la colonne au début de la colonne suivante
+			else{ //La colonne n'existe pas
+				//Colonne
+				var colonm = document.createElement('div'); //Créer une div
+				colonm.setAttribute("class","colonm");//Ajoute la classe colonm à la div
+
+				//H2
+				var number = document.createElement('h2'); //Créer un h2
+				number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
+				number.innerHTML = notes.length + 1;
+
+				//div notes
+				var list_notes = document.createElement('div'); //Créer une div
+				list_notes.setAttribute("class","notes");//Ajoute la classe notes à la div
+
+				if(notes[number_max + (number_max*i)]) { //Si la note existe
+					colonm.appendChild(number);
+					colonm.appendChild(list_notes);
+					list_notes.appendChild(notes[number_max + (number_max*i)]); //Ajoute la note à la nouvelle colonne
+					document.getElementById('sheet').appendChild(colonm); //Ajoute la colonne au contenue
+				}
+
+			}
+		}
 
 }
 
