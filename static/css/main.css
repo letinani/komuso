@@ -426,3 +426,10 @@ header {
             -ms-transform: rotate(-220deg);
             -o-transform: rotate(-220deg);
             transform: rotate(-220deg); }
+
+.notes .ui-selecting {
+  background: #FECA40; }
+
+.notes .ui-selected {
+  background: #F39814;
+  color: white; }
