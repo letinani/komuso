@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var number_max = 13; //Le nombre max de note par colonne
+	var number_max = 12; //Le nombre max de note par colonne
 
 	$('a.pdf').click(function(e) {
 		append(number_max, "ro"); //ajouter à la fin de la partition
@@ -21,6 +21,88 @@ $(document).ready(function() {
 	});
 
 });
+
+/***** Affichage de toutes les notes de la partition ****/
+function affichage(number_max, type, clear) {
+
+	if(clear == 1) {
+		document.getElementById('sheet').innerHTML = "";
+		var section = document.createElement('section');
+		section.setAttribute("id", "title");
+		section.setAttribute("class", "empty");
+
+		var form = document.createElement('form');
+
+		var textarea = document.createElement('textarea');
+		textarea.setAttribute("rows", "20");
+		textarea.setAttribute("cols", "1");
+		textarea.setAttribute("placeholder", "Titre de la partition");
+
+		form.appendChild(textarea);
+		section.appendChild(form);
+		document.getElementById('sheet').appendChild(section);
+	}
+
+	//Récupère toutes les notes
+	var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
+
+	//Note
+	var note = document.createElement('div'); //Créer une div
+	note.setAttribute("class","note " + type);//Ajoute la class note à la div
+
+	switch(type) {
+		case "ro" :
+			note.innerHTML = "a";
+			break;
+
+		case "tsu" :
+			note.innerHTML = "b";
+			break;
+
+		case "re" :
+			note.innerHTML = "c";
+			break;
+
+		case "chi" :
+			note.innerHTML = "d";
+			break;
+
+		case "ri" :
+			note.innerHTML = "e";
+			break;
+	}
+
+	//Vérifie s'il faut ajouter une nouvelle colonne ou pas
+	if(notes.length%number_max == 0) { //Besoin d'ajouter une nouvelle colonne 
+		//Colonne
+		var colonm = document.createElement('div'); //Créer une div
+		colonm.setAttribute("class","column");//Ajoute la classe colonm à la div
+
+		//H2
+		var number = document.createElement('h2'); //Créer un h2
+		number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
+		number.innerHTML = notes.length + 1;
+
+		//Récupère la div clear
+		var clear = document.getElementById('clear'); //Récupère avec le nom de la classe
+
+		//div notes
+		var list_notes = document.createElement('div'); //Créer une div
+		list_notes.setAttribute("class","notes");//Ajoute la classe notes à la div
+		list_notes.setAttribute("id","notes");//Ajoute la classe notes à la div
+
+		colonm.appendChild(number);
+		colonm.appendChild(list_notes);
+		list_notes.appendChild(note); //Ajoute la note à la colonne
+		document.getElementById('sheet').insertBefore(colonm, clear); //ajoute la colonne au contenu
+	}
+	else { //Pas besoin d'ajouter une nouvelle colonne
+		var list_notes = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
+		if(list_notes[list_notes.length-1])
+			list_notes[list_notes.length-1].appendChild(note); //Ajoute la note à la dernière colonne
+	}
+
+}
 
 /***** Ajouter une note à la fin de la partion : prend en paramètre le nombre max de note par colonne ***/
 function append(number_max, type) {
@@ -58,25 +140,30 @@ function append(number_max, type) {
 	if(notes.length%number_max == 0) { //Besoin d'ajouter une nouvelle colonne 
 		//Colonne
 		var colonm = document.createElement('div'); //Créer une div
-		colonm.setAttribute("class","colonm");//Ajoute la classe colonm à la div
+		colonm.setAttribute("class","column");//Ajoute la classe colonm à la div
 
 		//H2
 		var number = document.createElement('h2'); //Créer un h2
 		number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
 		number.innerHTML = notes.length + 1;
 
+		//Récupère la div clear
+		var clear = document.getElementById('clear'); //Récupère avec le nom de la classe
+
 		//div notes
 		var list_notes = document.createElement('div'); //Créer une div
 		list_notes.setAttribute("class","notes");//Ajoute la classe notes à la div
+		list_notes.setAttribute("id","notes");//Ajoute la classe notes à la div
 
 		colonm.appendChild(number);
 		colonm.appendChild(list_notes);
 		list_notes.appendChild(note); //Ajoute la note à la colonne
-		document.getElementById('content').appendChild(colonm); //ajoute la colonne au contenu
+		document.getElementById('sheet').insertBefore(colonm, clear); //ajoute la colonne au contenu
 	}
 	else { //Pas besoin d'ajouter une nouvelle colonne
 		var list_notes = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
-		list_notes[list_notes.length - 1].appendChild(note); //Ajoute la note à la dernière colonne
+		if(list_notes[list_notes.length-1])
+			list_notes[list_notes.length-1].appendChild(note); //Ajoute la note à la dernière colonne
 	}
 }
 
@@ -145,7 +232,7 @@ function insert(place, number_max, type) {
 					colonm.appendChild(number);
 					colonm.appendChild(list_notes);
 					list_notes.appendChild(notes[number_max + (number_max*i)]); //Ajoute la note à la nouvelle colonne
-					document.getElementById('content').appendChild(colonm); //Ajoute la colonne au contenue
+					document.getElementById('sheet').appendChild(colonm); //Ajoute la colonne au contenue
 				}
 
 			}
