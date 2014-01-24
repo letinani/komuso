@@ -52,8 +52,6 @@ function affichage(number_max, type, clear, title) {
 		var note = document.createElement('div'); //Créer une div
 		note.setAttribute("class","note " + type);//Ajoute la class note à la div
 	}
-	else
-		alert('blank');
 
 	switch(type) {
 		case "ro" :
@@ -244,6 +242,11 @@ function insert(place, number_max, type) {
 			}
 		}
 	}
+}
+
+/*** Enlever une note ***/
+function remove(place, number_max) {
+
 }
 
 /*** Remplace une note ***/
