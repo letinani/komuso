@@ -43,10 +43,14 @@ ScoreEditor.prototype.save = function() {
 ScoreEditor.prototype.print = function() {
     $('#notes').html("");
     for(var i in this.partition.pistes[0].notes) {
-        var note = this.partition.pistes[0].notes[i];
-        $('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
-    }
-}
+
+       var note = this.partition.pistes[0].notes[i];
+
+         $('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
+
+     }
+
+ }
 
 // Crée une partition vide.
 ScoreEditor.prototype.createPartition = function() { 
@@ -206,22 +210,22 @@ $(document).ready(function() {
 		switch(n) {
 			case "ro" : 
 				nom = "ro";
-				indice = "a";
+				indice = "d";
 				break;
 
 			case "tsu" : 
 				nom = "tsu";
-				indice = "b";
+				indice = "f";
 				break;
 
 			case "re" : 
 				nom = "re";
-				indice = "c";
+				indice = "g";
 				break;
 
 			case "chi" :
 				nom = "chi";
-				indice = "d";
+				indice = "a";
 				break;
 
 			case "ri" :
