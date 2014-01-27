@@ -46,4 +46,9 @@ $(function() {
     });
 
 
+    //$( "#sheet" ).selectable();
+
+    //$( ".notes" ).selectable();
+
+
 });

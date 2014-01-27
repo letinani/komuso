@@ -49,7 +49,7 @@ function affichage(number_max, type, clear, title, colonm_max) {
 	//Note
 	if(type != "blank") {
 		var note = document.createElement('div'); //Créer une div
-		note.setAttribute("class","note " + type);//Ajoute la class note à la div
+		note.setAttribute("class","note ui-state-default " + type);//Ajoute la class note à la div
 	}
 
 	switch(type) {
