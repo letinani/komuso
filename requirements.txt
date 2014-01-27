@@ -1,1 +1,5 @@
 Django==1.6
+gunicorn
+psycopg2
+dj-database-url
+dj-static
