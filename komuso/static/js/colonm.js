@@ -1,27 +1,3 @@
-$(document).ready(function() {
-
-	var number_max = 12; //Le nombre max de note par colonne
-
-	$('a.pdf').click(function(e) {
-		append(number_max, "ro"); //ajouter à la fin de la partition
-		load();
-
-	});
-
-	$('a.button').click(function(e) {
-
-		insert(6, number_max, "ro"); //insérer une note 
-		load();
-
-	});
-
-	$('a.replace').click(function(e) {
-		replace(16, number_max, "ro"); //remplacer une note
-		load();
-	});
-
-});
-
 /***** Affichage de toutes les notes de la partition ****/
 function affichage(number_max, type, clear, title, colonm_max) {
 

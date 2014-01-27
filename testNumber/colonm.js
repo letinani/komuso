@@ -20,12 +20,15 @@ $(document).ready(function() {
 		load();
 	});
 
-	var colonm = document.createElement('h2'); //Créer une div
-	colonm.setAttribute("class","number_colonm");//Ajoute la classe colonm à la div
-	colonm.innerHTML = "lolilol";
-	document.getElementById('content').appendChild(colonm);
+	$('a.remove').click(function(e) {
+		remove(6, number_max); //retirer une note
+		///load();
+	});
 
-
+	$('a.removeLast').click(function(e) {
+		removeLast(); //retirer la dernière note
+		load();
+	});
 
 });
 
@@ -52,6 +55,20 @@ function append(number_max, type) {
 		var list_colonm = document.getElementsByClassName('colonm'); //Récupère toutes les colonnes
 		list_colonm[list_colonm.length - 1].appendChild(number); //Ajoute la note à la dernière colonne
 	}
+}
+
+function removeLast() {
+
+	//Récupère toutes les notes
+	var notes = document.getElementsByClassName('number'); //Récupère avec le nom de la classe
+
+	var list_colonm = document.getElementsByClassName('colonm'); //Récupère toutes les colonnes
+
+	list_colonm[list_colonm.length - 1].removeChild(notes[notes.length-1]); //Retirer la note à la colonne
+
+	//Vérifie s'il faut retirer une colonne ou pas
+	if(!list_colonm[list_colonm.length - 1].firstChild) //Retirer une colonne 
+		document.getElementById('content').removeChild(list_colonm[list_colonm.length - 1]); //ajoute la colonne au contenu
 }
 
 /**** Insérer une note à une place précise ***/
@@ -85,6 +102,32 @@ function insert(place, number_max) {
 				colonm.appendChild(notes[number_max + (number_max*i)]); //Ajoute la note à la nouvelle colonne
 				document.getElementById('content').appendChild(colonm); //Ajoute la colonne au contenue
 			}
+		}
+	}
+}
+
+/*** Remove une note ***/
+function remove(place, number_max) {
+
+	//Récupère toutes les notes
+	var notes = document.getElementsByClassName('number');//Récupère avec les de la classe
+
+	//Récupère toutes les colonnes
+	var list_colonm = document.getElementsByClassName('colonm'); //Récupère avec le nom de la classe
+	var colonm_place = parseInt(place/number_max); //calcule le le numéro de la colonne dans laquelle il faut insérer
+
+	list_colonm[colonm_place].removeChild(notes[place]);  //Enleve la note dans la colonne
+
+	//Boucle qui permet de décaler les autres notes
+	for(var i=colonm_place; i< list_colonm.length; ++i) { //Parcours des colonnes à partir de la colonne dans laquelle on a inséré
+
+		//Si la colonne suivante existe
+		if(list_colonm[i+1]) {
+			
+			list_colonm[i].appendChild(list_colonm[i+1].firstChild); //Déplace la dernière note de la colonne au début de la colonne suivante
+
+			if(!list_colonm[i+1].firstChild)
+				document.getElementById('content').removeChild(list_colonm[i+1]);
 		}
 	}
 }
