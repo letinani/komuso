@@ -27,7 +27,8 @@ ul {
   width: 30px;
   height: 30px;
   background: url("sprite.png") no-repeat;
-  text-indent: -9999px; }
+  text-indent: -9999px;
+  transition: opacity 0.3s ease-in-out; }
   .icon.french {
     background-position: 5px -30px; }
   .icon.english {
@@ -92,10 +93,15 @@ header {
       header #menu-file li:first-child a:first-child {
         margin: 0;
         margin-right: 10px; }
+      header #menu-file li:hover a {
+        opacity: 0.9; }
       header #menu-file li a {
         margin: 0; }
-        header #menu-file li a:hover {
-          background-color: rgba(255, 255, 255, 0.1); }
+      header #menu-file li .icon {
+        opacity: 0.3; }
+      header #menu-file li:nth-child(2) {
+        border-left: 0;
+        padding-left: 0; }
 
 .column {
   float: right; }
@@ -165,11 +171,11 @@ header {
       -moz-border-radius: 50px;
       border-radius: 50px;
       text-align: center;
-      font-size: 0.9em;
-      line-height: 2;
+      font-size: 1em;
       padding: 5px;
       margin-bottom: 15px;
-      float: right; }
+      float: right;
+      color: #000000; }
     #menu-editor nav li .menu-sub {
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
@@ -200,7 +206,7 @@ header {
   #score .sheet {
     padding: 20px;
     background: white;
-    border: 1px solid #CCC;
+    border: 1px solid #ddd;
     margin: 15px 0;
     height: 100%;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.05) inset; }

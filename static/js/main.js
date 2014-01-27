@@ -46,7 +46,7 @@ $(function() {
     });
 
 
-    //$( "#sheet" ).selectable();
+    $( "#sheet" ).selectable();
 
     //$( ".notes" ).selectable();
 

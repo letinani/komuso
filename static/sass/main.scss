@@ -33,6 +33,7 @@ ul {
 	height: 30px;
 	background: url('sprite.png') no-repeat;
 	text-indent: -9999px;
+	transition: opacity 0.3s ease-in-out;
 
 	&.french{ background-position: 5px -30px; }
 	&.english{ background-position: -54px -30px; }
@@ -92,15 +93,25 @@ header {
 			float: left;
 			padding: 12px;
 			border-left: 1px solid #636363;
+
 			&:first-child a:first-child {
 				margin: 0;
 				margin-right: 10px;
 			}
+			&:hover a{
+				opacity: 0.9;
+			}
 			a {
 				margin: 0;
-				&:hover {
-					background-color: rgba(255,255,255,0.1);
-				}
+			}
+			.icon {
+					opacity: 0.3;
+
+			}
+			//vire la bordure un redo
+			&:nth-child(2) {
+				border-left: 0;
+				padding-left: 0;
 			}
 		}
 	}
@@ -168,11 +179,13 @@ header {
 				border: 1px solid #CCC;
 				@include border-radius(50px);
 				text-align: center;
-				font-size: 0.9em;
-				line-height: 2;
+				font-size: 1em;
 				padding: 5px;
 				margin-bottom: 15px;
 				float: right;
+				//font-family: tozanshakregular;
+				color: #000000;
+
 
 			}
 			.menu-sub {
@@ -212,7 +225,7 @@ header {
 	.sheet {
 		padding: 20px;
 		background: white;
-		border: 1px solid #CCC;
+		border: 1px solid #ddd;
 		margin: 15px 0;
 		height: 100%;
 		//box-shadow: -2px 0px 1px #ccc;
