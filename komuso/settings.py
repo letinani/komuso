@@ -10,8 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
+BASE_DIR = os.path.realpath(os.path.dirname(__file__) + '/..')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -20,16 +19,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '4+_55w=d2&&v$^fs7gns7(d9q#9f_wtsz-7rf!juyi1vc!v7d8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', False))
+# DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
 
 ADMINS = (
-  ('Laetitia Nanni', 'laetitia.nanni@gmail.com'),
-  ('Julie Po', 'pojulie07@gmail.com'),
-  ('Thibault Fievet', 'thibault.fievet@gmail.com'),
+    ('Laetitia Nanni', 'laetitia.nanni@gmail.com'),
+    ('Julie Po', 'pojulie07@gmail.com'),
+    ('Thibault Fievet', 'thibault.fievet@gmail.com'),
 )
 
 # Application definition
@@ -41,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'komuso',
     'score-editor',
 )
 
@@ -63,21 +67,20 @@ ROOT_URLCONF = 'komuso.urls'
 WSGI_APPLICATION = 'komuso.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+# Database (https://docs.djangoproject.com/en/1.6/ref/settings/#databases)
 
+# Parse database configuration from DATABASE_URL environment variable
+import dj_database_url
 DATABASES = {
-    'default': {
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': 'database.sql',
-  }
+    'default': dj_database_url.config()
 }
+# Defaults to sqlite database
+if not 'ENGINE' in DATABASES['default']:
+    DATABASES['default'] = dj_database_url.parse('sqlite:///{}/komuso.db'.format(BASE_DIR))
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
-
-#LANGUAGE_CODE = 'en-us'
-#TIME_ZONE = 'UTC'
 
 TIME_ZONE = 'Europe/Paris'
 LANGUAGE_CODE = 'fr'
@@ -97,19 +100,11 @@ LOCALE_PATHS = (
 
 # Templates
 TEMPLATE_DIRS = (
-  "templates"
+    "templates"
 )
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/static/'
-
-STATICFILES_DIRS = (
-    "static/img",
-    "static/css",
-    "static/js",
-    "static/font",
-
-)
+STATIC_ROOT = '{}/static'.format(BASE_DIR)
