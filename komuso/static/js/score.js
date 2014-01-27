@@ -43,11 +43,12 @@ ScoreEditor.prototype.save = function() {
 ScoreEditor.prototype.print = function() {
    // $("#title").find("textarea").val(this.partition.title.text);
     //$('#notes').html("");
-    var clear = 1;
+    var clear = 1; 
     for(var i in this.partition.pistes[0].notes) { 
        var note = this.partition.pistes[0].notes[i];
 
-       affichage(12, note.nom, clear, this.partition.title.text);
+       //affichage(nombre max de note par colonne, nom de la note, clear, title, colonne max par page);
+       affichage(12, note.nom, clear, this.partition.title.text, 11);
        clear = 0;
         //$('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
      }
