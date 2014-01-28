@@ -3,26 +3,22 @@ function cursor() {
 	var cursor = document.createElement('div');
 	cursor.setAttribute("id", "cursor");
     cursor.setAttribute("style", "width:100%; height:1px; background-color:red; display:block;");
+    cursor.style.visibility = "visible";
 
     var list_colonms = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
     list_colonms[list_colonms.length-1].appendChild(cursor);
 
 }
 
-/*** Ne pas prendre en compte pour le moment : fonction pour faire clignoter le curseur ***/
+/*** fonction pour faire clignoter le curseur ***/
 function cligno() {
-	var cursor = document.getElementById('cursor');
+	var cursor = document.getElementById('cursor'); //Récupère le curseur
 
-	var laDate = new Date();
-	var minutes = laDate.getMinutes();
-
-	if(minutes%2 == 0) {
-		alert('lol');
-		cursor.setAttribute("style", "width:100%; height:1px; background-color:red; display:block;");
+	if(cursor.style.visibility == "visible") {
+		cursor.style.visibility = "hidden";
 	}
 	else {
-		alert('lol2');
-		cursor.setAttribute("style", "display:none;");
+		cursor.style.visibility = "visible";
 	}
 }
 

@@ -66,6 +66,9 @@ $(function() {
         }
     });
 
+    //Faire clignoter le curseur
+    setInterval(cligno, 800);
+
    // On cache les sous-menus :
     $("#menu-notes .menu-sub").hide();
 
