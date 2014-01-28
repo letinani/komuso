@@ -60,6 +60,7 @@ ScoreEditor.prototype.print = function() {
     $("#title").find("textarea").val(this.partition.title.text);
     //$('#notes').html("");
     var clear = 1; 
+    if(this.partition.pistes[0].notes.length == 0) $('#notes').html("");
     for(var i in this.partition.pistes[0].notes) { 
         var note = this.partition.pistes[0].notes[i];
 
