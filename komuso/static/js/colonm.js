@@ -123,7 +123,7 @@ function affichage(number_max, type, clear, title, colonm_max) {
 }
 
 /***** Ajouter une note à la fin de la partion : prend en paramètre le nombre max de note par colonne ***/
-function append(number_max, type) {
+function append(number_max, type, colonm_max) {
 
 	//Récupère toutes les notes
 	var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
@@ -165,8 +165,8 @@ function append(number_max, type) {
 		number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
 		number.innerHTML = notes.length + 1;
 
-		//Récupère la div clear
-		var clear = document.getElementById('clear'); //Récupère avec le nom de la classe
+		//Pages
+		var sheets = document.getElementsByClassName('sheet'); //Récupère avec le nom de la classe
 
 		//div notes
 		var list_notes = document.createElement('div'); //Créer une div
@@ -175,8 +175,41 @@ function append(number_max, type) {
 
 		colonm.appendChild(number);
 		colonm.appendChild(list_notes);
-		list_notes.appendChild(note); //Ajoute la note à la colonne
-		document.getElementById('sheet').insertBefore(colonm, clear); //ajoute la colonne au contenu
+		if(type != "blank")
+			list_notes.appendChild(note); //Ajoute la note à la colonne
+
+		var colonm_max_sheet; //nombre colonne max par page
+		var list_colonms_lenght;
+		if(sheets.length <= 1) {
+			colonm_max_sheet = colonm_max - 1;
+			list_colonms_lenght = list_colonms.length;
+		}
+		else {
+			colonm_max_sheet = colonm_max;
+			list_colonms_lenght = list_colonms.length + 1;
+		}
+
+		//Vérifie s'il faut ajouter une page ou pas
+		if(list_colonms_lenght%colonm_max_sheet == 0) { //Besoin d'ajouter une nouvelle page
+
+			//Page 
+			var page = document.createElement('section'); //Créer une dive
+			page.setAttribute("class", "sheet");
+
+			var create_clear = document.createElement('div');
+			create_clear.setAttribute("class", "clear");
+
+			page.appendChild(colonm);
+			page.appendChild(create_clear);
+
+			document.getElementById('score').appendChild(page);
+
+		}
+		else {
+			//Récupère la div clear
+			var clear = sheets[sheets.length-1].getElementsByClassName('clear'); //Récupère avec le nom de la classe
+			sheets[sheets.length-1].insertBefore(colonm, clear[0]); //ajoute la colonne au contenu
+		}
 	}
 	else { //Pas besoin d'ajouter une nouvelle colonne
 		var list_notes = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
@@ -185,8 +218,31 @@ function append(number_max, type) {
 	}
 }
 
+/*** Remove la dernière note ***/
+function removeLast() {
+
+	//Récupère toutes les notes
+	var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
+
+	var list_colonm = document.getElementsByClassName('column'); //Récupère toutes les colonnes
+
+	//Pages
+	var sheets = document.getElementsByClassName('sheet'); //Récupère avec le nom de la classe
+
+	notes[notes.length-1].parentNode.removeChild(notes[notes.length-1]); //Retirer la note à la colonne
+
+	//Vérifie s'il faut retirer une colonne ou pas
+	if(!list_colonm[list_colonm.length - 1].childNodes[1].firstChild) { //Retirer une colonne 
+		sheets[sheets.length -1].removeChild(list_colonm[list_colonm.length - 1]); 
+
+		if(sheets[sheets.length -1].innerHTML == "") { //Vérifie s'il faut retirer la page ou pas
+			document.getElementById('score').removeChild(sheets[sheets.length -1]);
+		}
+	}
+}
+
 /**** Insérer une note à une place précise ***/
-function insert(place, number_max, type) {
+function insert(place, number_max, type, colonm_max) {
 
 	//Récupère toutes les notes
 	var notes = document.getElementsByClassName('note');//Récupère avec les de la classe
@@ -220,6 +276,9 @@ function insert(place, number_max, type) {
 				break;
 		}
 
+		//Pages
+		var sheets = document.getElementsByClassName('sheet'); //Récupère avec le nom de la classe
+
 		//Récupère toutes les colonnes
 		var list_colonm = document.getElementsByClassName('notes'); //Récupère avec le nom de la classe
 		var colonm_place = parseInt(place/number_max); //calcule le le numéro de la colonne dans laquelle il faut insérer
@@ -249,8 +308,41 @@ function insert(place, number_max, type) {
 				if(notes[number_max + (number_max*i)]) { //Si la note existe
 					colonm.appendChild(number);
 					colonm.appendChild(list_notes);
-					list_notes.appendChild(notes[number_max + (number_max*i)]); //Ajoute la note à la nouvelle colonne
-					document.getElementById('sheet').appendChild(colonm); //Ajoute la colonne au contenue
+					if(type != "blank")
+						list_notes.appendChild(notes[number_max + (number_max*i)]); //Ajoute la note à la nouvelle colonne
+
+					var colonm_max_sheet; //nombre colonne max par page
+					var list_colonms_lenght;
+					if(sheets.length <= 1) {
+						colonm_max_sheet = colonm_max - 1;
+						list_colonms_lenght = list_colonms.length;
+					}
+					else {
+						colonm_max_sheet = colonm_max;
+						list_colonms_lenght = list_colonms.length + 1;
+					}
+
+					//Vérifie s'il faut ajouter une page ou pas
+					if(list_colonms_lenght%colonm_max_sheet == 0) { //Besoin d'ajouter une nouvelle page
+
+						//Page 
+						var page = document.createElement('section'); //Créer une dive
+						page.setAttribute("class", "sheet");
+
+						var create_clear = document.createElement('div');
+						create_clear.setAttribute("class", "clear");
+
+						page.appendChild(colonm);
+						page.appendChild(create_clear);
+
+						document.getElementById('score').appendChild(page);
+
+					}
+					else {
+						//Récupère la div clear
+						var clear = sheets[sheets.length-1].getElementsByClassName('clear'); //Récupère avec le nom de la classe
+						sheets[sheets.length-1].insertBefore(colonm, clear[0]); //ajoute la colonne au contenu
+					}
 				}
 
 			}
@@ -268,35 +360,22 @@ function remove(place, number_max) {
 	var list_colonm = document.getElementsByClassName('notes'); //Récupère avec le nom de la classe
 	var colonm_place = parseInt(place/number_max); //calcule le numéro de la colonne dans laquelle il faut remove
 
-	list_colonm[colonm_place].removeChild(notes[place]);  //Insère la note dans la colonne
+	list_colonm[colonm_place].removeChild(notes[place]);  //Enleve la note dans la colonne
 
 		//Boucle qui permet de décaler les autres notes
-		for(var i=colonm_place; i< list_colonm.length; i++) { //Parcours des colonnes à partir de la colonne dans laquelle on a inséré
+		for(var i=colonm_place; i< list_colonm.length; i++) { //Parcours des colonnes à partir de la colonne dans laquelle on a retirer
 
 			//Si la colonne suivante existe
-			if(list_colonm[i+1])
-				list_colonm[i+1].insertBefore(notes[number_max + (number_max*i)], list_colonm[i+1].firstChild); //Déplace la dernière note de la colonne au début de la colonne suivante
-			else{ //La colonne n'existe pas
-				//Colonne
-				var colonm = document.createElement('div'); //Créer une div
-				colonm.setAttribute("class","colonm");//Ajoute la classe colonm à la div
+			if(list_colonm[i+1]) {
+				list_colonm[i].appendChild(list_colonm[i+1].firstChild); //Déplace le premier element de la colonne suivante à la fin de la colonne
+				
+				if(!list_colonm[i+1].firstChild) { //S'il n'y a plus de note dans la colonne
+					list_colonm[i+1].parentNode.parentNode.removeChild(list_colonm[i+1].parentNode); //Retire la colonne
 
-				//H2
-				var number = document.createElement('h2'); //Créer un h2
-				number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
-				number.innerHTML = notes.length + 1;
-
-				//div notes
-				var list_notes = document.createElement('div'); //Créer une div
-				list_notes.setAttribute("class","notes");//Ajoute la classe notes à la div
-
-				if(notes[number_max + (number_max*i)]) { //Si la note existe
-					colonm.appendChild(number);
-					colonm.appendChild(list_notes);
-					list_notes.appendChild(notes[number_max + (number_max*i)]); //Ajoute la note à la nouvelle colonne
-					document.getElementById('sheet').appendChild(colonm); //Ajoute la colonne au contenue
+					if(sheets[sheets.length -1].innerHTML == "") { //Vérifie s'il faut retirer la page ou pas
+						document.getElementById('score').removeChild(sheets[sheets.length -1]);
+					}
 				}
-
 			}
 		}
 
