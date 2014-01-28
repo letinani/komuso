@@ -1,5 +1,11 @@
 /***** Liste des classes ****/
 
+$(document).ready(function() {
+
+    if(document.getElementById('cursor'))
+        setInterval(cligno, 1000);
+});
+
 function ScoreEditor() {
     this.isSaved = true;
     this.historic = new Historic();
@@ -48,11 +54,12 @@ ScoreEditor.prototype.print = function() {
        var note = this.partition.pistes[0].notes[i];
 
        //affichage(nombre max de note par colonne, nom de la note, clear, title, colonne max par page);
-       affichage(12, note.nom, clear, this.partition.title.text, 11);
+       affichage(5, note.nom, clear, this.partition.title.text, 11);
        clear = 0;
         //$('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
      }
      load();
+     cursor();
 
  }
 
