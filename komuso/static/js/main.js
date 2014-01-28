@@ -18,6 +18,48 @@ $(function() {
         }
     });
 
+    /*** CLIC CURSOR ***/
+    $('.notes').click(function(e) {
+
+        //S'il a des notes dans la colonne
+        if(this.childNodes) {
+            var notes = this.childNodes; //Récupère toutes les notes de la colonne
+            var y; 
+            if (e.pageX || e.pageY) { 
+              y = e.pageY; //récupère la position y du clic
+            }
+
+            var cursor = document.getElementById('cursor'); //récupère le curseur
+
+            //Pour chaque note de la colonne
+            for(i=0; i<notes.length; ++i) {
+
+                var position = notes[i].getBoundingClientRect(); //récupère la position de la note
+
+                if(parseInt(position.top - y) < 20) { //s'il est proche du haut de la note 
+                    this.insertBefore(cursor, notes[i]); //place le curseur avant la note
+                }
+
+            }
+
+            var position = notes[notes.length -1].getBoundingClientRect(); //récupère la position de la note
+            if(parseInt(position.bottom - y) < 20) { //s'il est proche du bas de la note 
+                this.appendChild(cursor); //Ajoute à la fin
+            }
+        }
+        else {
+            this.appendChild(cursor); //Ajoute à la fin
+        }
+
+    });
+
+    /*** CURSOR CLIC EMPTY COLUMN ***/
+    $('.column').click(function(e) {
+         if(this.childNodes[1]) {
+            var cursor = document.getElementById('cursor'); //récupère le curseur
+            this.childNodes[1].appendChild(cursor);
+        }
+    });
 
    // On cache les sous-menus :
     $("#menu-notes .menu-sub").hide();
