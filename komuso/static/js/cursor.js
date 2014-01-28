@@ -8,6 +8,18 @@ function cursor() {
     var list_colonms = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
     list_colonms[list_colonms.length-1].appendChild(cursor);
 
+    /*** en fonction de la position
+	//Récupère toutes les notes
+	var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
+
+	if(notes[position - 1].nextSibling)
+		notes[position - 1].parentNode.insertBefore(cursor, notes[position-1].nextSibling);
+	else {
+		notes[position - 1].parentNode.insertBefore(cursor, notes[position-1]);
+		cursor.parentNode.insertBefore(notes[position-1], cursor);
+	}
+    ***/
+
 }
 
 /*** fonction pour faire clignoter le curseur ***/
