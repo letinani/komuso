@@ -297,13 +297,9 @@ header {
         left: 50%;
         border: solid transparent;
         content: " ";
-        height: 0;
-        width: 0;
         position: absolute;
-        pointer-events: none;
         outline: 1px solid transparent;
-        top: -21px; }
-      .notes .note-selected nav .note-picker:before {
+        top: -21px;
         background: url("../img/bg-bubble.png") no-repeat;
         height: 18px;
         margin-left: -17px;
