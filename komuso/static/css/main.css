@@ -267,40 +267,13 @@ header {
   .notes .note-selected nav {
     border: 30px solid rgba(0, 0, 0, 0);
     height: 32px;
-    left: -25px;
+    left: -27px;
     list-style: none outside none;
     margin: 0;
     padding: 0;
     position: absolute;
     top: -28px;
-    width: 32px;
-    		    /*.note-action {
-    		    	border: 1px solid #CCC;
-    	    		left: 0;
-    			    position: absolute;
-    			    top: 0;
-    				@include border-radius(50px);
-    				height: 15px;
-    				width: 15px;
-    				font-size: 1em;
-    				text-indent: -9999px;
-    			    &.delete {
-    			    	background-color:red;
-    			    	@include transform(rotate(260deg) translateY(20px));
-    			    	span {@include transform(rotate(-260deg));}
-    			    }
-    			    &.copy {
-    			    	background-color:blue;
-    			    	@include transform(rotate(200deg) translateY(20px));
-    			    	span {@include transform(rotate(-200deg));}
-    			    }
-    			    &.paste {
-    			    	background-color:green;
-    			    	@include transform(rotate(220deg) translateY(20px));
-    			    	span {@include transform(rotate(-220deg));}
-    			    }
-    
-    		    }*/ }
+    width: 32px; }
     .notes .note-selected nav .note-picker {
       background: white;
       -webkit-border-radius: 50px;
@@ -368,66 +341,77 @@ header {
           transform: rotate(-60deg); }
       .notes .note-selected nav .note-picker.color {
         background: blue;
-        -webkit-transform: rotate(120deg) translateY(70px);
-        -moz-transform: rotate(120deg) translateY(70px);
-        -ms-transform: rotate(120deg) translateY(70px);
-        -o-transform: rotate(120deg) translateY(70px);
-        transform: rotate(120deg) translateY(70px); }
+        -webkit-transform: rotate(-57deg) translateY(66px);
+        -moz-transform: rotate(-57deg) translateY(66px);
+        -ms-transform: rotate(-57deg) translateY(66px);
+        -o-transform: rotate(-57deg) translateY(66px);
+        transform: rotate(-57deg) translateY(66px); }
         .notes .note-selected nav .note-picker.color span {
-          -webkit-transform: rotate(-120deg);
-          -moz-transform: rotate(-120deg);
-          -ms-transform: rotate(-120deg);
-          -o-transform: rotate(-120deg);
-          transform: rotate(-120deg); }
+          -webkit-transform: rotate(57deg);
+          -moz-transform: rotate(57deg);
+          -ms-transform: rotate(57deg);
+          -o-transform: rotate(57deg);
+          transform: rotate(57deg); }
       .notes .note-selected nav .note-picker.delete, .notes .note-selected nav .note-picker.copy, .notes .note-selected nav .note-picker.past {
-        height: 15px;
-        width: 15px;
+        height: 20px;
+        width: 20px;
+        border: 0px solid #a7a7a7;
+        padding: 1px;
         transform-origin: 50% 50%; }
+        .notes .note-selected nav .note-picker.delete span, .notes .note-selected nav .note-picker.copy span, .notes .note-selected nav .note-picker.past span {
+          display: block;
+          height: inherit;
+          width: inherit;
+          background: url("../img/sprite.png") no-repeat; }
         .notes .note-selected nav .note-picker.delete:after, .notes .note-selected nav .note-picker.copy:after, .notes .note-selected nav .note-picker.past:after {
           border: 0; }
         .notes .note-selected nav .note-picker.delete:before, .notes .note-selected nav .note-picker.copy:before, .notes .note-selected nav .note-picker.past:before {
           border: 0;
           background: none;
-          height: 20px;
+          height: 13px;
           margin-left: 0;
-          border-left: 1px solid #a7a7a7; }
-      .notes .note-selected nav .note-picker.delete {
-        left: 30px;
-        background-color: red;
-        -webkit-transform: rotate(230deg) translateY(17px);
-        -moz-transform: rotate(230deg) translateY(17px);
-        -ms-transform: rotate(230deg) translateY(17px);
-        -o-transform: rotate(230deg) translateY(17px);
-        transform: rotate(230deg) translateY(17px); }
-        .notes .note-selected nav .note-picker.delete span.label {
-          -webkit-transform: rotate(-230deg);
-          -moz-transform: rotate(-230deg);
-          -ms-transform: rotate(-230deg);
-          -o-transform: rotate(-230deg);
-          transform: rotate(-230deg); }
+          border-left: 2px solid #a7a7a7;
+          top: -12px; }
       .notes .note-selected nav .note-picker.copy {
-        left: 10px;
-        background-color: blue;
-        -webkit-transform: rotate(170deg) translateY(25px);
-        -moz-transform: rotate(170deg) translateY(25px);
-        -ms-transform: rotate(170deg) translateY(25px);
-        -o-transform: rotate(170deg) translateY(25px);
-        transform: rotate(170deg) translateY(25px); }
-        .notes .note-selected nav .note-picker.copy span.label {
-          -webkit-transform: rotate(-200deg);
-          -moz-transform: rotate(-200deg);
-          -ms-transform: rotate(-200deg);
-          -o-transform: rotate(-200deg);
-          transform: rotate(-200deg); }
+        left: 2px;
+        background-color: #858585;
+        -webkit-transform: rotate(141deg) translateY(31px);
+        -moz-transform: rotate(141deg) translateY(31px);
+        -ms-transform: rotate(141deg) translateY(31px);
+        -o-transform: rotate(141deg) translateY(31px);
+        transform: rotate(141deg) translateY(31px); }
+        .notes .note-selected nav .note-picker.copy span {
+          background-position: -104px -37px;
+          -webkit-transform: rotate(-141deg);
+          -moz-transform: rotate(-141deg);
+          -ms-transform: rotate(-141deg);
+          -o-transform: rotate(-141deg);
+          transform: rotate(-141deg); }
       .notes .note-selected nav .note-picker.past {
-        left: 20px;
-        background-color: green;
-        -webkit-transform: rotate(197deg) translateY(25px);
-        -moz-transform: rotate(197deg) translateY(25px);
-        -ms-transform: rotate(197deg) translateY(25px);
-        -o-transform: rotate(197deg) translateY(25px);
-        transform: rotate(197deg) translateY(25px); }
-        .notes .note-selected nav .note-picker.past span.label {
+        left: 11px;
+        background: #858585;
+        -webkit-transform: rotateX(187deg) translateY(32px);
+        -moz-transform: rotateX(187deg) translateY(32px);
+        -ms-transform: rotateX(187deg) translateY(32px);
+        -o-transform: rotateX(187deg) translateY(32px);
+        transform: rotateX(187deg) translateY(32px); }
+        .notes .note-selected nav .note-picker.past span {
+          background-position: -135px -37px;
+          -webkit-transform: rotate(-187deg);
+          -moz-transform: rotate(-187deg);
+          -ms-transform: rotate(-187deg);
+          -o-transform: rotate(-187deg);
+          transform: rotate(-187deg); }
+      .notes .note-selected nav .note-picker.delete {
+        background: red;
+        left: 21px;
+        -webkit-transform: rotate(220deg) translateY(29px);
+        -moz-transform: rotate(220deg) translateY(29px);
+        -ms-transform: rotate(220deg) translateY(29px);
+        -o-transform: rotate(220deg) translateY(29px);
+        transform: rotate(220deg) translateY(29px); }
+        .notes .note-selected nav .note-picker.delete span {
+          background-position: -166px -37px;
           -webkit-transform: rotate(-220deg);
           -moz-transform: rotate(-220deg);
           -ms-transform: rotate(-220deg);

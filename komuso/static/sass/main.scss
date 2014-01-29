@@ -305,40 +305,13 @@ header {
 	    nav {
 		    border: 30px solid rgba(0, 0, 0, 0);
 		    height: 32px;
-		    left: -25px;
+		    left: -27px;
 		    list-style: none outside none;
 		    margin: 0;
 		    padding: 0;
 		    position: absolute;
 		    top: -28px;
 		    width: 32px;
-		    /*.note-action {
-		    	border: 1px solid #CCC;
-	    		left: 0;
-			    position: absolute;
-			    top: 0;
-				@include border-radius(50px);
-				height: 15px;
-				width: 15px;
-				font-size: 1em;
-				text-indent: -9999px;
-			    &.delete {
-			    	background-color:red;
-			    	@include transform(rotate(260deg) translateY(20px));
-			    	span {@include transform(rotate(-260deg));}
-			    }
-			    &.copy {
-			    	background-color:blue;
-			    	@include transform(rotate(200deg) translateY(20px));
-			    	span {@include transform(rotate(-200deg));}
-			    }
-			    &.paste {
-			    	background-color:green;
-			    	@include transform(rotate(220deg) translateY(20px));
-			    	span {@include transform(rotate(-220deg));}
-			    }
-
-		    }*/
 			.note-picker {
 				background: white;
 				@include border-radius(50px);
@@ -400,14 +373,23 @@ header {
 			    }
 			    &.color {
 			    	background: blue;
-			    	@include transform(rotate(120deg) translateY($space));
-			    	span {@include transform(rotate(-120deg));}
+			    	@include transform(rotate(-57deg) translateY(66px));
+			    	span {@include transform(rotate(57deg));}
 
 			    }
 			    
 			    &.delete,&.copy,&.past {
-			    	height: 15px;
-			    	width: 15px;
+			    	height: 20px;
+			    	width: 20px;
+			    	border: 0px solid #a7a7a7;
+					padding: 1px;
+			    	span {
+			    		display: block;
+					    height: inherit;
+					    width: inherit;
+			    		background:url('../img/sprite.png') no-repeat;
+			    	}
+
 			    	
 			    	transform-origin:50% 50%;
 			    	&:after { 
@@ -416,29 +398,30 @@ header {
 					&:before { 
 					 	border:0;
 					 	background: none;
-					 	height: 20px;
+					 	height: 13px;
 					 	margin-left: 0;
-					 	border-left: 1px solid #a7a7a7;
+					 	border-left: 2px solid #a7a7a7;
+					 	top:-12px;
 
 					}
 			    }
-			    &.delete {
-			    	left: 30px;
-			    	background-color:red;
-			    	@include transform(rotate(230deg) translateY(17px));
-			    	span.label {@include transform(rotate(-230deg));}
-			    }
 			    &.copy {
-			    	left: 10px;
-			    	background-color:blue;
-			    	@include transform(rotate(170deg) translateY(25px));
-			    	span.label {@include transform(rotate(-200deg));}
+			    	left: 2px;
+			    	background-color:#858585;
+			    	@include transform(rotate(141deg) translateY(31px));
+			    	span { background-position: -104px -37px; @include transform(rotate(-141deg));}
 			    }
 			    &.past {
-			    	left: 20px;
-			    	background-color:green;
-			    	@include transform(rotate(197deg) translateY(25px));
-			    	span.label {@include transform(rotate(-220deg));}
+			    	left: 11px;
+			    	background:#858585;
+			    	@include transform(rotateX(187deg) translateY(32px));
+			    	span { background-position: -135px -37px; @include transform(rotate(-187deg));}
+			    }
+			    &.delete {
+			    	background: red;
+			    	left: 21px;
+			    	@include transform(rotate(220deg) translateY(29px));
+			    	span { background-position: -166px -37px; @include transform(rotate(-220deg));}
 			    }
 			}
 	    }
