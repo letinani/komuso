@@ -93,8 +93,6 @@ function getPositionCursor() {
 			colunmSibling = colunmSibling.previousSibling;
 		}
 
-		alert(countSiblings + countColunmSiblingsNote);
-
 		return countSiblings + countColunmSiblingsNote;
 
 	}

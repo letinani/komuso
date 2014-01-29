@@ -461,8 +461,8 @@ $(document).ready(function() {
 
 	scoreEditor.update();
 	
-	/*if(document.getElementById('cursor'))
-        setInterval(cligno, 1000);*/
+	if(document.getElementById('cursor'))
+        setInterval(cligno, 1000);
 	
 	/*** Ajout d'une note ***/
 	$('a.ton').click(function(e) {
@@ -507,8 +507,8 @@ $(document).ready(function() {
 		}
         
         var note = new Note(indice, nom, $("#current-beat").text(), "aigu");
-        scoreEditor.add(new HistoricEvent("add", scoreEditor.nbNotes(), 0, note));
-        scoreEditor.insertNotesAt(scoreEditor.nbNotes(), 0, note);
+        scoreEditor.add(new HistoricEvent("add", getPositionCursor(), 0, note));
+        scoreEditor.insertNotesAt(getPositionCursor(), 0, note);
         
 		scoreEditor.update();
 	});
