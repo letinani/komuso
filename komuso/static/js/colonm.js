@@ -23,18 +23,20 @@ function affichage(number_max, type, clear, title, colonm_max) {
 	var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
 
 	//Note
-	if(type != "blank") {
-		var note = document.createElement('div'); //Créer une div
+	
+	var note = document.createElement('div'); //Créer une div
+	if(type != "blank")
 		note.setAttribute("class","note ui-state-default " + type);//Ajoute la class note à la div
-	}
+	else
+		note.setAttribute("class", "note "+type);
 
 	switch(type) {
 		case "ro" :
-			note.innerHTML = "a";
+			note.innerHTML = "d";
 			break;
 
 		case "tsu" :
-			note.innerHTML = "b";
+			note.innerHTML = "f";
 			break;
 
 		case "re" :
@@ -42,7 +44,7 @@ function affichage(number_max, type, clear, title, colonm_max) {
 			break;
 
 		case "chi" :
-			note.innerHTML = "d";
+			note.innerHTML = "a";
 			break;
 
 		case "ri" :
@@ -67,15 +69,14 @@ function affichage(number_max, type, clear, title, colonm_max) {
 		//div notes
 		var list_notes = document.createElement('div'); //Créer une div
 		list_notes.setAttribute("class","notes");//Ajoute la classe notes à la div
-		list_notes.setAttribute("id","notes");//Ajoute la classe notes à la div
 
 		//Récupère toutes les colonnes
 		var list_colonms = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
 
 		colonm.appendChild(number);
 		colonm.appendChild(list_notes);
-		if(type != "blank")
-			list_notes.appendChild(note); //Ajoute la note à la colonne
+		
+		list_notes.appendChild(note); //Ajoute la note à la colonne
 
 		var colonm_max_sheet; //nombre colonne max par page
 		var list_colonms_lenght;
@@ -134,11 +135,11 @@ function append(number_max, type, colonm_max) {
 
 	switch(type) {
 		case "ro" :
-			note.innerHTML = "a";
+			note.innerHTML = "d";
 			break;
 
 		case "tsu" :
-			note.innerHTML = "b";
+			note.innerHTML = "f";
 			break;
 
 		case "re" :
@@ -146,7 +147,7 @@ function append(number_max, type, colonm_max) {
 			break;
 
 		case "chi" :
-			note.innerHTML = "d";
+			note.innerHTML = "a";
 			break;
 
 		case "ri" :
@@ -256,11 +257,11 @@ function insert(place, number_max, type, colonm_max) {
 
 		switch(type) {
 			case "ro" :
-				note.innerHTML = "a";
+				note.innerHTML = "d";
 				break;
 
 			case "tsu" :
-				note.innerHTML = "b";
+				note.innerHTML = "f";
 				break;
 
 			case "re" :
@@ -268,7 +269,7 @@ function insert(place, number_max, type, colonm_max) {
 				break;
 
 			case "chi" :
-				note.innerHTML = "d";
+				note.innerHTML = "a";
 				break;
 
 			case "ri" :
@@ -395,11 +396,11 @@ function replace(place, number_max) {
 
 		switch(type) {
 			case "ro" :
-				note.innerHTML = "a";
+				note.innerHTML = "d";
 				break;
 
 			case "tsu" :
-				note.innerHTML = "b";
+				note.innerHTML = "f";
 				break;
 
 			case "re" :
@@ -407,14 +408,13 @@ function replace(place, number_max) {
 				break;
 
 			case "chi" :
-				note.innerHTML = "d";
+				note.innerHTML = "a";
 				break;
 
 			case "ri" :
 				note.innerHTML = "e";
 				break;
 		}
-
 		//Récupère toutes les colonnes
 		var list_colonm = document.getElementsByClassName('notes');//Récupère avec le nom de la classe
 		var colonm_place = parseInt((place-1)/number_max); //calcule le le numéro de la colonne dans laquelle il faut insérer
