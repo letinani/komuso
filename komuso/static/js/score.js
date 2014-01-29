@@ -118,7 +118,10 @@ ScoreEditor.prototype.update = function() {
                         if(parseInt(position.bottom - y) < 20) { //s'il est proche du bas de la note 
                             this.appendChild(cursor); //Ajoute à la fin
                         }
+                        var count = getPositionCursor();
+                        alert(count);
                     }
+
 
                 });
 

@@ -36,9 +36,9 @@ function getPositionCursor() {
 		if(cursor.parentNode.parentNode.parentNode.previousSibling) {
 			var sheetSiblings = cursor.parentNode.parentNode.parentNode.previousSibling;
 
-			while(sheetSiblings) {
+			while(sheetSiblings != "null") {
 
-				var colunmSibling = sheetSiblings.childNodes[1];
+				var colunmSibling = sheetSiblings.lastChild;
 
 				while(colunmSibling.previousSibling) {
 
@@ -63,6 +63,8 @@ function getPositionCursor() {
 
 				if(sheetSiblings.previousSibling)
 					sheetSiblings = sheetSiblings.previousSibling;
+				else 
+					sheetSiblings = "null";
 			}
 		}
 
@@ -92,8 +94,6 @@ function getPositionCursor() {
 			}
 			colunmSibling = colunmSibling.previousSibling;
 		}
-
-		alert(countSiblings + countColunmSiblingsNote);
 
 		return countSiblings + countColunmSiblingsNote;
 
