@@ -350,35 +350,34 @@ function insert(place, number_max, type, colonm_max) {
 	}
 }
 
-/*** Enlever une note ***/
+/*** Remove une note ***/
 function remove(place, number_max) {
 
 	//Récupère toutes les notes
-	var notes = document.getElementsByClassName('note');//Récupère avec les de la classe
+	var notes = document.getElementsByClassName('number');//Récupère avec les de la classe
 
 	//Récupère toutes les colonnes
-	var list_colonm = document.getElementsByClassName('notes'); //Récupère avec le nom de la classe
-	var colonm_place = parseInt(place/number_max); //calcule le numéro de la colonne dans laquelle il faut remove
+	var list_colonm = document.getElementsByClassName('colonm'); //Récupère avec le nom de la classe
+	var colonm_place = parseInt(place/number_max); //calcule le le numéro de la colonne dans laquelle il faut insérer
 
 	list_colonm[colonm_place].removeChild(notes[place]);  //Enleve la note dans la colonne
 
-		//Boucle qui permet de décaler les autres notes
-		for(var i=colonm_place; i< list_colonm.length; i++) { //Parcours des colonnes à partir de la colonne dans laquelle on a retirer
+	//Boucle qui permet de décaler les autres notes
+	for(var i=colonm_place; i< list_colonm.length; i++) { //Parcours des colonnes à partir de la colonne dans laquelle on a retirer
 
-			//Si la colonne suivante existe
-			if(list_colonm[i+1]) {
-				list_colonm[i].appendChild(list_colonm[i+1].firstChild); //Déplace le premier element de la colonne suivante à la fin de la colonne
-				
-				if(!list_colonm[i+1].firstChild) { //S'il n'y a plus de note dans la colonne
-					list_colonm[i+1].parentNode.parentNode.removeChild(list_colonm[i+1].parentNode); //Retire la colonne
+		//Si la colonne suivante existe
+		if(list_colonm[i+1]) {
+			list_colonm[i].appendChild(list_colonm[i+1].firstChild); //Déplace le premier element de la colonne suivante à la fin de la colonne
+			
+			if(!list_colonm[i+1].firstChild) { //S'il n'y a plus de note dans la colonne
+				list_colonm[i+1].parentNode.parentNode.removeChild(list_colonm[i+1].parentNode); //Retire la colonne
 
-					if(sheets[sheets.length -1].innerHTML == "") { //Vérifie s'il faut retirer la page ou pas
-						document.getElementById('score').removeChild(sheets[sheets.length -1]);
-					}
+				if(sheets[sheets.length -1].innerHTML == "") { //Vérifie s'il faut retirer la page ou pas
+					document.getElementById('score').removeChild(sheets[sheets.length -1]);
 				}
 			}
 		}
-
+	}
 }
 
 /*** Remplace une note ***/
