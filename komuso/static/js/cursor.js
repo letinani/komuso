@@ -38,27 +38,32 @@ function getPositionCursor() {
 
 			while(sheetSiblings != "null") {
 
-				var colunmSibling = sheetSiblings.lastChild;
 
-				while(colunmSibling.previousSibling) {
+				if(sheetSiblings.lastChild) {
+					var colunmSibling = sheetSiblings.lastChild;
 
-					if(colunmSibling.previousSibling.childNodes[1]) {
+					if(colunmSibling.previousSibling) {
+						while(colunmSibling.previousSibling) {
 
-						if(colunmSibling.previousSibling.childNodes[1].firstChild) {
+							if(colunmSibling.previousSibling.childNodes[1]) {
 
-							var colunmNote = colunmSibling.previousSibling.childNodes[1].firstChild;
-							if(colunmNote.nextSibling) {
-								++countColunmSiblingsNote;
-								while(colunmNote.nextSibling) {
-									++countColunmSiblingsNote;
-									colunmNote = colunmNote.nextSibling;
+								if(colunmSibling.previousSibling.childNodes[1].firstChild) {
+
+									var colunmNote = colunmSibling.previousSibling.childNodes[1].firstChild;
+									if(colunmNote.nextSibling) {
+										++countColunmSiblingsNote;
+										while(colunmNote.nextSibling) {
+											++countColunmSiblingsNote;
+											colunmNote = colunmNote.nextSibling;
+										}
+									}
+									else
+										++countColunmSiblingsNote;
 								}
 							}
-							else
-								++countColunmSiblingsNote;
+							colunmSibling = colunmSibling.previousSibling;
 						}
 					}
-					colunmSibling = colunmSibling.previousSibling;
 				}
 
 				if(sheetSiblings.previousSibling)

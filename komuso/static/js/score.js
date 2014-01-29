@@ -88,10 +88,22 @@ ScoreEditor.prototype.update = function() {
                 if(menu) 
                     menu.parentNode.removeChild(menu);
 
+                $( ".note" ).unbind("click");
+                 /*** CLIC CURSOR NOTE ***/
+                $( ".note" ).click(function(e) {
+                        var cursor = document.getElementById('cursor'); //récupère le curseur
+                        if(this.nextSibling) {
+                            this.parentNode.insertBefore(cursor, this.nextSibling);
+                        }
+                        else {
+                            this.parentNode.insertBefore(cursor, this);
+                            this.parentNode.insertBefore(this, cursor);
+                        }
+                });
+
                 $( ".notes" ).unbind("click");
                 /*** CLIC CURSOR ***/
                 $( ".notes" ).click(function(e) {
-
                     //S'il a des notes dans la colonne
                     if(this.childNodes) {
                         var notes = this.childNodes; //Récupère toutes les notes de la colonne
@@ -118,7 +130,6 @@ ScoreEditor.prototype.update = function() {
                             this.appendChild(cursor); //Ajoute à la fin
                         }
                         var count = getPositionCursor();
-                        alert(count);
                     }
 
 
