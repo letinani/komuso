@@ -22,15 +22,91 @@ function cursor() {
 
 }
 
+/**** fonction qui récupère la position du curseur ****/
+function getPositionCursor(number_max, colonm_max) {
+	if(document.getElementById('cursor')) { //SI le curseur existe
+		var cursor = document.getElementById('cursor'); //récupère le curseur
+
+		var countSiblings = 0;
+		var siblings = cursor;
+		var countColunmSiblingsNote = 0;
+
+		if(cursor.parentNode.parentNode.parentNode.previousSibling) {
+			var sheetSiblings = cursor.parentNode.parentNode.parentNode.previousSibling;
+
+			while(sheetSiblings) {
+
+				var colunmSibling = sheetSiblings.childNodes[1];
+
+				while(colunmSibling.previousSibling) {
+
+					if(colunmSibling.previousSibling.childNodes[1]) {
+
+						if(colunmSibling.previousSibling.childNodes[1].firstChild) {
+
+							var colunmNote = colunmSibling.previousSibling.childNodes[1].firstChild;
+							if(colunmNote.nextSibling) {
+								++countColunmSiblingsNote;
+								while(colunmNote.nextSibling) {
+									++countColunmSiblingsNote;
+									colunmNote = colunmNote.nextSibling;
+								}
+							}
+							else
+								++countColunmSiblingsNote;
+						}
+					}
+					colunmSibling = colunmSibling.previousSibling;
+				}
+
+				if(sheetSiblings.previousSibling)
+					sheetSiblings = sheetSiblings.previousSibling;
+			}
+		}
+
+		while(siblings.previousSibling) {
+			++countSiblings;
+			siblings = siblings.previousSibling;
+		}
+
+		var colunmSibling = cursor.parentNode.parentNode;
+		while(colunmSibling.previousSibling) {
+
+			if(colunmSibling.previousSibling.childNodes[1]) {
+
+				if(colunmSibling.previousSibling.childNodes[1].firstChild) {
+
+					var colunmNote = colunmSibling.previousSibling.childNodes[1].firstChild;
+					if(colunmNote.nextSibling) {
+						++countColunmSiblingsNote;
+						while(colunmNote.nextSibling) {
+							++countColunmSiblingsNote;
+							colunmNote = colunmNote.nextSibling;
+						}
+					}
+					else
+						++countColunmSiblingsNote;
+				}
+			}
+			colunmSibling = colunmSibling.previousSibling;
+		}
+
+		return countSiblings + countColunmSiblingsNote;
+
+	}
+}
+
 /*** fonction pour faire clignoter le curseur ***/
 function cligno() {
-	var cursor = document.getElementById('cursor'); //Récupère le curseur
+	if(document.getElementById('cursor')) {//Si le curseur existe
+		var cursor = document.getElementById('cursor'); //Récupère le curseur
 
-	if(cursor.style.visibility == "visible") {
-		cursor.style.visibility = "hidden";
-	}
-	else {
-		cursor.style.visibility = "visible";
+		if(cursor.style.visibility == "visible") {
+			cursor.style.visibility = "hidden";
+		}
+		else {
+			cursor.style.visibility = "visible";
+		}
 	}
 }
 
@@ -57,6 +133,7 @@ function keycode(e) {
 							cursor.parentNode.parentNode.nextSibling.childNodes[1].appendChild(cursor); //met le curseur dans la colonne
 					}
 				}
+				getPositionCursor(5);
 				break;
 
 			//up
@@ -74,6 +151,7 @@ function keycode(e) {
 							cursor.parentNode.parentNode.previousSibling.childNodes[1].appendChild(cursor);//met le curseur dans la colonne
 					}
 				}
+				getPositionCursor(5);
 				break;
 
 			//right
@@ -115,6 +193,7 @@ function keycode(e) {
 					else
 						cursor.parentNode.parentNode.previousSibling.childNodes[1].appendChild(cursor); //met le curseur dans la colonne
 				}
+				getPositionCursor(5);
 				break;
 
 			//left
@@ -157,6 +236,7 @@ function keycode(e) {
 						cursor.parentNode.parentNode.nextSibling.childNodes[1].appendChild(cursor); //met le curseur dans la colonne
 
 				}
+				getPositionCursor(5);
 				break;
 
 			default : 
