@@ -1,29 +1,31 @@
 /*** Affiche le curseur à al place qui va après la note ajouter pour le moment c'est juste à la fin ***/
-function cursor() {
-	var cursor = document.createElement('div');
-	cursor.setAttribute("id", "cursor");
-    cursor.setAttribute("style", "width:100%; height:1px; background-color:red; display:block;");
-    cursor.style.visibility = "visible";
+function cursor(position) {
 
-    var list_colonms = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
-    list_colonms[list_colonms.length-1].appendChild(cursor);
+	if(position == "default") {
+		var cursor = document.createElement('div');
+		cursor.setAttribute("id", "cursor");
+	    cursor.setAttribute("style", "width:100%; height:1px; background-color:red; display:block;");
+	    cursor.style.visibility = "visible";
 
-    /*** en fonction de la position
-	//Récupère toutes les notes
-	var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
-
-	if(notes[position - 1].nextSibling)
-		notes[position - 1].parentNode.insertBefore(cursor, notes[position-1].nextSibling);
-	else {
-		notes[position - 1].parentNode.insertBefore(cursor, notes[position-1]);
-		cursor.parentNode.insertBefore(notes[position-1], cursor);
+	    var list_colonms = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
+	    list_colonms[list_colonms.length-1].appendChild(cursor);
 	}
-    ***/
+	else {
+		//Récupère toutes les notes
+		var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
+
+		if(notes[position - 1].nextSibling)
+			notes[position - 1].parentNode.insertBefore(cursor, notes[position-1].nextSibling);
+		else {
+			notes[position - 1].parentNode.insertBefore(cursor, notes[position-1]);
+			cursor.parentNode.insertBefore(notes[position-1], cursor);
+		}
+	}
 
 }
 
 /**** fonction qui récupère la position du curseur ****/
-function getPositionCursor(number_max, colonm_max) {
+function getPositionCursor() {
 	if(document.getElementById('cursor')) { //SI le curseur existe
 		var cursor = document.getElementById('cursor'); //récupère le curseur
 
@@ -91,6 +93,8 @@ function getPositionCursor(number_max, colonm_max) {
 			colunmSibling = colunmSibling.previousSibling;
 		}
 
+		alert(countSiblings + countColunmSiblingsNote);
+
 		return countSiblings + countColunmSiblingsNote;
 
 	}
@@ -133,7 +137,7 @@ function keycode(e) {
 							cursor.parentNode.parentNode.nextSibling.childNodes[1].appendChild(cursor); //met le curseur dans la colonne
 					}
 				}
-				getPositionCursor(5);
+				getPositionCursor();
 				break;
 
 			//up
@@ -151,7 +155,7 @@ function keycode(e) {
 							cursor.parentNode.parentNode.previousSibling.childNodes[1].appendChild(cursor);//met le curseur dans la colonne
 					}
 				}
-				getPositionCursor(5);
+				getPositionCursor();
 				break;
 
 			//right
@@ -193,7 +197,7 @@ function keycode(e) {
 					else
 						cursor.parentNode.parentNode.previousSibling.childNodes[1].appendChild(cursor); //met le curseur dans la colonne
 				}
-				getPositionCursor(5);
+				getPositionCursor();
 				break;
 
 			//left
@@ -236,7 +240,7 @@ function keycode(e) {
 						cursor.parentNode.parentNode.nextSibling.childNodes[1].appendChild(cursor); //met le curseur dans la colonne
 
 				}
-				getPositionCursor(5);
+				getPositionCursor();
 				break;
 
 			default : 

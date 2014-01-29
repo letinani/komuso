@@ -70,7 +70,7 @@ ScoreEditor.prototype.print = function() {
         //$('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
     }
     load();
-    cursor();
+    cursor("default");
 
 }
 
@@ -88,6 +88,51 @@ ScoreEditor.prototype.update = function() {
                 var menu = document.getElementById('menu-selection');
                 if(menu) 
                     menu.parentNode.removeChild(menu);
+
+                $( ".notes" ).unbind("click");
+                /*** CLIC CURSOR ***/
+                $( ".notes" ).click(function(e) {
+
+                    //S'il a des notes dans la colonne
+                    if(this.childNodes) {
+                        var notes = this.childNodes; //Récupère toutes les notes de la colonne
+                        var y; 
+                        if (e.pageX || e.pageY) { 
+                          y = e.pageY; //récupère la position y du clic
+                        }
+
+                        var cursor = document.getElementById('cursor'); //récupère le curseur
+
+                        //Pour chaque note de la colonne
+                        for(i=0; i<notes.length; ++i) {
+
+                            var position = notes[i].getBoundingClientRect(); //récupère la position de la note
+
+                            if(parseInt(position.top - y) < 20) { //s'il est proche du haut de la note 
+                                this.insertBefore(cursor, notes[i]); //place le curseur avant la note
+                            }
+
+                        }
+
+                        var position = notes[notes.length -1].getBoundingClientRect(); //récupère la position de la note
+                        if(parseInt(position.bottom - y) < 20) { //s'il est proche du bas de la note 
+                            this.appendChild(cursor); //Ajoute à la fin
+                        }
+                    }
+
+                });
+
+                $( ".column" ).unbind("click");
+                 $('.column').click(function(e) {
+                     if(this.childNodes[1]) {
+                        if(!this.childNodes[1].firstChild) {
+                            var cursor = document.getElementById('cursor'); //récupère le curseur
+                            this.childNodes[1].appendChild(cursor);
+                        }
+
+                    }
+                });               
+
             } else {
                 element[0].appendChild(scoreEditor.selection);
                 
