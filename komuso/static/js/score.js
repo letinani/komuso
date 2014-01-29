@@ -69,7 +69,8 @@ ScoreEditor.prototype.print = function() {
         clear = 0;
         //$('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
     }
-     //load();
+    load();
+    cursor();
 
 }
 
@@ -78,7 +79,7 @@ ScoreEditor.prototype.update = function() {
     this.print();
     
     var scoreEditor = this;
-    $( "#notes" ).selectable({
+    $( ".notes" ).selectable({
         cancel: "a",
 	    stop: function() {
 	        var element = document.getElementsByClassName('ui-selected');
@@ -91,10 +92,10 @@ ScoreEditor.prototype.update = function() {
                 element[0].appendChild(scoreEditor.selection);
                 
                 var selection = [];
-                var index = $( "#notes div.note" ).index( $( ".ui-selected")[0] );
+                var index = $( ".notes div.note" ).index( $( ".ui-selected")[0] );
                 
                 $( ".ui-selected", this ).each(function() {
-                    var indexTmp = $( "#notes div.note" ).index( this );
+                    var indexTmp = $( ".notes div.note" ).index( this );
                     selection.push(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp]));
                 });
                 
