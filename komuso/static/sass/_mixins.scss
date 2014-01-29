@@ -94,3 +94,9 @@
 
      }	
 }
+@mixin selectable($argument) {
+  -webkit-touch-callout: $argument;
+  @each $prefix in -webkit-, -moz-, -ms-, -khtml-, '' {
+    #{$prefix}user-select: $argument;
+  }
+}
