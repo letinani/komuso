@@ -12,7 +12,13 @@
 html, body {
   height: 100%;
   background: url("../img/background.png");
-  overflow: hidden; }
+  overflow: hidden;
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text; }
 
 a {
   text-decoration: none; }
@@ -285,15 +291,8 @@ header {
       position: absolute;
       top: -4px;
       transition: transform 0.5s ease-in-out 0s;
-      width: 45px;
-      /*
-      			&:after { 
-      
-      			 	border-color: rgba(255, 255, 255, 0); 
-      			 	border-bottom-color: #FFF; 
-      			 	border-width: 0 5px 20px 5px; 
-      			 	margin-left: -6px; } */ }
-      .notes .note-selected nav .note-picker:after, .notes .note-selected nav .note-picker:before {
+      width: 45px; }
+      .notes .note-selected nav .note-picker:before {
         bottom: 100%;
         left: 50%;
         border: solid transparent;
@@ -305,10 +304,6 @@ header {
         outline: 1px solid transparent;
         top: -21px; }
       .notes .note-selected nav .note-picker:before {
-       	/*border-color: rgba(204, 204, 204, 0); 
-       	border-bottom-color: #ccc; 
-       	border-width: 0 7px 20px 7px;
-      	margin-left: -8px; */
         background: url("../img/bg-bubble.png") no-repeat;
         height: 18px;
         margin-left: -17px;
@@ -363,15 +358,13 @@ header {
           height: inherit;
           width: inherit;
           background: url("../img/sprite.png") no-repeat; }
-        .notes .note-selected nav .note-picker.delete:after, .notes .note-selected nav .note-picker.copy:after, .notes .note-selected nav .note-picker.past:after {
-          border: 0; }
-        .notes .note-selected nav .note-picker.delete:before, .notes .note-selected nav .note-picker.copy:before, .notes .note-selected nav .note-picker.past:before {
-          border: 0;
-          background: none;
-          height: 13px;
-          margin-left: 0;
-          border-left: 2px solid #a7a7a7;
-          top: -12px; }
+      .notes .note-selected nav .note-picker.delete:before, .notes .note-selected nav .note-picker.copy:before, .notes .note-selected nav .note-picker.past:before {
+        border: 0;
+        background: none;
+        height: 13px;
+        margin-left: 0;
+        border-left: 2px solid #a7a7a7;
+        top: -12px; }
       .notes .note-selected nav .note-picker.copy {
         left: 2px;
         background-color: #858585;
