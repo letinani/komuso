@@ -71,7 +71,6 @@ ScoreEditor.prototype.print = function() {
     }
     load();
     cursor("default");
-
 }
 
 ScoreEditor.prototype.update = function() {
@@ -156,8 +155,8 @@ ScoreEditor.prototype.update = function() {
                 $('.delete').on('mouseup',function(e) {
                     e.preventDefault();
                     
-                    scoreEditor.add(new HistoricEvent("delete", index, 0, selection));
-                    scoreEditor.removeNotesAt(index, 0, selection.length);
+                    scoreEditor.add(new HistoricEvent("delete", index, 0, selection, $(this).find("span").html()));
+                    scoreEditor.removeNotesAt(index, 0, selection.length, $(this).find("span").html());
                     scoreEditor.update();
                 });
                 
@@ -394,74 +393,65 @@ function Selection() {
     var nav = document.createElement('nav');
     nav.setAttribute("class", "menu-edit-note circles");
 
-    var ul = document.createElement('ul');
+        var ul = document.createElement('ul');
 
-    var liDelete = document.createElement('li');
+            var liDelete = document.createElement('li');
+                var aDelete = document.createElement('a');
+                aDelete.setAttribute("class", "note-picker note-menu delete");
+                aDelete.setAttribute("href", "");
+                    var spanDelete = document.createElement('span');
+                aDelete.appendChild(spanDelete);
+            liDelete.appendChild(aDelete);
 
-    var aDelete = document.createElement('a');
-    aDelete.setAttribute("class", "note-picker note-menu delete");
-    aDelete.setAttribute("href", "");
+            var liCopy = document.createElement('li');
+                var aCopy = document.createElement('a');
+                aCopy.setAttribute("class", "note-picker note-menu copy");
+                aCopy.setAttribute("href", "");
+                    var spanCopy = document.createElement('span');
+                aCopy.appendChild(spanCopy);
+            liCopy.appendChild(aCopy);
 
-    liDelete.appendChild(aDelete);
+            var liPast = document.createElement('li');
+                var aPast = document.createElement('a');
+                aPast.setAttribute("class", "note-picker note-menu past");
+                aPast.setAttribute("href", "");
+                    var spanPast = document.createElement('span');
+                aPast.appendChild(spanPast);
+            liPast.appendChild(aPast);
 
-    var liCopy = document.createElement('li');
+            var liRythme = document.createElement('li');
+                var aRythme = document.createElement('a');
+                aRythme.setAttribute("class", "note-picker note-menu rythme");
+                aRythme.setAttribute("href", "");
+                    var spanRythme = document.createElement('span');
+                    spanRythme.innerHTML = "'";
+                aRythme.appendChild(spanRythme);
+            liRythme.appendChild(aRythme);
 
-    var aCopy = document.createElement('a');
-    aCopy.setAttribute("class", "note-picker note-menu copy");
-    aCopy.setAttribute("href", "");
+            var liEffect = document.createElement('li');
+                var aEffect = document.createElement('a');
+                aEffect.setAttribute("class", "note-picker note-menu effect");
+                aEffect.setAttribute("href", "");
 
-    liCopy.appendChild(aCopy);
+                    var spanEffect = document.createElement('span');
+                    spanEffect.innerHTML = "a";
+                aEffect.appendChild(spanEffect);
+            liEffect.appendChild(aEffect);
 
-    var liPast = document.createElement('li');
+            var liColor = document.createElement('li');
+                var aColor = document.createElement('a');
+                aColor.setAttribute("class", "note-picker note-menu color");
+                aColor.setAttribute("href", "");
+                    var spanColor = document.createElement('span');
+                aColor.appendChild(spanColor);
+            liColor.appendChild(aColor);
 
-    var aPast = document.createElement('a');
-    aPast.setAttribute("class", "note-picker note-menu past");
-    aPast.setAttribute("href", "");
-
-    liPast.appendChild(aPast);
-
-    var liRythme = document.createElement('li');
-
-    var aRythme = document.createElement('a');
-    aRythme.setAttribute("class", "note-picker note-menu rythme");
-    aRythme.setAttribute("href", "");
-
-    var spanRythme = document.createElement('span');
-    spanRythme.innerHTML = "'";
-
-    aRythme.appendChild(spanRythme);
-    liRythme.appendChild(aRythme);
-
-    var liEffect = document.createElement('li');
-
-    var aEffect = document.createElement('a');
-    aEffect.setAttribute("class", "note-picker note-menu effect");
-    aEffect.setAttribute("href", "");
-
-    var spanEffect = document.createElement('span');
-    spanEffect.innerHTML = "a";
-
-    aEffect.appendChild(spanEffect);
-    liEffect.appendChild(aEffect);
-
-    var liColor = document.createElement('li');
-
-    var aColor = document.createElement('a');
-    aColor.setAttribute("class", "note-picker note-menu color");
-    aColor.setAttribute("href", "");
-
-    var spanColor = document.createElement('span');
-    spanColor.innerHTML = "a";
-
-    aColor.appendChild(spanColor);
-    liColor.appendChild(aColor);
-
-    ul.appendChild(liDelete);
-    ul.appendChild(liCopy);
-    ul.appendChild(liPast);
-    ul.appendChild(liRythme);
-    ul.appendChild(liEffect);
-    ul.appendChild(liColor);
+        ul.appendChild(liDelete);
+        ul.appendChild(liCopy);
+        ul.appendChild(liPast);
+        ul.appendChild(liRythme);
+        ul.appendChild(liEffect);
+        ul.appendChild(liColor);
 
     nav.appendChild(ul);
     selection.appendChild(nav);
