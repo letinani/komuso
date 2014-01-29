@@ -59,18 +59,19 @@ ScoreEditor.prototype.save = function() {
 ScoreEditor.prototype.print = function() {
     $("#title").find("textarea").val(this.partition.title.text);
     //$('#notes').html("");
-    var clear = 1; 
-    if(this.partition.pistes[0].notes.length == 0) $('#notes').html("");
+    //var clear = 1; 
+    affichage(5, this.partition.pistes[0].notes, this.partition.title.text, 11);
+    /*if(this.partition.pistes[0].notes.length == 0) $('.notes').html('');
     for(var i in this.partition.pistes[0].notes) { 
         var note = this.partition.pistes[0].notes[i];
 
         //affichage(nombre max de note par colonne, nom de la note, clear, title, colonne max par page);
-        affichage(5, note.nom, clear, this.partition.title.text, 11);
+        
         clear = 0;
         //$('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
-    }
+    }*/
     load();
-    cursor("default");
+    //cursor("default");
 }
 
 ScoreEditor.prototype.update = function() {
