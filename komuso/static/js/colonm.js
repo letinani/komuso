@@ -350,15 +350,15 @@ function insert(place, number_max, type, colonm_max) {
 	}
 }
 
-/*** Enlever une note ***/
+/*** Remove une note ***/
 function remove(place, number_max) {
 
 	//Récupère toutes les notes
-	var notes = document.getElementsByClassName('note');//Récupère avec les de la classe
+	var notes = document.getElementsByClassName('number');//Récupère avec les de la classe
 
 	//Récupère toutes les colonnes
-	var list_colonm = document.getElementsByClassName('notes'); //Récupère avec le nom de la classe
-	var colonm_place = parseInt(place/number_max); //calcule le numéro de la colonne dans laquelle il faut remove
+	var list_colonm = document.getElementsByClassName('colonm'); //Récupère avec le nom de la classe
+	var colonm_place = parseInt(place/number_max); //calcule le le numéro de la colonne dans laquelle il faut insérer
 
 	list_colonm[colonm_place].removeChild(notes[place]);  //Enleve la note dans la colonne
 
@@ -378,7 +378,7 @@ function remove(place, number_max) {
 				}
 			}
 		}
-
+	}
 }
 
 /*** Remplace une note ***/
