@@ -8,8 +8,8 @@
 			<li><a href="" class="newDocument">{% trans "label_new_document" %}</a></li>
 			<li><a href="" class="saveButton">{% trans "label_save_document" %}</a></li>
 			<li><a href="">{% trans "label_print_document" %}</a></li>
+			<li>{% trans "label_charge_document" %}</li>
 			<li><input class="loadFile" type="file" /></li>
-			<!--<li><a href="">{% trans "label_charge_document" %}</a></li>-->
 		</ul>
 	</nav>
 	<nav id="mmenu-score-layout">
@@ -18,6 +18,16 @@
 			<ul>
 				<li><input type="checkbox" name="score-boders" > {% trans "label_activate_borders" %}</li>
 				<li><input type="checkbox" name="score-lines" > {% trans "label_activate_lines" %} </li>
+				<li>{% trans "label_nb_columns" %}
+					<select>
+						<option value="12">12</option>
+					</select>
+				</li>
+				<li>{% trans "label_nb_notes_per_columns" %}
+					<select>
+						<option value="12">12</option>
+					</select>
+				</li>
 			</ul>
 		</form>	
 		

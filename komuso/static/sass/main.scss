@@ -135,19 +135,24 @@ header {
 	right:-500px;;
 	padding: 20px;
 	color: white;
-	font-size: 1em;
 	font-weight: normal;
+	font-size: 13px;
+	line-height: 2;
 	form {
-		font-size: 0.8em;
 	}
 	@include transitions(0.4s,right,linear);
 
-
 	h1 {
-		font-size: 1em;
+		font-size: 16px;
 		font-weight: normal;
 	}
+	li {
+		&:hover a{
+			color: red;
+		}
+	}
 	a {
+		display: block;
 		color: white;
 		font-size: 12px;
 	}
@@ -159,6 +164,9 @@ header {
 	    left: -40px;
 	    position: absolute;
 	    top: 12px;
+	}
+	input[type=file]{
+		border: 1px solid #444;
 	}
 }
 
