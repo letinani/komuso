@@ -167,6 +167,7 @@ ScoreEditor.prototype.print = function() {
              $( this ).addClass('currentCursor');
              
              scoreEditor.cursorPosition = $( this ).attr('name');
+             scoreEditor.update();
          }
     });
    
@@ -829,11 +830,11 @@ $(document).ready(function() {
 	        case 37: // Left
 	            var i;
 	            for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
-	                if(scoreEditor.cursorPosition+i < scoreEditor.nbNotes()) {
-	                    if(scoreEditor.partition.pistes[0].notes[scoreEditor.cursorPosition+i].nom == "blank") break;
+	                if(parseInt(scoreEditor.cursorPosition)+i < scoreEditor.nbNotes()) {
+	                    if(scoreEditor.partition.pistes[0].notes[parseInt(scoreEditor.cursorPosition)+i].nom == "blank") break;
 	                }
 	            }
-	            scoreEditor.cursorPosition+=i;
+	            scoreEditor.cursorPosition = parseInt(scoreEditor.cursorPosition)+i;
 	            
 	            scoreEditor.print();
 	            break;
@@ -841,11 +842,11 @@ $(document).ready(function() {
 	        case 39: // Right
 	            var i;
 	            for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
-	                if(scoreEditor.cursorPosition-i > 0) {
-	                    if(scoreEditor.partition.pistes[0].notes[scoreEditor.cursorPosition-i].nom == "blank") break;
+	                if(parseInt(scoreEditor.cursorPosition)-i > 0) {
+	                    if(scoreEditor.partition.pistes[0].notes[parseInt(scoreEditor.cursorPosition)-i].nom == "blank") break;
 	                }
 	            }
-	            scoreEditor.cursorPosition-=i;
+	            scoreEditor.cursorPosition = parseInt(scoreEditor.cursorPosition)-i;
 	            
 	            scoreEditor.print();
 	            break;
@@ -913,13 +914,24 @@ $(document).ready(function() {
                         scoreEditor.update();
                     } else alert("Vous devez sélectionner des notes pour les supprimer !");
                     break;
+                
+                case "undo":
+                    scoreEditor.undo();
+                    break;
+                
+                case "redo":
+                    scoreEditor.redo();
+                    break;
             }
         },
         items: {
             "cut": {name: "Cut", icon: "cut"},
             "copy": {name: "Copy", icon: "copy"},
             "paste": {name: "Paste", icon: "paste"},
-            "delete": {name: "Delete", icon: "delete"}
+            "delete": {name: "Delete", icon: "delete"},
+            "sep1": "---------",
+            "undo": {name: "Undo"},
+            "redo": {name: "Redo"}
         }
     });
     
