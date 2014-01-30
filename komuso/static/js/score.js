@@ -74,6 +74,8 @@ ScoreEditor.prototype.update = function() {
     this.save();
     this.print();
     
+    this.selected.length = 0;
+    
     var scoreEditor = this;
     var firstSelected;
     $( "#score" ).selectable({
@@ -118,22 +120,19 @@ ScoreEditor.prototype.update = function() {
             if(element.length == 0) {
                 var menu = document.getElementById('menu-selection');
                 if(menu) 
-                    menu.parentNode.removeChild(menu); 
-                
-                scoreEditor.selected.length = 0;        
+                    menu.parentNode.removeChild(menu);      
 
             } else {
                 element[0].appendChild(scoreEditor.selection);
                 
-                var selection = [];
-                scoreEditor.selected.length = 0;
-                
-                var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+                var index = $( "div.note" ).index( $(".ui-selected")[0] );
                 
                 $( ".ui-selected", this ).each(function() {
                     var indexTmp = $( "div.note" ).index( this );
                     scoreEditor.selected.push(JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp])));
                 });
+                
+                
                 
                 $('.delete').unbind('mouseup');
                 /*** Suppression de notes ***/
@@ -142,8 +141,6 @@ ScoreEditor.prototype.update = function() {
                     
                     scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
                     scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
-                    
-                    scoreEditor.selected.length = 0;
                     scoreEditor.update();
                 });
                 
@@ -155,8 +152,6 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), $(this).find("span").html()));
                     scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, $(this).find("span").html());                    
                     scoreEditor.update();
-                    
-                    scoreEditor.selected.length = 0;
                 });
                 
                 $('.effect').unbind('mouseup');
@@ -167,8 +162,6 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, $(this).find("span").html()));
                     scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $(this).find("span").html());
                     scoreEditor.update();
-                    
-                    scoreEditor.selected.length = 0;
                 });
                 
                 $('.color').unbind('mouseup');
@@ -206,8 +199,6 @@ ScoreEditor.prototype.update = function() {
                         scoreEditor.insertNotesAt(index, 0, scoreEditor.clipboard);
                         scoreEditor.update();
                         
-                        scoreEditor.selected.length = 0;
-                        
                         $( ".ui-selected").removeClass("ui-selected");
                         var menu = document.getElementById('menu-selection');
                         if(menu) 
@@ -224,6 +215,7 @@ ScoreEditor.prototype.update = function() {
                 menu.parentNode.removeChild(menu);
                 
             $( ".ui-selected").removeClass("ui-selected");
+            scoreEditor.selected.length = 0;
         }
 	});
 }
@@ -517,8 +509,6 @@ $(document).ready(function() {
             scoreEditor.add(new HistoricEvent("replace", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, null, note));
             scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
             scoreEditor.insertNotesAt(index, 0, note);
-            
-            scoreEditor.selected.length = 0;
         }
         
 		scoreEditor.update();
@@ -535,8 +525,6 @@ $(document).ready(function() {
             scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), $("#current-beat").text()));
             scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, $("#current-beat").text());
             scoreEditor.update();
-            
-            scoreEditor.selected.length = 0;
         }
     });
     
@@ -551,8 +539,6 @@ $(document).ready(function() {
             scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, $("#current-effect").text()));
             scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $("#current-effect").text());
             scoreEditor.update();
-            
-            scoreEditor.selected.length = 0;
         }
     });
     
@@ -563,8 +549,6 @@ $(document).ready(function() {
             scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
             scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
             scoreEditor.update();
-            
-            scoreEditor.selected.length = 0;
         } else {
             alert("Vous devez sélectionner des notes avant de les supprimer !");
         }
