@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2014-01-24 18:42+0100\n"
-"PO-Revision-Date: 2014-01-24 18:42+0100\n"
+"PO-Revision-Date: 2014-01-30 16:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12,3 +12,38 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: /Users/Laetitia/Sites/ProjetKomuso/komuso/locale/fr/"
 "LC_MESSAGES\n"
+
+#: templates/score-editor/index.html:20
+msgid "Bonjour"
+msgstr "Hello"
+
+#: templates/score-editor/side-menu.html
+msgid "nav_file"
+msgstr "File"
+
+msgid "label_new_document"
+msgstr "New score"
+
+msgid "label_save_document"
+msgstr "Save"
+
+msgid "label_print_document"
+msgstr "Print"
+
+msgid "label_charge_document"
+msgstr "Open a score :"
+
+msgid "nav_layout"
+msgstr "Layout"
+
+msgid "label_activate_borders"
+msgstr "activate borders"
+
+msgid "label_activate_lines"
+msgstr "numbers of lines"
+
+msgid "label_nb_columns"
+msgstr "columns per page"
+
+msgid "label_nb_notes_per_columns"
+msgstr "Notes per column"

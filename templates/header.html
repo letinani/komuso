@@ -1,8 +1,10 @@
 {% load i18n %}
+{% load static %}
+
 <header>
 <div class="content">
 	
-	<h1><a href="">{% trans "Bonjour" %}</a></h1>       
+	<h1><a href="" title="application komuso"><img src="{% static 'img/logo_komuso.png' %}"></a></h1>       
 	<nav id="linguage">
 	    <form action="/i18n/setlang/" method="post">
             {% csrf_token %}

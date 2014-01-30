@@ -83,7 +83,7 @@ header {
     margin-left: 10px; }
   header #linguage {
     float: left;
-    margin-top: 12px;
+    margin-top: 10px;
     overflow: auto; }
     header #linguage .icon {
       float: left;
@@ -121,8 +121,9 @@ header {
   right: -500px;
   padding: 20px;
   color: white;
-  font-size: 1em;
   font-weight: normal;
+  font-size: 13px;
+  line-height: 2;
   -webkit-transition-duration: 0.4s;
   -webkit-transition-property: right;
   -webkit-transition-timing-function: linear;
@@ -143,12 +144,13 @@ header {
   transition-property: right;
   transition-timing-function: linear;
   transition-delay: 0; }
-  #side-menu form {
-    font-size: 0.8em; }
   #side-menu h1 {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: normal; }
+  #side-menu li:hover a {
+    color: red; }
   #side-menu a {
+    display: block;
     color: white;
     font-size: 12px; }
   #side-menu.open {
@@ -157,6 +159,8 @@ header {
     left: -40px;
     position: absolute;
     top: 12px; }
+  #side-menu input[type=file] {
+    border: 1px solid #444; }
 
 /********  Menu to add notes on score ********/
 #menu-editor {
