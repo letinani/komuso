@@ -1,60 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Test {% endblock %}
 {% block content %}
-<section id="menu-editor" class="column">
-    <nav id="menu-notes">
-        <ul>
-            <li>
-                <a class="note-picker note-menu" id="current-beat" href="">|</a>
-                <div class="menu-sub">
-                    <figure class="pick"></figure>
-                    <ul>
-                        <li><a class="note-picker note-menu beat" href="">'</a></li>
-                        <li><a class="note-picker note-menu beat" href="">|</a></li>
-                        <li><a class="note-picker note-menu beat" href="">||</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a class="note-picker note-menu" href="">a</a>
-                <div class="menu-sub">
-                    <figure class="pick"></figure>
-                    <ul>
-                        <li><a class="note-picker note-menu ton" href="" value="ro">ro</a></li>
-                        <li><a class="note-picker note-menu ton" href="" value="tsu">tsu</a></li>
-                        <li><a class="note-picker note-menu ton" href="" value="re">re</a></li>
-                        <li><a class="note-picker note-menu ton" href="" value="chi">chi</a></li>
-                        <li><a class="note-picker note-menu ton" href="" value="ri">ri</a></li>
-                        <li><a class="note-picker note-menu ton" href="" value="blank">blank</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a class="note-picker note-menu" href="">b</a>
-                <div class="menu-sub">
-                    <figure class="pick"></figure>
-                    <ul>
-                        <li><a class="note-picker note-menu" href="" value="blank">blank</a></li>
-                        <li><a class="note-picker note-menu" href="">note 2.2</a></li>
-                        <li><a class="note-picker note-menu" href="">note 2.3</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <a class="note-picker note-menu" id="current-effect" href="">*</a>
-                <div class="menu-sub">
-                    <figure class="pick"></figure>
-                    <ul>
-                        <li><a class="note-picker note-menu effect-menu" href="">*</a></li>
-                        <li><a class="note-picker note-menu effect-menu" href="">~</a></li>
-                        <li><a class="note-picker note-menu effect-menu" href="">+</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a class="note-picker delete-menu" href="">X</a></li>
-        </ul>
-    </nav>
-</section>
+
+{% include 'score-editor/menu-notes.html' %}
+
 
 <section id="score" class="column">
     <section class="sheet" id="sheet">

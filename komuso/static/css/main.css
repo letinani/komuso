@@ -9,6 +9,13 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: 'shakuhachinotation';
+  src: url("../font/shakuhachinotation-webfont.eot");
+  src: url("../font/shakuhachinotation-webfont.eot?#iefix") format("embedded-opentype"), url("../font/shakuhachinotation-webfont.woff") format("woff"), url("../font/shakuhachinotation-webfont.ttf") format("truetype"), url("../font/shakuhachinotation-webfont.svg#tozanshakregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 html, body {
   height: 100%;
   background: url("../img/background.png");
@@ -57,6 +64,8 @@ ul {
   .icon.close-side-menu {
     width: 50px;
     background-position: -306px 0px; }
+  .icon.cut {
+    background-position: -197px -37px; }
 
 figure.pick {
   width: 0px;
@@ -181,11 +190,18 @@ header {
       -moz-border-radius: 50px;
       border-radius: 50px;
       text-align: center;
-      font-size: 1em;
+      font-size: 1.8em;
       padding: 5px;
-      margin-bottom: 15px;
+      margin-bottom: 5px;
       float: right;
+      font-family: shakuhachinotation;
       color: #000000; }
+      #menu-editor nav li .note-picker#current-effect {
+        margin-bottom: 15px; }
+      #menu-editor nav li .note-picker.blank {
+        font-family: Arial;
+        font-size: 1em;
+        line-height: 2; }
     #menu-editor nav li .menu-sub {
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
@@ -257,10 +273,10 @@ header {
     /* Précaution pour IE 7 */ }
 
 .note {
-  font-family: tozanshakregular;
-  font-size: 3em;
+  font-family: shakuhachinotation;
+  font-size: 2.5em;
   width: 50%;
-  margin: 2px auto;
+  margin: 0px auto;
   position: relative;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
@@ -410,6 +426,13 @@ header {
           -ms-transform: rotate(-220deg);
           -o-transform: rotate(-220deg);
           transform: rotate(-220deg); }
+      .notes .note-selected nav .note-picker.cut span {
+        background-position: -197px -37px;
+        -webkit-transform: rotate(-220deg);
+        -moz-transform: rotate(-220deg);
+        -ms-transform: rotate(-220deg);
+        -o-transform: rotate(-220deg);
+        transform: rotate(-220deg); }
 
 .notes .ui-selecting {
   background: #FECA40; }
