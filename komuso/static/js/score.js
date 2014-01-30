@@ -51,6 +51,69 @@ ScoreEditor.prototype.editNotesAt = function(indice, piste, nbNotes, time, effec
     }
 }
 
+ScoreEditor.prototype.cut = function() {
+    if(this.selected.length > 0) {        
+        var index = $( "div.note" ).index( $(".ui-selected")[0] );
+        
+        this.clipboard.length = 0;        
+        for(var i = 0; i < this.selected.length; ++i) {
+            this.clipboard.push(JSON.parse(JSON.stringify(this.selected[i])));
+        }
+        
+        this.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(this.selected))));
+        this.removeNotesAt(index, 0, this.selected.length);
+        this.update();
+        
+        $( ".ui-selected").removeClass("ui-selected");
+        var menu = document.getElementById('menu-selection');
+        if(menu) 
+            menu.parentNode.removeChild(menu);
+    } else {
+        alert("Vous devez sélectionner des notes avant de pouvoir les couper !");
+    }
+}
+
+ScoreEditor.prototype.copy = function() {
+    if(this.selected.length > 0) {
+        this.clipboard.length = 0;
+        for(var i = 0; i < this.selected.length; ++i) {
+            this.clipboard.push(JSON.parse(JSON.stringify(this.selected[i])));
+        }
+        
+        this.update();
+        
+        $( ".ui-selected").removeClass("ui-selected");
+        var menu = document.getElementById('menu-selection');
+        if(menu) 
+            menu.parentNode.removeChild(menu);
+    } else {
+        alert("Vous devez sélectionner des notes avant de pouvoir les copier !");
+    }
+}
+
+ScoreEditor.prototype.paste = function() {      
+    if(this.clipboard.length > 0) {
+        if(this.selected.length > 0) {
+            var index = $( "div.note" ).index( $(".ui-selected")[0] );
+            this.add(new HistoricEvent("replace", index, 0, JSON.parse(JSON.stringify(this.selected)), null, null, JSON.parse(JSON.stringify(this.clipboard))));
+            this.removeNotesAt(index, 0, this.selected.length);
+            this.insertNotesAt(index, 0, this.clipboard);
+        } else {
+            this.add(new HistoricEvent("add", this.cursorPosition, 0, JSON.parse(JSON.stringify(this.clipboard))));
+            this.insertNotesAt(this.cursorPosition, 0, this.clipboard);
+        }
+        
+        this.update();
+        
+        $( ".ui-selected").removeClass("ui-selected");
+        var menu = document.getElementById('menu-selection');
+        if(menu) 
+            menu.parentNode.removeChild(menu);
+    } else {
+        alert("Le presse papier est vide !");
+    }
+}
+
 // Sauvegarde la partition sur l'ordinateur de l'utilisateur avec localStorage
 ScoreEditor.prototype.save = function() {
     if(typeof localStorage!='undefined') {
@@ -170,8 +233,6 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.selected.push(JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp])));
                 });
                 
-                
-                
                 $('.delete').unbind('mouseup');
                 /*** Suppression de notes ***/
                 $('.delete').on('mouseup',function(e) {
@@ -210,20 +271,20 @@ ScoreEditor.prototype.update = function() {
                     // A compléter
                 });
                 
+                $('.cut').unbind('mouseup');
+                /*** Couper ***/
+                $('.cut').mouseup(function(e) {
+                    e.preventDefault();
+                    
+                    scoreEditor.cut();
+                });
+                
                 $('.copy').unbind('mouseup');
                 /*** Copier ***/
                 $('.copy').mouseup(function(e) {
                     e.preventDefault();
                     
-                    scoreEditor.clipboard.length = 0;
-                    for(var i = 0; i < scoreEditor.selected.length; ++i) {
-                        scoreEditor.clipboard.push(JSON.parse(JSON.stringify(scoreEditor.selected[i])));
-                    }
-                    
-                    $( ".ui-selected").removeClass("ui-selected");
-                    var menu = document.getElementById('menu-selection');
-                    if(menu) 
-                        menu.parentNode.removeChild(menu);
+                    scoreEditor.copy();
                 });
                 
                 $('.past').unbind('mouseup');
@@ -231,19 +292,7 @@ ScoreEditor.prototype.update = function() {
                 $('.past').mouseup(function(e) {
                     e.preventDefault();
                     
-                    if(scoreEditor.clipboard.length > 0) {
-                        scoreEditor.add(new HistoricEvent("replace", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, null, JSON.parse(JSON.stringify(scoreEditor.clipboard))));
-                        scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
-                        scoreEditor.insertNotesAt(index, 0, scoreEditor.clipboard);
-                        scoreEditor.update();
-                        
-                        $( ".ui-selected").removeClass("ui-selected");
-                        var menu = document.getElementById('menu-selection');
-                        if(menu) 
-                            menu.parentNode.removeChild(menu);
-                    } else {
-                        alert("Le presse papier est vide !");
-                    }
+                    scoreEditor.paste();
                 });
             }
         },
@@ -321,6 +370,8 @@ ScoreEditor.prototype.undo = function() {
     }
     
     this.historic.redoEvents.push(event);
+    
+    this.update();
 }
 
 ScoreEditor.prototype.redo = function() {
@@ -348,6 +399,8 @@ ScoreEditor.prototype.redo = function() {
     }
     
     this.historic.undoEvents.push(event);
+    
+    this.update();
 }
 
 // Constructeur de la class partition, prend en paramètre un titre(class), un auteur, une date et une version
@@ -721,13 +774,11 @@ $(document).ready(function() {
 	$('.undo').click(function(e) {
 	    e.preventDefault();
 		scoreEditor.undo();
-		scoreEditor.update();
 	});	
 	
 	$('.redo').click(function(e) {
 	    e.preventDefault();
 		scoreEditor.redo();
-		scoreEditor.update();
 	});
 	
 	$(document).keydown(function(e) {
@@ -768,6 +819,24 @@ $(document).ready(function() {
 	            break;
 	    }
 	});
+	
+	var down = [];
+    $(document).keydown(function(e) {
+        down[e.keyCode] = true;
+    }).keyup(function(e) {
+        if (down[17] && down[88]) { // Cut
+            scoreEditor.cut();
+        } else if (down[17] && down[67]) { // Copy
+            scoreEditor.copy();
+        } else if (down[17] && down[86]) { // Paste
+            scoreEditor.paste();
+        } else if (down[17] && down[90] && !down[16]) { // Undo
+            scoreEditor.undo();
+        } else if ((down[17] && down[16] && down[90]) || (down[17] && down[89])) { // Undo
+            scoreEditor.redo();
+        }
+        down[e.keyCode] = false;
+    });
 	
 	$( "input:checkbox" ).click(function(e) {
 	    scoreEditor.print();
