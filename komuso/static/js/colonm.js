@@ -1,146 +1,168 @@
 /***** Affichage de toutes les notes de la partition ****/
-function affichage(number_max, partition, title, colonm_max) {
+function affichage(number_max, partition, title, colonm_max, position) {
 
-
-	//if(clear == 1) {
-		document.getElementById('score').innerHTML = "";
-		var section = document.createElement('section');
-		section.setAttribute("id", "title");
-		section.setAttribute("class", "empty");
-
-		var form = document.createElement('form');
-
-		var textarea = document.createElement('textarea');
-		textarea.setAttribute("rows", "20");
-		textarea.setAttribute("cols", "1");
-		textarea.setAttribute("placeholder", "Titre de la partition");
-		textarea.innerHTML = title;
-
-		form.appendChild(textarea);
-		section.appendChild(form);
-
-		//Page 
-		var page = document.createElement('section'); //Créer une dive
-		page.setAttribute("class", "sheet");
-
-		var create_clear = document.createElement('div');
-		create_clear.setAttribute("class", "clear");
-
-		//if(partition.length == 0 ) {
-
-			//Colonne
-			var colonm_begin = document.createElement('div'); //Créer une div
-			colonm_begin.setAttribute("class","column");//Ajoute la classe colonm à la div
-
-			//H2
-			var number_begin = document.createElement('h2'); //Créer un h2
-			number_begin.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
-
-			//div notes
-			var list_notes_begin = document.createElement('div'); //Créer une div
-			list_notes_begin.setAttribute("class","notes");//Ajoute la classe notes à la div
-		
-
-			colonm_begin.appendChild(number_begin);
-			colonm_begin.appendChild(list_notes_begin);
-		//}
-
-		page.appendChild(section);
-
-		//if(partition.length == 0 )
-			page.appendChild(colonm_begin);
-
-		page.appendChild(create_clear);
-
-		document.getElementById('score').appendChild(page);
-
-	//}
-
-	 for(var i in partition) {
-
-	 	//Récupère toutes les notes
-		var notes = document.getElementsByClassName('note'); //Récupère avec le nom de la classe
-
-		//Note
-		
-		var note = document.createElement('div'); //Créer une div
-		if(partition[i].nom != "blank")
-			note.setAttribute("class","note ui-state-default " + partition[i].nom);//Ajoute la class note à la div
-		else
-			note.setAttribute("class", "note "+partition[i].nom);
-
-		note.innerHTML = partition[i].indice;
-
+	 var currentCol = 1;
+	 var currentLine = 0;
+	 var currentSheet = 1;
+	 
+	 var score = document.getElementById('score');
+	 score.innerHTML = "";
+	 
+    var sheet = document.createElement('section'); //Créer un h2
+    sheet.setAttribute("class","sheet");//Ajoute la classe colonm au h2
+    
+    var title = document.createElement('section');
+    title.setAttribute("class","empty");
+    title.setAttribute("id","title");
+    
+    var form = document.createElement('form');
+    
+    var textarea = document.createElement('textarea');
+    textarea.setAttribute('rows','20');
+    textarea.setAttribute('cols','1');
+    textarea.setAttribute('placeholder','Titre de la partition');
+    textarea.innerHTML = $(title).text();
+    
+    form.appendChild(textarea);
+    title.appendChild(form);
+    
+    sheet.appendChild(title);
+    score.appendChild(sheet);
+			        
+    var colonm;
+    var number;
+    //Colonne
+	colonm = document.createElement('div'); //Créer une div
+	colonm.setAttribute("class","column notes");//Ajoute la classe colonm à la div
+    
+	//H2
+	number = document.createElement('h2'); //Créer un h2
+	number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
+	number.innerHTML = currentCol;
+	
+	colonm.appendChild(number);
+	sheet.appendChild(colonm);	
+	
+	var cursor = document.createElement('div');
+	cursor.setAttribute("name", 0);
+	if(position == 0) {
+	    cursor.setAttribute("class", "cursor currentCursor");
+	    cursor.setAttribute("style", "position:absolute; height:50px; width:100px; border-top:solid 2px #F70; display:block;");
+	    cursor.style.opacity = "0.75";
+	} else {
+		cursor.setAttribute("class", "cursor");
+	    cursor.setAttribute("style", "position:absolute; width:100px; height:50px; border-top:solid 2px #AAA; display:block;");
+	    cursor.style.opacity = "0";
+	}    
+	    colonm.appendChild(cursor);
+	 
+	 for(var i = 0; i < partition.length; ++i) {
 
 		//Vérifie s'il faut ajouter une nouvelle colonne ou pas
-		if((notes.length+1)%number_max == 0 || partition[i].nom == "blank") { //Besoin d'ajouter une nouvelle colonne 
-
+		if(currentLine == number_max || partition[i].nom == "blank") { //Besoin d'ajouter une nouvelle colonne 
+            currentLine = 0;
+            
+            // Vérifie s'il faut ajouter une nouvelle page ou pas
+			if(currentCol == colonm_max) {
+			    currentCol = 0;
+			    ++currentSheet;
+			    
+			    //Page
+			    sheet = document.createElement('section'); //Créer un h2
+			    sheet.setAttribute("class","sheet");//Ajoute la classe colonm au h2
+			    
+			    score.appendChild(sheet);
+			}
+			
+            ++currentCol;
+            
 			//Colonne
-			var colonm = document.createElement('div'); //Créer une div
-			colonm.setAttribute("class","column");//Ajoute la classe colonm à la div
+			colonm = document.createElement('div'); //Créer une div
+			colonm.setAttribute("class","column notes");//Ajoute la classe colonm à la div
 
 			//H2
-			var number = document.createElement('h2'); //Créer un h2
+			number = document.createElement('h2'); //Créer un h2
 			number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
-			number.innerHTML = notes.length + 1;
-
-			//Pages
-			var sheets = document.getElementsByClassName('sheet'); //Récupère avec le nom de la classe
-
-			//div notes
-			var list_notes = document.createElement('div'); //Créer une div
-			list_notes.setAttribute("class","notes");//Ajoute la classe notes à la div
-
-			//Récupère toutes les colonnes
-			var list_colonms = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
-
+			number.innerHTML = currentCol;
+			
 			colonm.appendChild(number);
-			colonm.appendChild(list_notes);
 			
-			list_notes.appendChild(note); //Ajoute la note à la colonne
-
-			var colonm_max_sheet; //nombre colonne max par page
-			var list_colonms_lenght;
-			if(sheets.length <= 1) {
-				colonm_max_sheet = colonm_max - 1;
-				list_colonms_lenght = list_colonms.length;
-			}
-			else {
-				colonm_max_sheet = colonm_max;
-				list_colonms_lenght = list_colonms.length + 1;
-			}
-
-			//Vérifie s'il faut ajouter une page ou pas
-			if(list_colonms_lenght%colonm_max_sheet == 0) { //Besoin d'ajouter une nouvelle page
-
-				//Page 
-				var page = document.createElement('section'); //Créer une dive
-				page.setAttribute("class", "sheet");
-
-				var create_clear = document.createElement('div');
-				create_clear.setAttribute("class", "clear");
-
-				page.appendChild(colonm);
-				page.appendChild(create_clear);
-
-				document.getElementById('score').appendChild(page);
-
-			}
-			else {
-				//Récupère la div clear
-				var clear = sheets[sheets.length-1].getElementsByClassName('clear'); //Récupère avec le nom de la classe
-				sheets[sheets.length-1].insertBefore(colonm, clear[0]); //ajoute la colonne au contenu
-			}
+			sheet.appendChild(colonm);
 			
+			cursor = document.createElement('div');
+		    cursor.setAttribute("class", "cursor");
+		    cursor.setAttribute("name", i);
+	        cursor.setAttribute("style", "position:absolute; width:100px; height:50px; border-top:solid 2px #AAA; display:block;");
+	        cursor.style.opacity = "0";
+	        
+	        colonm.appendChild(cursor);	
 		}
-		else { //Pas besoin d'ajouter une nouvelle colonne
-			var list_notes = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
-			if(list_notes[list_notes.length-1])
-				list_notes[list_notes.length-1].appendChild(note); //Ajoute la note à la dernière colonne
-		}
-
+		
+		var classes = "note " + partition[i].nom;
+        if(partition[i].nom != "blank")  classes += " ui-state-default";
+        
+        var note = document.createElement('div');
+	    note.setAttribute("class",classes);
+	    note.innerHTML = partition[i].indice;	    
+        
+        colonm.appendChild(note);
+        
+        cursor = document.createElement('div');
+	    cursor.setAttribute("name", i+1);
+        if(position == i+1) {
+            cursor.setAttribute("class", "cursor currentCursor");
+            cursor.setAttribute("style", "position:absolute; height:50px; width:100px; border-top:solid 2px #F70; display:block;");
+            cursor.style.opacity = "0.75";
+        } else {
+            cursor.setAttribute("class", "cursor");
+            cursor.setAttribute("style", "position:absolute; height:50px; width:100px; border-top:solid 2px #AAA; display:block;");
+            cursor.style.opacity = "0";
+        }
+        colonm.appendChild(cursor);
+        
+        if(partition[i].nom != "blank") currentLine++;
 	 }
+	 
+    $('.cursor').mouseover(function(e) {
+        if(!$(this).hasClass('currentCursor')) {
+        
+            $( this ).animate({
+                opacity: 0.75
+            }, 50);
+        }
+    });
+    
+    $('.cursor').mouseout(function(e) {
+        if(!$(this).hasClass('currentCursor')) {
+        
+            $( this ).animate({
+                opacity: 0
+            }, 50);
+        }
+    });
+    
+    $('.cursor').mouseup(function(e) {     
+         if(!$(this).hasClass('currentCursor')) {
+             $('.cursor').css('border-top','solid 2px #AAA');
+             $( this ).css('border-top','solid 2px #F70');
+             $( '.currentCursor' ).animate({
+                    opacity: 0
+             }, 100);
+             $( '.currentCursor' ).removeClass('currentCursor');
+             $( this ).addClass('currentCursor');
+         }
+    });
 
+}
+
+function blink() {
+     $( '.currentCursor' ).animate({
+            opacity: 0
+     }, 800, 'linear', function() { 
+            $( '.currentCursor' ).animate({
+                opacity: 0.75
+            }, 800, 'linear', function() { blink(); });
+    });
 }
 
 /***** Ajouter une note à la fin de la partion : prend en paramètre le nombre max de note par colonne ***/

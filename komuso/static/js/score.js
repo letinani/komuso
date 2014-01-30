@@ -57,21 +57,16 @@ ScoreEditor.prototype.save = function() {
 
 // Actualise l'affichage de la partition
 ScoreEditor.prototype.print = function() {
-    $("#title").find("textarea").val(this.partition.title.text);
-    //$('#notes').html("");
-    //var clear = 1; 
-    affichage(5, this.partition.pistes[0].notes, this.partition.title.text, 11);
-    /*if(this.partition.pistes[0].notes.length == 0) $('.notes').html('');
-    for(var i in this.partition.pistes[0].notes) { 
-        var note = this.partition.pistes[0].notes[i];
-
-        //affichage(nombre max de note par colonne, nom de la note, clear, title, colonne max par page);
-        
-        clear = 0;
-        //$('#notes').html($('#notes').html() + "<div class='note " + note.nom + "'>" + note.indice + "</div>");
-    }*/
+    var position = $('.currentCursor').attr('name');
+    
+    if(!position) position = this.nbNotes();
+    else position = parseInt(position) + this.nbNotes() - $('div.note').length;
+    
+    if(position > this.nbNotes() || position < 0) position = this.nbNotes();
+    
+    affichage(7, this.partition.pistes[0].notes, this.partition.title.text, 10, position);
+   
     load();
-    //cursor("default");
 }
 
 ScoreEditor.prototype.update = function() {
@@ -79,82 +74,59 @@ ScoreEditor.prototype.update = function() {
     this.print();
     
     var scoreEditor = this;
-    $( ".notes" ).selectable({
-        cancel: "a",
+    var firstSelected;
+    $( "#score" ).selectable({
+        filter: "div.note,textarea",
+        cancel: "a,textarea,.cursor",
+        selecting: function( event, ui ) {
+            if(!firstSelected) firstSelected = ui.selecting;
+            
+            var currentIndex = $( "div.note" ).index( ui.selecting ); 
+            var index = $( "div.note" ).index( firstSelected );
+            var element = document.getElementsByClassName('note');
+            
+            for(var i = 0; i < element.length; ++i) {
+                if($(element[i]).hasClass('ui-selecting')) $(element[i]).removeClass('ui-selecting');
+                
+                if(currentIndex < index) {
+                    if(i >= currentIndex && i <= index) $(element[i]).addClass('ui-selecting');
+                } else {
+                    if(i <= currentIndex && i >= index) $(element[i]).addClass('ui-selecting');
+                }
+            }
+        },
+        unselecting: function( event, ui ) {        
+            var currentIndex = $( "div.note" ).index( ui.unselecting );
+            
+            var index = $( "div.note" ).index( firstSelected );
+            var element = document.getElementsByClassName('note');
+            
+            for(var i = 0; i < element.length; ++i) {
+                if($(element[i]).hasClass('ui-selecting')) $(element[i]).removeClass('ui-selecting');
+                
+               if(currentIndex < index) {
+                    if(i >= currentIndex && i <= index) $(element[i]).addClass('ui-selecting');
+                } else {
+                    if(i <= currentIndex && i >= index) $(element[i]).addClass('ui-selecting');
+                }
+            }
+        },
 	    stop: function() {
+	        firstSelected = null;
 	        var element = document.getElementsByClassName('ui-selected');
-              
             if(element.length == 0) {
                 var menu = document.getElementById('menu-selection');
                 if(menu) 
-                    menu.parentNode.removeChild(menu);
-
-                $( ".note" ).unbind("click");
-                 /*** CLIC CURSOR NOTE ***/
-                $( ".note" ).click(function(e) {
-                        var cursor = document.getElementById('cursor'); //récupère le curseur
-                        if(this.nextSibling) {
-                            this.parentNode.insertBefore(cursor, this.nextSibling);
-                        }
-                        else {
-                            this.parentNode.insertBefore(cursor, this);
-                            this.parentNode.insertBefore(this, cursor);
-                        }
-                });
-
-                $( ".notes" ).unbind("click");
-                /*** CLIC CURSOR ***/
-                $( ".notes" ).click(function(e) {
-                    //S'il a des notes dans la colonne
-                    if(this.childNodes) {
-                        var notes = this.childNodes; //Récupère toutes les notes de la colonne
-                        var y; 
-                        if (e.pageX || e.pageY) { 
-                          y = e.pageY; //récupère la position y du clic
-                        }
-
-                        var cursor = document.getElementById('cursor'); //récupère le curseur
-
-                        //Pour chaque note de la colonne
-                        for(i=0; i<notes.length; ++i) {
-
-                            var position = notes[i].getBoundingClientRect(); //récupère la position de la note
-
-                            if(parseInt(position.top - y) < 20) { //s'il est proche du haut de la note 
-                                this.insertBefore(cursor, notes[i]); //place le curseur avant la note
-                            }
-
-                        }
-
-                        var position = notes[notes.length -1].getBoundingClientRect(); //récupère la position de la note
-                        if(parseInt(position.bottom - y) < 20) { //s'il est proche du bas de la note 
-                            this.appendChild(cursor); //Ajoute à la fin
-                        }
-                        var count = getPositionCursor();
-                    }
-
-
-                });
-
-                $( ".column" ).unbind("click");
-                 $('.column').click(function(e) {
-                     if(this.childNodes[1]) {
-                        if(!this.childNodes[1].firstChild) {
-                            var cursor = document.getElementById('cursor'); //récupère le curseur
-                            this.childNodes[1].appendChild(cursor);
-                        }
-
-                    }
-                });               
+                    menu.parentNode.removeChild(menu);         
 
             } else {
                 element[0].appendChild(scoreEditor.selection);
                 
                 var selection = [];
-                var index = $( ".notes div.note" ).index( $( ".ui-selected")[0] );
+                var index = $( "div.note" ).index( $( ".ui-selected")[0] );
                 
                 $( ".ui-selected", this ).each(function() {
-                    var indexTmp = $( ".notes div.note" ).index( this );
+                    var indexTmp = $( "div.note" ).index( this );
                     selection.push(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp]));
                 });
                 
@@ -239,6 +211,8 @@ ScoreEditor.prototype.update = function() {
             var menu = document.getElementById('menu-selection');
             if(menu) 
                 menu.parentNode.removeChild(menu);
+                
+            $( ".ui-selected").removeClass("ui-selected");
         }
 	});
 }
@@ -475,6 +449,7 @@ $(document).ready(function() {
     var scoreEditor = new ScoreEditor();
 
 	scoreEditor.update();
+	blink();
 	
 	if(document.getElementById('cursor'))
         setInterval(cligno, 1000);
@@ -520,10 +495,10 @@ $(document).ready(function() {
 			default : alert("Note inconnue : " + n);
 			    break;
 		}
-        
+		
         var note = new Note(indice, nom, $("#current-beat").text(), "aigu");
-        scoreEditor.add(new HistoricEvent("add", getPositionCursor(), 0, note));
-        scoreEditor.insertNotesAt(getPositionCursor(), 0, note);
+        scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
+        scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
         
 		scoreEditor.update();
 	});
