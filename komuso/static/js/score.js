@@ -422,32 +422,45 @@ function Selection() {
         var ul = document.createElement('ul');
 
             var liDelete = document.createElement('li');
+            liDelete.setAttribute("class", "note-picker delete");
                 var aDelete = document.createElement('a');
-                aDelete.setAttribute("class", "note-picker note-menu delete");
+                aDelete.setAttribute("class", "note-menu");
                 aDelete.setAttribute("href", "");
                     var spanDelete = document.createElement('span');
                 aDelete.appendChild(spanDelete);
             liDelete.appendChild(aDelete);
 
             var liCopy = document.createElement('li');
+            liCopy.setAttribute("class", "note-picker copy");
                 var aCopy = document.createElement('a');
-                aCopy.setAttribute("class", "note-picker note-menu copy");
+                aCopy.setAttribute("class", "note-menu");
                 aCopy.setAttribute("href", "");
                     var spanCopy = document.createElement('span');
                 aCopy.appendChild(spanCopy);
             liCopy.appendChild(aCopy);
 
             var liPast = document.createElement('li');
+            liPast.setAttribute("class", "note-picker past");
                 var aPast = document.createElement('a');
-                aPast.setAttribute("class", "note-picker note-menu past");
+                aPast.setAttribute("class", "note-menu");
                 aPast.setAttribute("href", "");
                     var spanPast = document.createElement('span');
                 aPast.appendChild(spanPast);
             liPast.appendChild(aPast);
 
+            var liCut = document.createElement('li');
+            liCut.setAttribute("class", "note-picker cut");
+                var aCut = document.createElement('a');
+                aCut.setAttribute("class", "note-menu");
+                aCut.setAttribute("href", "");
+                    var spanCut = document.createElement('span');
+                aCut.appendChild(spanCut);
+            liCut.appendChild(aCut);
+
             var liRythme = document.createElement('li');
+            liRythme.setAttribute("class", "note-picker rythme");
                 var aRythme = document.createElement('a');
-                aRythme.setAttribute("class", "note-picker note-menu rythme");
+                aRythme.setAttribute("class", "note-menu");
                 aRythme.setAttribute("href", "");
                     var spanRythme = document.createElement('span');
                     spanRythme.innerHTML = "'";
@@ -455,18 +468,19 @@ function Selection() {
             liRythme.appendChild(aRythme);
 
             var liEffect = document.createElement('li');
+            liEffect.setAttribute("class", "note-picker effect");
                 var aEffect = document.createElement('a');
-                aEffect.setAttribute("class", "note-picker note-menu effect");
+                aEffect.setAttribute("class", "note-menu");
                 aEffect.setAttribute("href", "");
-
                     var spanEffect = document.createElement('span');
                     spanEffect.innerHTML = "a";
                 aEffect.appendChild(spanEffect);
             liEffect.appendChild(aEffect);
 
             var liColor = document.createElement('li');
+            liColor.setAttribute("class", "note-picker color");
                 var aColor = document.createElement('a');
-                aColor.setAttribute("class", "note-picker note-menu color");
+                aColor.setAttribute("class", "note-menu");
                 aColor.setAttribute("href", "");
                     var spanColor = document.createElement('span');
                 aColor.appendChild(spanColor);
@@ -475,6 +489,7 @@ function Selection() {
         ul.appendChild(liDelete);
         ul.appendChild(liCopy);
         ul.appendChild(liPast);
+        ul.appendChild(liCut);
         ul.appendChild(liRythme);
         ul.appendChild(liEffect);
         ul.appendChild(liColor);
@@ -519,7 +534,7 @@ $(document).ready(function() {
 				indice = "d";
 				break;
 
-			case "e" : 
+			case "e"  : 
 				nom = "tsu-2";
 				indice = "e";
 				break;

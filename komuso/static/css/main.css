@@ -319,6 +319,13 @@ header {
     position: absolute;
     top: -28px;
     width: 32px; }
+    .notes .note-selected nav ul {
+      margin: 0; }
+    .notes .note-selected nav li {
+      position: absolute;
+      background: white;
+      height: 45px;
+      width: 45px; }
     .notes .note-selected nav .note-picker {
       background: white;
       -webkit-border-radius: 50px;
@@ -331,6 +338,10 @@ header {
       top: -4px;
       transition: transform 0.5s ease-in-out 0s;
       width: 45px; }
+      .notes .note-selected nav .note-picker a {
+        display: block;
+        width: inherit;
+        height: inherit; }
       .notes .note-selected nav .note-picker:before {
         bottom: 100%;
         left: 50%;
@@ -382,18 +393,18 @@ header {
           -ms-transform: rotate(57deg);
           -o-transform: rotate(57deg);
           transform: rotate(57deg); }
-      .notes .note-selected nav .note-picker.delete, .notes .note-selected nav .note-picker.copy, .notes .note-selected nav .note-picker.past {
+      .notes .note-selected nav .note-picker.delete, .notes .note-selected nav .note-picker.copy, .notes .note-selected nav .note-picker.past, .notes .note-selected nav .note-picker.cut {
         height: 20px;
         width: 20px;
         border: 0px solid #a7a7a7;
-        padding: 1px;
-        transform-origin: 50% 50%; }
-        .notes .note-selected nav .note-picker.delete span, .notes .note-selected nav .note-picker.copy span, .notes .note-selected nav .note-picker.past span {
+        padding: 1px; }
+        .notes .note-selected nav .note-picker.delete span, .notes .note-selected nav .note-picker.copy span, .notes .note-selected nav .note-picker.past span, .notes .note-selected nav .note-picker.cut span {
           display: block;
           height: inherit;
           width: inherit;
-          background: url("../img/sprite.png") no-repeat; }
-      .notes .note-selected nav .note-picker.delete:before, .notes .note-selected nav .note-picker.copy:before, .notes .note-selected nav .note-picker.past:before {
+          background-image: url("../img/sprite.png");
+          background-repeat: no-repeat; }
+      .notes .note-selected nav .note-picker.delete:before, .notes .note-selected nav .note-picker.copy:before, .notes .note-selected nav .note-picker.past:before, .notes .note-selected nav .note-picker.cut:before {
         border: 0;
         background: none;
         height: 13px;
@@ -446,8 +457,9 @@ header {
           -o-transform: rotate(-220deg);
           transform: rotate(-220deg); }
       .notes .note-selected nav .note-picker.cut {
-        left: 2px;
         background-color: #858585;
+        left: -7px;
+        top: 6px;
         -webkit-transform: rotate(91deg) translateY(29px);
         -moz-transform: rotate(91deg) translateY(29px);
         -ms-transform: rotate(91deg) translateY(29px);
