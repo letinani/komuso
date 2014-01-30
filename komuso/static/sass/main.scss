@@ -247,14 +247,15 @@ header {
 	}
 }
 #score {
-	height: 95%;
+	height: 90%;
 	width: 90%;
 	position: relative;
 	overflow-y :scroll;
 	overflow-x: hidden;	
 
 	.sheet {
-		padding: 20px;
+		position: relative;
+		padding: 50px;
 		background: white;
 		border: 1px solid #ddd;
 		margin: 15px 0;
@@ -264,6 +265,11 @@ header {
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.05) inset;
 		&:last-child{
 			margin-bottom: 20px;
+		}
+		.num-page {
+			position: absolute;
+			right: 30px;
+			bottom: 30px;
 		}
 		#title {
 			margin: 20px;
@@ -282,6 +288,22 @@ header {
 				background: none;
 			}
 		}
+		#cursor {
+			height:1px; 
+			background-color:red;
+			border: 0;
+			width: inherit;
+		}
+		.cursor {
+			max-width: 100px;
+    		min-width: 90px;
+			position:absolute; 
+			border-top:solid 3px #AAA; 
+			display:block;
+			&.currentCursor {
+				border-top:solid 2px #F70;
+			}
+		}
 	}
 
 	> .column {
@@ -289,7 +311,8 @@ header {
 
 	}
 	.column {
-		width: 100px;
+		max-width: 100px;
+    	min-width: 90px;
 		height: 100%;
 		text-align: center;
 		border-left: 1px dashed #CCC;
@@ -312,7 +335,7 @@ header {
 .note {
 	font-family: shakuhachinotation;
 	font-size: 2.5em;
-	width: 50%;
+	width: 50px;
 	margin: 0px auto;
 	position: relative;
 
@@ -435,7 +458,10 @@ header {
 			    	span { background-position: -166px -37px; @include transform(rotate(-220deg));}
 			    }
 			    &.cut {
-			    	span { background-position: -197px -37px; @include transform(rotate(-220deg));}
+			    	left: 2px;
+			    	background-color:#858585;
+			    	@include transform(rotate(91deg) translateY(29px));
+			    	span { background-position: -197px -37px; @include transform(rotate(-91deg));}
 			    }
 			}
 	    }
@@ -448,4 +474,4 @@ header {
 
 
 .notes .ui-selecting { background: #FECA40; }
-  .notes .ui-selected { background: #F39814; color: white; }
+.notes .ui-selected { background: #F39814; color: white; }

@@ -23,7 +23,7 @@ function affichage(number_max, partition, title, colonm_max, position) {
     textarea.setAttribute('placeholder','Titre de la partition');
     textarea.innerHTML = $(title).text();
     
-    var numPages = document.createElement('div');
+    var numPages = document.createElement('span');
     numPages.setAttribute("class","num-page");
     numPages.innerHTML = "1";
     
@@ -54,11 +54,9 @@ function affichage(number_max, partition, title, colonm_max, position) {
 	cursor.setAttribute("name", 0);
 	if(position == 0) {
 	    cursor.setAttribute("class", "cursor currentCursor");
-	    cursor.setAttribute("style", "position:absolute; height:50px; width:100px; border-top:solid 2px #F70; display:block;");
 	    cursor.style.opacity = "0.75";
 	} else {
 		cursor.setAttribute("class", "cursor");
-	    cursor.setAttribute("style", "position:absolute; width:100px; height:50px; border-top:solid 2px #AAA; display:block;");
 	    cursor.style.opacity = "0";
 	}    
 	    colonm.appendChild(cursor);
@@ -106,7 +104,6 @@ function affichage(number_max, partition, title, colonm_max, position) {
 			cursor = document.createElement('div');
 		    cursor.setAttribute("class", "cursor");
 		    cursor.setAttribute("name", i);
-	        cursor.setAttribute("style", "position:absolute; width:100px; height:50px; border-top:solid 2px #AAA; display:block;");
 	        cursor.style.opacity = "0";
 	        
 	        colonm.appendChild(cursor);	
@@ -125,11 +122,9 @@ function affichage(number_max, partition, title, colonm_max, position) {
 	    cursor.setAttribute("name", i+1);
         if(position == i+1) {
             cursor.setAttribute("class", "cursor currentCursor");
-            cursor.setAttribute("style", "position:absolute; height:50px; width:100px; border-top:solid 2px #F70; display:block;");
             cursor.style.opacity = "0.75";
         } else {
             cursor.setAttribute("class", "cursor");
-            cursor.setAttribute("style", "position:absolute; height:50px; width:100px; border-top:solid 2px #AAA; display:block;");
             cursor.style.opacity = "0";
         }
         colonm.appendChild(cursor);

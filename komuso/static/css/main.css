@@ -224,13 +224,14 @@ header {
       display: block; }
 
 #score {
-  height: 95%;
+  height: 90%;
   width: 90%;
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden; }
   #score .sheet {
-    padding: 20px;
+    position: relative;
+    padding: 50px;
     background: white;
     border: 1px solid #ddd;
     margin: 15px 0;
@@ -238,6 +239,10 @@ header {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.05) inset; }
     #score .sheet:last-child {
       margin-bottom: 20px; }
+    #score .sheet .num-page {
+      position: absolute;
+      right: 30px;
+      bottom: 30px; }
     #score .sheet #title {
       margin: 20px;
       float: right;
@@ -254,10 +259,24 @@ header {
       #score .sheet #title textarea {
         border: 0;
         background: none; }
+    #score .sheet #cursor {
+      height: 1px;
+      background-color: red;
+      border: 0;
+      width: inherit; }
+    #score .sheet .cursor {
+      max-width: 100px;
+      min-width: 90px;
+      position: absolute;
+      border-top: solid 3px #AAA;
+      display: block; }
+      #score .sheet .cursor.currentCursor {
+        border-top: solid 2px #F70; }
   #score > .column {
     border-right: 1px dashed #CCC; }
   #score .column {
-    width: 100px;
+    max-width: 100px;
+    min-width: 90px;
     height: 100%;
     text-align: center;
     border-left: 1px dashed #CCC; }
@@ -275,7 +294,7 @@ header {
 .note {
   font-family: shakuhachinotation;
   font-size: 2.5em;
-  width: 50%;
+  width: 50px;
   margin: 0px auto;
   position: relative;
   -webkit-border-radius: 50px;
@@ -426,13 +445,21 @@ header {
           -ms-transform: rotate(-220deg);
           -o-transform: rotate(-220deg);
           transform: rotate(-220deg); }
-      .notes .note-selected nav .note-picker.cut span {
-        background-position: -197px -37px;
-        -webkit-transform: rotate(-220deg);
-        -moz-transform: rotate(-220deg);
-        -ms-transform: rotate(-220deg);
-        -o-transform: rotate(-220deg);
-        transform: rotate(-220deg); }
+      .notes .note-selected nav .note-picker.cut {
+        left: 2px;
+        background-color: #858585;
+        -webkit-transform: rotate(91deg) translateY(29px);
+        -moz-transform: rotate(91deg) translateY(29px);
+        -ms-transform: rotate(91deg) translateY(29px);
+        -o-transform: rotate(91deg) translateY(29px);
+        transform: rotate(91deg) translateY(29px); }
+        .notes .note-selected nav .note-picker.cut span {
+          background-position: -197px -37px;
+          -webkit-transform: rotate(-91deg);
+          -moz-transform: rotate(-91deg);
+          -ms-transform: rotate(-91deg);
+          -o-transform: rotate(-91deg);
+          transform: rotate(-91deg); }
 
 .notes .ui-selecting {
   background: #FECA40; }
