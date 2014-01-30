@@ -860,5 +860,44 @@ $(document).ready(function() {
 	$( "select" ).change(function(e) {
 	    scoreEditor.print();
 	});
+	
+	$.contextMenu({
+        selector: '#score', 
+        callback: function(key, options) {
+            switch(key) {
+                case "cut":
+                    scoreEditor.cut();
+                    break;
+                
+                case "copy":
+                    scoreEditor.copy();
+                    break;
+                
+                case "paste":
+                    scoreEditor.paste();
+                    break;
+                
+                case "delete":
+                    if(this.selected.length > 0) {        
+                        var index = $( "div.note" ).index( $(".ui-selected")[0] );
+            
+                        scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+                        scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                        scoreEditor.update();
+                    } else alert("Vous devez sélectionner des notes pour les supprimer !");
+                    break;
+            }
+        },
+        items: {
+            "cut": {name: "Cut", icon: "cut"},
+            "copy": {name: "Copy", icon: "copy"},
+            "paste": {name: "Paste", icon: "paste"},
+            "delete": {name: "Delete", icon: "delete"}
+        }
+    });
+    
+    /*$('#score').click(function(e){
+        alert(this);
+    });*/
 
 });
