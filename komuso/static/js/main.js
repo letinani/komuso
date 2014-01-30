@@ -11,10 +11,12 @@ $(function() {
     });
 
     $(document).click(function(e) {
-        e.preventDefault();
-        if (!$(e.target).is("#side-menu")) {
-            if ($('#side-menu').is(':visible')) {
-                $("#side-menu").removeClass('open');
+        if(!$(e.target).hasClass("lang")) {
+            e.preventDefault();
+            if (!$(e.target).is("#side-menu")) {
+                if ($('#side-menu').is(':visible')) {
+                    $("#side-menu").removeClass('open');
+                }
             }
         }
     });
@@ -38,20 +40,6 @@ $(function() {
             $(this).next().show();
         }
     });
-
-
-    /*$( ".sheet" ).on( "selectableselected", function( event, ui ) {
-        alert("LOL");
-    } );
-
-$( ".sheet .note" ).selectable({
-    selecting: function( event, ui ) {
-        var test = document.createElement('div');
-        test.setAttribute("class", "test");
-        this.appendChild(test);
-        this.style.color='red';
-    }
-});*/
 
 
 });
