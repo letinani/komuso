@@ -5,6 +5,7 @@ function ScoreEditor() {
     this.historic = new Historic();
     this.partition = this.loadPartition();
     this.selection = Selection();
+    this.selected = [];
     this.clipboard = [];
 }
 
@@ -117,30 +118,32 @@ ScoreEditor.prototype.update = function() {
             if(element.length == 0) {
                 var menu = document.getElementById('menu-selection');
                 if(menu) 
-                    menu.parentNode.removeChild(menu);         
+                    menu.parentNode.removeChild(menu); 
+                
+                scoreEditor.selected.length = 0;        
 
             } else {
                 element[0].appendChild(scoreEditor.selection);
                 
                 var selection = [];
+                scoreEditor.selected.length = 0;
+                
                 var index = $( "div.note" ).index( $( ".ui-selected")[0] );
                 
                 $( ".ui-selected", this ).each(function() {
                     var indexTmp = $( "div.note" ).index( this );
-                    selection.push(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp]));
+                    scoreEditor.selected.push(JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp])));
                 });
-                
-                for(var i = 0; i < selection.length; ++i) {
-                    selection[i] = JSON.parse(selection[i]);
-                }
                 
                 $('.delete').unbind('mouseup');
                 /*** Suppression de notes ***/
                 $('.delete').on('mouseup',function(e) {
                     e.preventDefault();
                     
-                    scoreEditor.add(new HistoricEvent("delete", index, 0, selection, $(this).find("span").html()));
-                    scoreEditor.removeNotesAt(index, 0, selection.length, $(this).find("span").html());
+                    scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+                    scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                    
+                    scoreEditor.selected.length = 0;
                     scoreEditor.update();
                 });
                 
@@ -149,9 +152,11 @@ ScoreEditor.prototype.update = function() {
                 $('.rythme').mouseup(function(e) {
                     e.preventDefault();
                     
-                    scoreEditor.add(new HistoricEvent("modify", index, 0, selection, $(this).find("span").html()));
-                    scoreEditor.editNotesAt(index, 0, selection.length, $(this).find("span").html());
+                    scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), $(this).find("span").html()));
+                    scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, $(this).find("span").html());                    
                     scoreEditor.update();
+                    
+                    scoreEditor.selected.length = 0;
                 });
                 
                 $('.effect').unbind('mouseup');
@@ -159,9 +164,11 @@ ScoreEditor.prototype.update = function() {
                 $('.effect').mouseup(function(e) {
                     e.preventDefault();
                     
-                    scoreEditor.add(new HistoricEvent("modify", index, 0, selection, null, $(this).find("span").html()));
-                    scoreEditor.editNotesAt(index, 0, selection.length, null, $(this).find("span").html());
+                    scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, $(this).find("span").html()));
+                    scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $(this).find("span").html());
                     scoreEditor.update();
+                    
+                    scoreEditor.selected.length = 0;
                 });
                 
                 $('.color').unbind('mouseup');
@@ -178,7 +185,9 @@ ScoreEditor.prototype.update = function() {
                     e.preventDefault();
                     
                     scoreEditor.clipboard.length = 0;
-                    scoreEditor.clipboard = selection;
+                    for(var i = 0; i < scoreEditor.selected.length; ++i) {
+                        scoreEditor.clipboard.push(JSON.parse(JSON.stringify(scoreEditor.selected[i])));
+                    }
                     
                     $( ".ui-selected").removeClass("ui-selected");
                     var menu = document.getElementById('menu-selection');
@@ -192,10 +201,12 @@ ScoreEditor.prototype.update = function() {
                     e.preventDefault();
                     
                     if(scoreEditor.clipboard.length > 0) {
-                        scoreEditor.add(new HistoricEvent("replace", index, 0, selection));
-                        scoreEditor.removeNotesAt(index, 0, selection.length);
+                        scoreEditor.add(new HistoricEvent("replace", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, null, JSON.parse(JSON.stringify(scoreEditor.clipboard))));
+                        scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
                         scoreEditor.insertNotesAt(index, 0, scoreEditor.clipboard);
                         scoreEditor.update();
+                        
+                        scoreEditor.selected.length = 0;
                         
                         $( ".ui-selected").removeClass("ui-selected");
                         var menu = document.getElementById('menu-selection');
@@ -271,11 +282,10 @@ ScoreEditor.prototype.undo = function() {
             for(var i = 0; i < event.notes.length; ++i) {
                 this.partition.pistes[event.piste].notes[event.indice+i] = event.notes[i];
             }
-            alert(JSON.stringify(this.partition.pistes[0].notes));
             break;
         
         case "replace" :
-            this.removeNotesAt(event.indice, event.piste, this.clipboard.length);
+            this.removeNotesAt(event.indice, event.piste, event.tmp.length);
             this.insertNotesAt(event.indice, event.piste, event.notes);
             break;
     }
@@ -299,12 +309,11 @@ ScoreEditor.prototype.redo = function() {
         
         case "modify" :
             this.editNotesAt(event.indice, event.piste, event.notes.length, event.time, event.effect);
-            alert(JSON.stringify(this.partition.pistes[0].notes));
             break;
             
         case "replace" :
             this.removeNotesAt(event.indice, event.piste, event.notes.length);
-            this.insertNotesAt(event.indice, event.piste, this.clipboard);
+            this.insertNotesAt(event.indice, event.piste, event.tmp);
             break;
     }
     
@@ -354,13 +363,14 @@ function Note(indice, nom, time, effect) {
 }
 
 //Constructeur d'événements pour l'historique avec l'action produite et les notes modifiés
-function HistoricEvent(action, indice, piste, notes, time, effect) {
+function HistoricEvent(action, indice, piste, notes, time, effect, tmp) {
     this.action = action;
     this.indice = indice;
     this.piste = piste;
     this.notes = notes;
     this.time = time;
     this.effect = effect;
+    this.tmp = tmp;
 }
 
 //Constructeur de l'historique avec un tableau d'événements
@@ -496,12 +506,69 @@ $(document).ready(function() {
 			    break;
 		}
 		
-        var note = new Note(indice, nom, $("#current-beat").text(), "aigu");
-        scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
-        scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
+		var note = new Note(indice, nom, $("#current-beat").text(), $("#current-effect").text());
+		
+		if(scoreEditor.selected.length == 0) {
+            scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
+            scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
+        } else {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+            scoreEditor.add(new HistoricEvent("replace", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, null, note));
+            scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+            scoreEditor.insertNotesAt(index, 0, note);
+            
+            scoreEditor.selected.length = 0;
+        }
         
 		scoreEditor.update();
 	});
+	
+	$("a.beat").click( function (e) {
+        e.preventDefault();
+        
+        $("#current-beat").text($(this).text());
+        
+        if(scoreEditor.selected.length > 0) {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+            scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), $("#current-beat").text()));
+            scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, $("#current-beat").text());
+            scoreEditor.update();
+            
+            scoreEditor.selected.length = 0;
+        }
+    });
+    
+    $("a.effect-menu").click( function (e) {
+        e.preventDefault();
+        
+        $("#current-effect").text($(this).text());
+        
+        if(scoreEditor.selected.length > 0) {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+            scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, $("#current-effect").text()));
+            scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $("#current-effect").text());
+            scoreEditor.update();
+            
+            scoreEditor.selected.length = 0;
+        }
+    });
+    
+    $("a.delete-menu").click(function(e) {
+        if(scoreEditor.selected.length > 0) {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+            scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+            scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+            scoreEditor.update();
+            
+            scoreEditor.selected.length = 0;
+        } else {
+            alert("Vous devez sélectionner des notes avant de les supprimer !");
+        }
+    });
 	
 	/*** Title ***/
 	$("#title").find("textarea").change(function(e) {

@@ -38,12 +38,6 @@ $(function() {
             $(this).next().show();
         }
     });
-    
-    $("a.beat").click( function (e) {
-        e.preventDefault();
-        
-        $("#current-beat").text($(this).text());
-    });
 
 
     /*$( ".sheet" ).on( "selectableselected", function( event, ui ) {
