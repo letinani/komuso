@@ -37,10 +37,13 @@ msgid "nav_layout"
 msgstr "Layout"
 
 msgid "label_activate_borders"
-msgstr "activate borders"
+msgstr "Activate borders"
 
 msgid "label_activate_lines"
-msgstr "numbers of lines"
+msgstr "Numbers of lines"
+
+msgid "label_activate_pages"
+msgstr "Numbers of pages"
 
 msgid "label_nb_columns"
 msgstr "columns per page"

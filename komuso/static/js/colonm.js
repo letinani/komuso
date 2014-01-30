@@ -8,8 +8,8 @@ function affichage(number_max, partition, title, colonm_max, position) {
 	 var score = document.getElementById('score');
 	 score.innerHTML = "";
 	 
-    var sheet = document.createElement('section'); //Créer un h2
-    sheet.setAttribute("class","sheet");//Ajoute la classe colonm au h2
+    var sheet = document.createElement('section');
+    sheet.setAttribute("class","sheet");
     
     var title = document.createElement('section');
     title.setAttribute("class","empty");
@@ -23,10 +23,16 @@ function affichage(number_max, partition, title, colonm_max, position) {
     textarea.setAttribute('placeholder','Titre de la partition');
     textarea.innerHTML = $(title).text();
     
+    var numPages = document.createElement('div');
+    numPages.setAttribute("class","num-page");
+    numPages.innerHTML = "1";
+    
     form.appendChild(textarea);
     title.appendChild(form);
     
     sheet.appendChild(title);
+    if($("#score-pages:checked").length == 1) sheet.appendChild(numPages);
+    
     score.appendChild(sheet);
 			        
     var colonm;
@@ -34,13 +40,14 @@ function affichage(number_max, partition, title, colonm_max, position) {
     //Colonne
 	colonm = document.createElement('div'); //Créer une div
 	colonm.setAttribute("class","column notes");//Ajoute la classe colonm à la div
-    
+	if($("#score-borders:checked").length == 1) colonm.setAttribute("style","border-left:1px solid black; border-right:1px solid black;");
+	
 	//H2
 	number = document.createElement('h2'); //Créer un h2
 	number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
 	number.innerHTML = currentCol;
 	
-	colonm.appendChild(number);
+	if($("#score-lines:checked").length == 1) colonm.appendChild(number);
 	sheet.appendChild(colonm);	
 	
 	var cursor = document.createElement('div');
@@ -71,6 +78,12 @@ function affichage(number_max, partition, title, colonm_max, position) {
 			    sheet = document.createElement('section'); //Créer un h2
 			    sheet.setAttribute("class","sheet");//Ajoute la classe colonm au h2
 			    
+			    numPages = document.createElement('div');
+			    numPages.setAttribute("class","num-page");
+                numPages.innerHTML = currentSheet;
+                
+                if($("#score-pages:checked").length == 1) sheet.appendChild(numPages);
+			    
 			    score.appendChild(sheet);
 			}
 			
@@ -79,13 +92,14 @@ function affichage(number_max, partition, title, colonm_max, position) {
 			//Colonne
 			colonm = document.createElement('div'); //Créer une div
 			colonm.setAttribute("class","column notes");//Ajoute la classe colonm à la div
+			if($("#score-borders:checked").length == 1) colonm.setAttribute("style","border-left:1px solid black;");
 
 			//H2
 			number = document.createElement('h2'); //Créer un h2
 			number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2
 			number.innerHTML = currentCol;
 			
-			colonm.appendChild(number);
+			if($("#score-lines:checked").length == 1) colonm.appendChild(number);
 			
 			sheet.appendChild(colonm);
 			

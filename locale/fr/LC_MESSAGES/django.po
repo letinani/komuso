@@ -41,10 +41,13 @@ msgid "nav_layout"
 msgstr "Mise en page"
 
 msgid "label_activate_borders"
-msgstr "bordures des colonnes"
+msgstr "Bordures des colonnes"
 
 msgid "label_activate_lines"
-msgstr "lignes des colonnes"
+msgstr "Lignes des colonnes"
+
+msgid "label_activate_pages"
+msgstr "Numéros de pages"
 
 msgid "label_nb_columns"
 msgstr "Colonnes par pages"

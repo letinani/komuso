@@ -11,7 +11,7 @@ $(function() {
     });
 
     $(document).click(function(e) {
-        if(!$(e.target).hasClass("lang")) {
+        if(!$(e.target).hasClass("lang") && !$(e.target).parents().is("#side-menu")) {
             e.preventDefault();
             if (!$(e.target).is("#side-menu")) {
                 if ($('#side-menu').is(':visible')) {

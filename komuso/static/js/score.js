@@ -8,8 +8,6 @@ function ScoreEditor() {
     this.selected = [];
     this.clipboard = [];
     this.cursorPosition = this.nbNotes();
-    this.nbMaxNotes = 7;
-    this.nbMaxCols = 10;
 }
 
 ScoreEditor.prototype.nbNotes = function() {
@@ -66,11 +64,12 @@ ScoreEditor.prototype.save = function() {
 
 // Actualise l'affichage de la partition
 ScoreEditor.prototype.print = function() {
+    this.selected.length = 0;
     
     if(this.cursorPosition > this.nbNotes()) this.cursorPosition = this.nbNotes();
     else if(this.cursorPosition < 0) this.cursorPosition = 0;
     
-    affichage(this.nbMaxNotes, this.partition.pistes[0].notes, this.partition.title.text, this.nbMaxCols, this.cursorPosition);
+    affichage($("#nb-notes-per-columns").val(), this.partition.pistes[0].notes, this.partition.title.text, $("#nb-columns-per-pages").val(), this.cursorPosition);
     
     $('.cursor').unbind('mouseover');
     $('.cursor').mouseover(function(e) {
@@ -114,8 +113,6 @@ ScoreEditor.prototype.print = function() {
 ScoreEditor.prototype.update = function() {
     this.save();
     this.print();
-    
-    this.selected.length = 0;
     
     var scoreEditor = this;
     var firstSelected;
@@ -682,38 +679,46 @@ $(document).ready(function() {
 	    switch(e.which) {
 	        case 37: // Left
 	            var i;
-	            for(i = 1; i < scoreEditor.nbMaxNotes; ++i) {
+	            for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
 	                if(scoreEditor.cursorPosition+i < scoreEditor.nbNotes()) {
 	                    if(scoreEditor.partition.pistes[0].notes[scoreEditor.cursorPosition+i].nom == "blank") break;
 	                }
 	            }
 	            scoreEditor.cursorPosition+=i;
 	            
-	            scoreEditor.update();
+	            scoreEditor.print();
 	            break;
 	            
 	        case 39: // Right
 	            var i;
-	            for(i = 1; i < scoreEditor.nbMaxNotes; ++i) {
+	            for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
 	                if(scoreEditor.cursorPosition-i > 0) {
 	                    if(scoreEditor.partition.pistes[0].notes[scoreEditor.cursorPosition-i].nom == "blank") break;
 	                }
 	            }
 	            scoreEditor.cursorPosition-=i;
 	            
-	            scoreEditor.update();
+	            scoreEditor.print();
 	            break;
 	            
 	        case 38: // Top
 	            --scoreEditor.cursorPosition;
-	            scoreEditor.update();
+	            scoreEditor.print();
 	            break;
 	            
 	        case 40: // Bottom
 	            ++scoreEditor.cursorPosition;
-	            scoreEditor.update();
+	            scoreEditor.print();
 	            break;
 	    }
+	});
+	
+	$( "input:checkbox" ).click(function(e) {
+	    scoreEditor.print();
+	});
+	
+	$( "select" ).change(function(e) {
+	    scoreEditor.print();
 	});
 
 });

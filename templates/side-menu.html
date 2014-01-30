@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<section id="side-menu">
+<section id="side-menu" class="main-menu">
 	<a class="icon close-side-menu" href="">save</a>
 	<nav id="file">
 		<h1>{% trans "nav_file"%}</h1>
@@ -12,20 +12,38 @@
 			<li><input class="loadFile" type="file" /></li>
 		</ul>
 	</nav>
-	<nav id="mmenu-score-layout">
+	<nav id="menu-score-layout">
 		<h1>{% trans "nav_layout"%}</h1>
 		<form>
 			<ul>
-				<li><input type="checkbox" name="score-boders" > {% trans "label_activate_borders" %}</li>
-				<li><input type="checkbox" name="score-lines" > {% trans "label_activate_lines" %} </li>
+				<li><input type="checkbox" id="score-borders" name="score-boders" > {% trans "label_activate_borders" %}</li>
+				<li><input type="checkbox" id="score-lines" checked="checked" name="score-lines" > {% trans "label_activate_lines" %} </li>
+				<li><input type="checkbox" id="score-pages" checked="checked" name="score-pages" > {% trans "label_activate_pages" %} </li>
 				<li>{% trans "label_nb_columns" %}
-					<select>
-						<option value="12">12</option>
+					<select id="nb-columns-per-pages">
+						<option selected="selected" value="10">10</option>
+						<option value="9">9</option>
+						<option value="8">8</option>
+						<option value="7">7</option>
+						<option value="6">6</option>
+						<option value="5">5</option>
+						<option value="4">4</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
 					</select>
 				</li>
 				<li>{% trans "label_nb_notes_per_columns" %}
-					<select>
-						<option value="12">12</option>
+					<select id="nb-notes-per-columns">
+						<option value="9">9</option>
+						<option value="8">8</option>
+						<option selected="selected" value="7">7</option>
+						<option value="6">6</option>
+						<option value="5">5</option>
+						<option value="4">4</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
 					</select>
 				</li>
 			</ul>
