@@ -8,7 +8,6 @@ function cursor(position) {
 	if(position == "default") {
 		var cursor = document.createElement('div');
 		cursor.setAttribute("id", "cursor");
-	    cursor.setAttribute("style", "width:100%; height:1px; background-color:red; display:block;");
 	    cursor.style.visibility = "hidden";
 
 	    var list_colonms = document.getElementsByClassName('notes'); //Récupère toutes les colonnes
