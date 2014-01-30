@@ -64,6 +64,8 @@ ul {
   .icon.close-side-menu {
     width: 50px;
     background-position: -306px 0px; }
+  .icon.cut {
+    background-position: -197px -37px; }
 
 figure.pick {
   width: 0px;
@@ -424,6 +426,13 @@ header {
           -ms-transform: rotate(-220deg);
           -o-transform: rotate(-220deg);
           transform: rotate(-220deg); }
+      .notes .note-selected nav .note-picker.cut span {
+        background-position: -197px -37px;
+        -webkit-transform: rotate(-220deg);
+        -moz-transform: rotate(-220deg);
+        -ms-transform: rotate(-220deg);
+        -o-transform: rotate(-220deg);
+        transform: rotate(-220deg); }
 
 .notes .ui-selecting {
   background: #FECA40; }

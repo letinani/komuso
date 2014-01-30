@@ -59,6 +59,7 @@ ul {
 	&.save{ background-position: -195px 0px; }
 	&.open-side-menu { width: 50px; background-position: -248px 0px; }
 	&.close-side-menu { width: 50px; background-position: -306px 0px; }
+	&.cut { background-position: -197px -37px; }
 
 }
 figure.pick {
@@ -432,6 +433,9 @@ header {
 			    	left: 21px;
 			    	@include transform(rotate(220deg) translateY(29px));
 			    	span { background-position: -166px -37px; @include transform(rotate(-220deg));}
+			    }
+			    &.cut {
+			    	span { background-position: -197px -37px; @include transform(rotate(-220deg));}
 			    }
 			}
 	    }
