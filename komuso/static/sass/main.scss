@@ -221,6 +221,16 @@ header {
 					line-height: 2;
 				}
 			}
+			.tremolo {
+				img {
+					height: 100%;
+				}
+			}
+			.bend {
+				img {
+					height: 100%;
+				}
+			}
 			.menu-sub {
 				//display: none;
 				@include border-radius(50px);
@@ -387,7 +397,7 @@ header {
 		    }
 
 			.note-picker {
-				background: white;
+				background-color: white;
 				@include border-radius(50px);
 				border: 2px solid #a7a7a7;
 				min-height: 45px;
@@ -405,10 +415,8 @@ header {
 					display: none;
 					font-size: 0.5em;
 
-
 					.sub-note-menu {
 						&:hover {
-
 							background-color: #CCC;
 						}
 
@@ -446,8 +454,25 @@ header {
 			    	span {@include transform(rotate(0deg));}
 			    }
 			    &.effect {
-			    	@include transform(rotate(60deg) translateY($space));
-			    	span {@include transform(rotate(-60deg));}
+			    	//@include transform(rotate(60deg) translateY($space));
+			    	left: -60px;
+    				top: 33px;
+			    	//span {@include transform(rotate(-60deg));}
+			    	//.sub-note-picker {@include transform(rotate(-60deg));}
+			    	&:before {
+			    	    left: 60px;
+    					top: -11px;
+			    		@include transform(rotate(60deg) translateY(10px));
+			    	}
+			    	> span {
+			    		visible :hidden;
+			    	}
+			    	img {
+			    		width: 50%;
+			    	}
+			    	li:last-child img{
+			    		width: 20%;
+			    	}
 
 			    }
 			    &.color {
@@ -499,6 +524,7 @@ header {
 			    	left: 21px;
 			    	@include transform(rotate(220deg) translateY(29px));
 			    	span { background-position: -166px -37px; @include transform(rotate(-220deg));}
+
 			    }
 			    &.cut {
 			    	background-color: #858585;

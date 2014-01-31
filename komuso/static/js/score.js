@@ -562,9 +562,41 @@ function Selection() {
                 aEffect.setAttribute("class", "note-menu");
                 aEffect.setAttribute("href", "");
                     var spanEffect = document.createElement('span');
-                    spanEffect.innerHTML = "a";
+                    spanEffect.innerHTML = " &nbsp;  ";
                 aEffect.appendChild(spanEffect);
+                var ulEffect = document.createElement('ul');
+                ulEffect.setAttribute("class", "sub-note-picker");
+                    var liEffect1 = document.createElement('li');
+                    liEffect1.setAttribute("class", "effect1");
+                        var aEffect1 = document.createElement('a');
+                        aEffect1.setAttribute("class", "sub-note-menu");
+                        aEffect1.setAttribute("href", "");
+                        aEffect1.innerHTML = " &nbsp; ";
+                    liEffect1.appendChild(aEffect1);
+                    var liEffect2 = document.createElement('li');
+                    liEffect2.setAttribute("class", "effect2");
+                        var aEffect2 = document.createElement('a');
+                        aEffect2.setAttribute("class", "sub-note-menu");
+                        aEffect2.setAttribute("href", "");
+                            var imgEffect2 = document.createElement("img");
+                            imgEffect2.setAttribute('src','/static/img/zigzag.png')
+                        aEffect2.appendChild(imgEffect2);
+                    liEffect2.appendChild(aEffect2);
+                    var liEffect3 = document.createElement('li');
+                    liEffect3.setAttribute("class", "effect3");
+                        var aEffect3 = document.createElement('a');
+                        aEffect3.setAttribute("class", "sub-note-menu");
+                        aEffect3.setAttribute("href", "");
+                            var imgEffect3 = document.createElement("img");
+                            imgEffect3.setAttribute('src','/static/img/eclair.png')
+                        aEffect3.appendChild(imgEffect3);
+                    liEffect3.appendChild(aEffect3);
+                ulEffect.appendChild(liEffect1);
+                ulEffect.appendChild(liEffect2);
+                ulEffect.appendChild(liEffect3);
             liEffect.appendChild(aEffect);
+            liEffect.appendChild(ulEffect);
+
 
             var liColor = document.createElement('li');
             liColor.setAttribute("class", "note-picker color");

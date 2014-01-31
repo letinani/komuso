@@ -202,6 +202,10 @@ header {
         font-family: Arial;
         font-size: 1em;
         line-height: 2; }
+    #menu-editor nav li .tremolo img {
+      height: 100%; }
+    #menu-editor nav li .bend img {
+      height: 100%; }
     #menu-editor nav li .menu-sub {
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
@@ -334,7 +338,7 @@ header {
       height: 45px;
       width: 45px; }
     .notes .note-selected nav .note-picker {
-      background: white;
+      background-color: white;
       -webkit-border-radius: 50px;
       -moz-border-radius: 50px;
       border-radius: 50px;
@@ -383,17 +387,22 @@ header {
           -o-transform: rotate(0deg);
           transform: rotate(0deg); }
       .notes .note-selected nav .note-picker.effect {
-        -webkit-transform: rotate(60deg) translateY(70px);
-        -moz-transform: rotate(60deg) translateY(70px);
-        -ms-transform: rotate(60deg) translateY(70px);
-        -o-transform: rotate(60deg) translateY(70px);
-        transform: rotate(60deg) translateY(70px); }
-        .notes .note-selected nav .note-picker.effect span {
-          -webkit-transform: rotate(-60deg);
-          -moz-transform: rotate(-60deg);
-          -ms-transform: rotate(-60deg);
-          -o-transform: rotate(-60deg);
-          transform: rotate(-60deg); }
+        left: -60px;
+        top: 33px; }
+        .notes .note-selected nav .note-picker.effect:before {
+          left: 60px;
+          top: -11px;
+          -webkit-transform: rotate(60deg) translateY(10px);
+          -moz-transform: rotate(60deg) translateY(10px);
+          -ms-transform: rotate(60deg) translateY(10px);
+          -o-transform: rotate(60deg) translateY(10px);
+          transform: rotate(60deg) translateY(10px); }
+        .notes .note-selected nav .note-picker.effect > span {
+          visible: hidden; }
+        .notes .note-selected nav .note-picker.effect img {
+          width: 50%; }
+        .notes .note-selected nav .note-picker.effect li:last-child img {
+          width: 20%; }
       .notes .note-selected nav .note-picker.color {
         background: blue;
         -webkit-transform: rotate(-57deg) translateY(66px);
