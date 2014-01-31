@@ -117,6 +117,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
 	    note.innerHTML = partition[i].indice;
 	    
 	    var time = document.createElement('div');
+	    var effect = document.createElement('div');
         
         colonm.appendChild(note);
         
@@ -138,6 +139,14 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
             } else if(partition[i].time == "||") {
                 time.setAttribute("style","border-left: 3px solid black; border-right: 3px solid black; float: right; height:40px; width: 3px;");
                 note.appendChild(time);
+            }
+            
+            if(partition[i].effect == '<img style="height: 100%;" src="/static/img/eclair.png">' || partition[i].effect == '<img src="/static/img/eclair.png" style="width:20%;">' || partition[i].effect == '<a href="" class="sub-note-menu"><img src="/static/img/eclair.png" style="width:20%;"></a>') {
+                effect.innerHTML = '<img style="width: 30%;" src="/static/img/eclair.png">';
+                note.appendChild(effect);
+            } else if(partition[i].effect == '<img style="height: 100%;" src="/static/img/zigzag.png">' || partition[i].effect == '<img src="/static/img/zigzag.png">') {
+                effect.innerHTML = '<img style="width: 70%;" src="/static/img/zigzag.png">';
+                note.appendChild(effect);
             }
             currentLine++;
         }

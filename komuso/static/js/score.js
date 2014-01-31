@@ -229,11 +229,13 @@ ScoreEditor.prototype.update = function() {
                 
                 var index = $( "div.note" ).index( $(".ui-selected")[0] );
                 var testRythme = true;
+                var testEffect = true;
                 
                 $( ".ui-selected", this ).each(function() {
                     var indexTmp = $( "div.note" ).index( this );
                     scoreEditor.selected.push(JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp])));
                     if(scoreEditor.partition.pistes[0].notes[indexTmp].time != scoreEditor.partition.pistes[0].notes[index].time) testRythme = false;
+                    if(scoreEditor.partition.pistes[0].notes[indexTmp].effect != scoreEditor.partition.pistes[0].notes[index].effect) testEffect = false;
                 });
                 
                 $('.delete').unbind('mouseup');
@@ -262,13 +264,21 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.update();
                 });
                 
+                if(testEffect) {
+                    $('.effect').find("span").html(scoreEditor.selected[0].effect.toString());
+                    if(scoreEditor.selected[0].effect.toString() == '<img style="height: 100%;" src="/static/img/eclair.png">') $('.effect').find("span").find("img").css("width","20%");
+                } else $('.effect').find("span").html("?");
+                
                 $('.effect').unbind('mouseup');
                 /*** Modification de l'effet ***/
                 $('.effect').mouseup(function(e) {
                     e.preventDefault();
-                    
-                    scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, $(this).find("span").html()));
-                    scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $(this).find("span").html());
+                    if($(e.target).hasClass('sub-note-menu') || $(e.target).parent().hasClass('sub-note-menu')) {
+                        $(this).find("span").html($(e.target).parent().html());
+                        //alert($(this).find("span").html());
+                        scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, $(this).find("span").html()));
+                        scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $(this).find("span").html());
+                    }
                     scoreEditor.update();
                 });
                 
@@ -562,8 +572,8 @@ function Selection() {
                 aEffect.setAttribute("class", "note-menu");
                 aEffect.setAttribute("href", "");
                     var spanEffect = document.createElement('span');
-                    spanEffect.innerHTML = " &nbsp;  ";
-                aEffect.appendChild(spanEffect);
+                    spanEffect.innerHTML = "&nbsp;";
+                    aEffect.appendChild(spanEffect);
                 var ulEffect = document.createElement('ul');
                 ulEffect.setAttribute("class", "sub-note-picker");
                     var liEffect1 = document.createElement('li');
@@ -571,7 +581,7 @@ function Selection() {
                         var aEffect1 = document.createElement('a');
                         aEffect1.setAttribute("class", "sub-note-menu");
                         aEffect1.setAttribute("href", "");
-                        aEffect1.innerHTML = " &nbsp; ";
+                        aEffect1.innerHTML = "&nbsp;";
                     liEffect1.appendChild(aEffect1);
                     var liEffect2 = document.createElement('li');
                     liEffect2.setAttribute("class", "effect2");
@@ -588,7 +598,8 @@ function Selection() {
                         aEffect3.setAttribute("class", "sub-note-menu");
                         aEffect3.setAttribute("href", "");
                             var imgEffect3 = document.createElement("img");
-                            imgEffect3.setAttribute('src','/static/img/eclair.png')
+                            imgEffect3.setAttribute('style','width:20%;')
+                            imgEffect3.setAttribute('src','/static/img/eclair.png');
                         aEffect3.appendChild(imgEffect3);
                     liEffect3.appendChild(aEffect3);
                 ulEffect.appendChild(liEffect1);
@@ -725,7 +736,7 @@ $(document).ready(function() {
 			    break;
 		}
 		
-		var note = new Note(indice, nom, $("#current-beat").text(), $("#current-effect").text());
+		var note = new Note(indice, nom, $("#current-beat").text(), $("#current-effect").html());
 		
 		if(scoreEditor.selected.length == 0) {
             scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
@@ -758,7 +769,8 @@ $(document).ready(function() {
     $("a.effect-menu").click( function (e) {
         e.preventDefault();
         
-        $("#current-effect").text($(this).text());
+        $("#current-effect").html($(this).html());
+        $("#current-effect").find("img").css("height","100%");
         
         if(scoreEditor.selected.length > 0) {
             var index = $( "div.note" ).index( $( ".ui-selected")[0] );
@@ -907,7 +919,21 @@ $(document).ready(function() {
     $(document).keydown(function(e) {
         down[e.keyCode] = true;
     }).keyup(function(e) {
-        if(down[46] || down[8]) {
+        if(down[13]) {
+            var note = new Note("", "blank", "", "");
+		
+		    if(scoreEditor.selected.length == 0) {
+                scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
+                scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
+            } else {
+                var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+                scoreEditor.add(new HistoricEvent("add", index, 0, note));
+                scoreEditor.insertNotesAt(index, 0, note);
+            }
+        
+		    scoreEditor.update();
+        } else if(down[46] || down[8]) {
             var index = scoreEditor.cursorPosition;
             if(scoreEditor.selected.length > 0) { 
                 index = $( "div.note" ).index( $(".ui-selected")[0] );
