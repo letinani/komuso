@@ -748,6 +748,7 @@ $(document).ready(function() {
             scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
             scoreEditor.insertNotesAt(index, 0, note);
         }
+        $("#current-effect").html(" ");
         
 		scoreEditor.update();
 	});
