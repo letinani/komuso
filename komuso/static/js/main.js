@@ -1,12 +1,14 @@
 $(function() {
+    $("#side-menu").hide(1000);
 
     // menu coulissant
     $(".open-side-menu").click(function(e){
-    	$("#side-menu").addClass('open');
+
+    	$("#side-menu").show(1000);
     	return false;
 	});
     $(".close-side-menu").click(function(e){
-        $("#side-menu").removeClass('open');
+        $("#side-menu").hide(1000);;
         return false;
     });
 
@@ -15,7 +17,7 @@ $(function() {
             e.preventDefault();
             if (!$(e.target).is("#side-menu")) {
                 if ($('#side-menu').is(':visible')) {
-                    $("#side-menu").removeClass('open');
+                    $("#side-menu").hide(1000);;
                 }
             }
         }
