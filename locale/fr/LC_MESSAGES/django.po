@@ -44,7 +44,7 @@ msgid "label_activate_borders"
 msgstr "Bordures des colonnes"
 
 msgid "label_activate_lines"
-msgstr "Lignes des colonnes"
+msgstr "Numéros de colonnes"
 
 msgid "label_activate_pages"
 msgstr "Numéros de pages"

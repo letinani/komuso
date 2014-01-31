@@ -40,7 +40,7 @@ msgid "label_activate_borders"
 msgstr "Activate borders"
 
 msgid "label_activate_lines"
-msgstr "Numbers of lines"
+msgstr "Numbers of Columns"
 
 msgid "label_activate_pages"
 msgstr "Numbers of pages"
