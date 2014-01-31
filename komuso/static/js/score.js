@@ -740,14 +740,14 @@ $(document).ready(function() {
             alert("Vous devez sélectionner des notes avant de les supprimer !");
         }
     });
-	
-	/*** Title ***/
+    
+     /*** Title ***/
 	$("#title").find("textarea").change(function(e) {
 	    scoreEditor.partition.title.text = $(this).val();
 	    scoreEditor.isSaved = false;
 	    scoreEditor.save();
 	});
-
+	
 	/*** Sauvegarde ***/
 	$('.saveButton').click(function(e) {
 		e.preventDefault();

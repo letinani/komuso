@@ -1,5 +1,5 @@
 /***** Affichage de toutes les notes de la partition ****/
-function affichage(number_max, partition, title, colonm_max, position) {
+function affichage(number_max, partition, titlePartition, colonm_max, position) {
 
 	 var currentCol = 1;
 	 var currentLine = 0;
@@ -21,7 +21,7 @@ function affichage(number_max, partition, title, colonm_max, position) {
     textarea.setAttribute('rows','20');
     textarea.setAttribute('cols','1');
     textarea.setAttribute('placeholder','Titre de la partition');
-    textarea.innerHTML = $(title).text();
+    textarea.innerHTML = titlePartition;
     
     var numPages = document.createElement('span');
     numPages.setAttribute("class","num-page");
