@@ -291,7 +291,7 @@ header {
 			}
 		}
 		#cursor {
-			height:1px; 
+			height: 1px; 
 			background-color:red;
 			border: 0;
 			width: inherit;
@@ -299,6 +299,7 @@ header {
 		.cursor {
 			max-width: 100px;
     		min-width: 90px;
+    		height: 50px;
 			position:absolute; 
 			border-top:solid 3px #AAA; 
 			display:block;
@@ -348,7 +349,13 @@ header {
 	&:hover .note-selected {
 		display:block;
 	}
-
+	&.effect {
+		height: 40px;
+	    width: 32px;
+	    background: red;
+	    margin: 0 auto;
+	    background: url(img/zigzag.png);
+	}
 }
 
 .notes {
@@ -387,7 +394,7 @@ header {
 			    left: 0;
 			    position: absolute;
 			    top: -4px;
-			    transition: transform 0.5s ease-in-out 0s;
+			    transition: height 0.5s ease-in-out 0s;
 			    width: 45px;
 			    //background: url('bg-bubble.png');
 			    &:hover .sub-note-picker {
@@ -397,8 +404,11 @@ header {
 				.sub-note-picker {
 					display: none;
 					font-size: 0.5em;
+
+
 					.sub-note-menu {
 						&:hover {
+
 							background-color: #CCC;
 						}
 
