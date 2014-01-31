@@ -228,10 +228,12 @@ ScoreEditor.prototype.update = function() {
                 element[0].appendChild(scoreEditor.selection);
                 
                 var index = $( "div.note" ).index( $(".ui-selected")[0] );
+                var testRythme = true;
                 
                 $( ".ui-selected", this ).each(function() {
                     var indexTmp = $( "div.note" ).index( this );
                     scoreEditor.selected.push(JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp])));
+                    if(scoreEditor.partition.pistes[0].notes[indexTmp].time != scoreEditor.partition.pistes[0].notes[index].time) testRythme = false;
                 });
                 
                 $('.delete').unbind('mouseup');
@@ -244,13 +246,19 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.update();
                 });
                 
+                if(testRythme) $('.rythme').find("span").html(scoreEditor.selected[0].time);
+                else $('.rythme').find("span").html("?");
+                
                 $('.rythme').unbind('mouseup');
                 /*** Modification du rythme ***/
                 $('.rythme').mouseup(function(e) {
                     e.preventDefault();
-                    
-                    scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), $(this).find("span").html()));
-                    scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, $(this).find("span").html());                    
+                    if($(e.target).hasClass('sub-note-menu')) {
+                        $(this).find("span").html($(e.target).text());
+                        
+                        scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), $(this).find("span").html()));
+                        scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, $(this).find("span").html()); 
+                    }                   
                     scoreEditor.update();
                 });
                 

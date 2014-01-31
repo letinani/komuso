@@ -114,7 +114,9 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
         
         var note = document.createElement('div');
 	    note.setAttribute("class",classes);
-	    note.innerHTML = partition[i].indice;	    
+	    note.innerHTML = partition[i].indice;
+	    
+	    var time = document.createElement('div');
         
         colonm.appendChild(note);
         
@@ -129,7 +131,16 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
         }
         colonm.appendChild(cursor);
         
-        if(partition[i].nom != "blank") currentLine++;
+        if(partition[i].nom != "blank") {
+            if(partition[i].time == "|") {
+                time.setAttribute("style","border-right: 3px solid black; float: right; height:40px;");
+                note.appendChild(time);
+            } else if(partition[i].time == "||") {
+                time.setAttribute("style","border-left: 3px solid black; border-right: 3px solid black; float: right; height:40px; width: 3px;");
+                note.appendChild(time);
+            }
+            currentLine++;
+        }
 	 }
 
 }
