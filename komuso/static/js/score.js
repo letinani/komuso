@@ -97,10 +97,10 @@ ScoreEditor.prototype.paste = function() {
             var index = $( "div.note" ).index( $(".ui-selected")[0] );
             this.add(new HistoricEvent("replace", index, 0, JSON.parse(JSON.stringify(this.selected)), null, null, JSON.parse(JSON.stringify(this.clipboard))));
             this.removeNotesAt(index, 0, this.selected.length);
-            this.insertNotesAt(index, 0, this.clipboard);
+            this.insertNotesAt(index, 0, JSON.parse(JSON.stringify(this.clipboard)));
         } else {
             this.add(new HistoricEvent("add", this.cursorPosition, 0, JSON.parse(JSON.stringify(this.clipboard))));
-            this.insertNotesAt(this.cursorPosition, 0, this.clipboard);
+            this.insertNotesAt(this.cursorPosition, 0, JSON.parse(JSON.stringify(this.clipboard)));
         }
         
         this.update();
