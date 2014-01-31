@@ -23,6 +23,7 @@
     font-style: normal;
 
 }
+
 html,body {
 	height:100%;
 	background: url('../img/background.png');
@@ -214,7 +215,10 @@ header {
 					margin-bottom: 15px;
 
 				}
+				&:hover {
+					border: 1px solid red;
 
+				}
 				&.blank {
 					font-family: Arial;
 					font-size: 1em;
@@ -414,7 +418,14 @@ header {
 				.sub-note-picker {
 					display: none;
 					font-size: 0.5em;
-
+					li:last-child a {
+						-webkit-border-bottom-right-radius: 50px;
+						-webkit-border-bottom-left-radius: 50px;
+						-moz-border-radius-bottomright: 50px;
+						-moz-border-radius-bottomleft: 50px;
+						border-bottom-right-radius: 50px;
+						border-bottom-left-radius: 50px;
+					}
 					.sub-note-menu {
 						&:hover {
 							background-color: #CCC;

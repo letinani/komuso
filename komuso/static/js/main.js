@@ -1,14 +1,14 @@
 $(function() {
-    $("#side-menu").hide(1000);
+    $("#side-menu").hide();
 
     // menu coulissant
     $(".open-side-menu").click(function(e){
 
-    	$("#side-menu").show(1000);
+    	$("#side-menu").show(800);
     	return false;
 	});
     $(".close-side-menu").click(function(e){
-        $("#side-menu").hide(1000);;
+        $("#side-menu").hide(800);;
         return false;
     });
 

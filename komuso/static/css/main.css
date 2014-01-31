@@ -198,6 +198,8 @@ header {
       color: #000000; }
       #menu-editor nav li .note-picker#current-effect {
         margin-bottom: 15px; }
+      #menu-editor nav li .note-picker:hover {
+        border: 1px solid red; }
       #menu-editor nav li .note-picker.blank {
         font-family: Arial;
         font-size: 1em;
@@ -354,6 +356,13 @@ header {
       .notes .note-selected nav .note-picker .sub-note-picker {
         display: none;
         font-size: 0.5em; }
+        .notes .note-selected nav .note-picker .sub-note-picker li:last-child a {
+          -webkit-border-bottom-right-radius: 50px;
+          -webkit-border-bottom-left-radius: 50px;
+          -moz-border-radius-bottomright: 50px;
+          -moz-border-radius-bottomleft: 50px;
+          border-bottom-right-radius: 50px;
+          border-bottom-left-radius: 50px; }
         .notes .note-selected nav .note-picker .sub-note-picker .sub-note-menu:hover {
           background-color: #CCC; }
       .notes .note-selected nav .note-picker a {
