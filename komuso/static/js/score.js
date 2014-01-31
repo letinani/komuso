@@ -875,7 +875,24 @@ $(document).ready(function() {
     $(document).keydown(function(e) {
         down[e.keyCode] = true;
     }).keyup(function(e) {
-        if (down[17] && down[88]) { // Cut
+        if(down[46] || down[8]) {
+            var index = scoreEditor.cursorPosition;
+            if(scoreEditor.selected.length > 0) { 
+                index = $( "div.note" ).index( $(".ui-selected")[0] );
+                       
+                scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+                scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                scoreEditor.update();
+            } else if(down[8] && scoreEditor.partition.pistes[0].notes[index-1]) {
+                scoreEditor.add(new HistoricEvent("delete", index-1, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index-1]))));
+                scoreEditor.removeNotesAt(index-1, 0, scoreEditor.selected.length);
+                scoreEditor.update();
+            } else if(down[46] && scoreEditor.partition.pistes[0].notes[index]) {
+                scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index]))));
+                scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                scoreEditor.update();
+            }
+        } else if (down[17] && down[88]) { // Cut
             scoreEditor.cut();
         } else if (down[17] && down[67]) { // Copy
             scoreEditor.copy();
@@ -914,7 +931,7 @@ $(document).ready(function() {
                     break;
                 
                 case "delete":
-                    if(this.selected.length > 0) {        
+                    if(scoreEditor.selected.length > 0) {        
                         var index = $( "div.note" ).index( $(".ui-selected")[0] );
             
                         scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
