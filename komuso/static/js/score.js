@@ -879,6 +879,49 @@ $(document).ready(function() {
 	$(document).keydown(function(e) {
 	
 	    switch(e.which) {
+	        case 13:
+                var note = new Note("", "blank", "", "");
+		
+		        if(scoreEditor.selected.length == 0) {
+                    scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
+                    scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
+                } else {
+                    var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+                
+                    scoreEditor.add(new HistoricEvent("add", index, 0, note));
+                    scoreEditor.insertNotesAt(index, 0, note);
+                }
+            
+		        scoreEditor.update();
+		        break;
+		    case 46:
+                var index = scoreEditor.cursorPosition;
+                if(scoreEditor.selected.length > 0) { 
+                    index = $( "div.note" ).index( $(".ui-selected")[0] );
+                           
+                    scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+                    scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                    scoreEditor.update();
+                } else if(scoreEditor.partition.pistes[0].notes[index]) {
+                    scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index]))));
+                    scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                    scoreEditor.update();
+                }
+                break;
+            case 8:
+                var index = scoreEditor.cursorPosition;
+                if(scoreEditor.selected.length > 0) { 
+                    index = $( "div.note" ).index( $(".ui-selected")[0] );
+                           
+                    scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+                    scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                    scoreEditor.update();
+                } else if(scoreEditor.partition.pistes[0].notes[index-1]) {
+                    scoreEditor.add(new HistoricEvent("delete", index-1, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index-1]))));
+                    scoreEditor.removeNotesAt(index-1, 0, scoreEditor.selected.length);
+                    scoreEditor.update();
+                }
+                break;
 	        case 37: // Left
 	            var i;
 	            for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
@@ -919,38 +962,7 @@ $(document).ready(function() {
     $(document).keydown(function(e) {
         down[e.keyCode] = true;
     }).keyup(function(e) {
-        if(down[13]) {
-            var note = new Note("", "blank", "", "");
-		
-		    if(scoreEditor.selected.length == 0) {
-                scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
-                scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
-            } else {
-                var index = $( "div.note" ).index( $( ".ui-selected")[0] );
-            
-                scoreEditor.add(new HistoricEvent("add", index, 0, note));
-                scoreEditor.insertNotesAt(index, 0, note);
-            }
-        
-		    scoreEditor.update();
-        } else if(down[46] || down[8]) {
-            var index = scoreEditor.cursorPosition;
-            if(scoreEditor.selected.length > 0) { 
-                index = $( "div.note" ).index( $(".ui-selected")[0] );
-                       
-                scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
-                scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
-                scoreEditor.update();
-            } else if(down[8] && scoreEditor.partition.pistes[0].notes[index-1]) {
-                scoreEditor.add(new HistoricEvent("delete", index-1, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index-1]))));
-                scoreEditor.removeNotesAt(index-1, 0, scoreEditor.selected.length);
-                scoreEditor.update();
-            } else if(down[46] && scoreEditor.partition.pistes[0].notes[index]) {
-                scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index]))));
-                scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
-                scoreEditor.update();
-            }
-        } else if (down[17] && down[88]) { // Cut
+        if (down[17] && down[88]) { // Cut
             scoreEditor.cut();
         } else if (down[17] && down[67]) { // Copy
             scoreEditor.copy();
