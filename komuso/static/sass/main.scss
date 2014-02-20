@@ -58,10 +58,11 @@ ul {
 	&.redo{ background-position: -40px 0px; }
 	&.print{ background-position: -90px 0px; }
 	&.export-pdf{ background-position: -142px 0px; }
-	&.save{ background-position: -195px 0px; }
+	&.save{ background-position: -192px 0px; }
 	&.open-side-menu { width: 50px; background-position: -248px 0px; }
 	&.close-side-menu { width: 50px; background-position: -306px 0px; }
 	&.cut { background-position: -197px -37px; }
+	&.newPartition { background-position:-255px 0px; }
 }
 
 
@@ -149,12 +150,14 @@ header {
 					transition: bottom 0.3s ease-in-out;
 					visibility: hidden;
 					position: absolute;
+					z-index: 3;
 					background: #444;
-					bottom: 0px;
+					bottom: 4px;
 					left: 0px;
 					min-width: 54px;
     				padding: 2px 0px;
     				text-align: center;
+    				line-height: 1;
 				}
 
 			}
@@ -207,24 +210,9 @@ header {
 		figure {
 			display:inline-block;
 			float:left;
-			width:30px; 
-			height:30px;
 			margin-right:10px;
 			background-repeat:no-repeat;
-			background-image:url('../img/sprite.png');
 			cursor:pointer;
-
-			&.newPartition {
-				background-position:-255px 0px;
-			}
-
-			&.save {
-				background-position:-195px 0px;
-			}
-
-			&.print {
-				background-position:-90px 0px;
-			}
 		}
 
 		label {
@@ -252,6 +240,7 @@ header {
 	            -moz-transform: translate(-300px, 0) scale(4);
 	            direction: ltr;
 	            cursor: pointer;
+	            width: 0px;
 			}
 		}
 	}
@@ -420,7 +409,7 @@ header {
 	}
 	.column {
 		max-width: 100px;
-    	min-width: 90px;
+    	min-width: 85px;
 		height: 100%;
 		text-align: center;
 		border-left: 1px dashed #CCC;

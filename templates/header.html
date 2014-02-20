@@ -15,12 +15,41 @@
 	</nav>
 	<nav id="menu-file">
 		<ul>
-			<li><a href=""><span class="label">annuler</span><figure class="icon undo"></figure></a></li>
-			<li><a href=""><span class="label">rétablir</span><figure class="icon redo"></figure></a></li>
-			<li><a href=""><span class="label">imprimer</span><figure class="icon print"></figure></a></li>
-			<li><a href=""><span class="label">export pdf</span><figure class="icon export-pdf"></figure></a></li>
-			<li><a class="saveButton" href=""><span class="label">sauver</span><figure class="icon save"></figure></a></li>
-			<li><a href=""><figure class="icon open-side-menu"></figure></a></li>
+			<li>
+				<a href="">
+					<span class="label">{% trans "label_undo"%}</span>
+					<figure class="icon undo"></figure>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<span class="label">{% trans "label_redo"%}</span>
+					<figure class="icon redo"></figure>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<span class="label">{% trans "label_print_document" %}</span>
+					<figure class="icon print"></figure>
+				</a>
+			</li>
+			<li>
+				<a href="">
+					<span class="label">{% trans "label_export_pdf" %}</span>
+					<figure class="icon export-pdf"></figure>
+				</a>
+			</li>
+			<li>
+				<a class="saveButton" href="">
+					<span class="label">{% trans "label_save_document" %}</span>
+					<figure class="icon save"></figure>
+				</a>
+			</li>
+			<li>
+				<a href="">
+				<figure class="icon open-side-menu"></figure>
+				</a>
+			</li>
 
 		</ul>
 	</nav>

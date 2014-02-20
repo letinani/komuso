@@ -17,7 +17,7 @@ $(function() {
             e.preventDefault();
             if (!$(e.target).is("#side-menu")) {
                 if ($('#side-menu').is(':visible')) {
-                    $("#side-menu").hide(1000);;
+                    $("#side-menu").animate({right:"-400px"}, 400);
                 }
             }
         }
