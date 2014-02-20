@@ -79,13 +79,21 @@ figure.pick {
 
 header {
   background-color: #2c2c2c;
-  color: white;
-  overflow: auto; }
+  color: white; }
+  header:after {
+    content: "";
+    /* Important, sinon l'élément n'est pas généré. */
+    display: table;
+    clear: both; }
   header .content {
     max-width: 98%;
     margin: 0 auto; }
   header h1 {
     margin: 0; }
+    header h1 img {
+      border: none;
+      height: 42px;
+      vertical-align: bottom; }
   header a {
     color: white;
     float: left;
@@ -103,20 +111,37 @@ header {
       margin: 0; }
     header #menu-file li {
       float: left;
-      padding: 12px;
-      border-left: 1px solid #636363; }
-      header #menu-file li:first-child a:first-child {
-        margin: 0;
-        margin-right: 10px; }
+      border-left: 1px solid #636363;
+      position: relative; }
       header #menu-file li:hover a {
+        background: #444;
+        border-top: 4px solid white;
+        padding: 10px 12px; }
+      header #menu-file li:hover a span {
+        visibility: visible;
+        bottom: -15px; }
+      header #menu-file li:hover .icon {
         opacity: 0.9; }
       header #menu-file li a {
-        margin: 0; }
+        transition: border 0.3s linear;
+        padding: 12px;
+        margin: 0;
+        font-size: 0.8em;
+        font-weight: normal; }
+        header #menu-file li a span {
+          transition: bottom 0.3s ease-in-out;
+          visibility: hidden;
+          position: absolute;
+          background: #444;
+          bottom: 0px;
+          left: 0px;
+          min-width: 54px;
+          padding: 2px 0px;
+          text-align: center; }
       header #menu-file li .icon {
         opacity: 0.3; }
       header #menu-file li:nth-child(2) {
-        border-left: 0;
-        padding-left: 0; }
+        border-left: 0; }
 
 .column {
   float: right; }
@@ -508,7 +533,100 @@ header {
 
 .notes .ui-selecting {
   background: #FECA40; }
-
 .notes .ui-selected {
   background: #F39814;
   color: white; }
+
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
+  z-index: 7;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  -webkit-transition: display 1s;
+  -moz-transition: display 1s;
+  -o-transition: display 1s;
+  transition: display 1s; }
+  .pace .pace-progress {
+    background: #df2513;
+    position: fixed;
+    z-index: 2000;
+    top: 52px;
+    left: 0;
+    height: 2px;
+    -webkit-transition: width 1s;
+    -moz-transition: width 1s;
+    -o-transition: width 1s;
+    transition: width 1s; }
+  .pace .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 50%;
+    right: 50%;
+    width: 14px;
+    height: 14px;
+    border: solid 2px transparent;
+    border-top-color: #df2513;
+    border-left-color: #df2513;
+    border-radius: 10px;
+    -webkit-animation: pace-spinner 400ms linear infinite;
+    -moz-animation: pace-spinner 400ms linear infinite;
+    -ms-animation: pace-spinner 400ms linear infinite;
+    -o-animation: pace-spinner 400ms linear infinite;
+    animation: pace-spinner 400ms linear infinite; }
+
+.pace-inactive {
+  display: none; }
+
+@-webkit-keyframes pace-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-moz-keyframes pace-spinner {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-o-keyframes pace-spinner {
+  0% {
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@-ms-keyframes pace-spinner {
+  0% {
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    -ms-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes pace-spinner {
+  0% {
+    transform: rotate(0deg);
+    transform: rotate(0deg); }
+
+  100% {
+    transform: rotate(360deg);
+    transform: rotate(360deg); } }
