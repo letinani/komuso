@@ -1,3 +1,4 @@
+@charset "CP850";
 /*
  autor: Laetitia Nanni
  2013
@@ -183,8 +184,24 @@ header {
     font-weight: normal; }
   #side-menu li:hover a {
     color: red; }
+  #side-menu li figure {
+    display: inline-block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-image: url("../img/sprite.png");
+    cursor: pointer; }
+    #side-menu li figure.newPartition {
+      background-position: -255px 0px; }
+    #side-menu li figure.save {
+      background-position: -195px 0px; }
+    #side-menu li figure.print {
+      background-position: -90px 0px; }
   #side-menu a {
     display: block;
+    height: 40px;
     color: white;
     font-size: 12px; }
   #side-menu.open {

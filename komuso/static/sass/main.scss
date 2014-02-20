@@ -203,9 +203,33 @@ header {
 		&:hover a{
 			color: red;
 		}
+
+		figure {
+			display:inline-block;
+			float:left;
+			width:30px; 
+			height:30px;
+			margin-right:10px;
+			background-repeat:no-repeat;
+			background-image:url('../img/sprite.png');
+			cursor:pointer;
+
+			&.newPartition {
+				background-position:-255px 0px;
+			}
+
+			&.save {
+				background-position:-195px 0px;
+			}
+
+			&.print {
+				background-position:-90px 0px;
+			}
+		}
 	}
 	a {
 		display: block;
+		height:40px;
 		color: white;
 		font-size: 12px;
 	}
