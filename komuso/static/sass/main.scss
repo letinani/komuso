@@ -272,6 +272,7 @@ header {
 	height: 100%;
 
 	nav {
+		ul {margin:0;}
 		li {
 			position: relative;
 			float: none;
@@ -283,11 +284,11 @@ header {
 				height: 40px;
 				background-color: white;
 				border: 1px solid #CCC;
-				@include border-radius(50px);
+				//@include border-radius(50px);
 				text-align: center;
 				font-size: 1.8em;
 				padding: 5px;
-				margin-bottom: 5px;
+				margin-bottom: 0px;
 				float: right;
 				font-family: shakuhachinotation;
 				color: #000000;
@@ -327,7 +328,11 @@ header {
 			    right: 49px;
 			    top: -15px;
 			    z-index: 4;
-
+			    .note-picker {
+			    	@include border-radius(50px);
+			    	background: none;
+			    	color: white;
+			    }
 				li {
 					clear: none;
 					.note {
@@ -409,7 +414,7 @@ header {
 	}
 	.column {
 		max-width: 100px;
-    	min-width: 85px;
+    	min-width: 90px;
 		height: 100%;
 		text-align: center;
 		border-left: 1px dashed #CCC;
@@ -641,7 +646,7 @@ header {
 	}
 }
 
-
+$color_loader : #e33029;
 .pace {
 	-webkit-pointer-events: none;
 	pointer-events: none;
@@ -663,7 +668,7 @@ header {
 	transition: display 1s;
 
 	.pace-progress {
-		background: #df2513;
+		background: $color_loader;
 		position: fixed;
 		z-index: 2000;
 		top: 52px;
@@ -684,8 +689,8 @@ header {
 		width: 14px;
 		height: 14px;
 		border: solid 2px transparent;
-		border-top-color: #df2513;
-		border-left-color: #df2513;
+		border-top-color: $color_loader;
+		border-left-color: $color_loader;
 		border-radius: 10px;
 		-webkit-animation: pace-spinner 400ms linear infinite;
 		-moz-animation: pace-spinner 400ms linear infinite;

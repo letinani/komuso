@@ -235,6 +235,8 @@ header {
   float: right;
   padding: 20px;
   height: 100%; }
+  #menu-editor nav ul {
+    margin: 0; }
   #menu-editor nav li {
     position: relative;
     float: none;
@@ -245,13 +247,10 @@ header {
       height: 40px;
       background-color: white;
       border: 1px solid #CCC;
-      -webkit-border-radius: 50px;
-      -moz-border-radius: 50px;
-      border-radius: 50px;
       text-align: center;
       font-size: 1.8em;
       padding: 5px;
-      margin-bottom: 5px;
+      margin-bottom: 0px;
       float: right;
       font-family: shakuhachinotation;
       color: #000000; }
@@ -280,6 +279,12 @@ header {
       right: 49px;
       top: -15px;
       z-index: 4; }
+      #menu-editor nav li .menu-sub .note-picker {
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        background: none;
+        color: white; }
       #menu-editor nav li .menu-sub li {
         clear: none; }
         #menu-editor nav li .menu-sub li .note {
@@ -342,7 +347,7 @@ header {
     border-right: 1px dashed #CCC; }
   #score .column {
     max-width: 100px;
-    min-width: 85px;
+    min-width: 90px;
     height: 100%;
     text-align: center;
     border-left: 1px dashed #CCC; }
@@ -589,7 +594,7 @@ header {
   -o-transition: display 1s;
   transition: display 1s; }
   .pace .pace-progress {
-    background: #df2513;
+    background: #e33029;
     position: fixed;
     z-index: 2000;
     top: 52px;
@@ -608,8 +613,8 @@ header {
     width: 14px;
     height: 14px;
     border: solid 2px transparent;
-    border-top-color: #df2513;
-    border-left-color: #df2513;
+    border-top-color: #e33029;
+    border-left-color: #e33029;
     border-radius: 10px;
     -webkit-animation: pace-spinner 400ms linear infinite;
     -moz-animation: pace-spinner 400ms linear infinite;
