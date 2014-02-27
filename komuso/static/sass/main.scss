@@ -58,10 +58,11 @@ ul {
 	&.redo{ background-position: -40px 0px; }
 	&.print{ background-position: -90px 0px; }
 	&.export-pdf{ background-position: -142px 0px; }
-	&.save{ background-position: -195px 0px; }
+	&.save{ background-position: -192px 0px; }
 	&.open-side-menu { width: 50px; background-position: -248px 0px; }
 	&.close-side-menu { width: 50px; background-position: -306px 0px; }
 	&.cut { background-position: -197px -37px; }
+	&.newPartition { background-position:-255px 0px; }
 }
 
 
@@ -79,7 +80,13 @@ figure.pick {
 header {
 	background-color: #2c2c2c;
 	color: white;
-	overflow: auto;
+	//overflow: auto;
+
+	&:after {
+	  content: ""; /* Important, sinon l'élément n'est pas généré. */
+	  display: table;
+	  clear: both;
+	}
 	.content {
 		max-width: 98%;
 		margin: 0 auto;
@@ -87,6 +94,11 @@ header {
 	h1 {
 		//font-size: 1em;
 		margin: 0;
+		img {
+			border: none;
+			height: 42px;
+			vertical-align: bottom;
+		}
 	}
 	a {
 		color: white;
@@ -109,27 +121,55 @@ header {
 		}
 		li {
 			float: left;
-			padding: 12px;
+			//padding: 12px;
 			border-left: 1px solid #636363;
-
+			position: relative;
 			&:first-child a:first-child {
-				margin: 0;
-				margin-right: 10px;
+				//margin: 0;
+				//margin-right: 10px;
 			}
-			&:hover a{
+			&:hover a {
+				background: #444;
+				border-top: 4px solid white;
+				padding: 10px 12px;
+			}
+			&:hover a span{
+				visibility: visible;
+				bottom: -15px;
+			}
+			&:hover .icon {
 				opacity: 0.9;
 			}
 			a {
+				transition: border 0.3s linear;
+				padding: 12px;
 				margin: 0;
-			}
-			.icon {
-					opacity: 0.3;
+				font-size: 0.8em;
+				font-weight: normal;
+				span {
+					transition: bottom 0.3s ease-in-out;
+					visibility: hidden;
+					position: absolute;
+					z-index: 3;
+					background: #444;
+					bottom: 4px;
+					left: 0px;
+					min-width: 54px;
+    				padding: 2px 0px;
+    				text-align: center;
+    				line-height: 1;
+				}
 
 			}
+			.icon {
+				opacity: 0.3;
+
+			}
+
 			//vire la bordure un redo
 			&:nth-child(2) {
 				border-left: 0;
-				padding-left: 0;
+				//padding-left: 0;
 			}
 		}
 	}
@@ -152,8 +192,10 @@ header {
 	font-weight: normal;
 	font-size: 13px;
 	line-height: 2;
+
 	form {
 	}
+
 	@include transitions(0.4s,right,linear);
 
 	h1 {
@@ -164,13 +206,51 @@ header {
 		&:hover a{
 			color: red;
 		}
+
+		figure {
+			display:inline-block;
+			float:left;
+			margin-right:10px;
+			background-repeat:no-repeat;
+			cursor:pointer;
+		}
+
+		label {
+
+			position: relative;
+            cursor: pointer;
+            text-align: center;
+            overflow: visible;
+            overflow: hidden;
+
+            &:hover {
+            	color:red;
+            }
+
+			input {
+				position: absolute;
+	            top: 0;
+	            right: 0;
+	            margin: 0;
+	            border: solid transparent;
+	            border-width: 0 0 100px 200px;
+	            opacity: 0.0;
+	            filter: alpha(opacity=0);
+	            -o-transform: translate(250px, -50px) scale(1);
+	            -moz-transform: translate(-300px, 0) scale(4);
+	            direction: ltr;
+	            cursor: pointer;
+	            width: 0px;
+			}
+		}
 	}
 	a {
 		display: block;
+		height:40px;
+		line-height:30px;
 		color: white;
 		font-size: 12px;
 	}
-
 	&.open {
 		right: 0;
 	}
@@ -192,6 +272,7 @@ header {
 	height: 100%;
 
 	nav {
+		ul {margin:0;}
 		li {
 			position: relative;
 			float: none;
@@ -203,11 +284,11 @@ header {
 				height: 40px;
 				background-color: white;
 				border: 1px solid #CCC;
-				@include border-radius(50px);
+				//@include border-radius(50px);
 				text-align: center;
 				font-size: 1.8em;
 				padding: 5px;
-				margin-bottom: 5px;
+				margin-bottom: 0px;
 				float: right;
 				font-family: shakuhachinotation;
 				color: #000000;
@@ -247,7 +328,11 @@ header {
 			    right: 49px;
 			    top: -15px;
 			    z-index: 4;
-
+			    .note-picker {
+			    	@include border-radius(50px);
+			    	background: none;
+			    	color: white;
+			    }
 				li {
 					clear: none;
 					.note {
@@ -552,7 +637,93 @@ header {
 
 
 
+.notes {
+	.ui-selecting { 
+		background: #FECA40; 
+	}
+	.ui-selected { 
+		background: #F39814; color: white; 
+	}
+}
+
+$color_loader : #e33029;
+.pace {
+	-webkit-pointer-events: none;
+	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+
+	background: rgba(0,0,0,0.2);
+	position: fixed;
+	width:100%;
+	z-index: 7;
+	top: 0;
+	left: 0;
+	bottom: 0;
+
+	-webkit-transition: display 1s;
+	-moz-transition: display 1s;
+	-o-transition: display 1s;
+	transition: display 1s;
+
+	.pace-progress {
+		background: $color_loader;
+		position: fixed;
+		z-index: 2000;
+		top: 52px;
+		left: 0;
+		height: 2px;
+
+		-webkit-transition: width 1s;
+		-moz-transition: width 1s;
+		-o-transition: width 1s;
+		transition: width 1s;
+	}
+	.pace-activity {
+		display: block;
+		position: fixed;
+		z-index: 2000;
+		top: 50%;
+		right: 50%;
+		width: 14px;
+		height: 14px;
+		border: solid 2px transparent;
+		border-top-color: $color_loader;
+		border-left-color: $color_loader;
+		border-radius: 10px;
+		-webkit-animation: pace-spinner 400ms linear infinite;
+		-moz-animation: pace-spinner 400ms linear infinite;
+		-ms-animation: pace-spinner 400ms linear infinite;
+		-o-animation: pace-spinner 400ms linear infinite;
+		animation: pace-spinner 400ms linear infinite;
+	}
+
+}
+
+.pace-inactive {
+  display: none;
+}
 
 
-.notes .ui-selecting { background: #FECA40; }
-.notes .ui-selected { background: #F39814; color: white; }
+
+@-webkit-keyframes pace-spinner {
+  0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-moz-keyframes pace-spinner {
+  0% { -moz-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-o-keyframes pace-spinner {
+  0% { -o-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@-ms-keyframes pace-spinner {
+  0% { -ms-transform: rotate(0deg); transform: rotate(0deg); }
+  100% { -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+@keyframes pace-spinner {
+  0% { transform: rotate(0deg); transform: rotate(0deg); }
+  100% { transform: rotate(360deg); transform: rotate(360deg); }
+}

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: 2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 17:42+0100\n"
-"PO-Revision-Date: 2014-01-30 15:45+0100\n"
+"PO-Revision-Date: 2014-02-20 18:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Bonjour"
 msgstr ""
 
-#: templates/score-editor/side-menu.html
+#: templates/side-menu.html
 msgid "nav_file"
 msgstr "Fichier"
 
@@ -29,13 +29,13 @@ msgid "label_new_document"
 msgstr "Nouvelle partition"
 
 msgid "label_save_document"
-msgstr "Sauvegarder"
+msgstr "Sauver"
 
 msgid "label_print_document"
 msgstr "Imprimer"
 
 msgid "label_charge_document"
-msgstr "Ouvrir une partition :"
+msgstr "Ouvrir une partition"
 
 msgid "nav_layout"
 msgstr "Mise en page"
@@ -54,3 +54,13 @@ msgstr "Colonnes par pages"
 
 msgid "label_nb_notes_per_columns"
 msgstr "Notes par colonnes"
+
+#: templates/header.html
+msgid "label_undo"
+msgstr "Annuler"
+
+msgid "label_redo"
+msgstr "Rétablir"
+
+msgid "label_export_pdf"
+msgstr "Export pdf"

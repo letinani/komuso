@@ -1,14 +1,14 @@
 $(function() {
-    $("#side-menu").hide();
+    $("#side-menu").animate({right:"-400px"}, 0);
 
     // menu coulissant
     $(".open-side-menu").click(function(e){
 
-    	$("#side-menu").show(800);
+    	$("#side-menu").animate({right:"0px"},600);
     	return false;
 	});
     $(".close-side-menu").click(function(e){
-        $("#side-menu").hide(800);;
+        $("#side-menu").animate({right:"-400px"}, 400);
         return false;
     });
 
@@ -17,7 +17,7 @@ $(function() {
             e.preventDefault();
             if (!$(e.target).is("#side-menu")) {
                 if ($('#side-menu').is(':visible')) {
-                    $("#side-menu").hide(1000);;
+                    $("#side-menu").animate({right:"-400px"}, 400);
                 }
             }
         }

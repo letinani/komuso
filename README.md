@@ -28,3 +28,15 @@
 * export DEBUG=1
 * python manage.py ruserver
 
+
+## virtualenv
+
+* source komusoenv/bin/activate
+
+## sass
+
+* cd komuso/static
+* sass --watch sass/main.scss:css/main.css
+
+
+
