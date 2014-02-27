@@ -1,0 +1,78 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Komuso</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            @page {
+                size: a4 landscape;
+                margin: 2cm;
+            }
+            
+            @font-face {
+                font-family: "shakuhachinotation";
+                src: url("{{ STATIC_ROOT }}/font/shakuhachinotation-webfont.ttf");
+                font-weight: normal;
+                font-style: normal;
+            }
+        </style>
+        <link rel="stylesheet" href="{{ STATIC_ROOT }}/css/pdf.css">
+        
+    </head>
+    <body>
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+<section id="score" class="column">
+    <section class="sheet" id="sheet">
+        <section id="title" class="empty">
+            <!--<h1 class="toptobottom">Titre de la partition</h1>-->
+            <form>
+                <textarea rows="20" cols="1"　placeholder="Titre de la partition">
+                    {{ partition.title.text }}
+                </textarea>
+                <!--<input type="text" name="score-title">-->
+            </form>
+        </section>
+            <div class="column">
+                <h2 class="cols_numbers">1</h2>
+                
+                {% for piste in partition.pistes %}
+                    {% for note in piste.notes %}
+                        <div class="note">{{ note.indice }}</div>
+                    {% endfor %}
+                {% endfor %}
+
+            </div>
+        
+
+    </section>
+    <!--
+
+<section class="sheet">
+    {% for i in "xxxxxxxx" %}
+            
+        <div class="column">
+            <h2 class="cols_numbers">{{ forloop.counter0 }}</h2>
+        </div>
+    {% endfor %}
+    
+    <div class="clear"></div>
+</section>
+
+-->
+
+</section>
+
+</body>
+</html>

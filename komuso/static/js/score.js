@@ -1031,8 +1031,10 @@ $(document).ready(function() {
         }
     });
     
-    /*$('#score').click(function(e){
-        alert(this);
-    });*/
+    $('#export-pdf').click(function(e){
+        e.preventDefault();
+        $("#partition-pdf").val(JSON.stringify(scoreEditor.partition));
+        $("#form-export-pdf").submit();
+    });
 
 });
