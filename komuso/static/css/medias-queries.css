@@ -1,0 +1,52 @@
+@charset "CP850";
+@media only screen and (max-width: 920px) {
+  #score {
+    width: 89%; } }
+@media only screen and (max-width: 836px) {
+  #score {
+    width: 87%; } }
+@media only screen and (max-width: 707px) {
+  #score {
+    width: 85%; } }
+@media only screen and (max-width: 613px) {
+  #score {
+    width: 83%; } }
+@media only screen and (max-width: 541px) {
+  #score {
+    width: 81%; } }
+@media only screen and (max-width: 484px) {
+  #score {
+    width: 77%; } }
+@media only screen and (max-width: 399px) {
+  #score {
+    width: 73%; } }
+@media only screen and (max-width: 339px) {
+  #score {
+    width: 67%; } }
+@media only screen and (max-width: 279px) {
+  #score {
+    width: 57%; } }
+@media screen {
+  .phone {
+    display: none; } }
+/* Pour les téléphones ou petit écran */
+@media handheld {
+  #linguage {
+    display: none; }
+
+  #menu-file {
+    display: none; }
+
+  .phone {
+    display: block;
+    margin: 15% 20px;
+    padding: 10px 20px;
+    background-color: #dc6969;
+    border: 1px solid #a5332f;
+    color: #a5332f; }
+
+  #menu-editor {
+    display: none; }
+
+  #score {
+    display: none; } }
