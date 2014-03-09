@@ -15,6 +15,10 @@
             @page {
                 size: a4 landscape;
                 margin: 2cm;
+                @frame footer_frame {
+                    -pdf-frame-content: footer_content;
+                    left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+                }
             }
             
             @font-face {
@@ -23,9 +27,37 @@
                 font-weight: normal;
                 font-style: normal;
             }
+
+            #sheet {
+                width: 100%;
+                height: 100%;
+                /*background: green;*/
+                text-align: right;
+            }
+
+
+            .column {
+                display: inline-block;
+                width: 10mm;
+            }
+            tr {
+                text-align: center;
+
+            }
+            td {
+
+            }
+            .note {
+                font-family: "shakuhachinotation";
+                font-size: 30px;
+                /*background: red;*/
+                width: 10pt;
+                height: 10pt;
+
+            }
         </style>
         <link rel="stylesheet" href="{{ STATIC_ROOT }}/css/pdf.css">
-        
+
     </head>
     <body>
 
@@ -33,8 +65,10 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-<section id="score" class="column">
+<section id="score">
+
     <section class="sheet" id="sheet">
+
         <section id="title" class="empty">
             <!--<h1 class="toptobottom">Titre de la partition</h1>-->
             <form>
@@ -44,35 +78,38 @@
                 <!--<input type="text" name="score-title">-->
             </form>
         </section>
-            <div class="column">
-                <h2 class="cols_numbers">1</h2>
-                
-                {% for piste in partition.pistes %}
-                    {% for note in piste.notes %}
-                        <div class="note">{{ note.indice }}</div>
-                    {% endfor %}
-                {% endfor %}
 
-            </div>
-        
+            {% for piste in partition.pistes %}
+            <table>
+             {% for note in piste.notes %}
+                 {% if forloop.counter0|divisibleby:10 and forloop.counter0 != 0%}
+                    </tr>
+                 {% endif %}
+                 {% if forloop.counter0|divisibleby:10 %}
+                    <tr id="column">
+                        <td class="cols_numbers">{{ forloop.counter0|add:"4" }}</td>
+                 {% endif %}
+
+                        <td><div class="note {{ note.effect }}">{{ note.indice }}</div></td>
+
+             {% endfor %}
+            </table>
+
+
+            {% endfor %}
+
+
+
+
+
+
 
     </section>
-    <!--
 
-<section class="sheet">
-    {% for i in "xxxxxxxx" %}
-            
-        <div class="column">
-            <h2 class="cols_numbers">{{ forloop.counter0 }}</h2>
-        </div>
-    {% endfor %}
-    
-    <div class="clear"></div>
-</section>
-
--->
 
 </section>
-
+    <div id="footer_content">(c) - page <pdf:pagenumber>
+        of <pdf:pagecount>
+    </div>
 </body>
 </html>
