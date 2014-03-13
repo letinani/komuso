@@ -4,11 +4,11 @@ $(function() {
     // menu coulissant
     $(".open-side-menu").click(function(e){
 
-    	$("#side-menu").animate({right:"0px"},600);
+    	$("#side-menu").animate({right:"0px", display:"block"},600);
     	return false;
 	});
     $(".close-side-menu").click(function(e){
-        $("#side-menu").animate({right:"-400px"}, 400);
+        $("#side-menu").animate({right:"-400px", display:"none"}, 400);
         return false;
     });
 
