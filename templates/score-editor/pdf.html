@@ -8,17 +8,194 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Komuso</title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             @page {
+            
                 size: a4 landscape;
-                margin: 2cm;
+                
                 @frame footer_frame {
                     -pdf-frame-content: footer_content;
-                    left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+                    width: 5cm; right: 1.5cm; bottom: 0cm; height: 1cm;
                 }
+                
+                @frame header_frame {
+                    -pdf-frame-content: title;
+                    top: 1cm;
+                    right: 1.25cm;
+                    width: 3cm;
+                    height: 19cm;
+                    font-size: 20px;
+                }
+                
+                @frame col1_frame {
+                    right: -5cm;
+                    top: 1cm;
+                    height: 19cm;
+                    width: 2.25cm;
+                }
+                
+                @frame col2_frame {
+                    right: -2.75cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col3_frame {
+                    right: -0.5cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col4_frame {
+                    right: 1.75cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col5_frame {
+                    right: 4cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col6_frame {
+                    right: 6.25cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col7_frame {
+                    right: 8.5cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col8_frame {
+                    right: 10.75cm;
+                    top: 1cm;
+                    width: 2cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col9_frame {
+                    right: 13cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col10_frame {
+                    right: 15.25cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col11_frame {
+                    right: 17.5cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                
+            }
+            
+            @page regular_template {
+                size: a4 landscape;
+                
+                @frame footer_frame {
+                    -pdf-frame-content: footer_content;
+                    width: 5cm; right: 1.5cm; bottom: 0cm; height: 1cm;
+                }
+                
+                @frame col1_frame {
+                    right: 1.25cm;
+                    top: 1cm;
+                    height: 19cm;
+                    width: 2.25cm;
+                }
+                
+                @frame col2_frame {
+                    right: 3.5cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col3_frame {
+                    right: 5.75cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col4_frame {
+                    right: 8cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col5_frame {
+                    right: 10.25cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col6_frame {
+                    right: 12.5cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col7_frame {
+                    right: 14.75cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col8_frame {
+                    right: 17cm;
+                    top: 1cm;
+                    width: 2cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col9_frame {
+                    right: 19.25cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col10_frame {
+                    right: 21.5cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                @frame col11_frame {
+                    right: 23.75cm;
+                    top: 1cm;
+                    width: 2.25cm;
+                    height: 19cm;
+                }
+                
+                
             }
             
             @font-face {
@@ -34,82 +211,81 @@
                 /*background: green;*/
                 text-align: right;
             }
-
-
-            .column {
-                display: inline-block;
-                width: 10mm;
+            
+            #title {
+                font-size: 16px;
+                text-align: right;
             }
-            tr {
+            
+            #footer_content {
+                text-align: right;
+                font-size: 14px;
+            }
+            
+            #column1 {
+                border-right: 1px dashed #CCCCCC;
+            }
+            
+            .colonne {
+                border-left: 1px dashed #CCCCCC;
                 text-align: center;
-
+                font-size: 16px;
             }
-            td {
-
+            
+            .cols_numbers {
+                padding-bottom: 0.5cm;
             }
+            
             .note {
                 font-family: "shakuhachinotation";
-                font-size: 30px;
-                /*background: red;*/
-                width: 10pt;
-                height: 10pt;
-
+                font-size: 36px;
             }
+            
         </style>
         <link rel="stylesheet" href="{{ STATIC_ROOT }}/css/pdf.css">
 
     </head>
     <body>
 
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+<div id="score">
+    {% for piste in partition.pistes %}
+    <div class="sheet">
 
-<section id="score">
-
-    <section class="sheet" id="sheet">
-
-        <section id="title" class="empty">
-            <!--<h1 class="toptobottom">Titre de la partition</h1>-->
-            <form>
-                <textarea rows="20" cols="1"　placeholder="Titre de la partition">
-                    {{ partition.title.text }}
-                </textarea>
-                <!--<input type="text" name="score-title">-->
-            </form>
-        </section>
-
-            {% for piste in partition.pistes %}
-            <table>
-             {% for note in piste.notes %}
-                 {% if forloop.counter0|divisibleby:10 and forloop.counter0 != 0%}
-                    </tr>
+        <div id="title" class="empty">
+            {{ partition.title.text }}
+        </div>
+        <pdf:nexttemplate name="regular_template" />
+            <div style="display:none;" id="numCol{% cycle '0' '11' '22' '33' '44' '55' '66' '77' '88' '99' '110' '121' '132' '143' '154' as numPage %}"></div>
+            <div style="display:none;" id="numCol{% cycle '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' as numCol %}"></div>
+            <div id="column1" class="colonne">
+                <div class="cols_numbers">1</div>
+                {% for note in piste.notes %}
+                 {% if note.nom == 'blank' %} 
+                    </div>
+                    <pdf:nextframe />
+                    <div style="display:none;" id="numCol{% cycle numCol %}"></div>
+                     {% if numCol == "12" %}
+                             </div>
+                             <div style="display:none;" id="numCol{% cycle numPage %}"></div>
+                             <div class="sheet">
+                             <div style="display:none;" id="numCol{% cycle numCol %}"></div>
+                     {% endif %}
+                 
+                 <div id="column{{ numCol }}" class="colonne">
+                    <div class="cols_numbers">{{ numCol|add:numPage }}</div>
+                 {% else %}
+                    <div style="font-size:38px;" class="note {{ note.effect }}">{{ note.indice }}</div>
                  {% endif %}
-                 {% if forloop.counter0|divisibleby:10 %}
-                    <tr id="column">
-                        <td class="cols_numbers">{{ forloop.counter0|add:"4" }}</td>
-                 {% endif %}
-
-                        <td><div class="note {{ note.effect }}">{{ note.indice }}</div></td>
-
-             {% endfor %}
-            </table>
-
-
-            {% endfor %}
-
-
-
-
-
-
-
-    </section>
-
-
-</section>
-    <div id="footer_content">(c) - page <pdf:pagenumber>
-        of <pdf:pagecount>
+                {% endfor %}
+            </div>
     </div>
+    {% endfor %}
+
+     <div id="footer_content"><pdf:pagenumber>
+        / <pdf:pagecount>
+    </div>
+
+</div>
+   
 </body>
 </html>
