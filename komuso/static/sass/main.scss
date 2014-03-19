@@ -183,6 +183,21 @@ header {
 			}
 		}
 	}
+
+	.buttonDownload {
+		padding:5px 10px;
+		margin-top:13px;
+		margin-left:20px;
+		background-color:#dd352e;
+		text-shadow:1px 1px 1px #851713;
+		transition:all 0.3s linear;
+		border-radius:5px;
+
+		&:hover {
+			background-color:#bf1912;
+			text-shadow:none;
+		}
+	}
 }
 
 .column {

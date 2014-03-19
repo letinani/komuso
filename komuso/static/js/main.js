@@ -1,14 +1,15 @@
 $(function() {
-    $("#side-menu").animate({right:"-400px"}, 0);
+    $("#side-menu").hide().animate({right:"-270px"}, 0);
 
     // menu coulissant
     $(".open-side-menu").click(function(e){
 
-    	$("#side-menu").animate({right:"0px", display:"block"},600);
+    	$("#side-menu").fadeIn().animate({right:"0px"},50);
     	return false;
 	});
     $(".close-side-menu").click(function(e){
-        $("#side-menu").animate({right:"-400px", display:"none"}, 400);
+        $("#side-menu").animate({right:"-270px"}, 400);
+        $("#side-menu").delay(400).fadeOut();
         return false;
     });
 
