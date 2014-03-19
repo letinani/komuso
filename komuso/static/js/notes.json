@@ -1,0 +1,64 @@
+{
+"version" : "1.0",
+"main_notes": [
+  {
+    "value": "ro",
+    "letter": "=",
+    "type":"note",
+    "sub_notes": [
+        {"value": "ro1", "letter": ">"},
+        {"value": "ro2", "letter": "!"},
+        {"value": "ro3", "letter": "?"},
+        {"value": "ro4", "letter": "@"},
+        {"value": "ro5", "letter": "A"},
+        {"value": "ro6", "letter": "B"},
+        {"value": "ro7", "letter": "C"},
+        {"value": "ro8", "letter": "C"},
+        {"value": "ro9", "letter": "E"},
+        {"value": "ro10", "letter": "F"},
+        {"value": "ro11", "letter": "G"},
+        {"value": "ro12", "letter": "H"},
+        {"value": "ro13", "letter": "I"},
+        {"value": "ro14", "letter": "J"},
+        {"value": "ro15", "letter": "K"},
+        {"value": "ro16", "letter": "L"},
+        {"value": "ro17", "letter": "M"}
+    ]
+  },
+  {
+    "value": "tsu",
+    "letter": "P",
+    "type":"note",
+    "sub_notes": [
+        {"value": "tsu1", "letter": "Q"},
+        {"value": "tsu2", "letter": "R"},
+        {"value": "tsu3", "letter": "S"},
+        {"value": "tsu4", "letter": "T"},
+        {"value": "tsu5", "letter": "U"},
+        {"value": "tsu6", "letter": "V"},
+        {"value": "tsu7", "letter": "W"},
+        {"value": "tsu8", "letter": "X"},
+        {"value": "tsu9", "letter": "Y"},
+        {"value": "tsu10", "letter": "Z"}
+    ]
+  },
+  {
+    "value": "re",
+    "letter": "]",
+    "type":"note",
+    "sub_notes": [
+        {"value": "re1", "letter": "^"},
+        {"value": "re2", "letter": "_"},
+        {"value": "re3", "letter": "'"},
+        {"value": "re4", "letter": "a"},
+        {"value": "re5", "letter": "b"},
+        {"value": "re6", "letter": "c"},
+        {"value": "re7", "letter": "d"},
+        {"value": "re8", "letter": "e"},
+        {"value": "re9", "letter": "f"},
+        {"value": "re10", "letter": "g"},
+        {"value": "re11", "letter": "h"}
+    ]
+  }
+]
+}

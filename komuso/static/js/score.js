@@ -641,102 +641,11 @@ $(document).ready(function() {
 	/*** Ajout d'une note ***/
 	$('a.ton').click(function(e) {
         e.preventDefault();
-        
-		var n = $(this).text();
-		var nom = "ro";
-		var indice = "a";
-		switch(n) {
+		var nom = $(this).text(); //retourne la valeur du a
+		var letter = nom;
 
-			case "c" : 
-				nom = "ro";
-				indice = "c";
-				break;
-            case "a" : 
-                nom = "ro-1";
-                indice = "a";
-                break;
-            case "b" : 
-                nom = "ro-2";
-                indice = "b";
-                break;
-
-
-			case "d" : 
-				nom = "tsu-1";
-				indice = "d";
-				break;
-
-			case "e"  : 
-				nom = "tsu-2";
-				indice = "e";
-				break;
-
-			case "f" :
-				nom = "tsu";
-				indice = "f";
-				break;
-
-
-		    case "g" : 
-                nom = "re-1";
-                indice = "g";
-                break;
-
-            case "h" : 
-                nom = "re-2";
-                indice = "h";
-                break;
-
-            case "i" :
-                nom = "re";
-                indice = "i";
-                break;
-
-            case "p" : 
-                nom = "ri-1";
-                indice = "p";
-                break;
-
-            case "q" : 
-                nom = "ri-2";
-                indice = "q";
-                break;
-
-            case "r" :
-                nom = "ri";
-                indice = "r";
-                break;
-
-            case "A" :
-                nom = "hi-1";
-                indice = "A";
-                break;
-
-            case "B" : 
-                nom = "hi-2";
-                indice = "B";
-                break;
-
-            case "C" : 
-                nom = "hi-3";
-                indice = "C";
-                break;
-
-            case "D" :
-                nom = "hi";
-                indice = "D";
-                break;
-
-            case "blank" :
-                nom = "blank";
-                indice = "";
-                break;
-				
-			default : alert("Note inconnue : " + n);
-			    break;
-		}
 		
-		var note = new Note(indice, nom, $("#current-beat").text(), $("#current-effect").html());
+		var note = new Note(letter, nom, $("#current-beat").text(), $("#current-effect").html());
 		
 		if(scoreEditor.selected.length == 0) {
             scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
  autor: Laetitia Nanni
  2013
@@ -13,6 +14,13 @@
   font-family: 'shakuhachinotation';
   src: url("../font/shakuhachinotation-webfont.eot");
   src: url("../font/shakuhachinotation-webfont.eot?#iefix") format("embedded-opentype"), url("../font/shakuhachinotation-webfont.woff") format("woff"), url("../font/shakuhachinotation-webfont.ttf") format("truetype"), url("../font/shakuhachinotation-webfont.svg#tozanshakregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'komuso';
+  src: url("../font/komuso-webfont.eot");
+  src: url("../font/komuso-webfont.eot?#iefix") format("embedded-opentype"), url("../font/komuso-webfont.woff") format("woff"), url("../font/komuso-webfont.ttf") format("truetype"), url("../font/komuso-webfont.svg#komusoregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -161,7 +169,7 @@ header {
   color: white;
   font-weight: normal;
   font-size: 13px;
-  line-height: 2;
+  line-height: 1;
   -webkit-transition-duration: 0.4s;
   -webkit-transition-property: right;
   -webkit-transition-timing-function: linear;
@@ -252,7 +260,7 @@ header {
       padding: 5px;
       margin-bottom: 0px;
       float: right;
-      font-family: shakuhachinotation;
+      font-family: komuso;
       color: #000000; }
       #menu-editor nav li .note-picker#current-effect {
         margin-bottom: 15px; }
@@ -363,11 +371,12 @@ header {
     /* Précaution pour IE 7 */ }
 
 .note {
-  font-family: shakuhachinotation;
+  font-family: komuso;
   font-size: 2.5em;
   width: 50px;
   margin: 0px auto;
   position: relative;
+  line-height: 1;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px; }

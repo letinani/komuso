@@ -23,7 +23,17 @@
     font-style: normal;
 
 }
+@font-face {
+    font-family: 'komuso';
+    src: url('../font/komuso-webfont.eot');
+    src: url('../font/komuso-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/komuso-webfont.woff') format('woff'),
+         url('../font/komuso-webfont.ttf') format('truetype'),
+         url('../font/komuso-webfont.svg#komusoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
+}
 html,body {
 	height:100%;
 	background: url('../img/background.png');
@@ -191,7 +201,7 @@ header {
 	color: white;
 	font-weight: normal;
 	font-size: 13px;
-	line-height: 2;
+	line-height: 1;
 
 	form {
 	}
@@ -290,7 +300,7 @@ header {
 				padding: 5px;
 				margin-bottom: 0px;
 				float: right;
-				font-family: shakuhachinotation;
+				font-family: komuso;
 				color: #000000;
 				&#current-effect {
 					margin-bottom: 15px;
@@ -435,11 +445,12 @@ header {
 
 
 .note {
-	font-family: shakuhachinotation;
+	font-family: komuso;
 	font-size: 2.5em;
 	width: 50px;
 	margin: 0px auto;
 	position: relative;
+    line-height: 1;
 
 	@include border-radius(50px);
 	&:hover {

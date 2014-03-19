@@ -3,6 +3,8 @@
 <section id="menu-editor" class="column">
     <nav id="menu-notes">
         <ul>
+
+
             <li>
                 <a class="note-picker note-menu" id="current-beat" href="">'</a>
                 <div class="menu-sub">
@@ -14,6 +16,7 @@
                     </ul>
                 </div>
             </li>
+
             <li>
                 <a class="note-picker note-menu" id="current-effect" href=""> &nbsp;</a>
                 <div class="menu-sub">
@@ -25,22 +28,28 @@
                     </ul>
                 </div>
             </li>
-            <li>
-            <!-- RO -->
-                <a class="note-picker note-menu" href="">c</a>
-                <div class="menu-sub">
-                    <figure class="pick"></figure>
-                    <ul>
-                        <li><a class="note-picker note-menu ton" href="" value="ro-1">a</a></li>
-                        <li><a class="note-picker note-menu ton" href="" value="ro-2">b</a></li>
-                        <li><a class="note-picker note-menu ton" href="" value="ro">c</a></li>
-                        <li><a class="note-picker note-menu ton blank" href="" value="blank">blank</a></li>
-                    </ul>
-                </div>
-            </li>
+
+            {% for note in main_notes %}
+            {% autoescape off %}
+                <li>
+                    <a class="note-picker note-menu" href="">{{ note.letter|escape }}</a>
+                    <div class="menu-sub">
+                        <figure class="pick"></figure>
+                        <ul>
+                            {% for sub_note in note.sub_notes %}
+                            <li><a class="note-picker note-menu ton" href="" value="{{ sub_note.letter }}"> {{ sub_note.letter }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </li>
+            {% endautoescape %}
+            {% endfor %}
+
+
+
             <li>
             <!-- TSU -->
-                <a class="note-picker note-menu" href="">f</a>
+                <a class="note-picker note-menu" href="">[</a>
                 <div class="menu-sub">
                     <figure class="pick"></figure>
                     <ul>
