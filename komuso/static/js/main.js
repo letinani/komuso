@@ -1,5 +1,5 @@
 $(function() {
-    $("#side-menu").animate({right:"-400px"}, 0);
+    $("#side-menu").animate({right:"-400px", display:"none"}, 0);
 
     // menu coulissant
     $(".open-side-menu").click(function(e){

@@ -134,10 +134,16 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
         
         if(partition[i].nom != "blank") {
             if(partition[i].time == "|") {
-                time.setAttribute("style","border-right: 3px solid black; float: right; height:40px;");
+            	if($("#score-barre:checked").length == 1)
+            		time.setAttribute("style","position:absolute; top:7px; left:50%; border-right: 3px solid black; height:40px;");
+            	else
+                	time.setAttribute("style","position:absolute; top:7px;  right:0px; border-right: 3px solid black; height:40px;");
                 note.appendChild(time);
             } else if(partition[i].time == "||") {
-                time.setAttribute("style","border-left: 3px solid black; border-right: 3px solid black; float: right; height:40px; width: 3px;");
+            	if($("#score-barre:checked").length == 1)
+            		time.setAttribute("style","position:absolute; top:7px; left:45%; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;");
+            	else
+               		time.setAttribute("style","position:absolute; top:7px; right:-6px; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;");
                 note.appendChild(time);
             }
             
