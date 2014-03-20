@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "CP850";
 /*
  autor: Laetitia Nanni
  2013
@@ -154,17 +154,6 @@ header {
         opacity: 0.3; }
       header #menu-file li:nth-child(2) {
         border-left: 0; }
-  header .buttonDownload {
-    padding: 5px 10px;
-    margin-top: 13px;
-    margin-left: 20px;
-    background-color: #dd352e;
-    text-shadow: 1px 1px 1px #851713;
-    transition: all 0.3s linear;
-    border-radius: 5px; }
-    header .buttonDownload:hover {
-      background-color: #bf1912;
-      text-shadow: none; }
 
 .column {
   float: right; }
@@ -204,36 +193,38 @@ header {
   #side-menu h1 {
     font-size: 16px;
     font-weight: normal; }
-  #side-menu li:hover a {
-    color: red; }
-  #side-menu li figure {
-    display: inline-block;
-    float: left;
-    margin-right: 10px;
-    background-repeat: no-repeat;
-    cursor: pointer; }
-  #side-menu li label {
-    position: relative;
-    cursor: pointer;
-    text-align: center;
-    overflow: visible;
-    overflow: hidden; }
-    #side-menu li label:hover {
+  #side-menu li {
+    line-height: 25px; }
+    #side-menu li:hover a {
       color: red; }
-    #side-menu li label input {
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 0;
-      border: solid transparent;
-      border-width: 0 0 100px 200px;
-      opacity: 0.0;
-      filter: alpha(opacity=0);
-      -o-transform: translate(250px, -50px) scale(1);
-      -moz-transform: translate(-300px, 0) scale(4);
-      direction: ltr;
+    #side-menu li figure {
+      display: inline-block;
+      float: left;
+      margin-right: 10px;
+      background-repeat: no-repeat;
+      cursor: pointer; }
+    #side-menu li label {
+      position: relative;
       cursor: pointer;
-      width: 0px; }
+      text-align: center;
+      overflow: visible;
+      overflow: hidden; }
+      #side-menu li label:hover {
+        color: red; }
+      #side-menu li label input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        border: solid transparent;
+        border-width: 0 0 100px 200px;
+        opacity: 0.0;
+        filter: alpha(opacity=0);
+        -o-transform: translate(250px, -50px) scale(1);
+        -moz-transform: translate(-300px, 0) scale(4);
+        direction: ltr;
+        cursor: pointer;
+        width: 0px; }
   #side-menu a {
     display: block;
     height: 40px;
@@ -248,6 +239,17 @@ header {
     top: 12px; }
   #side-menu input[type=file] {
     border: 1px solid #444; }
+  #side-menu .buttonDownload {
+    height: auto;
+    margin-top: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #851713;
+    background-color: #dd352e;
+    transition: all 0.3s linear;
+    border-radius: 5px; }
+    #side-menu .buttonDownload:hover {
+      text-shadow: none;
+      background-color: #bf1912; }
 
 /********  Menu to add notes on score ********/
 #menu-editor {

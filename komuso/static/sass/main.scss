@@ -183,21 +183,6 @@ header {
 			}
 		}
 	}
-
-	.buttonDownload {
-		padding:5px 10px;
-		margin-top:13px;
-		margin-left:20px;
-		background-color:#dd352e;
-		text-shadow:1px 1px 1px #851713;
-		transition:all 0.3s linear;
-		border-radius:5px;
-
-		&:hover {
-			background-color:#bf1912;
-			text-shadow:none;
-		}
-	}
 }
 
 .column {
@@ -228,6 +213,9 @@ header {
 		font-weight: normal;
 	}
 	li {
+
+		line-height:25px;
+
 		&:hover a{
 			color: red;
 		}
@@ -286,6 +274,21 @@ header {
 	}
 	input[type=file]{
 		border: 1px solid #444;
+	}
+
+	.buttonDownload {
+		height:auto;
+		margin-top:20px;
+		text-align:center;
+		text-shadow:1px 1px 1px #851713;
+		background-color:#dd352e;
+		transition:all 0.3s linear;
+		border-radius:5px;
+
+		&:hover {
+			text-shadow:none;
+			background-color:#bf1912;
+		}
 	}
 }
 
