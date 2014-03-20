@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
  autor: Laetitia Nanni
  2013
@@ -400,6 +401,45 @@ header {
     background: red;
     margin: 0 auto;
     background: url(img/zigzag.png); }
+  .note .effect-top-left {
+    position: absolute;
+    font-size: 23px;
+    top: -6px;
+    left: -5px; }
+  .note .effect-top-right {
+    position: absolute;
+    font-size: 20px;
+    top: 0px;
+    right: -5px; }
+  .note .effect-middle-right {
+    position: absolute;
+    font-size: 20px;
+    top: 40%px;
+    right: -4px; }
+  .note .effect-bottom-right {
+    position: absolute;
+    font-size: 20px;
+    bottom: 0px;
+    right: -5px; }
+  .note .effect-bottom-left {
+    position: absolute;
+    font-size: 20px;
+    bottom: 0px;
+    left: -5px; }
+  .note .effect-time-1 {
+    position: absolute;
+    top: 7px;
+    right: 0px;
+    border-right: 3px solid black;
+    height: 40px; }
+  .note .effect-time-2 {
+    position: absolute;
+    top: 7px;
+    right: -6px;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    height: 40px;
+    width: 3px; }
 
 .notes .note-selected {
   position: absolute;

@@ -2,6 +2,66 @@
 "version" : "1.0",
 "main_notes": [
   {
+    "value": "etr",
+    "letter": "!",
+    "type":"effect-top-right",
+    "sub_notes": [
+        {"value": "etr1", "letter": "!"},
+        {"value": "etr2", "letter": "\""},
+        {"value": "etr3", "letter": "#"},
+        {"value": "etr4", "letter": "$"},
+        {"value": "etr5", "letter": "%"}
+    ]
+  },
+  {
+    "value": "emr",
+    "letter": "á",
+    "type":"effect-middle-right",
+    "sub_notes": [
+        {"value": "emr1", "letter": "á"},
+        {"value": "emr2", "letter": "â"},
+        {"value": "emr3", "letter": "ã"},
+        {"value": "emr4", "letter": "ä"}
+    ]
+  },
+  {
+    "value": "ebr",
+    "letter": "ì",
+    "type":"effect-bottom-right",
+    "sub_notes": [
+        {"value": "ebr1", "letter": "ì"},
+        {"value": "ebr2", "letter": "í"},
+        {"value": "ebr3", "letter": "î"},
+        {"value": "ebr4", "letter": "ï"},
+        {"value": "ebr5", "letter": "ð"},
+        {"value": "ebr6", "letter": "ñ"}
+
+    ]
+  },
+  {
+    "value": "ebl",
+    "letter": "Û",
+    "type":"effect-bottom-left"
+  },
+  {
+    "value": "en",
+    "letter": "½",
+    "type":"effect-note",
+    "sub_notes": [
+        {"value": "en1", "letter": "½"},
+        {"value": "en2", "letter": "¾"},
+        {"value": "en3", "letter": "¿"},
+        {"value": "en4", "letter": "Î"},
+        {"value": "en5", "letter": "Ï"},
+        {"value": "en6", "letter": "Ð"},
+        {"value": "en7", "letter": "Ñ"},
+        {"value": "en8", "letter": "Ò"},
+        {"value": "en9", "letter": "Ó"},
+        {"value": "en10", "letter": "Ô"},
+        {"value": "en11", "letter": "Õ"}
+    ]
+  },
+  {
     "value": "ro",
     "letter": "=",
     "type":"note",

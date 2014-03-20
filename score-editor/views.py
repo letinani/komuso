@@ -8,12 +8,13 @@ from django.conf import settings
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 import json
+from django.templatetags.static import static
 
 def home(request):
-  return render_to_response('score-editor/index.html',
-                              {},
-                              context_instance = RequestContext(request))
-               
+        url = settings.STATIC_ROOT+'/js/notes.json'
+        font_data = json.load(open(url))
+        return render_to_response('score-editor/index.html',font_data, RequestContext(request))
+
 def fetch_resources(uri, rel):
     """
     Callback to allow xhtml2pdf/reportlab to retrieve Images,Stylesheets, etc.
