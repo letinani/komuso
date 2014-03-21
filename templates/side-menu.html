@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 
 <section id="side-menu" class="main-menu">
 	<a class="icon close-side-menu" href=""></a>
@@ -19,7 +20,7 @@
 				<li><input type="checkbox" id="score-borders" name="score-boders" > {% trans "label_activate_borders" %}</li>
 				<li><input type="checkbox" id="score-lines" checked="checked" name="score-lines" > {% trans "label_activate_lines" %} </li>
 				<li><input type="checkbox" id="score-pages" checked="checked" name="score-pages" > {% trans "label_activate_pages" %} </li>
-				<li><input type="checkbox" id="score-barre" name="score-barre" > Barre centrée </li>
+				<li><input type="checkbox" id="score-barre" name="score-barre" > {% trans "label_middle_time" %} </li>
 				<li>{% trans "label_nb_columns" %}
 					<select id="nb-columns-per-pages">
 					    <option selected="selected" value="11">11</option>
@@ -52,4 +53,6 @@
 		</form>	
 		
 	</nav>
+	<h1>{% trans "nav_download"%}</h1>
+	<a href="{% static 'font/komuso-webfont.ttf' %}" class="buttonDownload">{% trans "label_download_font"%}</a>
 </section>
