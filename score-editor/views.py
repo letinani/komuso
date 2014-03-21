@@ -55,7 +55,7 @@ def home_pdf(request):
     html = template.render(Context(data))
 
     # Write PDF to file
-    file = open(os.path.join(settings.MEDIA_ROOT, 'partition.pdf'), "w+b")
+    file = open(os.path.join(settings.STATIC_ROOT, 'partition.pdf'), "w+b")
     pisaStatus = pisa.CreatePDF(html, dest=file,
             link_callback = fetch_resources)
 

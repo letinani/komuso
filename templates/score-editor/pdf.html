@@ -199,8 +199,8 @@
             }
             
             @font-face {
-                font-family: "shakuhachinotation";
-                src: url("{{ STATIC_ROOT }}/font/shakuhachinotation-webfont.ttf");
+                font-family: "komuso";
+                src: url("{{ STATIC_ROOT }}/font/komuso-webfont.ttf");
                 font-weight: normal;
                 font-style: normal;
             }
@@ -237,7 +237,7 @@
             }
             
             .note {
-                font-family: "shakuhachinotation";
+                font-family: "komuso";
                 font-size: 36px;
             }
             
@@ -254,6 +254,10 @@
         <div id="title" class="empty">
             {{ partition.title.text }}
         </div>
+        
+        <div id="footer_content"><pdf:pagenumber> / <pdf:pagecount>
+        </div>
+        
         <pdf:nexttemplate name="regular_template" />
             <div style="display:none;" id="numCol{% cycle '0' '11' '22' '33' '44' '55' '66' '77' '88' '99' '110' '121' '132' '143' '154' as numPage %}"></div>
             <div style="display:none;" id="numCol{% cycle '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' as numCol %}"></div>
@@ -274,16 +278,12 @@
                  <div id="column{{ numCol }}" class="colonne">
                     <div class="cols_numbers">{{ numCol|add:numPage }}</div>
                  {% else %}
-                    <div style="font-size:38px;" class="note {{ note.effect }}">{{ note.indice }}</div>
+                    <div style="font-size:38px;" class="note">{{ note.nom }}</div>
                  {% endif %}
                 {% endfor %}
             </div>
     </div>
     {% endfor %}
-
-     <div id="footer_content"><pdf:pagenumber>
-        / <pdf:pagecount>
-    </div>
 
 </div>
    

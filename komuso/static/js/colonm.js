@@ -109,15 +109,14 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
 	        colonm.appendChild(cursor);	
 		}
 		
-		var classes = "note " + partition[i].nom;
-        if(partition[i].nom != "blank")  classes += " ui-state-default";
+		var classes = partition[i].type + " ui-state-default";
         
         var note = document.createElement('div');
 	    note.setAttribute("class",classes);
-	    note.innerHTML = partition[i].indice;
+	    if(partition[i].nom != "blank") note.innerHTML = partition[i].nom;
+	    else note.innerHTML = "";
 	    
 	    var time = document.createElement('div');
-	    var effect = document.createElement('div');
         
         colonm.appendChild(note);
         
@@ -135,25 +134,27 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
         if(partition[i].nom != "blank") {
             if(partition[i].time == "|") {
             	if($("#score-barre:checked").length == 1)
-            		time.setAttribute("style","position:absolute; top:7px; left:50%; border-right: 3px solid black; height:40px;");
-            	else
-                	time.setAttribute("style","position:absolute; top:7px;  right:0px; border-right: 3px solid black; height:40px;");
+            		time.setAttribute("class","effect-time-1");
+            	else 
+            	    time.setAttribute("class","effect-time-1");
+            	
                 note.appendChild(time);
             } else if(partition[i].time == "||") {
             	if($("#score-barre:checked").length == 1)
-            		time.setAttribute("style","position:absolute; top:7px; left:45%; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;");
-            	else
-               		time.setAttribute("style","position:absolute; top:7px; right:-6px; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;");
+            		time.setAttribute("class","effect-time-2");
+            	else 
+            	    time.setAttribute("class","effect-time-2");
+               		
                 note.appendChild(time);
             }
             
-            if(partition[i].effect == '<img style="height: 100%;" src="/static/img/eclair.png">' || partition[i].effect == '<img src="/static/img/eclair.png" style="width:20%;">' || partition[i].effect == '<a href="" class="sub-note-menu"><img src="/static/img/eclair.png" style="width:20%;"></a>') {
-                effect.innerHTML = '<img style="width: 30%;" src="/static/img/eclair.png">';
-                note.appendChild(effect);
-            } else if(partition[i].effect == '<img style="height: 100%;" src="/static/img/zigzag.png">' || partition[i].effect == '<img src="/static/img/zigzag.png">') {
-                effect.innerHTML = '<img style="width: 70%;" src="/static/img/zigzag.png">';
+            for(var j = 0; j < partition[i].effects.length; ++j) {
+                var effect = document.createElement('div');
+                effect.setAttribute("class", partition[i].effects[j].type);
+                effect.innerHTML = partition[i].effects[j].nom;
                 note.appendChild(effect);
             }
+            
             currentLine++;
         }
 	 }

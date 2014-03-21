@@ -18,7 +18,7 @@
             </li>
 
             <li>
-                <a class="note-picker note-menu" id="current-effect" href=""> &nbsp;</a>
+                <a class="note-picker note-menu" href=""></a>
                 <div class="menu-sub">
                     <figure class="pick"></figure>
                     <ul>
@@ -32,15 +32,28 @@
             {% for note in main_notes %}
             {% autoescape off %}
                 <li>
+                {% if note.type != 'note' %}
+                    <a class="note-picker note-menu" id="current-{{ note.type }}" href=""></a>
+                    <div class="menu-sub">
+                        <figure class="pick"></figure>
+                        <ul>
+                            <li class="effect-none"><a class="note-picker note-menu effect-menu" href=""> &nbsp;</a></li>
+                            {% for sub_note in note.sub_notes %}
+                            <li><a class="note-picker note-menu clic-{{ note.type }}" href="" name="{{ note.type }}"> {{ sub_note.letter }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% else %}
                     <a class="note-picker note-menu" href="">{{ note.letter|escape }}</a>
                     <div class="menu-sub">
                         <figure class="pick"></figure>
                         <ul>
                             {% for sub_note in note.sub_notes %}
-                            <li><a class="note-picker note-menu ton" href="" value="{{ sub_note.letter }}"> {{ sub_note.letter }}</a></li>
+                            <li><a class="note-picker note-menu {{ note.type }}" href="" name="{{ note.type }}"> {{ sub_note.letter }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
+                {% endif %}
                 </li>
             {% endautoescape %}
             {% endfor %}

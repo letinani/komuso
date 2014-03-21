@@ -29,24 +29,25 @@ ScoreEditor.prototype.insertNotesAt = function(indice, piste, notes) {
 
 // Supprime des notes à l'indice spécifié et les retourne
 ScoreEditor.prototype.removeNotesAt = function(indice, piste, nbNotes) {
-    if(!nbNotes) {
-        this.partition.pistes[piste].notes.splice(indice, 1);
-        --this.cursorPosition;
-    } else {
-        this.partition.pistes[piste].notes.splice(indice, nbNotes);
-        this.cursorPosition-=nbNotes;
-    }
+    this.partition.pistes[piste].notes.splice(indice, nbNotes);
+    this.cursorPosition-=nbNotes;
 }
 
 // Modifie des notes à l'indice spécifié et les retourne
 ScoreEditor.prototype.editNotesAt = function(indice, piste, nbNotes, time, effect) {
-    if(!nbNotes) {
-        if(time) this.partition.pistes[piste].notes[indice].time = time;
-        else if(effect) this.partition.pistes[piste].notes[indice].effect = effect;
-    } else {
-        for(var i = 0; i < nbNotes; ++i) {
-            if(time) this.partition.pistes[piste].notes[indice+i].time = time;
-            else if(effect) this.partition.pistes[piste].notes[indice+i].effect = effect;
+    for(var i = 0; i < nbNotes; ++i) {
+        if(time) this.partition.pistes[piste].notes[indice+i].time = time;
+        else if(effect) {
+            var hasEffect = false;
+            for(var j = 0; j < this.partition.pistes[piste].notes[indice+i].effects.length; ++j) {
+                if(effect.type == this.partition.pistes[piste].notes[indice+i].effects[j].type) {
+                    hasEffect = true;
+                    this.partition.pistes[piste].notes[indice+i].effects[j].nom = effect.nom;
+                    break;
+                }
+            }
+            
+            if(!hasEffect) this.partition.pistes[piste].notes[indice+i].effects.push(effect);
         }
     }
 }
@@ -186,8 +187,8 @@ ScoreEditor.prototype.update = function() {
         selecting: function( event, ui ) {
             if(!firstSelected) firstSelected = ui.selecting;
             
-            var currentIndex = $( "div.note" ).index( ui.selecting ); 
-            var index = $( "div.note" ).index( firstSelected );
+            var currentIndex = $( ".note" ).index( ui.selecting ); 
+            var index = $( ".note" ).index( firstSelected );
             var element = document.getElementsByClassName('note');
             
             for(var i = 0; i < element.length; ++i) {
@@ -201,9 +202,9 @@ ScoreEditor.prototype.update = function() {
             }
         },
         unselecting: function( event, ui ) {        
-            var currentIndex = $( "div.note" ).index( ui.unselecting );
+            var currentIndex = $( ".note" ).index( ui.unselecting );
             
-            var index = $( "div.note" ).index( firstSelected );
+            var index = $( ".note" ).index( firstSelected );
             var element = document.getElementsByClassName('note');
             
             for(var i = 0; i < element.length; ++i) {
@@ -229,13 +230,11 @@ ScoreEditor.prototype.update = function() {
                 
                 var index = $( "div.note" ).index( $(".ui-selected")[0] );
                 var testRythme = true;
-                var testEffect = true;
                 
                 $( ".ui-selected", this ).each(function() {
                     var indexTmp = $( "div.note" ).index( this );
                     scoreEditor.selected.push(JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp])));
                     if(scoreEditor.partition.pistes[0].notes[indexTmp].time != scoreEditor.partition.pistes[0].notes[index].time) testRythme = false;
-                    if(scoreEditor.partition.pistes[0].notes[indexTmp].effect != scoreEditor.partition.pistes[0].notes[index].effect) testEffect = false;
                 });
                 
                 $('.delete').unbind('mouseup');
@@ -264,14 +263,9 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.update();
                 });
                 
-                if(testEffect) {
-                    $('.effect').find("span").html(scoreEditor.selected[0].effect.toString());
-                    if(scoreEditor.selected[0].effect.toString() == '<img style="height: 100%;" src="/static/img/eclair.png">') $('.effect').find("span").find("img").css("width","20%");
-                } else $('.effect').find("span").html("?");
-                
-                $('.effect').unbind('mouseup');
+                //$('.effect').unbind('mouseup');
                 /*** Modification de l'effet ***/
-                $('.effect').mouseup(function(e) {
+                /*$('.effect').mouseup(function(e) {
                     e.preventDefault();
                     if($(e.target).hasClass('sub-note-menu') || $(e.target).parent().hasClass('sub-note-menu')) {
                         $(this).find("span").html($(e.target).parent().html());
@@ -280,7 +274,7 @@ ScoreEditor.prototype.update = function() {
                         scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $(this).find("span").html());
                     }
                     scoreEditor.update();
-                });
+                });*/
                 
                 $('.color').unbind('mouseup');
                 /*** Modification de la couleur ***/
@@ -457,11 +451,19 @@ function Piste(template, title, notes) {
 }
 
 //Constructeur d'une note, prend en paramètre un nom, une durée et un effet
-function Note(indice, nom, time, effect) {
-    this.indice = indice;
+function Note(nom, type, time, effects) {
+    this.type = type;
 	this.nom = nom;
 	this.time = time;
-	this.effect = effect;
+	this.effects = [];
+	for(var i = 0; i < effects.length; ++i) {
+	    this.effects.push(effects[i]);
+	}
+}
+
+function Effect(nom, type) {
+    this.nom = nom;
+    this.type = type;
 }
 
 //Constructeur d'événements pour l'historique avec l'action produite et les notes modifiés
@@ -639,13 +641,18 @@ $(document).ready(function() {
 	blink();
 	
 	/*** Ajout d'une note ***/
-	$('a.ton').click(function(e) {
+	$('a.note').click(function(e) {
         e.preventDefault();
 		var nom = $(this).text(); //retourne la valeur du a
-		var letter = nom;
-
+		var type = $(this).attr("name");
 		
-		var note = new Note(letter, nom, $("#current-beat").text(), $("#current-effect").html());
+		var effects = [];
+		if($("#current-effect-top-right").text() != "") effects.push(new Effect($("#current-effect-top-right").text(),"effect-top-right"));
+		if($("#current-effect-middle-right").text() != "") effects.push(new Effect($("#current-effect-middle-right").text(),"effect-middle-right"));
+		if($("#current-effect-bottom-right").text() != "") effects.push(new Effect($("#current-effect-bottom-right").text(),"effect-bottom-right"));
+		if($("#current-effect-bottom-left").text() != "") effects.push(new Effect($("#current-effect-bottom-left").text(),"effect-bottom-left"));
+		
+		var note = new Note(nom, type, $("#current-beat").text(), effects);
 		
 		if(scoreEditor.selected.length == 0) {
             scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
@@ -657,7 +664,10 @@ $(document).ready(function() {
             scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
             scoreEditor.insertNotesAt(index, 0, note);
         }
-        $("#current-effect").html(" ");
+        $("#current-effect-top-right").html("");
+        $("#current-effect-middle-right").html("");
+        $("#current-effect-bottom-right").html("");
+        $("#current-effect-bottom-left").html("");
         
 		scoreEditor.update();
 	});
@@ -676,17 +686,58 @@ $(document).ready(function() {
         }
     });
     
-    $("a.effect-menu").click( function (e) {
+    $("a.clic-effect-top-right").click( function (e) {
         e.preventDefault();
         
-        $("#current-effect").html($(this).html());
-        $("#current-effect").find("img").css("height","100%");
+        $("#current-effect-top-right").html($(this).html());
         
         if(scoreEditor.selected.length > 0) {
             var index = $( "div.note" ).index( $( ".ui-selected")[0] );
             
-            scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, $("#current-effect").text()));
-            scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, $("#current-effect").text());
+            scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, new Effect($("#current-effect-top-right").text(),"effect-top-right")));
+            scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, new Effect($("#current-effect-top-right").text(),"effect-top-right"));
+            scoreEditor.update();
+        }
+    });
+    
+    $("a.clic-effect-middle-right").click( function (e) {
+        e.preventDefault();
+        
+        $("#current-effect-middle-right").html($(this).html());
+        
+        if(scoreEditor.selected.length > 0) {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+            scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, new Effect($("#current-effect-middle-right").text(),"effect-middle-right")));
+            scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, new Effect($("#current-effect-middle-right").text(),"effect-middle-right"));
+            scoreEditor.update();
+        }
+    });
+    
+    $("a.clic-effect-bottom-right").click( function (e) {
+        e.preventDefault();
+        
+        $("#current-effect-bottom-right").html($(this).html());
+        
+        if(scoreEditor.selected.length > 0) {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+            scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, new Effect($("#current-effect-bottom-right").text(),"effect-bottom-right")));
+            scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, new Effect($("#current-effect-bottom-right").text(),"effect-bottom-right"));
+            scoreEditor.update();
+        }
+    });
+    
+    $("a.clic-effect-bottom-left").click( function (e) {
+        e.preventDefault();
+        
+        $("#current-effect-bottom-left").html($(this).html());
+        
+        if(scoreEditor.selected.length > 0) {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+            
+            scoreEditor.add(new HistoricEvent("modify", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected)), null, new Effect($("#current-effect-bottom-left").text(),"effect-bottom-left")));
+            scoreEditor.editNotesAt(index, 0, scoreEditor.selected.length, null, new Effect($("#current-effect-bottom-left").text(),"effect-bottom-left"));
             scoreEditor.update();
         }
     });
@@ -790,7 +841,7 @@ $(document).ready(function() {
 	
 	    switch(e.which) {
 	        case 13:
-                var note = new Note("", "blank", "", "");
+                var note = new Note("blank", "", "", []);
 		
 		        if(scoreEditor.selected.length == 0) {
                     scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
@@ -944,6 +995,12 @@ $(document).ready(function() {
         e.preventDefault();
         $("#partition-pdf").val(JSON.stringify(scoreEditor.partition));
         $("#form-export-pdf").submit();
+    });
+    
+    $('#print-pdf').click(function(e){
+        e.preventDefault();
+        $("#partition-print").val(JSON.stringify(scoreEditor.partition));
+        $("#form-print-pdf").submit();
     });
 
 });
