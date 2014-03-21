@@ -113,3 +113,17 @@
 		display:none;
 	}
 }
+
+
+
+/**  PRINT  **/
+
+@media print {
+  header, #side-menu, #menu-editor {
+    display:none;
+  }
+  body {
+    //font-size:120%;
+    color:black;
+  }
+}

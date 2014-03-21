@@ -1,4 +1,4 @@
-@charset "CP850";
+@charset "UTF-8";
 @media only screen and (max-width: 920px) {
   #score {
     width: 89%; } }
@@ -50,3 +50,10 @@
 
   #score {
     display: none; } }
+/**  PRINT  **/
+@media print {
+  header, #side-menu, #menu-editor {
+    display: none; }
+
+  body {
+    color: black; } }
