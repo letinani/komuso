@@ -29,8 +29,13 @@ ScoreEditor.prototype.insertNotesAt = function(indice, piste, notes) {
 
 // Supprime des notes à l'indice spécifié et les retourne
 ScoreEditor.prototype.removeNotesAt = function(indice, piste, nbNotes) {
-    this.partition.pistes[piste].notes.splice(indice, nbNotes);
-    this.cursorPosition-=nbNotes;
+    if(!nbNotes) {
+        this.partition.pistes[piste].notes.splice(indice, 1);
+        --this.cursorPosition;
+    } else {
+        this.partition.pistes[piste].notes.splice(indice, nbNotes);
+        this.cursorPosition-=nbNotes;
+    }
 }
 
 // Modifie des notes à l'indice spécifié et les retourne
@@ -921,6 +926,7 @@ $(document).ready(function() {
 	
 	var down = [];
     $(document).keydown(function(e) {
+        e.preventDefault();
         down[e.keyCode] = true;
     }).keyup(function(e) {
         if (down[17] && down[88]) { // Cut
@@ -931,8 +937,10 @@ $(document).ready(function() {
             scoreEditor.paste();
         } else if (down[17] && down[90] && !down[16]) { // Undo
             scoreEditor.undo();
-        } else if ((down[17] && down[16] && down[90]) || (down[17] && down[89])) { // Undo
+        } else if ((down[17] && down[16] && down[90]) || (down[17] && down[89])) { // Redo
             scoreEditor.redo();
+        } else if (down[17] && down[65]) { // Select All
+            // A compléter.
         }
         down[e.keyCode] = false;
     });
