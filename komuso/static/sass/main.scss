@@ -517,19 +517,19 @@ header {
 
     //time
       .effect-time-1 {
-       position:absolute; right:0px; border-right: 3px solid black; height:40px;
+       position:absolute; top:0px; right:0px; border-right: 3px solid black; height:40px;
 
       }
       .effect-time-2 {
-        position:absolute; right:-6px; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;
+        position:absolute; top:0px; right:-6px; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;
       }
 
       .effect-time-1-center {
-        position:absolute; left:50%; border-right: 3px solid black; height:40px;
+        position:absolute; top:0px; left:50%; border-right: 3px solid black; height:40px;
 
       }
       .effect-time-2-center {
-        position:absolute; left:45%; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;
+        position:absolute; top:0px; left:45%; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;
       }
 
 
