@@ -134,14 +134,14 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
         if(partition[i].nom != "blank") {
             if(partition[i].time == "|") {
             	if($("#score-barre:checked").length == 1)
-            		time.setAttribute("class","effect-time-1");
+            		time.setAttribute("class","effect-time-1-center");
             	else 
             	    time.setAttribute("class","effect-time-1");
             	
                 note.appendChild(time);
             } else if(partition[i].time == "||") {
             	if($("#score-barre:checked").length == 1)
-            		time.setAttribute("class","effect-time-2");
+            		time.setAttribute("class","effect-time-2-center");
             	else 
             	    time.setAttribute("class","effect-time-2");
                		

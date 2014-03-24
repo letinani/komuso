@@ -430,14 +430,24 @@ header {
     left: -5px; }
   .note .effect-time-1 {
     position: absolute;
-    top: 7px;
     right: 0px;
     border-right: 3px solid black;
     height: 40px; }
   .note .effect-time-2 {
     position: absolute;
-    top: 7px;
     right: -6px;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    height: 40px;
+    width: 3px; }
+  .note .effect-time-1-center {
+    position: absolute;
+    left: 50%;
+    border-right: 3px solid black;
+    height: 40px; }
+  .note .effect-time-2-center {
+    position: absolute;
+    left: 45%;
     border-left: 3px solid black;
     border-right: 3px solid black;
     height: 40px;
