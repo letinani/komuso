@@ -999,8 +999,7 @@ $(document).ready(function() {
     
     $('#print-pdf').click(function(e){
         e.preventDefault();
-        $("#partition-print").val(JSON.stringify(scoreEditor.partition));
-        $("#form-print-pdf").submit();
+        window.print();
     });
 
 });
