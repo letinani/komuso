@@ -148,11 +148,13 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
                 note.appendChild(time);
             }
             
-            for(var j = 0; j < partition[i].effects.length; ++j) {
-                var effect = document.createElement('div');
-                effect.setAttribute("class", partition[i].effects[j].type);
-                effect.innerHTML = partition[i].effects[j].nom;
-                note.appendChild(effect);
+            if(partition[i].effects) {
+                for(var j = 0; j < partition[i].effects.length; ++j) {
+                    var effect = document.createElement('div');
+                    effect.setAttribute("class", partition[i].effects[j].type);
+                    effect.innerHTML = partition[i].effects[j].nom;
+                    note.appendChild(effect);
+                }
             }
             
             currentLine++;

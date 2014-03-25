@@ -870,7 +870,7 @@ $(document).ready(function() {
                     scoreEditor.update();
                 } else if(scoreEditor.partition.pistes[0].notes[index]) {
                     scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index]))));
-                    scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                    scoreEditor.removeNotesAt(index, 0, 1);
                     scoreEditor.update();
                 }
                 break;
@@ -884,7 +884,7 @@ $(document).ready(function() {
                     scoreEditor.update();
                 } else if(scoreEditor.partition.pistes[0].notes[index-1]) {
                     scoreEditor.add(new HistoricEvent("delete", index-1, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index-1]))));
-                    scoreEditor.removeNotesAt(index-1, 0, scoreEditor.selected.length);
+                    scoreEditor.removeNotesAt(index-1, 0, 1);
                     scoreEditor.update();
                 }
                 break;
