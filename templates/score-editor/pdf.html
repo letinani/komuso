@@ -9,15 +9,11 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <style>
             @page {
             
                 size: a4 landscape;
-                
-                @frame footer_frame {
-                    -pdf-frame-content: footer_content;
-                    width: 5cm; right: 1.5cm; bottom: 0cm; height: 1cm;
-                }
                 
                 @frame header_frame {
                     -pdf-frame-content: title;
@@ -204,6 +200,11 @@
                 font-weight: normal;
                 font-style: normal;
             }
+            
+            @font-face {
+                font-family: CODE2000;
+                src: url("{{ STATIC_ROOT }}/font/CODE2000.TTF")
+            }
 
             #sheet {
                 width: 100%;
@@ -241,6 +242,10 @@
                 font-size: 36px;
             }
             
+            html {
+                font-family: CODE2000;
+            }
+            
         </style>
         <link rel="stylesheet" href="{{ STATIC_ROOT }}/css/pdf.css">
 
@@ -248,6 +253,7 @@
     <body>
 
 <div id="score">
+<pdf:nexttemplate name="regular_template" />
     {% for piste in partition.pistes %}
     <div class="sheet">
 
@@ -258,25 +264,34 @@
         <div id="footer_content"><pdf:pagenumber> / <pdf:pagecount>
         </div>
         
-        <pdf:nexttemplate name="regular_template" />
-            <div style="display:none;" id="numCol{% cycle '0' '11' '22' '33' '44' '55' '66' '77' '88' '99' '110' '121' '132' '143' '154' as numPage %}"></div>
-            <div style="display:none;" id="numCol{% cycle '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' as numCol %}"></div>
+        
+            <div style="display:none;" class="{% cycle '' '一' '二' '三' '四' '五' '六' '七' '八' '九' as unite %}"></div>
+            <div style="display:none;" class="{% cycle '' '十' '二十' '三十' '四十' '五十' '六十' '七十' '八十' '九十' as dizaine %}"></div>
+            <div style="display:none;" class="{% cycle '' '百' '二百' '三百' '四百' '五百' '六百' '七百' '八百' '九百' as centaine %}"></div>
+
+            <div style="display:none;" class="numCol{% cycle '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' as numCol %}"></div>
             <div id="column1" class="colonne">
-                <div class="cols_numbers">1</div>
+                <div class="cols_numbers">{% cycle unite %}</div>
                 {% for note in piste.notes %}
                  {% if note.nom == 'blank' %} 
                     </div>
                     <pdf:nextframe />
-                    <div style="display:none;" id="numCol{% cycle numCol %}"></div>
+                    <div style="display:none;" class="numCol{% cycle numCol %}"></div>
                      {% if numCol == "12" %}
                              </div>
-                             <div style="display:none;" id="numCol{% cycle numPage %}"></div>
                              <div class="sheet">
-                             <div style="display:none;" id="numCol{% cycle numCol %}"></div>
+                             <div style="display:none;" class="numCol{% cycle numCol %}"></div>
                      {% endif %}
                  
                  <div id="column{{ numCol }}" class="colonne">
-                    <div class="cols_numbers">{{ numCol|add:numPage }}</div>
+                    <div style="display:none;" class="{% cycle unite %}"></div>
+                    {% if unite == '' %} 
+                        <div style="display:none;" class="{% cycle dizaine %}"></div>
+                        {% if dizaine == '' %} 
+                            <div style="display:none;" class="{% cycle centaine %}"></div> 
+                        {% endif %}
+                    {% endif %}
+                    <div class="cols_numbers">{{ centaine }}{{ dizaine }}{{ unite }}</div>
                  {% else %}
                     <div style="font-size:38px; font-family: 'komuso';" class="note">{{ note.nom }}</div>
                  {% endif %}
