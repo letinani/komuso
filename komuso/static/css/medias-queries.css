@@ -52,8 +52,26 @@
     display: none; } }
 /**  PRINT  **/
 @media print {
-  header, #side-menu, #menu-editor {
+  @page {
+    size: landscape; }
+
+  header, #side-menu, #menu-editor, #menu-selection {
     display: none; }
 
   body {
-    color: black; } }
+    color: black; }
+
+  .body {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    width: auto !important;
+    margin: auto !important;
+    font-family: serif;
+    font-size: 12pt;
+    background-color: white !important;
+    color: black !important; } }
+.sheet {
+  margin-top: 0;
+  box-shadow: 0;
+  page-break-before: always; }
