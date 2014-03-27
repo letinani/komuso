@@ -768,9 +768,9 @@ header {
         -moz-border-radius: 20px;
         border-radius: 20px; }
 
-.notes .ui-selecting {
+.notes2 .ui-selecting {
   background: #FECA40; }
-.notes .ui-selected {
+.notes2 .ui-selected {
   background: #F39814;
   color: white; }
 
