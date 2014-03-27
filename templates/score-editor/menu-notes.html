@@ -31,8 +31,8 @@
 
             {% for note in main_notes %}
             {% autoescape off %}
-                <li>
-                {% if note.type != 'note' %}
+                {% if note.type != 'note' and note.type != 'effect-note' %}
+                <!--<li>
                     <a class="note-picker note-menu" id="current-{{ note.type }}" href=""></a>
                     <div class="menu-sub">
                         <figure class="pick"></figure>
@@ -43,7 +43,9 @@
                             {% endfor %}
                         </ul>
                     </div>
+                </li>-->
                 {% else %}
+                <li>
                     <a class="note-picker note-menu" href="">{{ note.letter|escape }}</a>
                     <div class="menu-sub">
                         <figure class="pick"></figure>
@@ -53,8 +55,8 @@
                             {% endfor %}
                         </ul>
                     </div>
-                {% endif %}
                 </li>
+                {% endif %}
             {% endautoescape %}
             {% endfor %}
 

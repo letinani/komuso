@@ -38,77 +38,35 @@
    -->
 
 
+            <div id="menu-selection" class="note-selected">
 
+                <nav class="menu-edit-note ">
 
-
- <div class="note ui-state-default ui-selectee ui-selected"> B
-                <div id="menu-selection" class="note-selected">
-                           <!--     =================== EXEMPLE MARCKUP DU SOUS MENU :
-                         ATTENTION à la classe parente "notes2" sur la div column  ===============================-->
-
-                    <nav class="menu-edit-note ">
-
-                        <ul><li class="note-picker delete"><a class="note-menu" href=""></a></li>
-                            <li class="note-picker sub-corner-top">
-                                <a class="note-menu" href="">f</a>
-                                <ul class="sub-note-picker">
-                                    <li class="effect1"><a class="sub-note-menu" href="">f</a></li>
-                                    <li class="effect2"><a class="sub-note-menu" href="">g</a></li>
-                                    <li class="effect3"><a class="sub-note-menu" href="">h</a></li>
-                                </ul>
-                            </li>
-                            <li class="note-picker sub-corner-middle"><a class="note-menu" href=""></a>
-                                <ul class="sub-note-picker">
-                                    <li class="effect1"><a class="sub-note-menu" href="">f</a></li>
-                                    <li class="effect2"><a class="sub-note-menu" href="">a</a></li>
-                                    <li class="effect3"><a class="sub-note-menu" href="">b</a></li>
-                                </ul>
-                            </li>
-                            <li class="note-picker sub-corner-bottom"><a class="note-menu" href=""></a>
-                                <ul class="sub-note-picker">
-                                    <li class="effect1"><a class="sub-note-menu" href="">f</a></li>
-                                    <li class="effect2"><a class="sub-note-menu" href="">a</a></li>
-                                    <li class="effect3"><a class="sub-note-menu" href="">b</a></li>
-                                </ul>
-                            </li>
-                            <li class="note-picker sub-corner-bottom-left"><a class="note-menu" href=""><span>&nbsp;</span></a>
-                                <ul class="sub-note-picker"><li class="effect1"><a class="sub-note-menu" href="">&nbsp;</a></li>
-                                    <li class="effect2"><a class="sub-note-menu" href="">a</a></li>
-                                    <li class="effect3"><a class="sub-note-menu" href="">b</a></li>
-                                </ul>
-                            </li>
-                            <li class="note-picker bubble color"><a class="note-menu" href=""><span></span></a></li>
-                        </ul>
-                    </nav>
-
-                </div>
-            </div>
+                    <ul>
+                        <li class="note-picker delete"><a class="note-menu clic-delete" href="">&nbsp;</a>
+                        </li>
+                        {% for note in main_notes %}
+                            {% if note.type != 'note' and note.type != 'effect-note' %}
+                                <li class="note-picker {{ note.class }}">
+                                    <span class="note-menu" href="" name="{{ note.type }}">&nbsp;</span>
+                                    <ul class="sub-note-picker">
+                                        <li class="effect1"><a class="sub-note-menu" href="" name="{{ note.type }}">&nbsp;</a></li>
+                                        {% for sub_note in note.sub_notes %}
+                                            <li class="effect{{ forloop.counter|add:'1' }}">
+                                                <a class="sub-note-menu" href="" name="{{ note.type }}">{{ sub_note.letter }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class="note-picker bubble color"><a class="note-menu" href=""><span></span></a></li>
+                    </ul>
+                </nav>
 
             </div>
-        <!--<div class="column">
-            <h2 class="cols_numbers">2</h2>
-            <div class="note ro">a
-                <div class="note-selected">
-                    <nav class="menu-edit-note circles" >
-                
-                        <ul>
-                            <li><a class="note-picker delete" href=""></a></li>
-                            <li><a class="note-picker copy" href=""></a></li>
-                            <li><a class="note-picker past" href=""></a></li>
 
-                            <li><a class="note-picker rythme" href=""><span>'</span></a></li>
-                            <li><a class="note-picker effect" href=""><span>a</span></a></li>
-                            <li><a class="note-picker color" href=""><span>a</span></a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         </div>
-        <div class="clear"></div>-->
-
-
-
-
 
     </section>
     <!--
