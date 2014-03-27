@@ -17,34 +17,9 @@
                 </div>
             </li>
 
-            <li>
-                <a class="note-picker note-menu" href=""></a>
-                <div class="menu-sub">
-                    <figure class="pick"></figure>
-                    <ul>
-                        <li class="effect-none"><a class="note-picker note-menu effect-menu" href=""> &nbsp;</a></li>
-                        <li class="tremolo"><a class="note-picker note-menu effect-menu" href=""><img src="{% static 'img/zigzag.png' %}"></a></li>
-                        <li class="bend"><a class="note-picker note-menu effect-menu" href=""><img src="{% static 'img/eclair.png' %}"></a></li>
-                    </ul>
-                </div>
-            </li>
-
             {% for note in main_notes %}
             {% autoescape off %}
-                {% if note.type != 'note' and note.type != 'effect-note' %}
-                <!--<li>
-                    <a class="note-picker note-menu" id="current-{{ note.type }}" href=""></a>
-                    <div class="menu-sub">
-                        <figure class="pick"></figure>
-                        <ul>
-                            <li class="effect-none"><a class="note-picker note-menu effect-menu" href=""> &nbsp;</a></li>
-                            {% for sub_note in note.sub_notes %}
-                            <li><a class="note-picker note-menu clic-{{ note.type }}" href="" name="{{ note.type }}"> {{ sub_note.letter }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </li>-->
-                {% else %}
+                {% if note.type == 'note' or note.type == 'effect-note' %}
                 <li>
                     <a class="note-picker note-menu" href="">{{ note.letter|escape }}</a>
                     <div class="menu-sub">

@@ -119,11 +119,31 @@
 /**  PRINT  **/
 
 @media print {
-  header, #side-menu, #menu-editor {
+    @page {
+      size: landscape;
+  }
+
+  header, #side-menu, #menu-editor, #menu-selection {
     display:none;
   }
   body {
     //font-size:120%;
     color:black;
   }
+  .body
+    {
+     -webkit-transform: rotate(-90deg); -moz-transform:rotate(-90deg);
+     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  width: auto!important;
+  margin: auto!important;
+  font-family: serif;
+  font-size: 12pt;
+  background-color: #fff!important;
+  color: #000!important;
+
+    }
+}
+
+.sheet {
+   page-break-before: always;
 }
