@@ -204,9 +204,7 @@ ScoreEditor.prototype.update = function() {
                 if(menu) 
                     menu.parentNode.removeChild(menu);      
 
-            } else {
-                element[0].appendChild(scoreEditor.selection);
-                
+            } else {                
                 var index = $( "div.note" ).index( $(".ui-selected")[0] );
                 
                 $( ".ui-selected", this ).each(function() {
@@ -214,11 +212,21 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.selected.push(JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[indexTmp])));
                 });
                 
-                /*** Personnalisation du menu de sélection ***/
-                $("#menu-selection").find(".note-menu").html("&nbsp;");
+                var effectTest = false;
                 if(scoreEditor.selected[0].effects) {
                     for(var i = 0; i < scoreEditor.selected[0].effects.length; ++i) {
-                        $("#menu-selection").find(".note-menu[name='"+ scoreEditor.selected[0].effects[i].type +"']").html(scoreEditor.selected[0].effects[i].nom);
+                        if(scoreEditor.selected[0].effects[i].type == "effect-note") effectTest = true;
+                    }
+                }
+                
+                if(element.length == 1 && !effectTest) {
+                    element[0].appendChild(scoreEditor.selection);
+                    /*** Personnalisation du menu de sélection ***/
+                    $("#menu-selection").find(".note-menu").html("&nbsp;");
+                    if(scoreEditor.selected[0].effects) {
+                        for(var i = 0; i < scoreEditor.selected[0].effects.length; ++i) {
+                            $("#menu-selection").find(".note-menu[name='"+ scoreEditor.selected[0].effects[i].type +"']").html(scoreEditor.selected[0].effects[i].nom);
+                        }
                     }
                 }
                 
@@ -245,13 +253,13 @@ ScoreEditor.prototype.update = function() {
                     scoreEditor.update();
                 });
                 
-                $('.color').unbind('mouseup');
+                //$('.color').unbind('mouseup');
                 /*** Modification de la couleur ***/
-                $('.color').mouseup(function(e) {
+                /*$('.color').mouseup(function(e) {
                     e.preventDefault();
                     
                     // A compléter
-                });
+                });*/
             }
         },
         start: function() {
@@ -465,7 +473,10 @@ $(document).ready(function() {
 		var nom = $(this).text(); //retourne la valeur du a
 		var type = $(this).attr("name");
 		
-		var note = new Note(nom, type, $("#current-beat").text(), []);
+		var effects = [];
+		if(type == "effect-note") effects.push(new Effect("",type));
+		
+		var note = new Note(nom, type, $("#current-beat").text(), effects);
 		
 		if(scoreEditor.selected.length == 0) {
             scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
@@ -496,6 +507,7 @@ $(document).ready(function() {
     });
     
     $("a.delete-menu").click(function(e) {
+        e.preventDefault();
         if(scoreEditor.selected.length > 0) {
             var index = $( "div.note" ).index( $( ".ui-selected")[0] );
             

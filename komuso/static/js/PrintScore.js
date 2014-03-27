@@ -109,7 +109,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
 	        colonm.appendChild(cursor);	
 		}
 		
-		var classes = partition[i].type + " ui-state-default";
+		var classes = "note ui-state-default";
         
         var note = document.createElement('div');
 	    note.setAttribute("class",classes);

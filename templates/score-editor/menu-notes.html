@@ -26,7 +26,7 @@
                         <figure class="pick"></figure>
                         <ul>
                             {% for sub_note in note.sub_notes %}
-                            <li><a class="note-picker note-menu {{ note.type }}" href="" name="{{ note.type }}"> {{ sub_note.letter }}</a></li>
+                            <li><a class="note-picker note-menu note" href="" name="{{ note.type }}"> {{ sub_note.letter }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
