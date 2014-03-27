@@ -490,152 +490,10 @@ function Historic() {
 
 // Constructeur de la sélection de notes.
 function Selection() {
-    
     var selection = document.createElement('div');
     selection.setAttribute("id", "menu-selection");
     selection.setAttribute("class", "note-selected");
-
-    var nav = document.createElement('nav');
-    nav.setAttribute("class", "menu-edit-note circles");
-
-        var ul = document.createElement('ul');
-
-            var liDelete = document.createElement('li');
-            liDelete.setAttribute("class", "note-picker delete");
-                var aDelete = document.createElement('a');
-                aDelete.setAttribute("class", "note-menu");
-                aDelete.setAttribute("href", "");
-                    var spanDelete = document.createElement('span');
-                aDelete.appendChild(spanDelete);
-            liDelete.appendChild(aDelete);
-
-            var liCopy = document.createElement('li');
-            liCopy.setAttribute("class", "note-picker copy");
-                var aCopy = document.createElement('a');
-                aCopy.setAttribute("class", "note-menu");
-                aCopy.setAttribute("href", "");
-                    var spanCopy = document.createElement('span');
-                aCopy.appendChild(spanCopy);
-            liCopy.appendChild(aCopy);
-
-            var liPast = document.createElement('li');
-            liPast.setAttribute("class", "note-picker past");
-                var aPast = document.createElement('a');
-                aPast.setAttribute("class", "note-menu");
-                aPast.setAttribute("href", "");
-                    var spanPast = document.createElement('span');
-                aPast.appendChild(spanPast);
-            liPast.appendChild(aPast);
-
-            var liCut = document.createElement('li');
-            liCut.setAttribute("class", "note-picker cut");
-                var aCut = document.createElement('a');
-                aCut.setAttribute("class", "note-menu");
-                aCut.setAttribute("href", "");
-                    var spanCut = document.createElement('span');
-                aCut.appendChild(spanCut);
-            liCut.appendChild(aCut);
-
-            var liRythme = document.createElement('li');
-            liRythme.setAttribute("class", "note-picker rythme");
-                var aRythme = document.createElement('a');
-                aRythme.setAttribute("class", "note-menu");
-                aRythme.setAttribute("href", "");
-                    var spanRythme = document.createElement('span');
-                    spanRythme.innerHTML = "'";
-                aRythme.appendChild(spanRythme);
-                var ulRythme = document.createElement('ul');
-                ulRythme.setAttribute("class", "sub-note-picker");
-                    var liRythmeEffect1 = document.createElement('li');
-                    liRythmeEffect1.setAttribute("class", "effect1");
-                        var aRythmeEffect1 = document.createElement('a');
-                        aRythmeEffect1.setAttribute("class", "sub-note-menu");
-                        aRythmeEffect1.setAttribute("href", "");
-                        aRythmeEffect1.innerHTML = "'";
-                    liRythmeEffect1.appendChild(aRythmeEffect1);
-                    var liRythmeEffect2 = document.createElement('li');
-                    liRythmeEffect2.setAttribute("class", "effect2");
-                        var aRythmeEffect2 = document.createElement('a');
-                        aRythmeEffect2.setAttribute("class", "sub-note-menu");
-                        aRythmeEffect2.setAttribute("href", "");
-                        aRythmeEffect2.innerHTML = "|";
-                    liRythmeEffect2.appendChild(aRythmeEffect2);
-                    var liRythmeEffect3 = document.createElement('li');
-                    liRythmeEffect3.setAttribute("class", "effect3");
-                        var aRythmeEffect3 = document.createElement('a');
-                        aRythmeEffect3.setAttribute("class", "sub-note-menu");
-                        aRythmeEffect3.setAttribute("href", "");
-                        aRythmeEffect3.innerHTML = "||";
-                    liRythmeEffect3.appendChild(aRythmeEffect3);
-                ulRythme.appendChild(liRythmeEffect1);
-                ulRythme.appendChild(liRythmeEffect2);
-                ulRythme.appendChild(liRythmeEffect3);
-            liRythme.appendChild(aRythme);
-            liRythme.appendChild(ulRythme);
-
-            var liEffect = document.createElement('li');
-            liEffect.setAttribute("class", "note-picker effect");
-                var aEffect = document.createElement('a');
-                aEffect.setAttribute("class", "note-menu");
-                aEffect.setAttribute("href", "");
-                    var spanEffect = document.createElement('span');
-                    spanEffect.innerHTML = "&nbsp;";
-                    aEffect.appendChild(spanEffect);
-                var ulEffect = document.createElement('ul');
-                ulEffect.setAttribute("class", "sub-note-picker");
-                    var liEffect1 = document.createElement('li');
-                    liEffect1.setAttribute("class", "effect1");
-                        var aEffect1 = document.createElement('a');
-                        aEffect1.setAttribute("class", "sub-note-menu");
-                        aEffect1.setAttribute("href", "");
-                        aEffect1.innerHTML = "&nbsp;";
-                    liEffect1.appendChild(aEffect1);
-                    var liEffect2 = document.createElement('li');
-                    liEffect2.setAttribute("class", "effect2");
-                        var aEffect2 = document.createElement('a');
-                        aEffect2.setAttribute("class", "sub-note-menu");
-                        aEffect2.setAttribute("href", "");
-                            var imgEffect2 = document.createElement("img");
-                            imgEffect2.setAttribute('src','/static/img/zigzag.png')
-                        aEffect2.appendChild(imgEffect2);
-                    liEffect2.appendChild(aEffect2);
-                    var liEffect3 = document.createElement('li');
-                    liEffect3.setAttribute("class", "effect3");
-                        var aEffect3 = document.createElement('a');
-                        aEffect3.setAttribute("class", "sub-note-menu");
-                        aEffect3.setAttribute("href", "");
-                            var imgEffect3 = document.createElement("img");
-                            imgEffect3.setAttribute('style','width:20%;')
-                            imgEffect3.setAttribute('src','/static/img/eclair.png');
-                        aEffect3.appendChild(imgEffect3);
-                    liEffect3.appendChild(aEffect3);
-                ulEffect.appendChild(liEffect1);
-                ulEffect.appendChild(liEffect2);
-                ulEffect.appendChild(liEffect3);
-            liEffect.appendChild(aEffect);
-            liEffect.appendChild(ulEffect);
-
-
-            var liColor = document.createElement('li');
-            liColor.setAttribute("class", "note-picker color");
-                var aColor = document.createElement('a');
-                aColor.setAttribute("class", "note-menu");
-                aColor.setAttribute("href", "");
-                    var spanColor = document.createElement('span');
-                aColor.appendChild(spanColor);
-            liColor.appendChild(aColor);
-
-        ul.appendChild(liDelete);
-        ul.appendChild(liCopy);
-        ul.appendChild(liPast);
-        ul.appendChild(liCut);
-        ul.appendChild(liRythme);
-        ul.appendChild(liEffect);
-        ul.appendChild(liColor);
-
-    nav.appendChild(ul);
-    selection.appendChild(nav);
-    
+    selection.innerHTML = $("#menu-selection").html();
     return selection;
 }
 
@@ -926,7 +784,6 @@ $(document).ready(function() {
 	
 	var down = [];
     $(document).keydown(function(e) {
-        e.preventDefault();
         down[e.keyCode] = true;
     }).keyup(function(e) {
         if (down[17] && down[88]) { // Cut
@@ -936,8 +793,10 @@ $(document).ready(function() {
         } else if (down[17] && down[86]) { // Paste
             scoreEditor.paste();
         } else if (down[17] && down[90] && !down[16]) { // Undo
+            e.preventDefault();
             scoreEditor.undo();
         } else if ((down[17] && down[16] && down[90]) || (down[17] && down[89])) { // Redo
+            e.preventDefault();
             scoreEditor.redo();
         } else if (down[17] && down[65]) { // Select All
             // A compléter.

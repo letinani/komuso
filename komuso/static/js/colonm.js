@@ -39,7 +39,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
     var number;
     //Colonne
 	colonm = document.createElement('div'); //Créer une div
-	colonm.setAttribute("class","column notes");//Ajoute la classe colonm à la div
+	colonm.setAttribute("class","column notes2");//Ajoute la classe colonm à la div
 	if($("#score-borders:checked").length == 1) colonm.setAttribute("style","border-left:1px solid black; border-right:1px solid black;");
 	
 	//H2
@@ -89,7 +89,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
             
 			//Colonne
 			colonm = document.createElement('div'); //Créer une div
-			colonm.setAttribute("class","column notes");//Ajoute la classe colonm à la div
+			colonm.setAttribute("class","column notes2");//Ajoute la classe colonm à la div
 			if($("#score-borders:checked").length == 1) colonm.setAttribute("style","border-left:1px solid black;");
 
 			//H2
