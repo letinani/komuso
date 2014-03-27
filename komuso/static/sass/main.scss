@@ -754,31 +754,31 @@ header {
 		    }
 
 			.note-picker {
-                border: 1px solid #0a2d6e;
-                background: #C9DBED;
+                border: 1px solid #b66d68;
+                background: #e38882;
                 width: 15px;
                 position: absolute;
                 height: 15px;
                 font-size: 18px;
 
                 &.sub-corner-top {
+                    left: 40px;
                     top: -7px;
-                    left: 45px;
 
                 }
                 &.sub-corner-middle {
-                  top: 10px;
-                  left: 45px
+                    top: 13px;
+                    left: 40px
 
                 }
                 &.sub-corner-bottom {
-                  top: 27px;
-                  left: 45px
+                    top: 33px;
+                    left: 40px
 
                 }
                 &.sub-corner-bottom-left {
-                  top: 27px;
-                  left: -5px
+                    left: -8px;
+                    top: 33px;
                 }
                 &:hover {
                      background: #ffffff;
@@ -795,7 +795,7 @@ header {
                     top: 0;
                     left: 16px;
                     width: 90px;
-                    background: #C9DBED;
+                    background: #e38882;
 
                     li {
                         float: left;
@@ -833,8 +833,8 @@ header {
 			    	@include transform(rotate(-270deg) translateY(55px));
 			    }
               &.delete {
-                top: -5px;
-                left: -5px;
+                top: -11px;
+                left: -13px;
                 position: absolute;
                 background:url('../img/sprite.png') no-repeat #FF0000;
                 font-family: arial, sans-serif;
@@ -876,11 +876,16 @@ header {
 
 .notes2 {
 	.ui-selecting { 
-		background: #FECA40; 
+		background: #e35249;
 	}
-	.ui-selected { 
-		background: #F39814; color: white; 
+	.ui-selected {
+		background: #E35249; color: white;
+        padding: 5px 0;
+        @include transitions(0.3s, padding, ease, 0s);
 	}
+  	.ui-selected + .ui-selected {
+      padding: 0;
+    }
 }
 
 $color_loader : #e33029;

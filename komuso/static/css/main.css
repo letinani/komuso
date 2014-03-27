@@ -678,8 +678,8 @@ header {
       height: 45px;
       width: 45px; }
     .notes2 .note-selected nav .note-picker {
-      border: 1px solid #0a2d6e;
-      background: #C9DBED;
+      border: 1px solid #b66d68;
+      background: #e38882;
       width: 15px;
       position: absolute;
       height: 15px;
@@ -711,17 +711,17 @@ header {
 
 */ }
       .notes2 .note-selected nav .note-picker.sub-corner-top {
-        top: -7px;
-        left: 45px; }
+        left: 40px;
+        top: -7px; }
       .notes2 .note-selected nav .note-picker.sub-corner-middle {
-        top: 10px;
-        left: 45px; }
+        top: 13px;
+        left: 40px; }
       .notes2 .note-selected nav .note-picker.sub-corner-bottom {
-        top: 27px;
-        left: 45px; }
+        top: 33px;
+        left: 40px; }
       .notes2 .note-selected nav .note-picker.sub-corner-bottom-left {
-        top: 27px;
-        left: -5px; }
+        left: -8px;
+        top: 33px; }
       .notes2 .note-selected nav .note-picker:hover {
         background: #ffffff; }
       .notes2 .note-selected nav .note-picker:hover .sub-note-picker {
@@ -734,7 +734,7 @@ header {
         top: 0;
         left: 16px;
         width: 90px;
-        background: #C9DBED; }
+        background: #e38882; }
         .notes2 .note-selected nav .note-picker .sub-note-picker li {
           float: left;
           padding: 2px; }
@@ -768,8 +768,8 @@ header {
         -o-transform: rotate(-270deg) translateY(55px);
         transform: rotate(-270deg) translateY(55px); }
       .notes2 .note-selected nav .note-picker.delete {
-        top: -5px;
-        left: -5px;
+        top: -11px;
+        left: -13px;
         position: absolute;
         background: url("../img/sprite.png") no-repeat red;
         font-family: arial, sans-serif;
@@ -780,10 +780,33 @@ header {
         border-radius: 20px; }
 
 .notes2 .ui-selecting {
-  background: #FECA40; }
+  background: #e35249; }
 .notes2 .ui-selected {
-  background: #F39814;
-  color: white; }
+  background: #E35249;
+  color: white;
+  padding: 5px 0;
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: padding;
+  -webkit-transition-timing-function: ease;
+  -webkit-transition-delay: 0s;
+  -moz-transition-duration: 0.3s;
+  -moz-transition-property: padding;
+  -moz-transition-timing-function: ease;
+  -moz-transition-delay: 0s;
+  -ms-transition-duration: 0.3s;
+  -ms-transition-property: padding;
+  -ms-transition-timing-function: ease;
+  -ms-transition-delay: 0s;
+  -o-transition-duration: 0.3s;
+  -o-transition-property: padding;
+  -o-transition-timing-function: ease;
+  -o-transition-delay: 0s;
+  transition-duration: 0.3s;
+  transition-property: padding;
+  transition-timing-function: ease;
+  transition-delay: 0s; }
+.notes2 .ui-selected + .ui-selected {
+  padding: 0; }
 
 .pace {
   -webkit-pointer-events: none;
