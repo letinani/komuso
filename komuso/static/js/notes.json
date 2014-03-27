@@ -5,6 +5,7 @@
     "value": "etr",
     "letter": "!",
     "type":"effect-top-right",
+    "class":"sub-corner-top",
     "sub_notes": [
         {"value": "etr1", "letter": "!"},
         {"value": "etr2", "letter": "\""},
@@ -17,6 +18,7 @@
     "value": "emr",
     "letter": "á",
     "type":"effect-middle-right",
+    "class":"sub-corner-middle",
     "sub_notes": [
         {"value": "emr1", "letter": "á"},
         {"value": "emr2", "letter": "â"},
@@ -28,6 +30,7 @@
     "value": "ebr",
     "letter": "ì",
     "type":"effect-bottom-right",
+    "class":"sub-corner-bottom",
     "sub_notes": [
         {"value": "ebr1", "letter": "ì"},
         {"value": "ebr2", "letter": "í"},
@@ -41,7 +44,11 @@
   {
     "value": "ebl",
     "letter": "Û",
-    "type":"effect-bottom-left"
+    "type":"effect-bottom-left",
+    "class":"sub-corner-bottom-left",
+    "sub_notes": [
+    
+    ]
   },
   {
     "value": "en",
