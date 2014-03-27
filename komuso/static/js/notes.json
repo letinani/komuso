@@ -66,58 +66,116 @@
     "letter": "=",
     "type":"note",
     "sub_notes": [
-        {"value": "ro1", "letter": ">"},
-        {"value": "ro2", "letter": "!"},
+        {"value": "ro1", "letter": "="},
+        {"value": "ro2", "letter": ">"},
         {"value": "ro3", "letter": "?"},
         {"value": "ro4", "letter": "@"},
         {"value": "ro5", "letter": "A"},
-        {"value": "ro6", "letter": "B"},
-        {"value": "ro7", "letter": "C"},
+        {"value": "ro7", "letter": "B"},
         {"value": "ro8", "letter": "C"},
-        {"value": "ro9", "letter": "E"},
-        {"value": "ro10", "letter": "F"},
-        {"value": "ro11", "letter": "G"},
-        {"value": "ro12", "letter": "H"},
-        {"value": "ro13", "letter": "I"},
-        {"value": "ro14", "letter": "J"},
-        {"value": "ro15", "letter": "K"},
-        {"value": "ro16", "letter": "L"},
-        {"value": "ro17", "letter": "M"}
+        {"value": "ro9", "letter": "C"},
+        {"value": "ro10", "letter": "E"},
+        {"value": "ro11", "letter": "F"},
+        {"value": "ro12", "letter": "G"},
+        {"value": "ro13", "letter": "H"},
+        {"value": "ro14", "letter": "I"},
+        {"value": "ro15", "letter": "J"},
+        {"value": "ro16", "letter": "K"},
+        {"value": "ro17", "letter": "L"},
+        {"value": "ro18", "letter": "M"}
     ]
   },
   {
     "value": "tsu",
-    "letter": "P",
+    "letter": "R",
     "type":"note",
     "sub_notes": [
-        {"value": "tsu1", "letter": "Q"},
-        {"value": "tsu2", "letter": "R"},
-        {"value": "tsu3", "letter": "S"},
-        {"value": "tsu4", "letter": "T"},
-        {"value": "tsu5", "letter": "U"},
-        {"value": "tsu6", "letter": "V"},
-        {"value": "tsu7", "letter": "W"},
-        {"value": "tsu8", "letter": "X"},
-        {"value": "tsu9", "letter": "Y"},
-        {"value": "tsu10", "letter": "Z"}
+        {"value": "tsu1", "letter": "R"},
+        {"value": "tsu2", "letter": "S"},
+        {"value": "tsu3", "letter": "T"},
+        {"value": "tsu4", "letter": "U"},
+        {"value": "tsu5", "letter": "V"},
+        {"value": "tsu6", "letter": "W"},
+        {"value": "tsu7", "letter": "X"},
+        {"value": "tsu8", "letter": "Y"},
+        {"value": "tsu9", "letter": "Z"},
+        {"value": "tsu11", "letter": "["},
+        {"value": "tsu12", "letter": "\\"}
+
     ]
   },
   {
     "value": "re",
-    "letter": "]",
+    "letter": "_",
     "type":"note",
     "sub_notes": [
-        {"value": "re1", "letter": "^"},
-        {"value": "re2", "letter": "_"},
-        {"value": "re3", "letter": "'"},
-        {"value": "re4", "letter": "a"},
-        {"value": "re5", "letter": "b"},
-        {"value": "re6", "letter": "c"},
-        {"value": "re7", "letter": "d"},
-        {"value": "re8", "letter": "e"},
-        {"value": "re9", "letter": "f"},
-        {"value": "re10", "letter": "g"},
-        {"value": "re11", "letter": "h"}
+        {"value": "re1", "letter": "_"},
+        {"value": "re2", "letter": "'"},
+        {"value": "re3", "letter": "a"},
+        {"value": "re4", "letter": "b"},
+        {"value": "re5", "letter": "c"},
+        {"value": "re6", "letter": "d"},
+        {"value": "re7", "letter": "e"},
+        {"value": "re8", "letter": "f"},
+        {"value": "re9", "letter": "g"},
+        {"value": "re10", "letter": "h"},
+        {"value": "re11", "letter": "i"},
+        {"value": "re12", "letter": "j"}
+    ]
+  },
+  {
+    "value": "chi",
+    "letter": "m",
+    "type":"note",
+    "sub_notes": [
+        {"value": "chi1", "letter": "m"},
+        {"value": "chi2", "letter": "n"},
+        {"value": "chi3", "letter": "o"},
+        {"value": "chi4", "letter": "p"},
+        {"value": "chi5", "letter": "q"},
+        {"value": "chi6", "letter": "r"},
+        {"value": "chi7", "letter": "s"},
+        {"value": "chi8", "letter": "t"},
+        {"value": "chi9", "letter": "u"},
+        {"value": "chi10", "letter": "v"},
+        {"value": "chi11", "letter": "w"},
+        {"value": "chi12", "letter": "x"},
+        {"value": "chi13", "letter": "y"},
+        {"value": "chi14", "letter": "z"},
+        {"value": "chi15", "letter": "{"}
+
+    ]
+  },
+  {
+    "value": "hi",
+    "letter": " ",
+    "type":"note",
+    "sub_notes": [
+        {"value": "hi1", "letter": " "},
+        {"value": "hi2", "letter": "¡"},
+        {"value": "hi3", "letter": "¢"},
+        {"value": "hi4", "letter": "£"},
+        {"value": "hi5", "letter": "¤"},
+        {"value": "hi6", "letter": "¥"},
+        {"value": "hi7", "letter": "¦"},
+        {"value": "hi8", "letter": "§"},
+        {"value": "hi9", "letter": "¨"},
+        {"value": "hi10", "letter": "©"},
+        {"value": "hi11", "letter": "ª"},
+        {"value": "hi12", "letter": "«"},
+        {"value": "hi13", "letter": "¬"},
+        {"value": "hi14", "letter": "ª"},
+        {"value": "hi15", "letter": "ª"}
+    ]
+  },
+  {
+    "value": "ri",
+    "letter": "±",
+    "type":"note",
+    "sub_notes": [
+        {"value": "ri1", "letter": "±"},
+        {"value": "ri2", "letter": "²"}
+
     ]
   }
 ]

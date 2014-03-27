@@ -587,6 +587,11 @@ header {
 				.sub-note-picker {
 					display: none;
 					font-size: 0.5em;
+                    width: 30px;
+                    margin: 0 5px;
+                    height: 30px;
+                    line-height: 1;
+
 					li:last-child a {
 						-webkit-border-bottom-right-radius: 50px;
 						-webkit-border-bottom-left-radius: 50px;
