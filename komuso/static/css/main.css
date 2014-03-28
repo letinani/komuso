@@ -161,7 +161,7 @@ header {
   float: right; }
 
 #side-menu {
-  position: absolute;
+  position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
   height: 100%;
   z-index: 100;
@@ -397,6 +397,7 @@ header {
   margin: 0px auto;
   position: relative;
   line-height: 1;
+  text-align: left;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px; }
@@ -423,7 +424,7 @@ header {
   .note .effect-middle-right {
     position: absolute;
     font-size: 20px;
-    top: 40%px;
+    top: 40%;
     right: -4px; }
   .note .effect-bottom-right {
     position: absolute;
@@ -439,27 +440,27 @@ header {
     position: absolute;
     top: 0px;
     right: 0px;
-    border-right: 3px solid black;
+    border-right: 2px solid black;
     height: 40px; }
   .note .effect-time-2 {
     position: absolute;
     top: 0px;
-    right: -6px;
-    border-left: 3px solid black;
-    border-right: 3px solid black;
+    right: -10px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
     height: 40px;
     width: 3px; }
   .note .effect-time-1-center {
     position: absolute;
     top: 0px;
     left: 50%;
-    border-right: 3px solid black;
+    border-right: 2px solid black;
     height: 40px; }
   .note .effect-time-2-center {
     position: absolute;
     top: 0px;
     left: 45%;
-    border-left: 3px solid black;
+    border-left: 2px solid black;
     border-right: 3px solid black;
     height: 40px;
     width: 3px; }
@@ -723,7 +724,7 @@ header {
         left: -8px;
         top: 33px; }
       .notes2 .note-selected nav .note-picker:hover {
-        background: #ffffff; }
+        background: #CCC; }
       .notes2 .note-selected nav .note-picker:hover .sub-note-picker {
         display: block; }
       .notes2 .note-selected nav .note-picker .sub-note-picker {
@@ -805,8 +806,6 @@ header {
   transition-property: padding;
   transition-timing-function: ease;
   transition-delay: 0s; }
-.notes2 .ui-selected + .ui-selected {
-  padding: 0; }
 
 .pace {
   -webkit-pointer-events: none;

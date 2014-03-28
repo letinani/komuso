@@ -1,4 +1,8 @@
 @charset "UTF-8";
+/*
+ autor: Laetitia Nanni
+ 2013
+*/
 @media only screen and (max-width: 920px) {
   #score {
     width: 89%; } }
@@ -53,25 +57,37 @@
 /**  PRINT  **/
 @media print {
   @page {
-    size: landscape; }
+    size: landscape;
+    margin: 2cm; }
 
   header, #side-menu, #menu-editor, #menu-selection {
     display: none; }
 
   body {
-    color: black; }
-
-  .body {
-    -webkit-transform: rotate(-90deg);
-    -moz-transform: rotate(-90deg);
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    height: auto !important;
     width: auto !important;
     margin: auto !important;
     font-family: serif;
     font-size: 12pt;
-    background-color: white !important;
-    color: black !important; } }
-.sheet {
-  margin-top: 0;
-  box-shadow: 0;
-  page-break-before: always; }
+    background: white !important;
+    color: black !important; }
+
+  #score .sheet {
+    page-break-after: always;
+    margin: auto !important;
+    height: 180mm;
+    width: 300mm;
+    box-shadow: none; }
+
+  #score {
+    float: none; }
+
+  @-moz-document url-prefix() {
+    @page {}
+    #score {
+      float: none;
+      width: 300mm;
+      margin: 0;
+      padding: 0;
+      margin-right: 4cm;
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); } } }

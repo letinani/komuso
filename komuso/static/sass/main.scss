@@ -35,7 +35,7 @@
 
 }
 html,body {
-	height:100%;
+	//height:100%;
 	background: url('../img/background.png');
 	@include selectable(none);
 }
@@ -192,7 +192,7 @@ header {
 
 
 #side-menu {
-	position: absolute;
+	position: fixed;
 	background-color: rgba(0,0,0,0.8);
 	height: 100%;
 	z-index: 100;
@@ -475,6 +475,7 @@ header {
 	margin: 0px auto;
 	position: relative;
     line-height: 1;
+    text-align: left;
 
 	@include border-radius(2px);
 	&:hover {
@@ -505,7 +506,7 @@ header {
     .effect-middle-right {
       position: absolute;
       font-size: 20px;
-      top: 40%px;
+      top: 40%;
       right: -4px;
     }
     .effect-bottom-right {
@@ -522,20 +523,21 @@ header {
     }
 
     //time
+
       .effect-time-1 {
-       position:absolute; top:0px; right:0px; border-right: 3px solid black; height:40px;
+       position:absolute; top:0px; right:0px; border-right: 2px solid black; height:40px;
 
       }
       .effect-time-2 {
-        position:absolute; top:0px; right:-6px; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;
+        position:absolute; top:0px; right:-10px; border-left: 2px solid black; border-right: 2px solid black; height:40px; width: 3px;
       }
 
       .effect-time-1-center {
-        position:absolute; top:0px; left:50%; border-right: 3px solid black; height:40px;
+        position:absolute; top:0px; left:50%; border-right: 2px solid black; height:40px;
 
       }
       .effect-time-2-center {
-        position:absolute; top:0px; left:45%; border-left: 3px solid black; border-right: 3px solid black; height:40px; width: 3px;
+        position:absolute; top:0px; left:45%; border-left: 2px solid black; border-right: 3px solid black; height:40px; width: 3px;
       }
 
 
@@ -781,7 +783,7 @@ header {
                     top: 33px;
                 }
                 &:hover {
-                     background: #ffffff;
+                     background: #CCC;
 
                 }
                   &:hover .sub-note-picker {
@@ -879,13 +881,12 @@ header {
 		background: #e35249;
 	}
 	.ui-selected {
-		background: #E35249; color: white;
+		background: #E35249;
+        color: white;
         padding: 5px 0;
         @include transitions(0.3s, padding, ease, 0s);
 	}
-  	.ui-selected + .ui-selected {
-      padding: 0;
-    }
+
 }
 
 $color_loader : #e33029;
