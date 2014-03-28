@@ -270,19 +270,42 @@
             <div style="display:none;" class="{% cycle '' '百' '二百' '三百' '四百' '五百' '六百' '七百' '八百' '九百' as centaine %}"></div>
 
             <div style="display:none;" class="numCol{% cycle '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '11' '12' as numCol %}"></div>
+            <div style="display:none;" class="numNotes{% cycle '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' as numNotes %}"></div>
+            
             <div id="column1" class="colonne">
                 <div class="cols_numbers">{% cycle unite %}</div>
                 {% for note in piste.notes %}
-                 {% if note.nom == 'blank' %} 
+                 {% if note.nom == 'blank' or numNotes > partition.notesPerCol %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
+                    {% if numNotes != '1' %}<div style="display:none;" class="numCol{% cycle numNotes %}"></div>{% endif %}
                     </div>
                     <pdf:nextframe />
                     <div style="display:none;" class="numCol{% cycle numCol %}"></div>
-                     {% if numCol == "12" %}
+                     {% if numCol > partition.colsPerPage %}
                              </div>
+                             <pdf:nextpage />
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
+                             {% if numCol != '1' %}<div style="display:none;" class="numCol{% cycle numCol %}"></div>{% endif %}
                              <div class="sheet">
-                             <div style="display:none;" class="numCol{% cycle numCol %}"></div>
                      {% endif %}
-                 
                  <div id="column{{ numCol }}" class="colonne">
                     <div style="display:none;" class="{% cycle unite %}"></div>
                     {% if unite == '' %} 
@@ -292,7 +315,9 @@
                         {% endif %}
                     {% endif %}
                     <div class="cols_numbers">{{ centaine }}{{ dizaine }}{{ unite }}</div>
+                    {% if note.nom != 'blank' %}<div style="font-size:38px; font-family: 'komuso';" class="note">{{ note.nom }}</div>{% endif %}
                  {% else %}
+                    <div style="display:none;" class="numNotes{% cycle numNotes %}"></div>
                     <div style="font-size:38px; font-family: 'komuso';" class="note">{{ note.nom }}</div>
                  {% endif %}
                 {% endfor %}

@@ -4,6 +4,8 @@ function ScoreEditor() {
     this.isSaved = true;
     this.historic = new Historic();
     this.partition = this.loadPartition();
+    $('#nb-columns-per-pages option[value="'+this.partition.colsPerPage+'"]').attr('selected','selected');
+    $('#nb-notes-per-columns option[value="'+this.partition.notesPerCol+'"]').attr('selected','selected');
     this.selection = Selection();
     this.selected = [];
     this.clipboard = [];
@@ -138,7 +140,7 @@ ScoreEditor.prototype.print = function() {
     if(this.cursorPosition > this.nbNotes()) this.cursorPosition = this.nbNotes();
     else if(this.cursorPosition < 0) this.cursorPosition = 0;
     
-    affichage($("#nb-notes-per-columns").val(), this.partition.pistes[0].notes, this.partition.title.text, $("#nb-columns-per-pages").val(), this.cursorPosition);
+    affichage(this.partition.notesPerCol, this.partition.pistes[0].notes, this.partition.title.text, this.partition.colsPerPage, this.cursorPosition);
     
     $('.cursor').unbind('mouseover');
     $('.cursor').mouseover(function(e) {
@@ -292,7 +294,8 @@ function refreshSelection(firstSelected, selecting) {
 // Crée une partition vide.
 ScoreEditor.prototype.createPartition = function() { 
     var title = new Title("", "Arial", 20, "#000",  "normal"); //A ajouter à la création d'un titre
-    var partition = new Partition(title, "Michu", new Date(), 2); //A ajouter à la création d'une partition
+    
+    var partition = new Partition(title, "Michu", new Date(), 2, $("#nb-columns-per-pages").val(), $("#nb-notes-per-columns").val()); //A ajouter à la création d'une partition
     var template = new Template(true, "konko", 20, false, false); //A ajouter à la création d'une piste
     partition.pistes.push(new Piste(template, title)); //A ajouter à la création d'une piste => ajoute une piste à la partition
     
@@ -386,12 +389,14 @@ ScoreEditor.prototype.redo = function() {
 }
 
 // Constructeur de la class partition, prend en paramètre un titre(class), un auteur, une date et une version
-function Partition(title, author, date, version) {
+function Partition(title, author, date, version, colsPerPage, notesPerCol) {
 	this.title = title;
 	this.author = author;
 	this.date = date;
 	this.version = version;
 	this.pistes = [];
+	this.colsPerPage = colsPerPage;
+	this.notesPerCol = notesPerCol;
 }
 
 // Constructeur de la class title, prend en paramètre une font, une font size, une couleur et un font weight
@@ -506,6 +511,23 @@ $(document).ready(function() {
         }
     });
     
+    $("a.blank").click(function(e) {
+        e.preventDefault();
+        var note = new Note("blank", "", "", []);
+		
+        if(scoreEditor.selected.length == 0) {
+            scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
+            scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
+        } else {
+            var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+        
+            scoreEditor.add(new HistoricEvent("add", index, 0, note));
+            scoreEditor.insertNotesAt(index, 0, note);
+        }
+    
+        scoreEditor.update();
+    });
+    
     $("a.delete-menu").click(function(e) {
         e.preventDefault();
         if(scoreEditor.selected.length > 0) {
@@ -523,6 +545,16 @@ $(document).ready(function() {
 	$("#title").find("textarea").change(function(e) {
 	    scoreEditor.partition.title.text = $(this).val();
 	    scoreEditor.isSaved = false;
+	    scoreEditor.save();
+	});
+	
+	$("#nb-notes-per-columns").change(function(e) {
+	    scoreEditor.partition.notesPerCol = $(this).val();
+	    scoreEditor.save();
+	});
+	
+	$("#nb-columns-per-pages").change(function(e) {
+	    scoreEditor.partition.colsPerPage = $(this).val();
 	    scoreEditor.save();
 	});
 	
@@ -603,87 +635,104 @@ $(document).ready(function() {
 	});
 	
 	$(document).keydown(function(e) {
-	    switch(e.which) {
-	        case 13:
-	            e.preventDefault();
-                var note = new Note("blank", "", "", []);
-		
-		        if(scoreEditor.selected.length == 0) {
-                    scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
-                    scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
-                } else {
-                    var index = $( "div.note" ).index( $( ".ui-selected")[0] );
-                
-                    scoreEditor.add(new HistoricEvent("add", index, 0, note));
-                    scoreEditor.insertNotesAt(index, 0, note);
+        switch(e.which) {
+            case 13:
+                if($(':focus').length == 0) {
+                    e.preventDefault();
+                    var note = new Note("blank", "", "", []);
+
+                    if(scoreEditor.selected.length == 0) {
+                        scoreEditor.add(new HistoricEvent("add", $('.currentCursor').attr('name'), 0, note));
+                        scoreEditor.insertNotesAt($('.currentCursor').attr('name'), 0, note);
+                    } else {
+                        var index = $( "div.note" ).index( $( ".ui-selected")[0] );
+                    
+                        scoreEditor.add(new HistoricEvent("add", index, 0, note));
+                        scoreEditor.insertNotesAt(index, 0, note);
+                    }
+                    scoreEditor.update();
                 }
-            
-		        scoreEditor.update();
-		        break;
-		    case 46:
-		        e.preventDefault();
-                var index = scoreEditor.cursorPosition;
-                if(scoreEditor.selected.length > 0) { 
-                    index = $( "div.note" ).index( $(".ui-selected")[0] );
-                           
-                    scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
-                    scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
-                    scoreEditor.update();
-                } else if(scoreEditor.partition.pistes[0].notes[index]) {
-                    scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index]))));
-                    scoreEditor.removeNotesAt(index, 0, 1);
-                    scoreEditor.update();
+	            break;
+	        case 46:
+	            if($(':focus').length == 0) {
+                    e.preventDefault();
+                    var index = scoreEditor.cursorPosition;
+                    if(scoreEditor.selected.length > 0) { 
+                        index = $( "div.note" ).index( $(".ui-selected")[0] );
+                               
+                        scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+                        scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                        scoreEditor.update();
+                    } else if(scoreEditor.partition.pistes[0].notes[index]) {
+                        scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index]))));
+                        scoreEditor.removeNotesAt(index, 0, 1);
+                        scoreEditor.update();
+                    }
                 }
                 break;
             case 8:
-                e.preventDefault();
-                var index = scoreEditor.cursorPosition;
-                if(scoreEditor.selected.length > 0) { 
-                    index = $( "div.note" ).index( $(".ui-selected")[0] );
-                           
-                    scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
-                    scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
-                    scoreEditor.update();
-                } else if(scoreEditor.partition.pistes[0].notes[index-1]) {
-                    scoreEditor.add(new HistoricEvent("delete", index-1, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index-1]))));
-                    scoreEditor.removeNotesAt(index-1, 0, 1);
-                    scoreEditor.update();
+                if($(':focus').length == 0) {
+                    e.preventDefault();
+                    var index = scoreEditor.cursorPosition;
+                    if(scoreEditor.selected.length > 0) { 
+                        index = $( "div.note" ).index( $(".ui-selected")[0] );
+                               
+                        scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
+                        scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
+                        scoreEditor.update();
+                    } else if(scoreEditor.partition.pistes[0].notes[index-1]) {
+                        scoreEditor.add(new HistoricEvent("delete", index-1, 0, JSON.parse(JSON.stringify(scoreEditor.partition.pistes[0].notes[index-1]))));
+                        scoreEditor.removeNotesAt(index-1, 0, 1);
+                        scoreEditor.update();
+                    }
                 }
                 break;
-	        case 37: // Left
-	            var i;
-	            for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
-	                if(parseInt(scoreEditor.cursorPosition)+i < scoreEditor.nbNotes()) {
-	                    if(scoreEditor.partition.pistes[0].notes[parseInt(scoreEditor.cursorPosition)+i].nom == "blank") break;
-	                }
-	            }
-	            scoreEditor.cursorPosition = parseInt(scoreEditor.cursorPosition)+i;
-	            
-	            scoreEditor.print();
-	            break;
-	            
-	        case 39: // Right
-	            var i;
-	            for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
-	                if(parseInt(scoreEditor.cursorPosition)-i > 0) {
-	                    if(scoreEditor.partition.pistes[0].notes[parseInt(scoreEditor.cursorPosition)-i].nom == "blank") break;
-	                }
-	            }
-	            scoreEditor.cursorPosition = parseInt(scoreEditor.cursorPosition)-i;
-	            
-	            scoreEditor.print();
-	            break;
-	            
-	        case 38: // Top
-	            --scoreEditor.cursorPosition;
-	            scoreEditor.print();
-	            break;
-	            
-	        case 40: // Bottom
-	            ++scoreEditor.cursorPosition;
-	            scoreEditor.print();
-	            break;
-	    }
+            case 37: // Left
+                if($(':focus').length == 0) {
+                    e.preventDefault();
+                    var i;
+                    for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
+                        if(parseInt(scoreEditor.cursorPosition)+i < scoreEditor.nbNotes()) {
+                            if(scoreEditor.partition.pistes[0].notes[parseInt(scoreEditor.cursorPosition)+i].nom == "blank") break;
+                        }
+                    }
+                    scoreEditor.cursorPosition = parseInt(scoreEditor.cursorPosition)+i;
+                    
+                    scoreEditor.print();
+                }
+                break;
+                
+            case 39: // Right
+                if($(':focus').length == 0) {
+                    e.preventDefault();
+                    var i;
+                    for(i = 1; i < $("#nb-notes-per-columns").val(); ++i) {
+                        if(parseInt(scoreEditor.cursorPosition)-i > 0) {
+                            if(scoreEditor.partition.pistes[0].notes[parseInt(scoreEditor.cursorPosition)-i].nom == "blank") break;
+                        }
+                    }
+                    scoreEditor.cursorPosition = parseInt(scoreEditor.cursorPosition)-i;
+                    
+                    scoreEditor.print();
+                }
+                break;
+                
+            case 38: // Top
+                if($(':focus').length == 0) {
+                    e.preventDefault();
+                    --scoreEditor.cursorPosition;
+                    scoreEditor.print();
+                }
+                break;
+                
+            case 40: // Bottom
+                if($(':focus').length == 0) {
+                    e.preventDefault();
+                    ++scoreEditor.cursorPosition;
+                    scoreEditor.print();
+                }
+                break;
+        }
 	});
 	
 	var down = [];

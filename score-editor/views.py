@@ -8,7 +8,6 @@ from django.conf import settings
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 import json
-from django.templatetags.static import static
 
 def home(request):
         url = settings.STATIC_ROOT+'/js/notes.json'
