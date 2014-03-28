@@ -278,17 +278,12 @@ header {
 	}
 
 	.buttonDownload {
-		height:auto;
-		margin-top:20px;
-		text-align:center;
-		text-shadow:1px 1px 1px #851713;
-		background-color:#dd352e;
+		/*height:auto;*/
+		margin-top:10px;
 		transition:all 0.3s linear;
-		border-radius:5px;
 
 		&:hover {
-			text-shadow:none;
-			background-color:#bf1912;
+			color:red;
 		}
 	}
 }
@@ -407,13 +402,27 @@ header {
 			bottom: 30px;
 		}
 		#title {
-			margin: 20px;
-			float: right;
 			text-align: center;
 			font-size: 1em;
 			padding: 10px;
 			@include border-radius(5px);
 			border: 1px dashed #CCC;
+			&.jap {
+				margin: 20px;
+				float: right;
+			}
+			&.french {
+
+				width:90%;
+				margin-left:50px;
+				margin-top:-30px;
+				margin-bottom:20px;
+
+				textarea {
+					width:100%;
+					text-align:center;
+				}
+			}
 			.toptobottom {
 				width: 20px;
 				word-wrap: break-word;
@@ -421,6 +430,31 @@ header {
 			textarea {
 				border: 0;
 				background: none;
+			}
+
+			a {
+				display:block;
+				position:absolute;
+				padding:5px;
+				color:#aaa;
+				border: 1px dashed #aaa;
+				@include border-radius(5px);
+				@include transitions(0.4s,right,linear);
+				cursor:pointer;
+
+				&.buttonJap {
+					margin-top:-27px;
+					margin-left:-60px;
+				}
+
+				&.buttonFrench {
+					margin-left:4px;
+					margin-top:25px;
+				}
+
+				&:hover {
+					color:#000;
+				}
 			}
 		}
 		#cursor {
@@ -533,11 +567,11 @@ header {
       }
 
       .effect-time-1-center {
-        position:absolute; top:0px; left:50%; border-right: 2px solid black; height:40px;
+        position:absolute; top:0px; left:40%; border-right: 2px solid black; height:40px;
 
       }
       .effect-time-2-center {
-        position:absolute; top:0px; left:45%; border-left: 2px solid black; border-right: 3px solid black; height:40px; width: 3px;
+        position:absolute; top:0px; left:35%; border-left: 2px solid black; border-right: 3px solid black; height:40px; width: 3px;
       }
 
 
