@@ -271,6 +271,10 @@ ScoreEditor.prototype.update = function() {
                 
             $( ".ui-selected").removeClass("ui-selected");
             scoreEditor.selected.length = 0;
+            
+            if ($('#side-menu').is(':visible')) {
+                $("#side-menu").animate({right:"-400px"}, 400);
+            }
         }
 	});
 }

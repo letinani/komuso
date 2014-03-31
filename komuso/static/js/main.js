@@ -13,7 +13,7 @@ $(function() {
         return false;
     });
 
-    /*$(document).click(function(e) {
+    $(document).click(function(e) {
         if(!$(e.target).hasClass("lang") && !$(e.target).parents().is("#side-menu")) {
             e.preventDefault();
             if (!$(e.target).is("#side-menu")) {
@@ -22,7 +22,7 @@ $(function() {
                 }
             }
         }
-    });*/
+    });
 
    // On cache les sous-menus :
     $("#menu-notes .menu-sub").hide();
