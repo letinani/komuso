@@ -1,5 +1,5 @@
 /***** Affichage de toutes les notes de la partition ****/
-function affichage(number_max, partition, titlePartition, colonm_max, position) {
+function affichage(number_max, partition, titlePartition, colonm_max, position, languageTitle) {
 
 	 var currentCol = 1;
 	 var currentLine = 0;
@@ -14,14 +14,33 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
     var title = document.createElement('section');
     title.setAttribute("class","empty");
     title.setAttribute("id","title");
-    
+    if(languageTitle == "jap") 
+    	title.setAttribute("class", "jap");
+    else
+    	title.setAttribute("class", "french");
+
     var form = document.createElement('form');
     
     var textarea = document.createElement('textarea');
-    textarea.setAttribute('rows','20');
-    textarea.setAttribute('cols','1');
+    if($(title).attr('class') == "jap") {
+    	 textarea.setAttribute('rows','20');
+    	textarea.setAttribute('cols','1');
+    }
+    else
+    	textarea.setAttribute('rows','1');
     textarea.setAttribute('placeholder','Titre de la partition');
     textarea.innerHTML = titlePartition;
+
+    var titleLanguage = document.createElement('a');
+    titleLanguage.setAttribute("id", "languageButton");
+    if($(title).attr('class') == "jap") {
+   		titleLanguage.setAttribute("class", "buttonFrench");
+   		titleLanguage.innerHTML = "fr";
+   	}
+   	else {
+   		titleLanguage.setAttribute("class", "buttonJap");
+   		titleLanguage.innerHTML = "jap";
+   	}
     
     var numPages = document.createElement('span');
     numPages.setAttribute("class","num-page");
@@ -29,6 +48,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position) 
     
     form.appendChild(textarea);
     title.appendChild(form);
+    title.appendChild(titleLanguage);
     
     sheet.appendChild(title);
     if($("#score-pages:checked").length == 1) sheet.appendChild(numPages);

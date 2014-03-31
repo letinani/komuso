@@ -1,4 +1,4 @@
-@charset "UTF-8";
+@charset "CP850";
 /*
  autor: Laetitia Nanni
  2013
@@ -25,7 +25,6 @@
   font-style: normal; }
 
 html, body {
-  height: 100%;
   background: url("../img/background.png");
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -242,16 +241,11 @@ header {
   #side-menu input[type=file] {
     border: 1px solid #444; }
   #side-menu .buttonDownload {
-    height: auto;
-    margin-top: 20px;
-    text-align: center;
-    text-shadow: 1px 1px 1px #851713;
-    background-color: #dd352e;
-    transition: all 0.3s linear;
-    border-radius: 5px; }
+    /*height:auto;*/
+    margin-top: 10px;
+    transition: all 0.3s linear; }
     #side-menu .buttonDownload:hover {
-      text-shadow: none;
-      background-color: #bf1912; }
+      color: red; }
 
 /********  Menu to add notes on score ********/
 #menu-editor {
@@ -342,8 +336,6 @@ header {
       right: 30px;
       bottom: 30px; }
     #score .sheet #title, #score2 .sheet #title {
-      margin: 20px;
-      float: right;
       text-align: center;
       font-size: 1em;
       padding: 10px;
@@ -351,12 +343,61 @@ header {
       -moz-border-radius: 5px;
       border-radius: 5px;
       border: 1px dashed #CCC; }
+      #score .sheet #title.jap, #score2 .sheet #title.jap {
+        margin: 20px;
+        float: right; }
+      #score .sheet #title.french, #score2 .sheet #title.french {
+        width: 90%;
+        margin-left: 50px;
+        margin-top: -30px;
+        margin-bottom: 20px; }
+        #score .sheet #title.french textarea, #score2 .sheet #title.french textarea {
+          width: 100%;
+          text-align: center; }
       #score .sheet #title .toptobottom, #score2 .sheet #title .toptobottom {
         width: 20px;
         word-wrap: break-word; }
       #score .sheet #title textarea, #score2 .sheet #title textarea {
         border: 0;
         background: none; }
+      #score .sheet #title a, #score2 .sheet #title a {
+        display: block;
+        position: absolute;
+        padding: 5px;
+        color: #aaa;
+        border: 1px dashed #aaa;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        -webkit-transition-duration: 0.4s;
+        -webkit-transition-property: right;
+        -webkit-transition-timing-function: linear;
+        -webkit-transition-delay: 0;
+        -moz-transition-duration: 0.4s;
+        -moz-transition-property: right;
+        -moz-transition-timing-function: linear;
+        -moz-transition-delay: 0;
+        -ms-transition-duration: 0.4s;
+        -ms-transition-property: right;
+        -ms-transition-timing-function: linear;
+        -ms-transition-delay: 0;
+        -o-transition-duration: 0.4s;
+        -o-transition-property: right;
+        -o-transition-timing-function: linear;
+        -o-transition-delay: 0;
+        transition-duration: 0.4s;
+        transition-property: right;
+        transition-timing-function: linear;
+        transition-delay: 0;
+        cursor: pointer; }
+        #score .sheet #title a.buttonJap, #score2 .sheet #title a.buttonJap {
+          margin-top: -27px;
+          margin-left: -60px; }
+        #score .sheet #title a.buttonFrench, #score2 .sheet #title a.buttonFrench {
+          margin-left: 4px;
+          margin-top: 25px; }
+        #score .sheet #title a:hover, #score2 .sheet #title a:hover {
+          color: #000; }
     #score .sheet #cursor, #score2 .sheet #cursor {
       height: 1px;
       background-color: red;
@@ -453,13 +494,13 @@ header {
   .note .effect-time-1-center {
     position: absolute;
     top: 0px;
-    left: 50%;
+    left: 40%;
     border-right: 2px solid black;
     height: 40px; }
   .note .effect-time-2-center {
     position: absolute;
     top: 0px;
-    left: 45%;
+    left: 35%;
     border-left: 2px solid black;
     border-right: 3px solid black;
     height: 40px;
