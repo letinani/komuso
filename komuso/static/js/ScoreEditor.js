@@ -177,6 +177,20 @@ ScoreEditor.prototype.print = function() {
              scoreEditor.cursorPosition = $( this ).attr('name');
          }
     });
+
+    $('#languageButton').unbind('click');
+    $("#languageButton").click(function(e) {
+        e.preventDefault();
+
+        if(this.className == "buttonFrench")
+            scoreEditor.partition.language = "french";
+        else
+            scoreEditor.partition.language = "japanese";
+        
+        scoreEditor.save();
+        scoreEditor.print();
+
+    });
    
     load();
 }
@@ -562,19 +576,6 @@ $(document).ready(function() {
 	    scoreEditor.partition.colsPerPage = $(this).val();
 	    scoreEditor.save();
 	});
-
-    /*** Changement de langue du titre ***/
-     $("#languageButton").click(function(e) {
-        e.preventDefault();
-
-        if(this.className == "buttonFrench")
-            scoreEditor.partition.language = "french";
-        else
-            scoreEditor.partition.language = "japanese";
-
-        scoreEditor.update();
-        
-     });  
 	
 	/*** Sauvegarde ***/
 	$('.saveButton').click(function(e) {

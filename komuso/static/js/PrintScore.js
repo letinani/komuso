@@ -12,7 +12,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
     sheet.setAttribute("class","sheet");
     
     var title = document.createElement('section');
-    title.setAttribute("class","empty");
+    //title.setAttribute("class","empty");
     title.setAttribute("id","title");
     if(languageTitle == "japanese") 
     	title.setAttribute("class", "jap");
@@ -23,7 +23,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
     
     var textarea = document.createElement('textarea');
     if($(title).attr('class') == "jap") {
-    	 textarea.setAttribute('rows','20');
+    	textarea.setAttribute('rows','20');
     	textarea.setAttribute('cols','1');
     }
     else
