@@ -14,7 +14,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
     var title = document.createElement('section');
     title.setAttribute("class","empty");
     title.setAttribute("id","title");
-    if(languageTitle == "jap") 
+    if(languageTitle == "japanese") 
     	title.setAttribute("class", "jap");
     else
     	title.setAttribute("class", "french");
