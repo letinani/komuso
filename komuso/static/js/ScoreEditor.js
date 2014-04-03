@@ -140,7 +140,7 @@ ScoreEditor.prototype.print = function() {
     if(this.cursorPosition > this.nbNotes()) this.cursorPosition = this.nbNotes();
     else if(this.cursorPosition < 0) this.cursorPosition = 0;
     
-    affichage(this.partition.notesPerCol, this.partition.pistes[0].notes, this.partition.title.text, this.partition.colsPerPage, this.cursorPosition);
+    affichage(this.partition.notesPerCol, this.partition.pistes[0].notes, this.partition.title.text, this.partition.colsPerPage, this.cursorPosition, this.partition.language);
     
     $('.cursor').unbind('mouseover');
     $('.cursor').mouseover(function(e) {
@@ -299,7 +299,7 @@ function refreshSelection(firstSelected, selecting) {
 ScoreEditor.prototype.createPartition = function() { 
     var title = new Title("", "Arial", 20, "#000",  "normal"); //A ajouter à la création d'un titre
     
-    var partition = new Partition(title, "Michu", new Date(), 2, $("#nb-columns-per-pages").val(), $("#nb-notes-per-columns").val()); //A ajouter à la création d'une partition
+    var partition = new Partition(title, "Michu", new Date(), 2, $("#nb-columns-per-pages").val(), $("#nb-notes-per-columns").val(), "japanese"); //A ajouter à la création d'une partition
     var template = new Template(true, "konko", 20, false, false); //A ajouter à la création d'une piste
     partition.pistes.push(new Piste(template, title)); //A ajouter à la création d'une piste => ajoute une piste à la partition
     
@@ -393,11 +393,12 @@ ScoreEditor.prototype.redo = function() {
 }
 
 // Constructeur de la class partition, prend en paramètre un titre(class), un auteur, une date et une version
-function Partition(title, author, date, version, colsPerPage, notesPerCol) {
+function Partition(title, author, date, version, colsPerPage, notesPerCol, language) {
 	this.title = title;
 	this.author = author;
 	this.date = date;
 	this.version = version;
+    this.language = language;
 	this.pistes = [];
 	this.colsPerPage = colsPerPage;
 	this.notesPerCol = notesPerCol;
@@ -561,6 +562,19 @@ $(document).ready(function() {
 	    scoreEditor.partition.colsPerPage = $(this).val();
 	    scoreEditor.save();
 	});
+
+    /*** Changement de langue du titre ***/
+     $("#languageButton").click(function(e) {
+        e.preventDefault();
+
+        if(this.className == "buttonFrench")
+            scoreEditor.partition.language = "french";
+        else
+            scoreEditor.partition.language = "japanese";
+
+        scoreEditor.update();
+        
+     });  
 	
 	/*** Sauvegarde ***/
 	$('.saveButton').click(function(e) {
