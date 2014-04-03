@@ -14,7 +14,7 @@ $(function() {
     });
 
     $(document).click(function(e) {
-        if(!$(e.target).hasClass("lang") && !$(e.target).parents().is("#side-menu")) {
+        if(!$(e.target).hasClass("lang") && !$(e.target).hasClass("print-pdf") && !$(e.target).hasClass("export-pdf") && !$(e.target).parents().is("#side-menu")) {
             e.preventDefault();
             if (!$(e.target).is("#side-menu")) {
                 if ($('#side-menu').is(':visible')) {

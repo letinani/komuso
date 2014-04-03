@@ -28,16 +28,15 @@
 				</a>
 			</li>
 			<li>
-				<a id="print-pdf" href="">
+				<a class="print-pdf" href="">
 					<span class="label">{% trans "label_print_document" %}</span>
 					<figure class="icon print"></figure>
 				</a>
 			</li>
 			<li>
-				<a id="export-pdf" href="">
+				<a class="export-pdf" href="export-pdf/">
 					<span class="label">{% trans "label_export_pdf" %}</span>
 					<figure class="icon export-pdf"></figure>
-					<form id="form-export-pdf" action="export-pdf/" method="get">{% csrf_token %}<input id="partition-pdf" type="hidden" name="partition" value=""></form>
 				</a>
 			</li>
 			<li>

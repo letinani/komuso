@@ -815,13 +815,7 @@ $(document).ready(function() {
         }
     });
     
-    $('#export-pdf').click(function(e){
-        e.preventDefault();
-        $("#partition-pdf").val(JSON.stringify(scoreEditor.partition));
-        $("#form-export-pdf").submit();
-    });
-    
-    $('#print-pdf').click(function(e){
+    $('.print-pdf').click(function(e){
         e.preventDefault();
         window.print();
     });
