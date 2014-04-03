@@ -180,7 +180,7 @@ ScoreEditor.prototype.print = function() {
     
     /*** Changement de langue du titre ***/
     $("#languageButton").unbind("click");
-     $("#languageButton").click(function(e) {
+    $("#languageButton").click(function(e) {
         e.preventDefault();
 
         if(this.className == "buttonFrench")
@@ -190,7 +190,7 @@ ScoreEditor.prototype.print = function() {
 
         scoreEditor.update();
         
-     }); 
+     });
    
     load();
 }
@@ -575,7 +575,7 @@ $(document).ready(function() {
 	$("#nb-columns-per-pages").change(function(e) {
 	    scoreEditor.partition.colsPerPage = $(this).val();
 	    scoreEditor.save();
-	}); 
+	});
 	
 	/*** Sauvegarde ***/
 	$('.saveButton').click(function(e) {
