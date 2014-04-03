@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from wkhtmltopdf.views import PDFTemplateView
+#from wkhtmltopdf.views import PDFTemplateView
 import os
 
 urlpatterns = patterns('score-editor.views',
