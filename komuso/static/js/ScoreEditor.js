@@ -78,7 +78,6 @@ ScoreEditor.prototype.cut = function() {
             menu.parentNode.removeChild(menu);
     } else {
         alert(gettext('alert_non_selected_notes_to_cut'));
-        //alert("Vous devez sélectionner des notes avant de pouvoir les couper !");
     }
 }
 
@@ -97,7 +96,6 @@ ScoreEditor.prototype.copy = function() {
             menu.parentNode.removeChild(menu);
     } else {
         alert(gettext('alert_non_selected_notes_to_copy'));
-        //alert("Vous devez sélectionner des notes avant de pouvoir les copier !");
     }
 }
 
@@ -120,8 +118,7 @@ ScoreEditor.prototype.paste = function() {
         if(menu) 
             menu.parentNode.removeChild(menu);
     } else {
-        //alert("Le presse papier est vide !");
-        alert(gettext('alert_empty_presse'));
+        alert(gettext('alert_empty_clipboard'));
     }
 }
 
@@ -131,7 +128,7 @@ ScoreEditor.prototype.save = function() {
         localStorage.setItem("partition",JSON.stringify(this.partition));
         localStorage.setItem("historic",JSON.stringify(this.historic));
     } else {
-        alert("localStorage n'est pas supporté. Impossible de sauvegarder la partition.");
+        alert(gettext('localStorage_not_supported'));
         // A compléter : utilisation de userData pour IE 6 et 7
     }
 }
@@ -336,8 +333,8 @@ ScoreEditor.prototype.loadPartition = function() {
             return this.createPartition();
         }
     }
-    
-    alert("localStorage n'est pas supporté. Impossible de charger la partition.");
+
+    alert(gettext('localStorage_not_supported'));
     // A compléter : utilisation de userData pour IE 6 et 7
     
     return this.createPartition();
@@ -605,7 +602,7 @@ $(document).ready(function() {
 	$('.newDocument').click(function(e) {
 	    e.preventDefault();
 	    if(!scoreEditor.isSaved) {
-	        if(confirm("Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues.")) {
+	        if(confirm(gettext('alert_score_not_saved'))) {
                 scoreEditor.partition = scoreEditor.createPartition();
                 scoreEditor.historic.redoEvents.length = 0;
                 scoreEditor.historic.undoEvents.length = 0;
@@ -623,7 +620,7 @@ $(document).ready(function() {
     var fileInput = document.querySelector('.loadFile');
     fileInput.onchange = function() {
          if(!scoreEditor.isSaved) {
-	        if(confirm("Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues.")) {  
+	        if(confirm(gettext('alert_score_not_saved'))) {
                 var reader = new FileReader();
                 reader.onload = function() {
                     scoreEditor.historic.redoEvents.length = 0;

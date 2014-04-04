@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-04 10:28+0200\n"
+"POT-Creation-Date: 2014-04-04 21:10+0200\n"
 "PO-Revision-Date: 2014-02-20 18:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,7 +32,7 @@ msgstr "Print"
 #: templates/header.html:38
 #, fuzzy
 msgid "label_export_pdf"
-msgstr "Print"
+msgstr "PDF export"
 
 #: templates/header.html:44 templates/side-menu.html:10
 msgid "label_save_document"
@@ -48,7 +48,7 @@ msgstr "New score"
 
 #: templates/side-menu.html:12 templates/side-menu.html.py:13
 msgid "label_charge_document"
-msgstr "Open a score :"
+msgstr "Open a score"
 
 #: templates/side-menu.html:17
 msgid "nav_layout"
