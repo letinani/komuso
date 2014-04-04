@@ -51,24 +51,6 @@
     ]
   },
   {
-    "value": "en",
-    "letter": "½",
-    "type":"effect-note",
-    "sub_notes": [
-        {"value": "en1", "letter": "½"},
-        {"value": "en2", "letter": "¾"},
-        {"value": "en3", "letter": "¿"},
-        {"value": "en4", "letter": "Î"},
-        {"value": "en5", "letter": "Ï"},
-        {"value": "en6", "letter": "Ð"},
-        {"value": "en7", "letter": "Ñ"},
-        {"value": "en8", "letter": "Ò"},
-        {"value": "en9", "letter": "Ó"},
-        {"value": "en10", "letter": "Ô"},
-        {"value": "en11", "letter": "Õ"}
-    ]
-  },
-  {
     "value": "ro",
     "letter": "=",
     "type":"note",
@@ -117,7 +99,7 @@
     "type":"note",
     "sub_notes": [
         {"value": "re1", "letter": "_"},
-        {"value": "re2", "letter": "'"},
+        {"value": "re2", "letter": "`"},
         {"value": "re3", "letter": "a"},
         {"value": "re4", "letter": "b"},
         {"value": "re5", "letter": "c"},
@@ -155,10 +137,10 @@
   },
   {
     "value": "hi",
-    "letter": " ",
+    "letter": "}",
     "type":"note",
     "sub_notes": [
-        {"value": "hi1", "letter": " "},
+        {"value": "hi1", "letter": "}"},
         {"value": "hi2", "letter": "¡"},
         {"value": "hi3", "letter": "¢"},
         {"value": "hi4", "letter": "£"},
@@ -171,8 +153,8 @@
         {"value": "hi11", "letter": "ª"},
         {"value": "hi12", "letter": "«"},
         {"value": "hi13", "letter": "¬"},
-        {"value": "hi14", "letter": "ª"},
-        {"value": "hi15", "letter": "ª"}
+        {"value": "hi14", "letter": "®"},
+        {"value": "hi15", "letter": "¯"}
     ]
   },
   {
@@ -181,8 +163,34 @@
     "type":"note",
     "sub_notes": [
         {"value": "ri1", "letter": "±"},
-        {"value": "ri2", "letter": "²"}
-
+        {"value": "ri2", "letter": "²"},
+        {"value": "ri3", "letter": "³"},
+        {"value": "ri4", "letter": "´"},
+        {"value": "ri5", "letter": "µ"},
+        {"value": "ri6", "letter": "¶"},
+        {"value": "ri7", "letter": "·"},
+        {"value": "ri8", "letter": "¸"},
+        {"value": "ri9", "letter": "¹"},
+        {"value": "ri10", "letter": "º"},
+        {"value": "ri11", "letter": "»"}
+    ]
+  },
+      {
+    "value": "en",
+    "letter": "½",
+    "type":"effect-note",
+    "sub_notes": [
+        {"value": "en1", "letter": "½"},
+        {"value": "en2", "letter": "¾"},
+        {"value": "en3", "letter": "¿"},
+        {"value": "en4", "letter": "Î"},
+        {"value": "en5", "letter": "Ï"},
+        {"value": "en6", "letter": "Ð"},
+        {"value": "en7", "letter": "Ñ"},
+        {"value": "en8", "letter": "Ò"},
+        {"value": "en9", "letter": "Ó"},
+        {"value": "en10", "letter": "Ô"},
+        {"value": "en11", "letter": "Õ"}
     ]
   }
 ]
