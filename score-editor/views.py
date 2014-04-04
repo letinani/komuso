@@ -6,7 +6,7 @@ from django.template import RequestContext
 import os
 from django.conf import settings
 from django.template.loader import get_template
-from xhtml2pdf import pisa
+#from xhtml2pdf import pisa
 import json
 
 def home(request):
@@ -41,7 +41,7 @@ def fetch_resources(uri, rel):
                                     settings.MEDIA_ROOT, settings.STATIC_ROOT))
 
     return path
-                 
+"""
 def home_pdf(request):
     # Prepare context
     data = {}
@@ -63,3 +63,4 @@ def home_pdf(request):
     pdf = file.read()
     file.close()            # Don't forget to close the file handle
     return HttpResponse(pdf, mimetype='application/pdf')
+"""
