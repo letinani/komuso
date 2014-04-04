@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-15 18:14+0100\n"
+"POT-Creation-Date: 2014-04-04 10:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: templates/score-editor/index.html:20
-msgid "Bonjour"
-msgstr "こんにちは"
+#: templates/header.html:20
+msgid "label_undo"
+msgstr ""
+
+#: templates/header.html:26
+msgid "label_redo"
+msgstr ""
+
+#: templates/header.html:32 templates/side-menu.html:11
+msgid "label_print_document"
+msgstr ""
+
+#: templates/header.html:38
+msgid "label_export_pdf"
+msgstr ""
+
+#: templates/header.html:44 templates/side-menu.html:10
+msgid "label_save_document"
+msgstr ""
+
+#: templates/side-menu.html:7
+msgid "nav_file"
+msgstr ""
+
+#: templates/side-menu.html:9
+msgid "label_new_document"
+msgstr ""
+
+#: templates/side-menu.html:12 templates/side-menu.html.py:13
+msgid "label_charge_document"
+msgstr ""
+
+#: templates/side-menu.html:17
+msgid "nav_layout"
+msgstr ""
+
+#: templates/side-menu.html:20
+msgid "label_activate_borders"
+msgstr ""
+
+#: templates/side-menu.html:21
+msgid "label_activate_lines"
+msgstr ""
+
+#: templates/side-menu.html:22
+msgid "label_activate_pages"
+msgstr ""
+
+#: templates/side-menu.html:23
+msgid "label_middle_time"
+msgstr ""
+
+#: templates/side-menu.html:24
+msgid "label_nb_columns"
+msgstr ""
+
+#: templates/side-menu.html:39
+msgid "label_nb_notes_per_columns"
+msgstr ""
+
+#: templates/side-menu.html:56
+msgid "nav_download"
+msgstr ""
+
+#: templates/side-menu.html:57
+msgid "label_download_font"
+msgstr ""
+
+#~ msgid "Bonjour"
+#~ msgstr "こんにちは"

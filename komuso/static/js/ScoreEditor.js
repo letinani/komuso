@@ -77,7 +77,8 @@ ScoreEditor.prototype.cut = function() {
         if(menu) 
             menu.parentNode.removeChild(menu);
     } else {
-        alert("Vous devez sélectionner des notes avant de pouvoir les couper !");
+        alert(gettext('alert_non_selected_notes_to_cut'));
+        //alert("Vous devez sélectionner des notes avant de pouvoir les couper !");
     }
 }
 
@@ -95,7 +96,8 @@ ScoreEditor.prototype.copy = function() {
         if(menu) 
             menu.parentNode.removeChild(menu);
     } else {
-        alert("Vous devez sélectionner des notes avant de pouvoir les copier !");
+        alert(gettext('alert_non_selected_notes_to_copy'));
+        //alert("Vous devez sélectionner des notes avant de pouvoir les copier !");
     }
 }
 
@@ -118,7 +120,8 @@ ScoreEditor.prototype.paste = function() {
         if(menu) 
             menu.parentNode.removeChild(menu);
     } else {
-        alert("Le presse papier est vide !");
+        //alert("Le presse papier est vide !");
+        alert(gettext('alert_empty_presse'));
     }
 }
 
@@ -556,7 +559,7 @@ $(document).ready(function() {
             scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
             scoreEditor.update();
         } else {
-            alert("Vous devez sélectionner des notes avant de les supprimer !");
+            alert(gettext('alert_non_selected_notes'));
         }
     });
     
@@ -807,7 +810,7 @@ $(document).ready(function() {
                         scoreEditor.add(new HistoricEvent("delete", index, 0, JSON.parse(JSON.stringify(scoreEditor.selected))));
                         scoreEditor.removeNotesAt(index, 0, scoreEditor.selected.length);
                         scoreEditor.update();
-                    } else alert("Vous devez sélectionner des notes pour les supprimer !");
+                    } else alert(gettext('alert_non_selected_notes'));
                     break;
                 
                 case "undo":
