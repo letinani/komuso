@@ -181,6 +181,13 @@ ScoreEditor.prototype.print = function() {
          }
     });
     
+    /*** Title ***/
+	$("#title").find("textarea").change(function(e) {
+	    scoreEditor.partition.title.text = $(this).val();
+	    scoreEditor.isSaved = false;
+	    scoreEditor.save();
+	});
+    
     /*** Changement de langue du titre ***/
     $("#languageButton").unbind("click");
     $("#languageButton").click(function(e) {
@@ -562,21 +569,16 @@ $(document).ready(function() {
             alert(gettext('alert_non_selected_notes'));
         }
     });
-    
-     /*** Title ***/
-	$("#title").find("textarea").change(function(e) {
-	    scoreEditor.partition.title.text = $(this).val();
-	    scoreEditor.isSaved = false;
-	    scoreEditor.save();
-	});
 	
 	$("#nb-notes-per-columns").change(function(e) {
 	    scoreEditor.partition.notesPerCol = $(this).val();
+	    scoreEditor.isSaved = false;
 	    scoreEditor.save();
 	});
 	
 	$("#nb-columns-per-pages").change(function(e) {
 	    scoreEditor.partition.colsPerPage = $(this).val();
+	    scoreEditor.isSaved = false;
 	    scoreEditor.save();
 	});
 	
