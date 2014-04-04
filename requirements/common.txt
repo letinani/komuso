@@ -5,6 +5,3 @@ dj-static
 reportlab==2.5
 --allow-all-external 
 --allow-unverified
-pyPdf==1.13
-html5lib==0.11.1
-xhtml2pdf
