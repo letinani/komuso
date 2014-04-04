@@ -5,18 +5,6 @@
         <ul>
 
 
-            <li>
-                <a class="note-picker note-menu" id="current-beat" href="">'</a>
-                <div class="menu-sub">
-                    <figure class="pick"></figure>
-                    <ul>
-                        <li><a class="note-picker note-menu beat" href="">'</a></li>
-                        <li><a class="note-picker note-menu beat" href="">|</a></li>
-                        <li><a class="note-picker note-menu beat" href="">||</a></li>
-                    </ul>
-                </div>
-            </li>
-
             {% for note in main_notes %}
             {% autoescape off %}
                 {% if note.type == 'note' or note.type == 'effect-note' %}
@@ -34,9 +22,19 @@
                 {% endif %}
             {% endautoescape %}
             {% endfor %}
-
-            <li><a class="note-picker note-menu ton blank" href="" value="blank">blank</a></li>
-            <li><a class="note-picker delete-menu" href="">X</a></li>
+            <li>
+                <a class="note-picker note-menu" id="current-beat" href="">'</a>
+                <div class="menu-sub">
+                    <figure class="pick"></figure>
+                    <ul>
+                        <li><a class="note-picker note-menu beat" href="">'</a></li>
+                        <li><a class="note-picker note-menu beat" href="">|</a></li>
+                        <li><a class="note-picker note-menu beat" href="">||</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a class="note-picker note-menu ton blank" href="" value="blank">↩</a></li>
+            <li><a class="note-picker delete-menu" href="">×</a></li>
         </ul>
     </nav>
 </section>
