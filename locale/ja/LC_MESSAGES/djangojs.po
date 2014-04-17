@@ -18,30 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+
 #: komuso/static/js/ScoreEditor.js:80 static/js/ScoreEditor.js:80
 msgid "alert_non_selected_notes_to_cut"
-msgstr ""
+msgstr "切り取りの前に範囲を指定して下さい"
 
 #: komuso/static/js/ScoreEditor.js:98 static/js/ScoreEditor.js:99
 msgid "alert_non_selected_notes_to_copy"
-msgstr ""
+msgstr "コピーの前に範囲を指定して下さい"
 
 #: komuso/static/js/ScoreEditor.js:122
 msgid "alert_empty_clipboard"
-msgstr ""
+msgstr "貼り付けの前にコピーをして下さい"
 
 #: komuso/static/js/ScoreEditor.js:132 komuso/static/js/ScoreEditor.js.c:338
 msgid "localStorage_not_supported"
-msgstr ""
+msgstr "開くことが出来ません"
 
 #: komuso/static/js/ScoreEditor.js:560 komuso/static/js/ScoreEditor.js.c:811
 #: static/js/ScoreEditor.js:562 static/js/ScoreEditor.js.c:813
 msgid "alert_non_selected_notes"
-msgstr ""
+msgstr "削除の前に符号を選んで下さい"
 
 #: komuso/static/js/ScoreEditor.js:606 komuso/static/js/ScoreEditor.js.c:624
 msgid "alert_score_not_saved"
-msgstr ""
+msgstr "警告：保存をしていません"
 
 #: static/admin/js/SelectFilter2.js:45
 #, c-format

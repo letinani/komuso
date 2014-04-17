@@ -19,12 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: komuso/static/js/ScoreEditor.js:80 static/js/ScoreEditor.js:80
-#, fuzzy
 msgid "alert_non_selected_notes_to_cut"
 msgstr "Vous devez sélectionner des notes avant de pouvoir les couper !"
 
 #: komuso/static/js/ScoreEditor.js:98 static/js/ScoreEditor.js:99
-#, fuzzy
 msgid "alert_non_selected_notes_to_copy"
 msgstr "Vous devez sélectionner des notes avant de pouvoir les copier !"
 
@@ -42,11 +40,8 @@ msgid "alert_non_selected_notes"
 msgstr "Vous devez selectionner une note avant de la supprimer !"
 
 #: komuso/static/js/ScoreEditor.js:606 komuso/static/js/ScoreEditor.js.c:624
-#, fuzzy
 msgid "alert_score_not_saved"
-msgstr ""
-"Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications "
-"seront perdues."
+msgstr "Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues."
 
 #: static/admin/js/SelectFilter2.js:45
 #, c-format

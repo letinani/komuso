@@ -17,19 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+
 #: komuso/static/js/ScoreEditor.js:80 static/js/ScoreEditor.js:80
-#, fuzzy
 msgid "alert_non_selected_notes_to_cut"
-msgstr "You must select a note before delete it"
+msgstr "You must select a note before you delete it"
 
 #: komuso/static/js/ScoreEditor.js:98 static/js/ScoreEditor.js:99
-#, fuzzy
 msgid "alert_non_selected_notes_to_copy"
-msgstr "You must select a note before delete it"
+msgstr "You must select a note before you copy it"
 
 #: komuso/static/js/ScoreEditor.js:122
 msgid "alert_empty_clipboard"
-msgstr ""
+msgstr "Empty Clipboard"
 
 #: komuso/static/js/ScoreEditor.js:132 komuso/static/js/ScoreEditor.js.c:338
 msgid "localStorage_not_supported"
@@ -38,12 +37,11 @@ msgstr ""
 #: komuso/static/js/ScoreEditor.js:560 komuso/static/js/ScoreEditor.js.c:811
 #: static/js/ScoreEditor.js:562 static/js/ScoreEditor.js.c:813
 msgid "alert_non_selected_notes"
-msgstr "You must select a note before delete it"
+msgstr "You must select a note before you delete it"
 
 #: komuso/static/js/ScoreEditor.js:606 komuso/static/js/ScoreEditor.js.c:624
-#, fuzzy
 msgid "alert_score_not_saved"
-msgstr "You must select a note before delete it"
+msgstr "The score is not saved. If you continue, the last modifications will be lost"
 
 #: static/admin/js/SelectFilter2.js:45
 #, c-format

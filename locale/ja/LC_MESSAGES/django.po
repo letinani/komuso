@@ -20,71 +20,71 @@ msgstr ""
 
 #: templates/header.html:20
 msgid "label_undo"
-msgstr ""
+msgstr "元に戻す"
 
 #: templates/header.html:26
 msgid "label_redo"
-msgstr ""
+msgstr "やり直し"
 
 #: templates/header.html:32 templates/side-menu.html:11
 msgid "label_print_document"
-msgstr ""
+msgstr "印刷"
 
 #: templates/header.html:38
 msgid "label_export_pdf"
-msgstr ""
+msgstr "pdf 保存"
 
 #: templates/header.html:44 templates/side-menu.html:10
 msgid "label_save_document"
-msgstr ""
+msgstr "保存"
 
 #: templates/side-menu.html:7
 msgid "nav_file"
-msgstr ""
+msgstr "ファイル"
 
 #: templates/side-menu.html:9
 msgid "label_new_document"
-msgstr ""
+msgstr "新規作成"
 
 #: templates/side-menu.html:12 templates/side-menu.html.py:13
 msgid "label_charge_document"
-msgstr ""
+msgstr "開く"
 
 #: templates/side-menu.html:17
 msgid "nav_layout"
-msgstr ""
+msgstr "レイアウト"
 
 #: templates/side-menu.html:20
 msgid "label_activate_borders"
-msgstr ""
+msgstr "縦線"
 
 #: templates/side-menu.html:21
 msgid "label_activate_lines"
-msgstr ""
+msgstr "列番号"
 
 #: templates/side-menu.html:22
 msgid "label_activate_pages"
-msgstr ""
+msgstr "ページ番号"
 
 #: templates/side-menu.html:23
 msgid "label_middle_time"
-msgstr ""
+msgstr "リズム線を中心に置く"
 
 #: templates/side-menu.html:24
 msgid "label_nb_columns"
-msgstr ""
+msgstr "ページ毎列数"
 
 #: templates/side-menu.html:39
 msgid "label_nb_notes_per_columns"
-msgstr ""
+msgstr "列毎符号数"
 
 #: templates/side-menu.html:56
 msgid "nav_download"
-msgstr ""
+msgstr "クレジット"
 
 #: templates/side-menu.html:57
 msgid "label_download_font"
-msgstr ""
+msgstr "フォントのダウンロード"
 
 #~ msgid "Bonjour"
 #~ msgstr "こんにちは"

@@ -60,11 +60,11 @@ msgstr "Bordures des colonnes"
 
 #: templates/side-menu.html:21
 msgid "label_activate_lines"
-msgstr "Numéros de colonnes"
+msgstr "Numéroter les colonnes"
 
 #: templates/side-menu.html:22
 msgid "label_activate_pages"
-msgstr "Numéros de pages"
+msgstr "Numéroter les pages"
 
 #: templates/side-menu.html:23
 msgid "label_middle_time"
@@ -83,6 +83,5 @@ msgid "nav_download"
 msgstr "Contenu additionnel"
 
 #: templates/side-menu.html:57
-#, fuzzy
 msgid "label_download_font"
 msgstr "Télécharger la police de caractère"

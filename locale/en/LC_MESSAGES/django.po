@@ -16,12 +16,10 @@ msgstr ""
 "LC_MESSAGES\n"
 
 #: templates/header.html:20
-#, fuzzy
 msgid "label_undo"
 msgstr "Undo"
 
 #: templates/header.html:26
-#, fuzzy
 msgid "label_redo"
 msgstr "Redo"
 
@@ -30,7 +28,6 @@ msgid "label_print_document"
 msgstr "Print"
 
 #: templates/header.html:38
-#, fuzzy
 msgid "label_export_pdf"
 msgstr "PDF export"
 
@@ -56,23 +53,23 @@ msgstr "Layout"
 
 #: templates/side-menu.html:20
 msgid "label_activate_borders"
-msgstr "Activate borders"
+msgstr "Show column borders"
 
 #: templates/side-menu.html:21
 msgid "label_activate_lines"
-msgstr "Numbers of Columns"
+msgstr "Show column number"
 
 #: templates/side-menu.html:22
 msgid "label_activate_pages"
-msgstr "Numbers of pages"
+msgstr "Show number of pages"
 
 #: templates/side-menu.html:23
 msgid "label_middle_time"
-msgstr "time bar in the middle"
+msgstr "Time bar in the middle"
 
 #: templates/side-menu.html:24
 msgid "label_nb_columns"
-msgstr "columns per page"
+msgstr "Columns per page"
 
 #: templates/side-menu.html:39
 msgid "label_nb_notes_per_columns"
@@ -84,7 +81,7 @@ msgstr "Downloads"
 
 #: templates/side-menu.html:57
 msgid "label_download_font"
-msgstr "I whant this awesome shakuhashi font"
+msgstr "I want this awesome shakuhashi font"
 
 #~ msgid "Bonjour"
 #~ msgstr "Hello"
