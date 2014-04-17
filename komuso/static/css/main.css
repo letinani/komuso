@@ -347,7 +347,7 @@ header {
     background: white;
     border: 1px solid #ddd;
     margin: 70px 0px 20px 20px;
-    height: 530px;
+    height: 675px;
     clear: both;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.05) inset; }
     #score .sheet:last-child, #score2 .sheet:last-child {
