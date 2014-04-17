@@ -48,7 +48,7 @@
                         {% for note in main_notes %}
                             {% if note.type != 'note' and note.type != 'effect-note' %}
                                 <li class="note-picker {{ note.class }}">
-                                    <span class="note-menu" href="" name="{{ note.type }}">&nbsp;</span>
+                                    <span class="note-menu" name="{{ note.type }}">&nbsp;</span>
                                     <ul class="sub-note-picker">
                                         <li class="effect1"><a class="sub-note-menu" href="" name="{{ note.type }}">&nbsp;</a></li>
                                         {% for sub_note in note.sub_notes %}

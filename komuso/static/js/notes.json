@@ -42,6 +42,17 @@
     ]
   },
   {
+    "value": "ebm",
+    "letter": "",
+    "type":"effect-bottom-middle",
+    "class":"sub-corner-bottom-middle",
+    "sub_notes": [
+        {"value": "ebm1", "letter": "Û"},
+        {"value": "ebm2", "letter": "ë"},
+        {"value": "ebm3", "letter": "P"}
+    ]
+  },
+  {
     "value": "ebl",
     "letter": "Û",
     "type":"effect-bottom-left",

@@ -170,10 +170,13 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
             
             if(partition[i].effects) {
                 for(var j = 0; j < partition[i].effects.length; ++j) {
-                    var effect = document.createElement('div');
-                    effect.setAttribute("class", partition[i].effects[j].type);
-                    effect.innerHTML = partition[i].effects[j].nom;
-                    note.appendChild(effect);
+                    test = partition[i].effects[j].nom;
+                    if (encodeURI(test)!= "%20"){
+                        var effect = document.createElement('div');
+                        effect.setAttribute("class", partition[i].effects[j].type);
+                        effect.innerHTML = partition[i].effects[j].nom;
+                        note.appendChild(effect);
+                    }
                 }
             }
             

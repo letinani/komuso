@@ -1,4 +1,4 @@
-@charset "CP850";
+@charset "UTF-8";
 /*
  autor: Laetitia Nanni
  2013
@@ -475,33 +475,34 @@ header {
     background: url(img/zigzag.png); }
   .note .effect-top-left {
     position: absolute;
-    font-size: 23px;
+    font-size: 18px;
     top: -6px;
     left: -5px; }
+  .note .effect-bottom-right, .note .effect-top-right, .note .effect-middle-right {
+    position: absolute;
+    font-size: 18px;
+    right: -6px; }
   .note .effect-top-right {
-    position: absolute;
-    font-size: 20px;
-    top: 0px;
-    right: -5px; }
+    top: 0px; }
   .note .effect-middle-right {
-    position: absolute;
-    font-size: 20px;
-    top: 40%;
-    right: -4px; }
+    top: 15px; }
   .note .effect-bottom-right {
-    position: absolute;
-    font-size: 20px;
-    bottom: 0px;
-    right: -5px; }
+    top: 30px; }
+  .note .effect-bottom-middle {
+    left: 9px;
+    top: 21px;
+    position: absolute; }
+  .note .effect-middle-right + .effect-bottom-middle {
+    margin-top: 2px; }
   .note .effect-bottom-left {
     position: absolute;
     font-size: 20px;
-    bottom: 0px;
+    top: 30px;
     left: -5px; }
   .note .effect-time-1 {
     position: absolute;
     top: 0px;
-    right: 0px;
+    right: -10px;
     border-right: 2px solid black;
     height: 40px; }
   .note .effect-time-2 {
@@ -779,6 +780,9 @@ header {
       .notes2 .note-selected nav .note-picker.sub-corner-middle {
         top: 13px;
         left: 40px; }
+      .notes2 .note-selected nav .note-picker.sub-corner-bottom-middle {
+        top: 33px;
+        left: 15px; }
       .notes2 .note-selected nav .note-picker.sub-corner-bottom {
         top: 33px;
         left: 40px; }

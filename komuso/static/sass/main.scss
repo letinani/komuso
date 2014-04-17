@@ -559,39 +559,45 @@ header {
 	}
     .effect-top-left {
       position: absolute;
-      font-size: 23px;
+      font-size: 18px;
       top: -6px;
       left: -5px;
     }
-    .effect-top-right {
+    .effect-bottom-right, .effect-top-right, .effect-middle-right {
       position: absolute;
-      font-size: 20px;
+      font-size: 18px;
+      right: -6px;
+    }
+    .effect-top-right {
       top: 0px;
-      right: -5px;
     }
     .effect-middle-right {
-      position: absolute;
-      font-size: 20px;
-      top: 40%;
-      right: -4px;
+      top: 15px;
     }
     .effect-bottom-right {
+      top: 30px;
+    }
+    .effect-bottom-middle {
+      left: 9px;
+      top: 21px;
       position: absolute;
-      font-size: 20px;
-      bottom: 0px;
-      right: -5px;
+      //max-height: 24px;
+
+    }
+    .effect-middle-right + .effect-bottom-middle {
+      margin-top: 2px;
     }
     .effect-bottom-left {
       position: absolute;
       font-size: 20px;
-      bottom: 0px;
+      top: 30px;
       left: -5px;
     }
 
     //time
 
       .effect-time-1 {
-       position:absolute; top:0px; right:0px; border-right: 2px solid black; height:40px;
+       position:absolute; top:0px; right:-10px; border-right: 2px solid black; height:40px;
 
       }
       .effect-time-2 {
@@ -836,12 +842,16 @@ header {
                 }
                 &.sub-corner-middle {
                     top: 13px;
-                    left: 40px
+                    left: 40px;
 
+                }
+                &.sub-corner-bottom-middle {
+                    top: 33px;
+                    left: 15px;
                 }
                 &.sub-corner-bottom {
                     top: 33px;
-                    left: 40px
+                    left: 40px;
 
                 }
                 &.sub-corner-bottom-left {
