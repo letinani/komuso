@@ -60,8 +60,8 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
     //Colonne
 	colonm = document.createElement('div'); //Créer une div
 	colonm.setAttribute("class","column notes2");//Ajoute la classe colonm à la div
-	if($("#score-borders:checked").length == 1) colonm.setAttribute("style","border-left:1px solid black; border-right:1px solid black;");
-	
+    if($("#score-borders:checked").length == 1) colonm.setAttribute("class","column notes2 show-borders");
+
 	//H2
 	number = document.createElement('h2'); //Créer un h2
 	number.setAttribute("class","cols_numbers");//Ajoute la classe colonm au h2

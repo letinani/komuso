@@ -124,13 +124,15 @@
 @media print {
     @page {
       size: landscape;
-      margin: 2cm;
+      //margin: 2cm;
   }
 
-  header, #side-menu, #menu-editor, #menu-selection {
-    display:none;
+  header, #side-menu, #menu-editor, #menu-selection, .cursor{
+    display:none!important;
   }
-
+  .empty {
+    border: 0;
+  }
   body
     {
     height: auto!important;
@@ -148,8 +150,23 @@
     page-break-after: always;
     margin: auto!important;
     height: 180mm;
-    width: 300mm;
+    width: 277mm;
     box-shadow: none;
+    #title {
+      border:0;
+      #languageButton {
+        display: none;
+      }
+    }
+	> .column {
+		border:0;
+        &.show-borders {
+            border-left: 1px solid black;
+        }
+	}
+	.column {
+        border:0;
+    }
   }
   #score {
     float: none;
@@ -165,7 +182,7 @@
         margin: 0;
         padding: 0;
         margin-right: 4cm;
-        //@include transform(rotate(-90deg));
+        @include transform(rotate(-90deg));
         filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     }
   }

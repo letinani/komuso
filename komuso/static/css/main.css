@@ -380,7 +380,8 @@ header {
         word-wrap: break-word; }
       #score .sheet #title textarea, #score2 .sheet #title textarea {
         border: 0;
-        background: none; }
+        background: none;
+        resize: none; }
       #score .sheet #title a, #score2 .sheet #title a {
         display: block;
         position: absolute;
@@ -435,12 +436,16 @@ header {
         border-top: solid 2px #F70; }
   #score > .column, #score2 > .column {
     border-right: 1px dashed #CCC; }
+    #score > .column.show-borders, #score2 > .column.show-borders {
+      border-right: 1px solid black; }
   #score .column, #score2 .column {
     max-width: 100px;
     min-width: 84px;
     height: 100%;
     text-align: center;
     border-left: 1px dashed #CCC; }
+    #score .column.show-borders, #score2 .column.show-borders {
+      border-left: 1px solid black; }
     #score .column h2, #score2 .column h2 {
       margin: 0;
       font-size: 1em;

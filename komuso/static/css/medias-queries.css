@@ -57,11 +57,13 @@
 /**  PRINT  **/
 @media print {
   @page {
-    size: landscape;
-    margin: 2cm; }
+    size: landscape; }
 
-  header, #side-menu, #menu-editor, #menu-selection {
-    display: none; }
+  header, #side-menu, #menu-editor, #menu-selection, .cursor {
+    display: none !important; }
+
+  .empty {
+    border: 0; }
 
   body {
     height: auto !important;
@@ -76,8 +78,18 @@
     page-break-after: always;
     margin: auto !important;
     height: 180mm;
-    width: 300mm;
+    width: 277mm;
     box-shadow: none; }
+    #score .sheet #title {
+      border: 0; }
+      #score .sheet #title #languageButton {
+        display: none; }
+    #score .sheet > .column {
+      border: 0; }
+      #score .sheet > .column.show-borders {
+        border-left: 1px solid black; }
+    #score .sheet .column {
+      border: 0; }
 
   #score {
     float: none; }
@@ -90,4 +102,9 @@
       margin: 0;
       padding: 0;
       margin-right: 4cm;
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+      -o-transform: rotate(-90deg);
+      transform: rotate(-90deg);
       filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); } } }

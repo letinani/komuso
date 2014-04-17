@@ -462,6 +462,7 @@ header {
 			textarea {
 				border: 0;
 				background: none;
+                resize: none;
 			}
 
 			a {
@@ -510,7 +511,9 @@ header {
 
 	> .column {
 		border-right: 1px dashed #CCC;
-
+        &.show-borders {
+            border-right: 1px solid black;
+        }
 	}
 	.column {
 		max-width: 100px;
@@ -518,6 +521,9 @@ header {
 		height: 100%;
 		text-align: center;
 		border-left: 1px dashed #CCC;
+        &.show-borders {
+            border-left: 1px solid black;
+        }
 
 		h2{
 			margin: 0;
