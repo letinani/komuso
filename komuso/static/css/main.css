@@ -497,8 +497,8 @@ header {
   .note .effect-bottom-left {
     position: absolute;
     font-size: 20px;
-    top: 30px;
-    left: -5px; }
+    top: 33px;
+    left: -8px; }
   .note .effect-time-1 {
     position: absolute;
     top: 0px;
@@ -774,6 +774,22 @@ header {
 			    }
 
 */ }
+      .notes2 .note-selected nav .note-picker .sub-note-picker {
+        display: none;
+        font-size: 1.2em;
+        padding: 2px;
+        position: absolute;
+        top: 0;
+        left: 16px;
+        width: 90px;
+        background: #e38882; }
+        .notes2 .note-selected nav .note-picker .sub-note-picker:first-child {
+          background: red; }
+        .notes2 .note-selected nav .note-picker .sub-note-picker li {
+          float: left;
+          padding: 2px; }
+          .notes2 .note-selected nav .note-picker .sub-note-picker li:hover {
+            background: #ffffff; }
       .notes2 .note-selected nav .note-picker.sub-corner-top {
         left: 40px;
         top: -7px; }
@@ -789,24 +805,13 @@ header {
       .notes2 .note-selected nav .note-picker.sub-corner-bottom-left {
         left: -8px;
         top: 33px; }
+        .notes2 .note-selected nav .note-picker.sub-corner-bottom-left .sub-note-picker {
+          left: -55px;
+          width: 50px; }
       .notes2 .note-selected nav .note-picker:hover {
         background: #CCC; }
       .notes2 .note-selected nav .note-picker:hover .sub-note-picker {
         display: block; }
-      .notes2 .note-selected nav .note-picker .sub-note-picker {
-        display: none;
-        font-size: 1.2em;
-        padding: 2px;
-        position: absolute;
-        top: 0;
-        left: 16px;
-        width: 90px;
-        background: #e38882; }
-        .notes2 .note-selected nav .note-picker .sub-note-picker li {
-          float: left;
-          padding: 2px; }
-          .notes2 .note-selected nav .note-picker .sub-note-picker li:hover {
-            background: #ffffff; }
       .notes2 .note-selected nav .note-picker.bubble:before {
         bottom: 100%;
         left: 50%;

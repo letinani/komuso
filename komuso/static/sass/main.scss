@@ -590,8 +590,8 @@ header {
     .effect-bottom-left {
       position: absolute;
       font-size: 20px;
-      top: 30px;
-      left: -5px;
+      top: 33px;
+      left: -8px;
     }
 
     //time
@@ -835,6 +835,28 @@ header {
                 height: 15px;
                 font-size: 18px;
 
+                .sub-note-picker {
+                    display: none;
+                    font-size: 1.2em;
+                    padding: 2px;
+                    position: absolute;
+                    top: 0;
+                    left: 16px;
+                    width: 90px;
+                    background: #e38882;
+                    &:first-child {
+                      background: red;
+                    }
+                    li {
+                        float: left;
+                        padding: 2px;
+                      &:hover {
+                        background: #ffffff;
+                      }
+
+                    }
+				}
+
                 &.sub-corner-top {
                     left: 40px;
                     top: -7px;
@@ -857,6 +879,10 @@ header {
                 &.sub-corner-bottom-left {
                     left: -8px;
                     top: 33px;
+                    .sub-note-picker {
+                        left: -55px;
+                        width: 50px;
+                    }
                 }
                 &:hover {
                      background: #CCC;
@@ -865,26 +891,6 @@ header {
                   &:hover .sub-note-picker {
                   display: block;
 				}
-                .sub-note-picker {
-                    display: none;
-                    font-size: 1.2em;
-                    padding: 2px;
-                    position: absolute;
-                    top: 0;
-                    left: 16px;
-                    width: 90px;
-                    background: #e38882;
-
-                    li {
-                        float: left;
-                        padding: 2px;
-                      &:hover {
-                        background: #ffffff;
-                      }
-
-                    }
-				}
-
 				&.bubble:before {
 					bottom: 100%;
 					left: 50%;

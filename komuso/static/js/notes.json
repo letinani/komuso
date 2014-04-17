@@ -54,11 +54,11 @@
   },
   {
     "value": "ebl",
-    "letter": "Û",
+    "letter": "Î",
     "type":"effect-bottom-left",
     "class":"sub-corner-bottom-left",
     "sub_notes": [
-    
+        {"value": "ebl1", "letter": "Î"}
     ]
   },
   {
