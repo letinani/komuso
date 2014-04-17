@@ -3,8 +3,9 @@
 
 <section id="side-menu" class="main-menu">
 	<a class="icon close-side-menu" href=""></a>
-	<nav id="file">
-		<h1>{% trans "nav_file"%}</h1>
+
+	<h1>{% trans "nav_file"%}</h1>
+    <nav id="file">
 		<ul>
 			<li><figure class="icon newPartition"></figure><a href="" class="newDocument">{% trans "label_new_document" %}</a></li>
 			<li><figure class="icon save"></figure><a href="" class="saveButton">{% trans "label_save_document" %}</a></li>
@@ -13,8 +14,9 @@
 			<li><label class="load-button"><figure class="icon load"></figure><span>{% trans "label_charge_document" %}</span><input class="loadFile" type="file" /></label></li>
 		</ul>
 	</nav>
+
+    <h1>{% trans "nav_layout"%}</h1>
 	<nav id="menu-score-layout">
-		<h1>{% trans "nav_layout"%}</h1>
 		<form>
 			<ul>
 				<li><input type="checkbox" id="score-borders" name="score-boders" > {% trans "label_activate_borders" %}</li>
@@ -55,4 +57,11 @@
 	</nav>
 	<h1>{% trans "nav_download"%}</h1>
 	<a href="{% static 'font/komuso-webfont.ttf' %}" class="buttonDownload">{% trans "label_download_font"%}</a>
+    <div id="credits">
+            <a href="http://www.ingenieur-imac.fr/"><img src="http://www.ingenieur-imac.fr/themes/imac/logo.png" alt="ecole ingénieur IMAC"/></a>
+            <h3>IMAC - Université UPM - France</h3>
+            <p>Tuteur: <a href="http://www-igm.univ-mlv.fr/~vnozick/">Vincent Nozick</a></p>
+            <p>Studients: Laetitia Nanni, Julie Po, Thibault Fievet</p>
+
+    </div>
 </section>

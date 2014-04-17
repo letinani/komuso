@@ -194,6 +194,7 @@ header {
   #side-menu h1 {
     font-size: 16px;
     font-weight: normal; }
+  #side-menu nav {
   #side-menu li {
     line-height: 25px; }
     #side-menu li:hover a {
