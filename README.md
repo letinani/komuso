@@ -38,5 +38,8 @@
 * cd komuso/static
 * sass --watch sass/main.scss:css/main.css
 
-
+## tranductions
+* django-admin.py makemessages -d djangojs --all
+* django-admin.py makemessages --all
+* django-admin.py compilemessages
 
