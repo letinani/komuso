@@ -195,6 +195,9 @@ header {
     font-size: 16px;
     font-weight: normal; }
   #side-menu nav {
+    margin-bottom: 50px; }
+  #side-menu ul {
+    list-style: none; }
   #side-menu li {
     line-height: 25px; }
     #side-menu li:hover a {
@@ -247,6 +250,23 @@ header {
     transition: all 0.3s linear; }
     #side-menu .buttonDownload:hover {
       color: red; }
+  #side-menu #credits {
+    text-align: center;
+    line-height: 1.2; }
+    #side-menu #credits h3 {
+      font-size: 12px;
+      margin: 0; }
+    #side-menu #credits a {
+      display: inline;
+      line-height: 1; }
+      #side-menu #credits a:hover {
+        color: cornflowerblue; }
+    #side-menu #credits img {
+      width: 40px;
+      margin-right: 20px; }
+    #side-menu #credits p {
+      font-size: 11px;
+      margin: 0; }
 
 /********  Menu to add notes on score ********/
 #menu-editor {
