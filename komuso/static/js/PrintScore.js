@@ -81,7 +81,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
 	}    
 	    colonm.appendChild(cursor);
 	 
-	 for(var i = 0; i < partition.length; ++i) {
+	for(var i = 0; i < partition.length; ++i) {
 
 		//Vérifie s'il faut ajouter une nouvelle colonne ou pas
 		if(currentLine == number_max || partition[i].nom == "blank") { //Besoin d'ajouter une nouvelle colonne 
@@ -135,8 +135,16 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
 	    note.setAttribute("class",classes);
 	    if(partition[i].nom != "blank") note.innerHTML = partition[i].nom;
 	    else note.innerHTML = "";
-	    
-	    var time = document.createElement('div');
+	    console.log(partition[i].nom);
+
+        // gestion des notes longues
+         if(partition[i].nom == " Ó" || partition[i].nom ==" Ô") {
+             note.setAttribute("class","note ui-state-default long");
+         }
+         if(partition[i].nom == " Õ") {
+             note.setAttribute("class","note ui-state-default mid");
+         }
+         var time = document.createElement('div');
         
         colonm.appendChild(note);
         
@@ -182,7 +190,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
             
             currentLine++;
         }
-	 }
+	}
 
 }
 
