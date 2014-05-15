@@ -187,7 +187,9 @@ header {
 }
 
 .column {
-	float: right;
+	//float: right;
+    display: table-cell;
+    direction: rtl;
 }
 
 
@@ -421,8 +423,10 @@ header {
 		background: white;
 		border: 1px solid #ddd;
 		margin: 70px 0px 20px 20px;
-		height: 675px;
+		min-height: 675px;
         clear: both;
+        overflow: hidder;
+        direction: rtl;
 
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 0 30px rgba(0, 0, 0, 0.05) inset;
 		&:last-child{
@@ -439,6 +443,8 @@ header {
 			padding: 10px;
 			@include border-radius(5px);
 			border: 1px dashed #CCC;
+            direction: ltr;
+
 			&.jap {
 				margin: 20px;
 				float: right;
@@ -821,7 +827,7 @@ header {
 	    nav {
 		    border: 30px solid rgba(0, 0, 0, 0);
 		    height: 32px;
-		    left: -27px;
+		    left: -74px;
 		    list-style: none outside none;
 		    margin: 0;
 		    padding: 0;
@@ -974,6 +980,9 @@ header {
 	.ui-selecting { 
 		background: #e35249;
 	}
+    .long.ui-selected {
+        padding: 30px 0;
+    }
 	.ui-selected {
 		background: #E35249;
         color: white;
