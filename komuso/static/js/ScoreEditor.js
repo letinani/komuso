@@ -166,8 +166,8 @@ ScoreEditor.prototype.print = function() {
     var scoreEditor = this;
     $('.cursor').mouseup(function(e) {     
          if(!$(this).hasClass('currentCursor')) {
-             $('.cursor').css('border-top','solid 2px #AAA');
-             $( this ).css('border-top','solid 2px #F70');
+             //$('.cursor').css('border-top','solid 2px #AAA');
+             //$( this ).css('border-top','solid 2px #F70');
              $( '.currentCursor' ).animate({
                     opacity: 0
              }, 100);

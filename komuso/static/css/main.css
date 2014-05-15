@@ -3,7 +3,6 @@
  autor: Laetitia Nanni
  2013
 */
-
 @font-face {
   font-family: 'komuso';
   src: url("../font/komuso-webfont.eot");
@@ -781,7 +780,8 @@ header {
         top: 0;
         left: 16px;
         width: 90px;
-        background: #e38882; }
+        background: #e38882;
+        overflow: hidden; }
         .notes2 .note-selected nav .note-picker .sub-note-picker:first-child {
           background: red; }
         .notes2 .note-selected nav .note-picker .sub-note-picker li {

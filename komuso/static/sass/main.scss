@@ -839,6 +839,7 @@ header {
                     left: 16px;
                     width: 90px;
                     background: #e38882;
+                    overflow: hidden;
                     &:first-child {
                       background: red;
                     }
