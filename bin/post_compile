@@ -20,4 +20,4 @@ npm install uglify-js --global --prefix=$BUILD_DIR/.heroku/vendor/node
 
 # ship static files as part of the slug
 python manage.py collectstatic --noinput
-python manage.py gzipstatic
+# python manage.py gzipstatic
