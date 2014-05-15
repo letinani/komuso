@@ -147,13 +147,14 @@
 
 
   #score .sheet {
-    page-break-after: always;
+    border: none;
+    //page-break-after: always;
     margin: auto!important;
-    height: 180mm;
+    height: 181mm;
     width: 277mm;
     box-shadow: none;
     #title {
-      border:0;
+      border:0 ;
       #languageButton {
         display: none;
       }
@@ -174,16 +175,15 @@
   // style pour mozilla qui ne comprends pas size: landscape
   @-moz-document url-prefix() {
     @page {
-
+        //@include transform(rotate(-90deg));
+        //filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     }
     #score {
         float: none;
         width: 300mm;
         margin: 0;
         padding: 0;
-        margin-right: 4cm;
-        @include transform(rotate(-90deg));
-        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+
     }
   }
 
