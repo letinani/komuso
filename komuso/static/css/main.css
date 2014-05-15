@@ -3,19 +3,6 @@
  autor: Laetitia Nanni
  2013
 */
-@font-face {
-  font-family: 'tozanshakregular';
-  src: url("../font/tozanshak-webfont.eot");
-  src: url("../font/tozanshak-webfont.eot?#iefix") format("embedded-opentype"), url("../font/tozanshak-webfont.woff") format("woff"), url("../font/tozanshak-webfont.ttf") format("truetype"), url("../font/tozanshak-webfont.svg#tozanshakregular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-@font-face {
-  font-family: 'shakuhachinotation';
-  src: url("../font/shakuhachinotation-webfont.eot");
-  src: url("../font/shakuhachinotation-webfont.eot?#iefix") format("embedded-opentype"), url("../font/shakuhachinotation-webfont.woff") format("woff"), url("../font/shakuhachinotation-webfont.ttf") format("truetype"), url("../font/shakuhachinotation-webfont.svg#tozanshakregular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
 
 @font-face {
   font-family: 'komuso';
@@ -480,8 +467,7 @@ header {
     height: 40px;
     width: 32px;
     background: red;
-    margin: 0 auto;
-    background: url(img/zigzag.png); }
+    margin: 0 auto; }
   .note .effect-top-left {
     position: absolute;
     font-size: 18px;
