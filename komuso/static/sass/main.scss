@@ -504,13 +504,13 @@ header {
 		}
 		.cursor {
 			max-width: 100px;
-    		min-width: 90px;
+    		min-width: 85px;
     		height: 50px;
 			position:absolute; 
-			border-top:solid 3px #AAA; 
+			border-top:solid 4px #AAA;
 			display:block;
 			&.currentCursor {
-				border-top:solid 2px #F70;
+				border-top: solid 4px red;
 			}
 		}
 	}
@@ -624,11 +624,10 @@ header {
         position:absolute; top:0px; left:35%; border-left: 2px solid black; border-right: 3px solid black; height:40px; width: 3px;
       }
       &.long {
-        padding: 30px 0;
+        padding: 25px 0;
       }
       &.mid {
-        padding: 20px 0;
-
+        padding: 15px 0;
       }
 
 }
@@ -981,7 +980,10 @@ header {
 		background: #e35249;
 	}
     .long.ui-selected {
-        padding: 30px 0;
+        padding: 25px 0;
+    }
+    .mid.ui-selected {
+        padding: 15px 0;
     }
 	.ui-selected {
 		background: #E35249;
