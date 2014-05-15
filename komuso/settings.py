@@ -116,7 +116,7 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
 PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
 PIPELINE_CSSMIN_BINARY = 'cssmin'
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
 
 PIPELINE_CSS = {
     'common_css': {
@@ -133,7 +133,7 @@ PIPELINE_CSS = {
 PIPELINE_JS = {
     'common_js': {
         'source_filenames': (
-            'js/jquery.min.js',
+            'js/jquery-1.11.1.min.js',
             'js/jquery-ui-1.10.3.custom.min.js',
             'js/jquery.ui.position.js',
             'js/Blob.js',
