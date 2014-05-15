@@ -141,7 +141,7 @@ function affichage(number_max, partition, titlePartition, colonm_max, position, 
          if(partition[i].nom == " Ó" || partition[i].nom ==" Ô") {
              note.setAttribute("class","note ui-state-default long");
          }
-         if(partition[i].nom == " Õ") {
+         if(partition[i].nom == " Õ" || partition[i].nom == " Ð") {
              note.setAttribute("class","note ui-state-default mid");
          }
          var time = document.createElement('div');
