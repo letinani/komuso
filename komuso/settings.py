@@ -20,7 +20,7 @@ SECRET_KEY = '4+_55w=d2&&v$^fs7gns7(d9q#9f_wtsz-7rf!juyi1vc!v7d8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = bool(os.environ.get('DEBUG', False))
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'komuso',
     'score-editor',
+    'pipeline',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +109,44 @@ TEMPLATE_DIRS = (
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '{}/static'.format(BASE_DIR)
+
+
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
+PIPELINE_CSSMIN_BINARY = 'cssmin'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
+
+PIPELINE_CSS = {
+    'common_css': {
+        'source_filenames': (
+            'css/normalize.css',
+            'css/main.css',
+            'css/medias-queries.css',
+            'css/jquery.contextMenu.css',
+        ),
+        'output_filename': 'min.css',
+        'variant': 'datauri',
+    },
+}
+PIPELINE_JS = {
+    'common_js': {
+        'source_filenames': (
+            'js/jquery.min.js',
+            'js/jquery-ui-1.10.3.custom.min.js',
+            'js/jquery.ui.position.js',
+            'js/Blob.js',
+            'js/FileSaver.js',
+            'js/ScoreEditor.js',
+            'js/main.js',
+            'js/numbers.js',
+            'js/PrintScore.js',
+            'js/jquery.contextMenu.js',
+            'js/noty/packaged/jquery.noty.packaged.min.js',
+
+        ),
+        'output_filename': 'min.js',
+    }
+}
+
