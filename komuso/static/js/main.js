@@ -52,6 +52,7 @@ $(function() {
         timeout: 3000
     });
 
-
+    /** optimisation tablette **/
+    $('a').on('click', handleClicks);
 
 });
