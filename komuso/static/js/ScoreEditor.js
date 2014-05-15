@@ -595,6 +595,12 @@ $(document).ready(function() {
 		            , title + ".skh"
 	            );
 	            scoreEditor.isSaved = true;
+                var c = noty({
+                    text: gettext('alert_success_save'),
+                    type: 'success',
+                    timeout: 3000
+                });
+
             }
         }
 	    

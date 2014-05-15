@@ -44,5 +44,14 @@ $(function() {
         }
     });
 
+    /** Test navigateur **/
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
+    if (!isChrome) var n = noty({
+        text : gettext('alert_browser_not_chrome')+' <a href=\"https://www.google.com/intl/fr_fr/chrome/browser/\">Chrome</a>',
+        timeout: 3000
+    });
+
+
 
 });
