@@ -67,7 +67,7 @@
     "type":"note",
     "sub_notes": [
         {"value": "ro1", "letter": "="},
-        {"value": "ro2", "letter": "₤"},
+        {"value": "ro2", "letter": "k"},
         {"value": "ro3", "letter": "?"},
         {"value": "ro4", "letter": "@"},
         {"value": "ro5", "letter": "A"},
