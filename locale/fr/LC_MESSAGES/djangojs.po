@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-04 21:04+0200\n"
+"POT-Creation-Date: 2014-05-15 20:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: komuso/static/js/ScoreEditor.js:80 static/js/ScoreEditor.js:80
+#: komuso/static/js/ScoreEditor.js:80 static/min.js:1
+#: static/js/ScoreEditor.js:80
 msgid "alert_non_selected_notes_to_cut"
 msgstr "Vous devez sélectionner des notes avant de pouvoir les couper !"
 
-#: komuso/static/js/ScoreEditor.js:98 static/js/ScoreEditor.js:99
+#: komuso/static/js/ScoreEditor.js:98 static/min.js:1
+#: static/js/ScoreEditor.js:98
 msgid "alert_non_selected_notes_to_copy"
 msgstr "Vous devez sélectionner des notes avant de pouvoir les copier !"
 
-#: komuso/static/js/ScoreEditor.js:122
+#: komuso/static/js/ScoreEditor.js:121 static/min.js:1
+#: static/js/ScoreEditor.js:121
 msgid "alert_empty_clipboard"
 msgstr "Le presse papier est vide !"
 
-#: komuso/static/js/ScoreEditor.js:132 komuso/static/js/ScoreEditor.js.c:338
+#: komuso/static/js/ScoreEditor.js:131 komuso/static/js/ScoreEditor.js.c:344
+#: static/min.js:1 static/js/ScoreEditor.js:131 static/js/ScoreEditor.js.c:344
 msgid "localStorage_not_supported"
 msgstr "localStorage n'est pas supporté. Impossible de charger la partition."
 
-#: komuso/static/js/ScoreEditor.js:560 komuso/static/js/ScoreEditor.js.c:811
-#: static/js/ScoreEditor.js:562 static/js/ScoreEditor.js.c:813
+#: komuso/static/js/ScoreEditor.js:566 komuso/static/js/ScoreEditor.js.c:818
+#: static/min.js:1 static/js/ScoreEditor.js:566 static/js/ScoreEditor.js.c:818
 msgid "alert_non_selected_notes"
 msgstr "Vous devez selectionner une note avant de la supprimer !"
 
-#: komuso/static/js/ScoreEditor.js:606 komuso/static/js/ScoreEditor.js.c:624
+#: komuso/static/js/ScoreEditor.js:599
+msgid "alert_success_save"
+msgstr "Bravo ! c'est enregistré dans votre dossier de téléchargements"
+
+#: komuso/static/js/ScoreEditor.js:613 komuso/static/js/ScoreEditor.js.c:631
+#: static/min.js:1 static/js/ScoreEditor.js:613 static/js/ScoreEditor.js.c:631
 msgid "alert_score_not_saved"
-msgstr "Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications seront perdues."
+msgstr ""
+"Vous n'avez pas encore sauvegardé. Si vous continuez, vos modifications "
+"seront perdues."
+
+#: komuso/static/js/main.js:52
+msgid "alert_browser_not_chrome"
+msgstr "Bienvenue sur Komuso ! L'application est optimisée pour le navigateur"
 
 #: static/admin/js/SelectFilter2.js:45
 #, c-format
@@ -192,8 +207,4 @@ msgstr ""
 
 #: static/admin/js/admin/DateTimeShortcuts.js:203
 msgid "Tomorrow"
-msgstr ""
-
-#: static/js/ScoreEditor.js:124
-msgid "alert_empty_presse"
 msgstr ""
