@@ -1,0 +1,23 @@
+
+
+# install nodejs & yuglify
+export PATH="$BUILD_DIR/.heroku/vendor/node/bin:$BUILD_DIR/.heroku/vendor/node/lib/node_modules/bin:$PATH"
+tempdir="$(mktemp -t node_XXXX)"
+rm -rf $tempdir && mkdir -p $tempdir
+pushd $tempdir
+curl -s -L -o node-v0.10.26-linux-x64.tar.gz http://nodejs.org/dist/v0.10.26/node-v0.10.26-linux-x64.tar.gz
+tar -zxvf node-v0.10.26-linux-x64.tar.gz > /dev/null
+rm -f node-v0.10.26-linux-x64.tar.gz
+popd
+mkdir -p $BUILD_DIR/.heroku/vendor
+pushd $BUILD_DIR/.heroku/vendor
+rm -rf node
+mv $tempdir/node-v0.10.26-linux-x64 node
+popd
+rm -rf $tempdir
+npm install uglify-js --global --prefix=$BUILD_DIR/.heroku/vendor/node
+
+
+# ship static files as part of the slug
+python manage.py collectstatic --noinput
+python manage.py gzipstatic
