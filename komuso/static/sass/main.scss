@@ -617,7 +617,13 @@ header {
       .effect-time-2-center {
         position:absolute; top:0px; left:35%; border-left: 2px solid black; border-right: 3px solid black; height:40px; width: 3px;
       }
+      &.long {
+        padding: 30px 0;
+      }
+      &.mid {
+        padding: 20px 0;
 
+      }
 
 }
 
