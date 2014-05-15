@@ -144,6 +144,7 @@ PIPELINE_JS = {
             'js/PrintScore.js',
             'js/jquery.contextMenu.js',
             'js/noty/packaged/jquery.noty.packaged.min.js',
+            'js/touche.min.js',
 
         ),
         'output_filename': 'min.js',
