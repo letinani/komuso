@@ -17,9 +17,11 @@
 
 ## lancer le projet en local
 
+### installation des dépendances
 * installer pip
 * pip install -r requirements/dev.txt
 * python manage.py ruserver
+* installer aussi uglify grace à la commande npm de node.js
 
 ### si erreur 500 django_session : Créer la base
 * python manage.py syncdb
