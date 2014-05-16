@@ -136,6 +136,7 @@ PIPELINE_JS = {
             'js/jquery-1.11.1.min.js',
             'js/jquery-ui-1.10.3.custom.min.js',
             'js/jquery.ui.position.js',
+            'js/touche.min.js',
             'js/Blob.js',
             'js/FileSaver.js',
             'js/ScoreEditor.js',
@@ -144,7 +145,6 @@ PIPELINE_JS = {
             'js/PrintScore.js',
             'js/jquery.contextMenu.js',
             'js/noty/packaged/jquery.noty.packaged.min.js',
-
         ),
         'output_filename': 'min.js',
     }
