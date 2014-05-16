@@ -20,7 +20,7 @@ SECRET_KEY = '4+_55w=d2&&v$^fs7gns7(d9q#9f_wtsz-7rf!juyi1vc!v7d8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = bool(os.environ.get('DEBUG', False))
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 

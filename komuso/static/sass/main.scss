@@ -173,6 +173,7 @@ header {
 
 
 #side-menu {
+    direction: ltr;
 	position: fixed;
 	background-color: rgba(0,0,0,0.8);
 	height: 100%;
@@ -311,6 +312,8 @@ header {
     position: fixed;
     right: 0;
     z-index: 2;
+      direction: ltr;
+
 
 	nav {
 		ul {margin:0;}
