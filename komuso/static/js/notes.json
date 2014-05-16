@@ -142,7 +142,7 @@
         {"value": "chi12", "letter": "x"},
         {"value": "chi13", "letter": "y"},
         {"value": "chi14", "letter": "z"},
-        {"value": "chi15", "letter": "{"}
+        {"value": "chi15", "letter": "}"}
 
     ]
   },
@@ -151,7 +151,7 @@
     "letter": "}",
     "type":"note",
     "sub_notes": [
-        {"value": "hi1", "letter": "}"},
+        {"value": "hi1", "letter": "{"},
         {"value": "hi2", "letter": "¡"},
         {"value": "hi3", "letter": "¢"},
         {"value": "hi4", "letter": "£"},

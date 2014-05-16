@@ -53,6 +53,7 @@ $(function() {
     });
 
     /** optimisation tablette **/
-    $('a').on('click', handleClicks);
-
+    $('header a').on('click', handleClicks);
+    $('#side-menu a').on('click', handleClicks);
+    $('#menu-notes a').on('click', handleClicks);
 });
