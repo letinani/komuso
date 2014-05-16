@@ -483,7 +483,7 @@ header {
   .note .effect-bottom-right {
     top: 30px; }
   .note .effect-bottom-middle {
-    left: 9px;
+    left: 6px;
     top: 21px;
     position: absolute; }
   .note .effect-middle-right + .effect-bottom-middle {
