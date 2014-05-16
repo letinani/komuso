@@ -298,10 +298,6 @@ ScoreEditor.prototype.update = function() {
             }
         }
 	});
-    /* gestion touche */
-    $('header a').on('click', handleClicks);
-    $('#side-menu a').on('click', handleClicks);
-    $('#menu-notes a').on('click', handleClicks);
 }
 
 function refreshSelection(firstSelected, selecting) {
