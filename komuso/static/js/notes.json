@@ -73,7 +73,7 @@
         {"value": "ro5", "letter": "A"},
         {"value": "ro7", "letter": "B"},
         {"value": "ro8", "letter": "C"},
-        {"value": "ro9", "letter": "C"},
+        {"value": "ro9", "letter": "D"},
         {"value": "ro10", "letter": "E"},
         {"value": "ro11", "letter": "F"},
         {"value": "ro12", "letter": "G"},
@@ -99,7 +99,7 @@
         {"value": "tsu7", "letter": "X"},
         {"value": "tsu8", "letter": "Y"},
         {"value": "tsu9", "letter": "Z"},
-        {"value": "tsu11", "letter": "["},
+        {"value": "tsu11", "letter": "]"},
         {"value": "tsu12", "letter": "\\"}
 
     ]
