@@ -136,7 +136,6 @@ PIPELINE_JS = {
             'js/jquery-1.11.1.min.js',
             'js/jquery-ui-1.10.3.custom.min.js',
             'js/jquery.ui.position.js',
-            'js/touche.js',
             'js/Blob.js',
             'js/FileSaver.js',
             'js/ScoreEditor.js',
